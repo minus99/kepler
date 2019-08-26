@@ -1,0 +1,84 @@
+//ABSTRACTS
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+//BASE
+/* autoprefixer grid: off */
+@import 'base/typography';
+@import 'base/icons';
+@import 'base/animations';
+@import 'base/global';
+
+//COMPONENTS
+@import 'components/button';
+@import 'components/form';
+@import 'components/popup';
+@import 'components/grid-table';
+
+//HEADER
+@import 'layout/header/header';
+@import 'layout/header/menu';
+@import 'layout/header/top-menu';
+@import 'layout/header/mini-lang';
+@import 'layout/header/mini-user';
+@import 'layout/header/mini-cart';
+@import 'layout/header/mini-search';
+
+//FOOTER
+@import 'layout/footer/footer';
+@import 'layout/footer/bulletin';
+@import 'layout/footer/mini-contact';
+@import 'layout/footer/social';
+@import 'layout/footer/footer-menu';
+@import 'layout/footer/other-platforms';
+@import 'layout/footer/bottom-links';
+@import 'layout/footer/copyright';
+
+//DESKTOP
+@supports (display: grid) {
+    @include setMediaScreen(min-width, $breakpoint-medium) {
+        //BASE
+        @import 'base/global-desktop';
+
+        //COMPONENTS
+        @import 'components/button-desktop';
+        @import 'components/form-desktop';
+        @import 'components/grid-table-desktop';
+        
+        //HEADER
+        @import 'layout/header/header-desktop';
+        @import 'layout/header/menu-desktop';
+        @import 'layout/header/top-menu-desktop';
+        @import 'layout/header/mini-lang-desktop';
+        @import 'layout/header/mini-user-desktop';
+        @import 'layout/header/mini-cart-desktop';
+        @import 'layout/header/mini-search-desktop';
+        @import 'layout/header/logo-desktop';
+        
+        //FOOTER
+        @import 'layout/footer/footer-desktop';
+        @import 'layout/footer/bulletin-desktop';
+        @import 'layout/footer/bottom-links-desktop';
+        @import 'layout/footer/copyright-desktop';
+    }
+}
+
+//APP SHELL
+@keyframes app-shell {
+    to {
+        background-position: 100vw 0;
+    }
+}
+html {
+    overflow-y: scroll;
+}
+.site-main {
+    background: linear-gradient(90deg, $color2, $color3);
+    animation: app-shell 1s ease infinite;
+    > div {
+        display: none;
+    }
+}
+.swiper-wrapper {
+    display: flex;
+}
