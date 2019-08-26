@@ -1,0 +1,47 @@
+.ems-page-dealer {
+    &-grid {
+        > .ga1 {
+            padding-top: 50px;
+            padding-bottom: 60px;
+        }
+    }
+
+    .page-top-title {
+        margin-top: 0;
+    }
+}
+
+.mod-service-list {
+    &-grid {
+        grid-template-columns: 1fr 380px 20px minmax(auto, 780px) 1fr;
+        grid-template-rows: max-content 1fr;
+        grid-template-areas: 
+        ". ga1 . ga2 ."
+        ". ga3 . ga2 .";
+
+        > .mod-service-list-header {
+            grid-area: ga1;
+        }
+        > .address-detail {
+            grid-area: ga2;
+        }
+        > .mod-service-list-body {
+            grid-area: ga3;
+        }
+    }
+}
+
+.dealer-stock-information {
+    margin-top: 30px;
+}
+
+.divServisListe_Koordinat {
+    display: block;
+}
+
+.address-detail {
+    display: block;
+}
+#Map.map {
+    height: calc(100vh - 210px);
+}

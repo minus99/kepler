@@ -1,0 +1,97 @@
+.ems-tab {
+    position: relative;
+    z-index: 1;
+    &-header {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+        overflow: auto;
+        > * {
+            font-weight: 700;
+            letter-spacing: .9px;
+            padding: 10px 20px;
+            border: 1px solid transparent;
+            user-select: none;
+            cursor: pointer;
+            &.selected,
+            &.emos_selected {
+                border-color: $color5;
+            }
+        }
+        &::-webkit-scrollbar {
+            display:none;
+        }
+    }
+    &-content {
+        > * {
+            display: none;
+            &.selected {
+                display: block;
+            }
+        }
+    }
+
+    &.ajx-loading {
+        > .ems-tab-content {
+            > *:not(.ajx-loaded) {
+                background: url(/images/frontend/loading.gif) center center / 120px no-repeat;
+            }
+        }
+    }
+
+    //checkbox
+    &-checkbox {
+        &-header {
+            background: $color3;
+            padding: 20px;
+            font-family: $font2;
+            font-size: 16px;
+            user-select: none;
+        }
+        &-content {
+            display: none;
+            border: 1px solid $color3;
+        }
+        &.opened {
+            .ems-tab-checkbox-content {
+                display: block;
+            }
+        }
+    }
+
+    //vertical
+    &-vertical {
+        .ems-tab-content {
+            > * {
+                display: block;
+                border-bottom: 1px solid $color10;
+            }
+        }
+        @at-root {
+            $p: 25px;
+            .ems-tab-inner-header {
+                @extend .base64;
+                @extend .base64-plus;
+                padding: $p 0;
+                background-position: right center;
+                background-size: 32px;
+                transition: background-image .25s ease;
+                font-weight: 700;
+                user-select: none;
+                cursor: pointer;
+            }
+            .ems-tab-inner-content {
+                display: none;
+                margin-top: -$p;
+            }
+            .selected {
+                .ems-tab-inner-header {
+                    @extend .base64-minus;
+                }
+                .ems-tab-inner-content {
+                    display: block;
+                }
+            }
+        }
+    }
+}

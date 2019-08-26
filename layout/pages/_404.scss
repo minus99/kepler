@@ -1,0 +1,49 @@
+.ems-page-error {
+    background: $color1 url(/images/frontend/bg02.png) center center / cover no-repeat;
+    color: $color2;
+    overflow: hidden;
+    &-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "ga1";
+        
+        @include setGridArea(1,1);
+    }
+}
+
+
+.error-content {
+    position: relative;
+    z-index: 1;
+    min-height: 620px;
+    padding: 40px 20px;
+    > * {
+        position: relative;
+        z-index: 2;
+    }
+    .prm-media {
+        margin-bottom: 20px;
+        img {
+            width: 60px;
+        }
+    }
+    .prm-title {
+        font-size: 40px;
+        font-weight: 700;
+    }
+    .prm-desc {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+    .btn-error {
+        margin-top: 30px;
+    }
+    &-obj {
+        position: absolute;
+        right: -25px;
+        bottom: 0;
+        z-index: 1;
+        max-width: 160px;
+        animation: animation-03 .5s ease;
+    }
+}

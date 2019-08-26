@@ -1,0 +1,48 @@
+//GIFT CARD SATIN AL
+.ems-page-gift-card {
+    &-grid {
+        grid-template-columns: 1fr 710px 1fr;
+        grid-template-areas:
+        ". ga1 ."
+        "ga2 ga2 ga2";
+        
+        @include setGridArea(1,2);
+
+        > .ga1 {
+            min-height: 900px;
+        }
+    }
+}
+
+.ems-member-gift-card-list {
+    a.btnsepeteAt {
+        width: auto;
+        min-width: 370px;
+    }
+}
+
+.giftCardInfoContainer {
+    margin-top: 20px;
+}
+
+
+//GIFT CARD SORGULA
+.ems-member-gift-card {}
+.gift-card-control {
+    > .ga1 {
+        padding-left: 0;
+    }
+    > .ga2 {
+        padding-right: 0;
+    }
+}
+
+//GIFT CARD UYGULA
+.odemeCekiKullanim,
+.odemeCekiKullanimOzet > div {
+    margin: 0 -30px;
+    padding: 20px 30px;
+}
+.odemeCekiEkleBtn {
+    right: 38px;
+}

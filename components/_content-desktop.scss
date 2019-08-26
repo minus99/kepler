@@ -1,0 +1,108 @@
+//HIERARCHY MENU
+.mobi-dropdown {
+    > ul {
+        display: block;
+        position: relative;
+        max-height: none;
+        > li {
+            &.selected,
+            &.act {
+                display: block;
+            }
+        }
+    }
+}
+//SYSTEM MENU
+.kutuSolMenuTree {
+    .mobi-dropdown {
+        > a {
+            display: block;
+        }
+    }
+}
+
+//SECTION BG
+.section-bg {
+    &01 {
+        background-size: 980px;
+        height: 240px;
+        &::before {
+            height: 15px;
+        }
+    }
+}
+
+//CARD
+.card {
+    &01 {
+        padding-left: 280px;
+    }
+    &02 {
+        width: 340px;
+    }
+}
+
+//LANDING PAGE
+.lp-container {
+    padding-bottom: 100px;
+}
+.lp-slider {
+    .prm-media {
+        img,
+        video {
+            @include setHeight(2880, 1260, 99.1vw);
+        }
+    }
+}
+//full desc
+.fd {
+    > .fd-title,
+    > .fd-text {
+        padding-left: 75px;
+        padding-right: 75px;
+    }
+
+    &-title {
+        margin-top: 80px;
+        font-size: 40px;
+    }
+    &-text {
+        margin-top: 30px;
+    }
+    &-media {
+        margin-top: 80px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &-bg-stadium {
+        background-size: 75%;
+        padding-top: 12%;
+    }
+    &-wing {
+        &-l,
+        &-r {
+            max-width: none;
+        }
+        &-c {
+            max-width: 300px;
+            margin-top: 84px;
+        }
+    }
+
+    &-block {
+        //media block
+        &-media {
+            .fd-media + .fd-media {
+                margin-top: auto;
+                margin-left: 40px;
+            }
+        }
+        //media + content
+        &-media-content {
+            .fd-media + .fd-content {
+                padding-left: 40px;
+                text-align: left;
+            }
+        }
+    }
+}

@@ -1,0 +1,87 @@
+.ems-order-result {
+    padding: 30px 20px;
+    background: $color1 url(/images/frontend/order-result-mobile.jpg) center top / cover no-repeat;
+    color: $color2;
+
+    br {
+        display: none;
+    }
+}
+
+.result-content {
+    .rlogo {
+        width: 50px;
+    }
+    .ricon {
+        margin-top: 80px;
+        font-size: 70px;
+        color: $color1;
+        background: $color2;
+    }
+    .icon-error {
+        color: $color2;
+        background: $color4;
+    }
+    .rtitle {
+        font-size: 22px;
+        font-weight: 700;
+        margin-top: 20px;
+    }
+    .rdesc {
+        font-family: $font2;
+        font-size: 16px;
+        color: $color7;
+        margin-top: 10px;
+    }
+    .rbtns {
+        margin-top: 50px;
+        width: calc(100% - 40px);
+        max-width: 330px;
+        > a {
+            display: block;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+    }
+}
+
+.pageSiparisSonuc_lbfOdemeAlinamadi {
+    display: none;
+}
+
+//guest
+.kutuDefault.kutuUyelikOneri {
+    display: none;
+    margin-top: 30px;
+    text-align: left;
+    background: $color3;
+    color: $color1;
+    padding: 20px;
+    border-radius: 5px;
+
+    .kutuUyelikOneri-append & {
+        display: block;
+    }
+}
+.kutuHeaderUyelikOneri {
+    font-family: $font2;
+    font-size: 15px;
+}
+.kutuBodyUyelikOneri {
+    margin-top: 10px;
+}
+.kutuUyelikOneri_sifre {
+    > span {
+        @extend .ems-form-label;
+        display: block;
+    }
+}
+.kutuUyelikOneri_onay {
+    margin-top: 10px;
+    font-family: $font2;
+    font-size: 13px;
+}
+.kutuUyelikOneri_btnSend {
+    margin-top: 30px;
+    text-align: center;
+}

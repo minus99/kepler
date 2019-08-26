@@ -1,0 +1,121 @@
+$btn-cursor: 10px;
+
+%btn {
+    position: relative;
+    display: inline-block;
+    padding: 0 20px;
+    background: $color1;
+    border: 1px solid transparent;
+    font-family: $font3;
+    font-size: 16px;
+    color: $color2;
+    font-weight: 700;
+    line-height: 42px;
+    letter-spacing: 1px;
+    transition: all .32s ease;
+    &:hover {
+        background: $color6;
+    }
+    > span {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &-primary {
+        background: $color2;
+        color: $color1;
+        &:hover {
+            background: $color3;
+        }
+    }
+
+    &-secondary {
+        background: $color3;
+        color: $color1;
+        &:hover {
+            background: $color4;
+            color: $color2;
+        }
+    }
+
+    &-transparent {
+        background: transparent;
+        color: inherit;
+        border-color: $color5;
+        &:hover {
+            background: transparent;
+        }
+    }
+
+    &-full {
+        @include ems-cover;
+    }
+
+    &-reset {
+            padding: unset;
+            background: unset;
+            border: unset;
+            font-family: unset;
+            font-size: unset;
+            color: unset;
+            font-weight: unset;
+            line-height: unset;
+            letter-spacing: unset;
+            &:hover {
+                background: unset;
+            }
+    }
+}
+
+.btn,
+a.btnDefault {
+    @extend %btn;
+    .icon-arrow-r {
+        margin-left: #{$btn-cursor};
+    }
+}
+
+.btn-primary {
+    @extend %btn-primary;
+}
+
+.btn-secondary {
+    @extend %btn-secondary;
+}
+
+.btn-transparent {
+    @extend %btn-transparent;
+}
+
+.btn-full {
+    @extend %btn-full;
+}
+
+.btn-reset {
+    @extend %btn-reset;
+}
+
+%btn-icon,
+.btn-icon {
+    padding-left: 0;
+    padding-right: 0;
+    .icon-arrow-r {
+        margin-left: 0;
+    }
+}
+
+.btn-group {
+    $p: 5px;
+    display: flex;
+    margin-left: #{-$p};
+    margin-right: #{-$p};
+    > * {
+        flex: 1;
+        padding: 0 5px;
+        > a {
+            width: 100%;
+        }
+    }
+}

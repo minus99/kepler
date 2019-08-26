@@ -1,0 +1,397 @@
+//HIERARCHY MENU
+.mobi-dropdown {
+    position: relative;
+    &-header {
+        position: relative;
+        border-top: 1px solid $color6;
+        border-bottom: 1px solid transparent;
+        padding: 15px 30px 15px 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-weight: 700;
+        letter-spacing: .93px;
+        min-height: 50px;
+        &::after {
+            @extend %triangle;
+            @extend %triangle-b;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            margin-top: -4px;
+            transition: transform .32s ease;
+        }
+    }
+    li {
+        > a {
+            display: flex;
+            align-items: center;
+            border-top: 1px solid transparent;
+            border-bottom: 1px solid transparent;
+            padding: 15px 20px;
+            font-weight: 700;
+            letter-spacing: .93px;
+        }
+    }
+    svg {
+        flex: none;
+        margin: -7px 13px -7px 0;
+    }
+
+    > ul {
+        display: none;
+        animation: show .32s ease;
+        position: absolute;
+        top: 100%;
+        z-index: 1;
+        width: 100%;
+        background: $color1;
+        color: $color2;
+        max-height: calc(100vh - 150px);
+        overflow: auto;
+        > li {
+            > a {
+                background: transparent right 70px center / 32px no-repeat;
+                transition: all .2s ease-in-out;
+            }
+            &:hover,
+            &.selected,
+            &.act {
+                > a {
+                    padding-left: 30px;
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23FFFFFF' d='M6 15h14v-3l6 4-6 4v-3H6z'/%3E%3C/svg%3E");
+                    background-position: right 20px center;
+                }
+            }
+            &.selected,
+            &.act {
+                display: none;
+            }
+        }
+    }
+
+    &.opened {
+        .mobi-dropdown-header {
+            border-color: $color6;
+            &::after {
+                @include turn-mirror;
+            }
+        }
+        > ul {
+            display: block;
+        }
+    }
+}
+//SYSTEM MENU
+.kutuSolMenuTree {
+    .mobi-dropdown {
+        > a {
+            display: none;
+            padding: 50px 20px 30px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+    }
+
+    b,
+    .kutuHeaderSolMenuTree,
+    .kutuFooterSolMenuTree,
+    .sev3 > ul {
+        display: none;
+    }
+}
+
+//CONTENT UTILITY
+.ff2 {
+    font-family: $font2;
+}
+.fwb {
+    font-weight: 700;
+}
+.fst {
+    font-size: 30px;
+}
+.fsd {
+    font-size: 16px;
+}
+.c02 {
+    color: $color4;
+}
+.obb {
+    border-bottom: 1px solid $color10;
+}
+.mt2 {
+    margin-top: 20px;
+}
+.mt4 {
+    margin-top: 40px;
+}
+.mt5 {
+    margin-top: 50px;
+}
+.mb5 {
+    margin-bottom: 50px;
+}
+
+//SECTION BG
+.section-bg {
+    &01 {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background: center bottom / 600px no-repeat;
+        width: 100%;
+        height: 120px;
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+            width: 100%;
+            height: 9px;
+            background: $color1;
+        }
+    }
+}
+
+//CARD
+.card {
+    position: relative;
+    background: $color1;
+    color: $color2;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 0 5px #000 inset;
+    padding: 40px;
+    animation: show .5s ease;
+    &-logo {
+        img {
+            width: 40px;
+        }
+    }
+    &-title {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+    &-price {
+        margin-top: auto;
+        font-size: 32px;
+        animation: show .5s ease;
+        &:empty {
+            display: none;
+        }
+    }
+
+    &01 {
+        width: 100%;
+        max-width: 435px;
+        height: 250px;
+        background: #111111 url(/images/frontend/card01.png) left center / 300px no-repeat;
+    }
+    &02 {
+        width: 100%;
+        max-width: 340px;
+        height: 190px;
+        background: #111111 url(/images/frontend/card01.png) left top / 230px no-repeat;
+        padding-left: 210px;
+        padding-right: 20px;
+
+        .card-logo {
+            img {
+                width: 30px;
+            }
+        }
+        .card-title {
+            font-size: 13px;
+        }
+    }
+}
+
+//BOX
+.primary-box {
+    background: $color1;
+    color: $color2;
+    padding: 40px 30px 50px;
+    .ems-section-title {
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+
+    $p: 34px;
+    .swiper-inner {
+        margin-left: #{-$p};
+    }
+    .swiper-slide {
+        padding-left: #{$p};
+        width: calc(100% / 5);
+    }
+}
+
+//COVER IMAGE
+.primary-image {
+    .banner {
+        .prm-title {
+            font-size: 30px;
+        }
+    }
+}
+
+//COVER VIDEO
+.primary-video {
+    background: $color1;
+    color: $color2;
+    padding: 70px 30px;
+}
+
+//SEO CONTENT
+.seo-content {
+    margin-top: 70px;
+}
+
+//LANDING PAGE
+@mixin padding-h {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+@mixin padding-h-remove {
+    margin-left: -20px;
+    margin-right: -20px;
+}
+.lp-container {
+    display: none;
+    background: $color1;
+    color: $color2;
+    padding-bottom: 40px;
+    .fd {
+        padding-bottom: .1px;
+    }
+
+    &-active & {
+        display: block;
+    }
+}
+.lp-slider {
+    .prm-media {
+        video {
+            @include setHeight(750, 900, 100vw);
+        }
+    }
+}
+.lp-content {
+    .swiper-slide {
+        width: 100%;
+    }
+}
+//full desc
+.fd {
+    background: $color1;
+    color: $color2;
+    text-align: center;
+    @include padding-h;
+    padding-top: .1px;
+    padding-bottom: 40px;
+    margin-top: 40px;
+    > * {
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    &-title {
+        margin-top: 40px;
+        font-size: 24px;
+        b {
+            font-weight: 700;
+        }
+    }
+    &-text {
+        margin-top: 20px;
+        font-size: 16px;
+    }
+    &-media {
+        margin-top: 40px;
+        @include padding-h-remove;
+    }
+    &-bg-stadium {
+        background: url(/UPLOAD/banner/urun-aciklama/static/stadium.png) center top / 150% no-repeat;
+        padding-top: 40%;
+        margin-top: 0 !important;
+    }
+    &-wing {
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        &-l,
+        &-r {
+            position: absolute;
+            top: 0;
+            transition: transform .32s ease;
+            max-width: 50vw;
+        }
+        &-l {
+            left: 0;
+            transform: rotate(-20deg);
+            transform-origin: right center;
+        }
+        &-r {
+            right: 0;
+            transform: rotate(20deg);
+            transform-origin: left center;
+        }
+        &-c {
+            position: relative;
+            max-width: 46vw;
+            margin-top: 12vw;
+        }
+    }
+
+    &-block {
+        //media block
+        &-media {
+            .fd-media + .fd-media {
+                margin-top: 20px;
+            }
+        }
+    }
+
+    .btn + .btn {
+        margin-left: 20px;
+    }
+}
+//zebra content
+.lp-z-content {
+    margin-top: 80px;
+    .banner {
+        overflow: visible;
+    }
+    .prm-media {
+        flex-basis: 440px;
+    }
+    .banner-body {
+        flex: 1;
+        padding: 50px 200px 50px 70px;
+        transform: translateY(80px);
+        transition: all .2s ease;
+    }
+    li {
+        &:nth-child(even) {
+            margin-top: -100px;
+            .banner {
+                flex-direction: row-reverse;
+                align-items: flex-end;
+            }
+            .banner-body {
+                padding: 150px 70px 50px 200px;
+            }
+        }
+    }
+}
+//video
+.lp-video {
+    margin-top: 80px;
+}

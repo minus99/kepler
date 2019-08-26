@@ -1,0 +1,78 @@
+form[action*="/default.aspx"] {
+    .footer-content {
+        display: block;
+    } 
+}
+
+.homepage-slider {
+    .prm-media {
+        img {
+            @include setHeight(3840, 1678, 99.1vw);
+        }
+    }
+}
+
+.primary-categories {
+    padding-top: 25px;
+    padding-bottom: 95px;
+    .ems-section-title {
+        display: none;
+    }
+
+    $p: 30px;
+    .swiper-inner {
+        margin-left: #{-$p};
+    }
+    .swiper-slide {
+        padding-left: #{$p};
+    }
+}
+
+.new-season {
+    padding-top: 85px;
+    padding-bottom: 85px;
+    .prm-media {
+        img {
+            @include setHeight(3840, 1678, 1200px);
+        }
+    }
+}
+
+.collections {
+    padding-top: 120px;
+    padding-bottom: 40px;
+
+    $p: 40px;
+    .swiper-inner {
+        margin-left: #{-$p};
+    }
+    .swiper-slide {
+        padding-left: #{$p};
+        width: calc(100% / 2);
+    }
+}
+
+.best-sellers {
+    padding-top: 60px;
+    padding-bottom: 90px;
+}
+
+.campaigns {
+    $p: 40px;
+    .swiper-inner {
+        padding-left: 0;
+        margin-left: #{-$p};
+    }
+    .swiper-slide {
+        padding-left: #{$p};
+        width: calc(100% / 3);
+    }
+    .swiper-pagination {
+        display: none;
+    }
+}
+
+.instagram-feed {
+    background: $color1;
+    padding-top: 60px;
+}

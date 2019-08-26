@@ -1,0 +1,91 @@
+//HIDDEN MOBILE OBJECTS
+.obj-mobile {
+    display: none !important;
+}
+
+//EMOS FRAMEWORK
+.d-ems {
+    //FLEX
+    &-flex {
+        display: flex;
+        &-inline {
+            display: inline-flex;
+        }
+        
+        //horizontal align
+        &-left {
+            justify-content: flex-start;
+        }
+        &-center {
+            justify-content: center;
+        }
+        &-right {
+            justify-content: flex-end;
+        }
+        &-between {
+            justify-content: space-between;
+        }
+
+        //vertical align
+        &-top {
+            align-items: flex-start;
+        }
+        &-middle {
+            align-items: center;
+        }
+        &-bottom {
+            align-items: flex-end;
+        }
+
+        //direction
+        &-row {
+            flex-direction: row;
+        }
+        &-row-reverse {
+            flex-direction: row-reverse;
+        }
+        &-column {
+            flex-direction: column;
+        }
+        &-column-reverse {
+            flex-direction: column-reverse;
+        }
+
+        //wrap
+        &-wrap {
+            flex-wrap: wrap;
+        }
+
+        //item size
+        &-none {
+            flex: none;
+        }
+        &-auto {
+            flex: auto;
+        }
+        &-1 {
+            flex: 1;
+        }
+        &-100 {
+            flex-basis: 100%;
+        }
+    }
+
+    //GRID
+    &-grid {
+        display: grid;
+    }
+
+    //TEXT
+    &-text {
+        &-left {
+            text-align: left;
+        }
+        &-center {
+            text-align: center;
+        }
+        &-right {
+            text-align: right;
+        }
+    }
+}

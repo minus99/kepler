@@ -1,0 +1,40 @@
+.ems-page-login {
+    overflow: hidden;
+    &-grid {
+        position: relative;
+        background: $color1;
+        color: $color2;
+    }
+}
+
+.login-video {
+    .swiper-slide {
+        width: 100%;
+    }
+}
+
+.ems-member-login {
+    position: relative;
+    width: calc(100% - 20px);
+    max-width: 410px;
+    background: $color2;
+    color: $color1;
+    margin: 10px auto;
+    padding: 30px 15px;
+}
+
+#lnkSifremiUnuttum {
+    color: $color7;
+}
+
+.kutuUyeGirisFacebookConnect {
+    @extend .uyeGirisFacebookConnectKutu;
+}
+a.btnFacebookLogin {
+    @extend .btnFacebookLoginKutu;
+}
+
+a#lnkGuestCheckout {
+    @extend %btn;
+    display: block;
+}

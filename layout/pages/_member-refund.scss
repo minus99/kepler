@@ -1,0 +1,67 @@
+.ems-member-refund {
+    &.no-result {
+        padding-top: 0;
+        .ems-message-refund {
+            display: flex;
+        }
+    }
+}
+
+.ems-grid-table-refund {
+    > .ems-grid-row {
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+    }
+}
+ul.rtnTitle {
+    display: none;
+}
+ul.rtnPrdInf {
+    position: relative;
+    display: grid;
+    grid-template-columns: 90px 30px 80px;
+    grid-gap: 15px 10px;
+    align-items: center;
+    padding: 20px;
+    background: $color10;
+    font-family: $font2;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.rtnReason {
+    grid-column: span 3;
+}
+.rtnDate,
+.rtnNote {
+    display: none;
+}
+
+
+//cancellation - refund request
+.ems-member-refund-request {
+    .ems-grid-table-order-products {
+        .sStylerWrp_select + .sStylerWrp_select {
+            margin-top: 7px;
+        }
+    }
+
+    .page-top-desc {
+        margin-top: 10px;
+        a {
+            text-decoration: underline;
+        }
+    }
+}
+
+[id$="lbfSIP_IPTALBASLIK"],
+[id$="lbfSIP_IADEBASLIK"] {
+    display: block;
+    margin-top: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+a.btnIptalEt,
+a.btnIadeEt {
+    @extend .btnUyeBilgi;
+}

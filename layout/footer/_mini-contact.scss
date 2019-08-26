@@ -1,0 +1,17 @@
+.mini-contact {
+    margin-top: 20px;
+    .prm-title {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+    .prm-desc {
+        font-size: 32px;
+        margin-top: 5px;
+    }
+    .prm-content {
+        font-size: 11px;
+        color: rgba($color: $color2, $alpha: .25);
+        font-weight: 500;
+        margin-top: 8px;
+    }
+}

@@ -1,0 +1,23 @@
+//https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Common_weight_name_mapping
+//100	Thin (Hairline)
+//200	Extra Light (Ultra Light)
+//300	Light
+//400	Normal
+//500	Medium
+//600	Semi Bold (Demi Bold)
+//700	Bold
+//800	Extra Bold (Ultra Bold)
+//900	Black (Heavy)
+
+//DIN PRO
+@include fontFace('din', '/styles/fonts/din/DINPro-Bold', 700, normal);
+@include fontFace('din', '/styles/fonts/din/DINPro-Light', 300, normal);
+
+//DINPRO CONDENSED
+@include fontFace('dinc', '/styles/fonts/din/DINPro-CondensedBold', 700, normal);
+@include fontFace('dinc', '/styles/fonts/din/DINPro-CondensedRegular', 400, normal);
+
+//FIRA
+@include fontFace('fira', '/styles/fonts/fira/FiraSans-Bold', 700, normal);
+@include fontFace('fira', '/styles/fonts/fira/FiraSans-Medium', 500, normal);
+@include fontFace('fira', '/styles/fonts/fira/FiraSans-Regular', 400, normal);

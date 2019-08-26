@@ -1,0 +1,26 @@
+[data-countdown] {
+    &.end-countdown {
+        display: none;
+    }
+}
+.countdown {
+    br {
+        display: none;
+    }
+}
+.countdown_row {
+    display: block;
+}
+.countdown_amount {
+    padding: 0 2px;
+}
+
+//SHOW DAY
+.countdown_show4 {
+    .countdown_section {
+        &:first-child {
+            display: block;
+            font-size: .7em;
+        }
+    }
+}

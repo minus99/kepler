@@ -1,0 +1,79 @@
+.urunPaging {
+    @extend .ems-container;
+    margin-top: 20px;
+
+    td[align="left"],
+    td[align="right"] {
+        display: none;
+    }
+    td[align="center"] {
+        width: 100% !important;
+    }
+}
+
+.urunPaging_pageNavigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $color1;
+    [id$="lblPaging"] {
+        margin-left: auto;
+        margin-right: auto;
+        a.paging {
+            &:not(:last-child) {
+                display: none;
+            }
+            &:last-child {
+                &::before {
+                    content: "/";
+                    margin-right: 5px;
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+    .paging {
+        display: inline-block;
+        font-weight: 700;
+        line-height: 48px;
+        &[id$="lnkPrev"] {
+            border-right: 1px solid $color5;
+            width: 48px;
+        }
+        &[id$="lnkNext"] {
+            border-left: 1px solid $color5;
+            width: 48px;
+        }
+    }
+    .tumunuGoster {
+        font-family: $font3;
+        font-size: 16px;
+        color: $color1;
+        font-weight: 700;
+        text-decoration: underline;
+        margin-left: auto;
+        margin-right: 10px;
+    }
+}
+
+#lbfPagingPrev,
+#lbfPagingNext {
+    @extend .base64;
+    @extend .base64-arrow-r;
+    display: block;
+    background-position: center center;
+    font-size: 0;
+}
+#lbfPagingPrev {
+    @include turn-mirror;
+}
+
+.ems-pagination-hide {
+    .urunPaging {
+        display: none;
+    }
+}
+
+.icerikListePagingUst {
+    display: none;
+}

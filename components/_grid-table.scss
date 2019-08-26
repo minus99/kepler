@@ -1,0 +1,201 @@
+.ems-grid-table-default {}
+.ems-grid-header {
+    display: none;
+}
+.ems-grid-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    grid-gap: 15px 10px;
+    align-items: center;
+    padding: 20px;
+    border-top: 1px solid $color5;
+    font-family: $font2;
+    font-size: 16px;
+    &:last-child {
+        border-bottom: 1px solid $color5;
+    }
+    &.ems-grid-header {
+        display: none;
+        font-size: 13px;
+        color: $color6;
+        font-weight: 500;
+        border-top: none;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+.ems-grid {
+    &-label {
+        font-weight: inherit;
+    }
+    &-img {
+        align-self: flex-start;
+    }
+    &-name {
+        padding-right: 20px;
+        .prdItem {
+            display: block;
+            height: 39px;
+            overflow: hidden;
+        }
+        .urnKisaAd,
+        > a + span,
+        .odemeCeki {
+            display: block;
+            color: $color7;
+            margin-top: 3px;
+        }
+        [id$="lblProm"] {
+            font-size: 12px;
+            color: $color4;
+            ul:not(:empty) {
+                margin-top: 5px;
+            }
+            .prom_indtutar {
+                display: none;
+            }
+        }
+        br {
+            display: none;
+        }
+    }
+    &-remove {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        z-index: 1;
+        .icon-close {
+            font-size: 20px;
+        }
+        .sStylerWrp_checkbox,
+        .sStylerWrp_radio {
+            margin-right: 0;
+        }
+    }
+    &-price {
+        .price-wrapper {
+            margin-top: -5px;
+            font-family: $font1;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .dvSepetKazancOran:not(:empty) {
+            display: block;
+            color: $color4;
+            text-align: right;
+            margin-top: 2px;
+        }
+        [id*="KDV"] {
+            display: none;
+        }
+    }
+    &-address-name {
+        font-weight: 700;
+        padding-right: 130px;
+        > span {
+            display: none;
+        }
+    }
+    &-address {
+        line-height: 1.7;
+    }
+    &-address-buttons {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        > a {
+            @extend %btn-reset;
+            color: $color7;
+            text-decoration: underline;
+            + a {
+                margin-left: 30px;
+            }
+        }
+    }
+    &-address-select {
+        a {
+            @extend %btn-reset;
+            svg {
+                font-size: 18px;
+                --check: hidden;
+                margin-right: 10px;
+            }
+            &.emos_selected {
+                font-weight: 500;
+                svg {
+                    --check: visible;
+                }
+            }
+            + a {
+                margin-left: 30px;
+            }
+        }
+    }
+    &-order-no {
+        a {
+            text-decoration: underline;
+        }
+    }
+    &-add-to-cart {
+        a {
+            font-size: 15px;
+            color: $color7;
+            text-decoration: underline;
+        }
+    }
+    &-detail {
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &-coupon-no {
+        font-weight: 500;
+        word-break: break-all;
+    }
+    &-coupon-date {
+        > span:empty {
+            &::before {
+                content: "-";
+            }
+        }
+    }
+    &-option1 {
+        grid-column: span 2;
+    }
+    &-doc-no {
+        a {
+            text-decoration: underline;
+        }
+    }
+}
+
+//STOK UYARI
+.pageErrorStokKontrol {
+    margin-top: 20px;
+}
+.gridSepetStok {
+    margin-top: 5px;
+    margin-bottom: 100px;
+    font-family: $font2;
+    font-size: 16px;
+    td {
+        border: 1px solid $color5;
+        width: auto !important;
+        text-align: center;
+        &:nth-child(1) {
+            width: 90px !important;
+        }
+        &:nth-child(5) {
+            width: 50px !important;
+        }
+        &:nth-child(2),
+        &:nth-child(4) {
+            display: none;
+        }
+    }
+}
+.gridHeaderSepetStok {
+    display: none;
+}

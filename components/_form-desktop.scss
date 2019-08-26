@@ -1,0 +1,20 @@
+.ems-form {
+    &-horizontal {
+        $pl: 10px;
+        $f: 50%;
+        margin-left: -$pl;
+        .ems-field {
+            display: inline-block;
+            vertical-align: top;
+            padding-left: $pl;
+            padding-right: $pl;
+            width: $f;
+            &-single {
+                width: 100%;
+            }
+            &-push {
+                margin-right: #{$f};
+            }
+        }
+    }
+}

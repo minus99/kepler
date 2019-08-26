@@ -1,0 +1,40 @@
+.mini-bulletin {
+    max-width: 700px;
+    margin: 0 auto;    
+    &-info {
+        font-family: $font2;
+        font-weight: 400;
+        font-size: 20px;
+        padding: 10px 0;
+        text-align: center;
+    }
+    input[id$="txtUYE_EMAIL"] {
+        background: $color3;
+        border: none;
+        padding-left: 20px;
+    }
+    a.btnBultenGonder {
+        @extend %btn-icon;
+        background: transparent;
+    }
+    #plhPrivacyNotice {
+        opacity: 0;
+        transition: opacity .2s ease;
+    }
+    &-message {
+        > span {
+            &:not(:empty) {
+                display: block;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.ems-bulletin-focused {
+    .mini-bulletin-message,
+    #plhPrivacyNotice {
+        opacity: 1;
+    }
+}

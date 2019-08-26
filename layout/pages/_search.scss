@@ -1,0 +1,22 @@
+.ems-page-search {
+    .pageArama,
+    [id$="validatingForm"],
+    .tableTitleArama {
+        display: none;
+    }
+
+    .ems-prd-list-count {
+        display: block;
+    }
+
+    &.no-result {
+        padding-top: 25px;
+        .ems-page-search-grid > .ga1,
+        .ems-page-search-grid > .ga2,
+        .ems-prd-list-count,
+        .ems-sort,
+        ul.product-list-grid {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+.site-footer {
+    background: $color1 url(/images/frontend/footer-bg-mobile.png) center 60% / 100% no-repeat;
+    padding: 50px 0;
+    color: $color2;
+}
+
+.footer-content {
+    margin-top: 80px;
+    .banner04 {
+        color: $color7;
+        .banner-body {
+            padding: 0;
+        }
+    }
+}

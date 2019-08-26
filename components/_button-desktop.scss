@@ -1,0 +1,9 @@
+.d-btn {
+    &-primary {
+        background: $color2;
+        color: $color1;
+        &:hover {
+            background: $color3;
+        }
+    }
+}

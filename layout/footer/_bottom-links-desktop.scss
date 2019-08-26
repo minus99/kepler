@@ -1,0 +1,11 @@
+.bottom-links {
+    margin-top: 70px;
+    .swiper-wrapper {
+        justify-content: flex-end;
+    }
+    a {
+        font-size: 14px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}

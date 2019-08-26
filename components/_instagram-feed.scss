@@ -1,0 +1,9 @@
+.instagram-feed {
+    .swiper-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        .selected {
+            grid-area: 1 / 3 / 3 / 5;
+        }
+    }
+}

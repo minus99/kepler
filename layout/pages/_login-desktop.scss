@@ -1,0 +1,22 @@
+.ems-page-login {
+    &-grid {
+        min-height: 1250px;
+        > .ga1 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            * {
+                height: 100%;
+            }
+        }
+    }
+}
+
+.ems-member-login {
+    padding: 40px;
+    margin: 70px;
+    background: rgba($color: $color2, $alpha: .95);
+}

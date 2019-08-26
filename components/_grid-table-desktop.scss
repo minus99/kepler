@@ -1,0 +1,33 @@
+.ems-grid-row {
+    grid-gap: 10px 20px;
+    padding-left: 0;
+    padding-right: 0;
+    &.ems-grid-header {
+        display: grid;
+    }
+}
+.ems-grid {
+    &-name {
+        padding-right: 0;
+    }
+    &-price {
+        .dvSepetKazancOran:not(:empty) {
+            text-align: center;
+        }
+    }
+    &-remove {
+        position: relative;
+        top: 0;
+        right: 0;
+    }
+    &-address-name {
+        grid-column: span 2;
+        padding-right: 0;
+    }
+    &-address-buttons {
+        position: static;
+    }
+    &-option1 {
+        grid-column: span 1;
+    }
+}

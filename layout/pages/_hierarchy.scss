@@ -1,0 +1,65 @@
+//DEFAULT
+.ems-page-hierarchy {
+    &-grid {
+        > .ga1 {
+            background: $color1;
+            color: $color2;
+            position: sticky;
+            top: 50px;
+            z-index: 1;
+        }
+        > .ga2 {
+            padding-bottom: 50px;
+            @extend .ems-container;
+        }
+    }
+
+    &-grid-full {}
+
+    &-grid-col1 {
+        .editable-content > .page-top-title {
+            display: block !important;
+        }
+        > .ga1 {
+            @extend .ems-container;
+            padding-bottom: 50px;
+        }
+    }
+
+    [id$="lblICR_METIN_TEMPLATE"],
+    .icerikTemplateListeContainer {
+        font-family: $font2;
+        font-size: 16px;
+        b {
+            font-weight: 500;
+        }
+    }
+    .page-top-title {
+        font-family: $font2;
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: 30px;
+        padding: 20px 0;
+        border-bottom: 1px solid $color5;
+        + .html-content {
+            margin-top: 30px;
+        }
+    }
+}
+
+
+
+
+
+.page-dark-theme {
+    background: $color1;
+    color: $color2;
+
+    .navigasyon ol,
+    .navigation-full-path {
+        color: #fff;
+    }
+    .navigation-full-path:after {
+        filter: invert(1);
+    }
+}

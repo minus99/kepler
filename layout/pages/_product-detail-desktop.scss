@@ -1,0 +1,197 @@
+.ems-page-product-detail {
+    padding-bottom: 80px;
+}
+
+.ems-prdd {
+    &-grid {
+        position: relative;
+    
+        grid-template-columns: 1fr minmax(auto, 770px) 40px 370px 1fr;
+        grid-template-rows: max-content 1fr;
+        grid-template-areas:
+        ". ga2 . ga1 ."
+        ". ga2 . ga3 .";
+    
+        @include setGridArea(1,3);
+
+        > .ga1 {
+            padding: 0;
+        }
+        > .ga3 {
+            padding: 0;
+        }
+    }
+
+    &-name {
+        margin-top: 10px;
+        font-size: 20px;
+    }
+    &-price {
+        font-size: 26px;
+    }
+    &-gallery {
+        margin-top: 0;
+        .swiper-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+    }
+}
+
+//other colors
+.UrunListeGrup_listeUrunDetayGrup {
+    ul {
+        justify-content: flex-start;
+        > li {
+            width: 45px;
+            height: 45px;
+        }
+    }
+}
+
+//sizes
+.urunDetay_urunSecenek {
+    min-height: 88px;
+    padding-right: 150px;
+}
+.dropdown-options {
+    > a {
+        line-height: 32px;
+    }
+}
+
+//add to cart
+.urunDetay_urunAdet {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    .sStylerWrp_select {
+        line-height: 34px;
+        height: 34px;
+    }
+}
+
+//added to cart
+.mini-product-info {
+    $p: 30px;
+    &-sub {
+        @extend %header-mods-sub;
+        max-width: 600px;
+        padding: $p;
+    }
+    .sub-header {
+        margin: #{-$p} #{-$p} #{$p};
+    }
+    &-ready {
+        .mini-product-info-sub {
+            @extend %header-mods-sub-ready;
+        }
+    }
+    &-animate {
+        @extend %header-mods-animate;
+        .mini-product-info-sub {
+            @extend %header-mods-sub-animate;
+        }
+    }
+}
+.added-prd {
+    grid-template-columns: 140px 30px 1fr;
+    grid-template-areas: 
+    "ga1 . ga2"
+    "ga1 . ga3";
+    .prm-btns {
+        margin-top: 30px;
+    }
+}
+.suggest-prd {
+    display: block;
+}
+
+//size guide
+.mini-size-guide {
+    &-sub {
+        @extend %header-mods-sub;
+        max-width: 910px;
+    }
+    &-ready {
+        .mini-size-guide-sub {
+            @extend %header-mods-sub-ready;
+        }
+    }
+    &-animate {
+        @extend %header-mods-animate;
+        .mini-size-guide-sub {
+            @extend %header-mods-sub-animate;
+        }
+    }
+}
+
+//find in store
+.ems-find-store {
+    &-sub {
+        @extend %header-mods-sub;
+        max-width: 910px;
+    }
+
+    .mod-service-list-grid {
+        max-height: calc(100vh - 150px);
+        overflow: auto;
+        grid-template-areas: 
+        ". ga1 ga1 ga1 ."
+        ". ga3 . ga2 .";
+    }
+    .mod-service-list-header {
+        margin-bottom: 30px;
+    }
+    .dealer-form {
+        .ems-field-css {
+            width: calc((100% / 3) - 5px);
+        }
+    }
+    .mod-service-list-body {
+        overflow: auto;
+    }
+    .ems-message {
+        margin-top: 0;
+    }
+    #Map.map {
+        height: calc(100vh - 300px);
+        max-height: 450px;
+    }
+
+    &.ems-no-result {
+        .mod-service-list-grid {
+            grid-template-areas: 
+            ". ga1 ga1 ga1 ."
+            ". ga3 ga3 ga3 .";
+        }
+    }
+
+    &-ready {
+        .ems-find-store-sub {
+            @extend %header-mods-sub-ready;
+        }
+    }
+    &-animate {
+        @extend %header-mods-animate;
+        .ems-find-store-sub {
+            @extend %header-mods-sub-animate;
+        }
+    }
+}
+
+//ZOOM
+.zoom-gallery {
+    .thumbs-wrapper {
+        display: block;
+    }
+    .swiper-pagination {
+        display: none;
+    }
+}
+
+//featured prds
+.featured-prds {
+    padding-top: 60px;
+}

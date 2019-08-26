@@ -1,0 +1,17 @@
+.error-content {
+    min-height: 850px;
+    padding: 90px 0;
+    .prm-media {
+        margin-bottom: 95px;
+    }
+    .prm-title {
+        font-size: 80px;
+    }
+    .prm-desc {
+        font-size: 30px;
+    }
+    &-obj {
+        max-width: none;
+        right: 0;
+    }
+}

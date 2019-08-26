@@ -1,0 +1,50 @@
+.ems-page-member {
+    &-grid {
+        > .ga1 {
+            background: $color1;
+            color: $color2;
+            position: sticky;
+            top: 50px;
+            z-index: 1;
+        }
+        > .ga2 {
+            padding-bottom: 100px;
+        }
+    }
+
+    .page-top-title {
+        font-size: 22px;
+        font-weight: 700;
+        padding: 20px;
+        border-bottom: 1px solid $color5;
+    }
+}
+
+.member-top-info {
+    background: url(/images/frontend/member-top-info-bg.jpg) center top / contain no-repeat;
+    text-align: center;
+    padding: 40px 18px 18px;
+    &-media {
+        > img {
+            width: 80px;
+            border-radius: 100%;
+        }
+    }
+    &-title {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+    &-logout {
+        color: $color7;
+        margin-top: 5px;
+    }
+}
+
+.pageUyeBasarili {
+    padding-top: 40px;
+    font-family: $font2;
+    font-size: 15px;
+}
+.pageHeaderUyeBasarili {
+    display: none;
+}

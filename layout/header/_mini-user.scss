@@ -1,0 +1,82 @@
+.mini-user {
+    position: relative;
+    &-info {
+        background: $color4;
+        @include setCurve(-15, 25);
+        > * {
+            @include setCurve(15, 0);
+        }
+        > span {
+            @extend %header-mods-title;
+        }
+    }
+
+    $pv: 30px;
+    $ph: 40px;
+    &-sub {
+        @extend %header-mods-sub;
+        max-width: 410px;
+        padding: $pv $ph;
+    }
+
+    .ems-obj-login {
+        .sub-header {
+            margin: #{-$pv} #{-$ph} 20px #{-$ph};
+            padding-left: $ph;
+        }
+    }
+
+    &-ready {
+        .mini-user-sub {
+            @extend %header-mods-sub-ready;
+        }
+    }
+
+    &-animate {
+        @extend %header-mods-animate;
+        .mini-user-overlay {
+            @extend %header-mods-sub-overlay;
+        }
+        .mini-user-sub {
+            @extend %header-mods-sub-animate;
+        }
+    }
+}
+
+.uyeGirisFacebookConnectKutu {
+    max-width: 214px;
+    margin: 20px auto 0;
+}
+a.btnFacebookLoginKutu {
+    @extend %btn-transparent;
+}
+
+.kutuUyeGiris_profilFoto {
+    display: inline-block !important;
+    padding-right: 15px;
+    img {
+        border-radius: 100%;
+        max-width: 60px;
+    }
+}
+a.btnKutuLogout {
+    @extend %btn-reset;
+    font-size: 14px;
+    font-weight: 300;
+    display: table;
+    margin-top: 5px;
+}
+.mini-user-links {
+    font-family: $font2;
+    font-size: 18px;
+    max-height: calc(100vh - 250px);
+    overflow: auto;
+    a {
+        line-height: 35px;
+    }
+    @at-root {
+        .kutuUyeGiris_lbfUyeMesajSayi {
+            margin-left: 5px;
+        }
+    }
+}

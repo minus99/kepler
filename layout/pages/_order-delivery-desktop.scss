@@ -1,0 +1,41 @@
+.ems-order-delivery {
+    &-grid {
+        grid-template-columns: 20px 1fr minmax(auto, 780px) 20px 380px 1fr 20px;
+        grid-template-areas: ". . ga1 . ga2 . .";
+
+        @include setGridArea(1,2);
+    }
+}
+
+.ems-grid-table-address {
+    .ems-grid-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+a.btnAdresEkle {
+    padding: 10px 0;
+}
+
+.ems-delivery-tab {
+    width: 100%;
+}
+.ems-gift-tab {
+    &::before {
+        right: 60px;
+    }
+    .ems-delivery-tab-wrp {
+        padding: 20px 220px 20px 40px;
+        margin-top: -20px;
+    }
+}
+
+.ems-new-address {
+    padding-bottom: 0;
+    .page-top-title {
+        font-size: 40px;
+        margin-top: 15px;
+        margin-left: -50px;
+        margin-right: -50px;
+    }
+}

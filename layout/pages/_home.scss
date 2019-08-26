@@ -1,0 +1,69 @@
+.top-notification {
+    background: $color4;
+
+    .swiper-container {
+        height: 50px;
+        overflow: hidden;
+    }
+    .swiper-wrapper {
+        align-items: center;
+    }
+}
+
+.homepage-slider {
+    background: $color1;
+}
+
+.primary-categories {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    background: $color1;
+    color: $color2;
+    
+    $p: 15px;
+    .swiper-inner {
+        margin-left: #{-$p};
+    }
+    .swiper-slide {
+        padding-left: #{$p};
+        width: calc(100% / 3);
+    }
+}
+
+.new-season {
+    background: $color1;
+    .swiper-slide {
+        width: 100%;
+    }
+}
+
+.collections {
+    background: $color1;
+    padding-top: 40px;
+
+    .swiper-wrapper {
+        flex-direction: column;
+    }
+}
+
+.best-sellers {
+    position: relative;
+    padding-top: 40px;
+    padding-bottom: 45px;
+}
+
+.campaigns {
+    background: $color1;
+
+    $p: 20px;
+    .swiper-inner {
+        padding-left: 10px;
+    }
+    .swiper-slide {
+        padding-left: #{$p};
+        width: 335px;
+    }
+    .swiper-pagination {
+        margin-top: -20px;
+    }
+}

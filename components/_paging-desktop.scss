@@ -1,0 +1,41 @@
+.urunPaging {
+    margin-top: 50px;
+    width: auto;
+}
+.urunPaging_pageNavigation {
+    border: none;
+    [id$="lblPaging"] {
+        margin-left: auto;
+        margin-right: 0;
+        a.paging {
+            &:not(:last-child) {
+                display: inline-block;
+            }
+            &:last-child {
+                &::before {
+                    display: none;
+                }
+            }
+        }
+    }
+    .paging {
+        border: 1px solid $color5;
+        min-width: 48px;
+        margin: 0 5px;
+        font-size: 16px;
+        &[id$="lnkPrev"] {
+            margin-left: auto;
+            + [id$="lblPaging"] {
+                margin-left: 0;
+            }
+        }
+    }
+    span.paging {
+        background: $color1;
+        color: $color2;
+        border-color: transparent;
+    }
+    .tumunuGoster {
+        display: block !important;
+    }
+}

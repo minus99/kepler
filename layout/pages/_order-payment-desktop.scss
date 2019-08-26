@@ -1,0 +1,79 @@
+.ems-order-payment {
+    &-grid {
+        grid-template-columns: 20px 1fr minmax(auto, 780px) 20px 380px 1fr 20px;
+        grid-template-areas: ". . ga1 . ga2 . .";
+    
+        @include setGridArea(1,2);
+        > .ga1 {
+            > .ems-pay-type {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+    
+    .ems-order-cart-grid {
+        > .ga1 {
+            position: relative;
+            display: block;
+            margin: 0 -30px 15px;
+            padding: 0 30px 20px;
+            border-bottom: 1px solid $color5;
+            &::after {
+                content: "";
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 100%);
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 100px;
+                z-index: 1;
+            }
+        }
+    }
+
+    .ems-grid-table-cart {
+        max-height: 235px;
+        overflow-y: scroll;
+        > .ems-grid-row {
+            grid-template-columns: 75px 1fr;
+            border-color: transparent;
+            padding: 10px 10px 10px 0;
+            grid-row-gap: 0;
+        }
+        .ems-grid-name {
+            [id$="lblProm"] {
+                display: none;
+            }
+        }
+        .qty-wrapper {
+            width: auto;
+            text-align: center;
+        }
+        .ems-grid-price {
+            .price-wrapper {
+                justify-content: flex-end;
+            }
+            .dvSepetKazancOran:not(:empty) {
+                text-align: right;
+            }
+        }
+    }
+}
+
+[id$="ODM_ACIKLAMA"]:not(:empty) {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.ems-card-wrapper {
+    display: block;
+}
+[id$="pnlKrediKartiBilgi"] > * {
+    max-width: 330px;
+}
+
+.ems-billing-address,
+.siparisOnaySozlesmeHolder {
+    margin-top: 0;
+    margin-left: 40px;
+}

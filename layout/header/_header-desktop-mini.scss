@@ -1,0 +1,40 @@
+.site-header-grid {
+    grid-template-areas:
+    "ga1 . ga2 ga3 ga4 ga5"
+    "ga6 ga6 ga6 ga6 ga8 ga8"
+    "ga7 ga7 ga7 ga7 ga7 ga7";
+}
+
+.menu {
+    &::before,
+    &::after {
+        display: none;
+    }
+    .sub {
+        width: 100%;
+        height: auto;
+        left: 0;
+        .r1 {
+            display: none;
+        }
+    }
+
+    .skew-object {
+        display: none;
+    }
+
+    .img2 {
+        display: none;
+        + .lvl-2 {
+            padding: 30px;
+        }
+    }
+
+    .lvl-2 {
+        justify-content: center;
+        overflow: auto;
+        > li {
+            flex: none;
+        }
+    }
+}

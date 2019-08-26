@@ -1,0 +1,48 @@
+.kutuKategori {
+    position: relative;
+    display: block;
+}
+.kutuHeaderKategori,
+.kutuFooterKategori {
+    display: none;
+}
+
+ul.menuKategori {
+    a {
+        position: relative;
+        display: inline-block;
+        font-family: $font2;
+        font-size: 13px;
+        padding: 7px 10px;
+        letter-spacing: .3px;
+    }
+    li {
+        display: none;
+        &.sel,
+        &.act > ul > li {
+            display: block;
+        }
+        &.sel {
+            > a {
+                font-weight: 700;
+            }
+        }
+        &.act {
+            > ul {
+                padding-left: 15px;
+            }
+        }
+        //son seviye 3
+        &.s2.sel {
+            > ul {
+                padding-left: 15px;
+            }
+            .s3 {
+                display: block;
+            }
+        }
+    }
+    b {
+        display: none;
+    }
+}

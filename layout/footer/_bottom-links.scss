@@ -1,0 +1,19 @@
+.bottom-links {
+    margin-top: 35px;
+    $p: 10px;
+    .swiper-wrapper {
+        justify-content: center;
+    }
+    .swiper-inner {
+        margin-left: #{-$p};
+    }
+    .swiper-slide {
+        padding-left: #{$p};
+    }
+    a {
+        font-family: $font2;
+        font-size: 12px;
+        color: $color5;
+        padding: 5px;
+    }
+}

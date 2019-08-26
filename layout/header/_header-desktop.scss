@@ -1,0 +1,86 @@
+$subGapL: 300px;
+.site-header-grid {
+    position: relative;
+    grid-template-columns: #{$subGapL} 1fr auto auto 150px 150px;
+    grid-template-areas:
+    "ga1 . ga2 ga3 ga4 ga5"
+    "ga6 ga7 ga7 ga7 ga8 ga8";
+
+    @include setGridArea(1,8);
+    
+    > .ga1,
+    > .ga2,
+    > .ga3,
+    > .ga4,
+    > .ga5 {
+        line-height: 40px;
+    }
+    > .ga6,
+    > .ga7,
+    > .ga8 {
+        line-height: 70px;
+        background: $color2;
+        color: $color1;
+    }
+
+    > .ga1 {
+        grid-column: span 2;
+    }
+}
+
+.slogan {
+    font-family: helvetica, $font0;
+    font-size: 13px;
+    color: $color9;
+    font-weight: 400;
+    margin: 0;
+    padding: 0 40px;
+}
+
+//header mods extend obj
+%header-mods-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+%header-mods-sub {
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: auto;
+    bottom: auto;
+    z-index: 10;
+    margin: 10px;
+    width: calc(100% - 20px);
+    height: auto;
+    background: $color2;
+    color: $color1;
+    line-height: normal;
+    user-select: none;
+    
+    pointer-events: none;
+    transform: scale(.8, .4);
+    transform-origin: right top;
+    opacity: 0;
+    transition: all .12s cubic-bezier(0.550, 0.055, 0.675, 0.190); /* easeInCubic */
+}
+%header-mods-sub-ready {
+    display: block;
+}
+%header-mods-animate {
+    position: initial;
+}
+%header-mods-sub-animate {
+    pointer-events: auto;
+    transform: scale(1,1);
+    opacity: 1;
+    transition: all .3s cubic-bezier(0.215, 0.610, 0.355, 1.000); /* easeOutCubic */
+}
+%header-mods-sub-overlay {
+    display: block;
+}

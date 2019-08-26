@@ -1,0 +1,177 @@
+.menu {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 85vw;
+    height: 100%;
+    max-width: 300px;
+    background: $color2;
+    color: $color1;
+    
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: all .12s cubic-bezier(0.950, 0.050, 0.795, 0.035); /* easeInExpo */
+    li {
+        > a {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            margin: 0 10px;
+            font-weight: 700;
+            line-height: 49px;
+            border-bottom: 1px solid $color3;
+            transition: all .2s ease;
+            > img,
+            > svg {
+                margin-right: 5px;
+                max-width: 32px;
+            }
+            &::after {
+                @extend %triangle;
+                @extend %triangle-r;
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+        &.selected {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            background: $color2;
+            overflow: auto;
+            > a {
+                position: sticky;
+                top: 0;
+                z-index: 1;
+                background: $color3;
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 45px;
+                font-size: 15px;
+                &::after {
+                    @extend %triangle-l;
+                    right: auto;
+                    left: 20px;
+                }
+            }
+            > .sub,
+            > ul,
+            .lvl-2 {
+                display: block;
+                animation: show .5s cubic-bezier(0.215, 0.610, 0.355, 1.000); /* easeOutCubic */
+            }
+        }
+        ul {
+            display: none;
+        }
+    }
+
+    .lvl-1 {
+        overflow: auto;
+    }
+
+    .sub {
+        display: none;
+    }
+
+    .color02 {
+        > a {
+            color: $color4;
+        }
+    }
+    .color03 {
+        > a {
+            color: $color7;
+        }
+    }
+    .cursor0 {
+        > a {
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    .btn-menu-title {
+        border-color: transparent;
+        font-size: 15px;
+        background: $color3;
+        margin-left: 0;
+        margin-right: 0;
+        &::after {
+            right: 25px;
+        }
+        .icon-user {
+            --color2: #fff;
+        }
+    }
+    .selected > .btn-menu-title {
+        svg {
+            display: none;
+        }
+    }
+
+    .dropdown {
+        li {
+            &.selected {
+                position: static;
+                > a {
+                    background: $color2;
+                }
+            }
+        }
+        a {
+            position: unset;
+            align-items: unset;
+            margin: unset;
+            font-weight: unset;
+            border-bottom: unset;
+            transition: unset;
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    &-user-info {
+        .sub {
+            li {
+                > a {
+                    padding-left: 0;
+                    svg {
+                        --color2: #fff;
+                        margin-right: 8px !important;
+                    }
+                }
+            }
+        }
+    }
+
+    &-ready {
+        .menu {
+            display: flex;
+        }
+    }
+
+    &-animate {
+        position: fixed;
+
+        .menu-overlay {
+            display: block;
+        }
+        .menu {
+            z-index: 10;
+            opacity: 1;
+            transform: translateX(0);
+            transition: all .3s cubic-bezier(0.190, 1.000, 0.220, 1.000); /* easeOutExpo */
+        }
+    }
+}

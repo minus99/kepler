@@ -1,0 +1,13 @@
+.ems-page-campaign {}
+
+.campaign-list {
+    $p: 20px;
+    margin-top: #{-$p};
+    .swiper-inner {
+        margin-top: #{-$p};
+    }
+    .swiper-slide {
+        margin-top: #{$p};
+        width: 100%;
+    }
+}

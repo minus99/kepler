@@ -1,0 +1,304 @@
+.ems-order-payment {
+    &-grid {
+        > .ga1 {
+            > div {
+                padding-left: 20px;
+                padding-right: 20px;
+                font-family: $font2;
+                font-size: 15px;
+            }
+        }
+    }
+
+    .ems-order-cart-grid {
+        > .ga1 {
+            display: none;
+        }
+    }
+}
+
+.ems-pay-type {
+    margin-top: 20px;
+    &-list {
+        $l: 5px;
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -$l;
+        }
+        li {
+            margin-left: $l;
+        }
+        a {
+            display: block;
+            padding: 12px 20px;
+            border: 1px solid transparent;
+            font-family: $font3;
+            font-weight: 700;
+            letter-spacing: 1px;
+            &.emos_selected {
+                border-color: $color5;
+            }
+        }
+    }
+    &-content {
+        position: relative;
+        margin-top: 30px;
+    }
+}
+[id$="pnlPesinDiger"] {
+    display: none;
+}
+
+.masterpassContent {
+    display: block !important;
+    margin-top: 15px;
+}
+.imgMasterpassLogo {
+    width: auto !important;
+}
+.masterPassForms {
+    position: relative;
+    > div {
+        margin-top: 10px;
+    }
+}
+.masterpassAciklama {
+    font-size: 13px;
+}
+.dvAddCreditCard {
+    display: flex;
+}
+.dvMpCardAliasName {
+    flex: 1;
+    padding-right: 5px;
+}
+
+.masterpass_cardAddedSuccess {
+    margin-bottom: 30px;
+}
+.masterpass_cardList {
+    margin-bottom: 30px;
+}
+.masterpassLogo_cardList {
+    display: none;
+}
+.mpCreditCardSet {
+    font-size: 14px;
+    background: $color6;
+    color: $color2;
+    border-radius: 5px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 15px 1fr max-content;
+    grid-gap: 0 10px;
+    align-items: center;
+
+    + .mpCreditCardSet {
+        margin-top: 15px;
+    }
+}
+.lnkDeleteMasterPassCard {
+    text-decoration: underline;
+}
+.mpNewCreditCard {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    input[type="radio"] {
+        margin-right: 7px;
+    }
+}
+
+[id$="ODM_ACIKLAMA"]:not(:empty) {
+    display: block;
+    margin-top: 20px;
+}
+
+.ems-card-wrapper {
+    display: none;
+    position: absolute;
+    right: 70px;
+    top: 0;
+    z-index: -1;
+}
+
+.tableTitleOdemeBilgiKrediKarti,
+.tableTitleOdemeBilgiHavale {
+    display: none;
+}
+.tableOdemeBilgiKrediKarti {
+    input {
+        width: 100% !important;
+        text-transform: uppercase;
+    }
+    tbody {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    tr {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        flex-basis: 100%;
+        + tr {
+            margin-top: 20px;
+        }
+        &:nth-child(2) {
+            flex-basis: 70%;
+        }
+        &:nth-child(3) {
+            flex-basis: 28%;
+        }
+        &:nth-child(5) {
+            display: none;
+        }
+    }
+    th {
+        @extend .ems-form-label;
+    }
+    td {
+        &.tableOdemeBilgiKrediKarti_tddrpKSA_SPR_ID {
+            > span {
+                text-align: center;
+                &:nth-child(1) {
+                    width: 85px;
+                    margin-right: 5px;
+                }
+                &:nth-child(2) {
+                    width: calc(100% - 90px);
+                }
+            }
+        }
+        &.tableOdemeBilgiKrediKarti_tdtxtKKARTCVCNO {
+            font-size: 0;
+        }
+    }
+    .div-cc-carttype,
+    [id$="CVC_NEDIR"] {
+        display: none !important;
+    }
+}
+
+.tableOdemeBilgiHavale {
+    .tableOdemeBilgiHavale_thlbfBNK_AD_HV {
+        display: none;
+    }
+    table {
+        margin-top: -10px;
+        td {
+            padding: 10px 0;
+        }
+    }
+    .link {
+        text-align: right;
+        color: #fff;
+        > a {
+            width: 110px;
+        }
+    }
+}
+
+.pageDecOdemeBilgi {
+    margin-top: 10px;
+}
+
+.pageOdemeBilgi_chkBankaBonus {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.pageOdemeBilgi_odemeTaksit {
+    margin-top: 20px;
+    #imgBANKALOGO {
+        display: none;
+    }
+}
+.tableOdemeTaksit {
+    table-layout: fixed;
+    td {
+        border: 1px solid $color5;
+        padding: 10px 5px;
+        text-align: center;
+        &:nth-child(1) {
+            width: 40px;
+        }
+    }
+}
+.tableTitleOdemeTaksit td {
+    @extend .ems-form-label;
+}
+
+.ems-pay-address,
+.ems-pay-agreement {
+    margin-top: 20px;
+    border-top: 1px solid $color5;
+}
+.ems-pay-address-label,
+.tableTitleSiparisOnaySatisSozlesme,
+.tableTitleSiparisOnBilgilendirmeForm {
+    padding: 10px 0;
+    font-weight: 700;
+    line-height: 32px;
+    cursor: pointer;
+}
+.ems-pay-address-obj,
+.pageSiparisOnay_chkSatisSozlesme,
+.pageSiparisOnay_chkOnBilgilendirmeForm {
+    margin-top: -5px;
+    a {
+        text-decoration: underline;
+    }
+}
+.ems-billing-address,
+.siparisOnaySozlesmeHolder {
+    margin-top: 15px;
+}
+
+.ems-pay-address-obj {
+    line-height: 1.7;
+}
+
+.pageSiparisOnay_btnSatisSozlesmeOnizle,
+.pageSiparisOnay_btnOnBilgilendirmeFormOnizle {
+    display: none;
+}
+.siparisOnaySozlesmeMetin,
+.onBilgilendirmeFormMetin {
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: calc(100vh - 100px);
+    max-width: 910px;
+    background: $color2;
+    > span {
+        height: inherit !important;
+        padding: 0 20px;
+        overflow-x: hidden !important;
+        a.btnDefault {
+            @extend %btn-reset;
+        }
+    }
+    .a1 {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        margin: 0 -20px;
+    }
+}
+.ems-form1-animate {
+    .agreement-overlay,
+    .onBilgilendirmeFormMetin {
+        display: block;
+    }
+}
+.ems-form2-animate {
+    .agreement-overlay,
+    .siparisOnaySozlesmeMetin {
+        display: block;
+    }
+}

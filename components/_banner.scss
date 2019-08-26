@@ -1,0 +1,299 @@
+@mixin banner-body-bottom {
+    top: auto;
+    bottom: 0;
+    transform: none;
+}
+@mixin banner-body-bottom-revert {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+}
+@mixin banner-body-static {
+    position: static;
+    transform: none;
+}
+.banner {
+    position: relative;
+    overflow: hidden;
+    color: $color2;
+    .prm-media {
+        position: relative;
+        display: block;
+        img,
+        video {
+            width: 100%;
+        }
+        video {
+            &[poster] {
+                object-fit: cover;
+                object-position: center;
+            }
+            //lazy-video-banner
+            &.is-scrolling {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .prm-title {
+        font-size: 24px;
+        b {
+            font-weight: 700;
+        }
+    }
+    .prm-marker {
+        position: absolute;
+        right: 26px;
+        top: 50%;
+        transform: translateY(-25%) scale(.9);
+        opacity: 0;
+        transition: all .32s ease;
+        background: transparent;
+        border-color: transparent;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .btn-transparent {
+        border-color: transparent;
+    }
+    .btn + .btn {
+        margin-left: 20px;
+    }
+    .prm-desc {
+        font-family: $font2;
+        font-size: 20px;
+        a {
+            color: $color7;
+        }
+    }
+
+    &-body {
+        position: relative;
+        z-index: 5;
+        width: 100%;
+        padding: 20px;
+    }
+
+    &:hover {
+        .prm-marker {
+            transform: translateY(-50%) scale(1);
+            opacity: 1;
+        }
+    }
+
+    //banner type01 *primary categories
+    &01 {
+        .prm-link {
+            display: block;
+            border-color: $color5;
+        }
+    }
+
+    //banner type02 *new season
+    &02 {
+        .prm-link {
+            margin-top: 20px;
+        }
+    }
+
+    //banner type03 *collections
+    &03 {
+        text-align: center;
+        .prm-link {
+            margin-top: 10px;
+        }
+    }
+
+    //banner type04 *campaigns
+    &04 {
+        .banner-body {
+            padding: 20px 0;
+        }
+        .prm-title {
+            font-size: 16px;
+        }
+        .prm-desc {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+    }
+
+    //banner type05 *type02 menu
+    &05 {}
+
+    //banner type06 *instagram first content
+    &06 {
+        height: 100%;
+        .banner-body {
+            @include banner-body-static;
+            height: 100%;
+            padding: 30px 20px 70px;
+        }
+        .prm-title {
+            font-size: 30px;
+        }
+        .prm-desc {
+            font-size: 15px;
+        }
+    }
+
+    //banner type07 *home slider
+    &07 {
+        text-align: center;
+        .banner-body {
+            position: absolute;
+            @include banner-body-bottom;
+        }
+        .prm-title {
+            i {
+                font-style: normal;
+                letter-spacing: .75em;
+            }
+            b {
+                letter-spacing: 1.5px;
+            }
+        }
+        .prm-link {
+            margin-top: 10px;
+        }
+        .prm-content {
+            margin-top: 30px;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: 4;
+            width: 100%;
+            height: 340px;
+            background-image: linear-gradient(0, $color1, transparent);
+        }
+
+        &.v2 {
+            .prm-media {
+                transform: scale(1.13);
+                transition: all .32s ease;
+            }
+            .prm-media-custom {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                transform: scale(1);
+                transform-origin: center top;
+                transition: all .32s ease;
+                img {
+                    height: 100%;
+                    background: none;
+                }
+            }
+            .banner-body {
+                transform: translateY(15%);
+                opacity: 0;
+                transition: all .32s ease;
+            }
+
+            .swiper-slide-active & {
+                .prm-media {
+                    transform: scale(1);
+                    transition: all 7s ease;
+                }
+                .prm-media-custom {
+                    transform: scale(1.15);
+                    transition: all 7s ease;
+                }
+                .banner-body {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    //banner type08 *login
+    &08 {}
+
+    //banner type09 *primary box
+    &09 {}
+
+    //banner type10 *cart promotion
+    &10 {
+        border: 1px solid $color5;
+        color: $color1;
+        .banner-body {
+            @include banner-body-static;
+            padding: 20px;
+        }
+        .prm-title {
+            font-size: 14px;
+            color: $color4;
+            font-weight: 700;
+        }
+        .prm-desc {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    }
+
+    //banner type11 *primary video
+    &11 {}
+
+    //banner type12 *seo content
+    &12 {
+        color: $color7;
+        .banner-body {
+            @include banner-body-static;
+            padding: 0;
+        }
+        .prm-content {
+            font-family: $font2;
+            font-size: 16px;
+        }
+    }
+
+    //banner type13 *top notification
+    &13 {
+        height: 100%;
+        .banner-body {
+            @include banner-body-static;
+            height: 100%;
+            padding: 10px;
+        }
+        .prm-title {
+            font-size: 13px;
+            flex: 1;
+            margin: 0 4vw;
+            text-align: center;
+        }
+        .prm-link {
+            text-decoration: underline;
+            padding: 0;
+            margin-left: 0 !important;
+        }
+        .countdown {
+            font-size: 12px;
+            font-weight: 700;
+        }
+    }
+
+    //banner type14 *lp zebra content
+    &14 {
+        .banner-body {
+            @include banner-body-static;
+        }
+        .prm-desc {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .prm-link {
+            margin-top: 30px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}

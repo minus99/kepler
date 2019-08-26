@@ -1,0 +1,7 @@
+//APP SHELL FIXER
+.site-main {
+    background: none;
+    > div {
+        display: inherit;
+    }
+}

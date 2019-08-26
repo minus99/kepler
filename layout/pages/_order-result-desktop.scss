@@ -1,0 +1,23 @@
+form[action*="siparisSonuc"] {
+    .ems-page-order-grid {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+.ems-order-result {
+    padding: 100px 30px;
+    background-image: url(/images/frontend/order-result.jpg);
+}
+
+.result-content {
+    .rlogo {
+        width: 100px;
+    }
+    .ricon {
+        margin-top: 70px;
+    }
+    .rtitle {
+        margin-top: 30px;
+    }
+}

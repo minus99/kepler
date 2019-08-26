@@ -1,0 +1,26 @@
+.ems-page-member {
+    &-grid {
+        grid-template-columns: 300px 40px minmax(auto, 850px) 20px 1fr;
+        grid-template-areas: "ga1 . ga2 . .";
+        
+        @include setGridArea(1,2);
+        
+        > .ga1 {
+            position: static;
+            padding-bottom: 50px;
+            min-height: 100vh;
+        }
+    }
+
+    .page-top-title {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .ems-new-address {
+        margin-left: 0;
+        .page-top-title {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,91 @@
+.mini-search {
+    display: block;
+    &-info {
+        > span {
+            @extend %header-mods-title;
+            justify-content: flex-end;
+            padding: 0 30px;
+        }
+        .icon-search {
+            margin-left: 10px;
+        }
+    }
+    &-sub {
+        @extend %header-mods-sub;
+        max-width: 910px;
+        max-height: 95vh;
+        padding: 10px 30px 30px;
+    }
+    .sub-close {
+        left: auto;
+        right: 30px;
+        top: 56px;
+    }
+
+    .search-input > input {
+        margin-left: 0;
+        width: calc(100% - #{$ml});
+    }
+    a[id$="btnArama"] {
+        right: 65px;
+    }
+
+    .no-result {
+        margin: 20px 0 0 0;
+    }
+    
+    &-ready {
+        .mini-search-sub {
+            @extend %header-mods-sub-ready;
+        }
+    }
+
+    &-animate {
+        @extend %header-mods-animate;
+        .mini-search-overlay {
+            @extend %header-mods-sub-overlay;
+        }
+        .mini-search-sub {
+            @extend %header-mods-sub-animate;
+        }
+    }
+}
+
+.popular-search-words {
+    margin: 0;
+    .ems-section-title {
+        margin-bottom: 0;
+    }
+    
+    .swiper-inner {
+        margin-left: 0;
+    }
+    .swiper-container {
+        flex: 1;
+    }
+
+    &-append & {
+        display: flex;
+    }
+}
+
+.searchSuggestDivHolder {
+    margin: 0;
+    grid-template-columns: 1fr 56px 160px;
+    grid-template-areas:
+    "ga1 ga1 ga1"
+    "ga2 . ga3"
+    "ga4 . .";
+
+    .prd {
+        .sHolder {
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            margin-right: 0;
+            margin-left: 0;
+        }
+    }
+    .cat {
+        margin-top: 0;
+    }
+}

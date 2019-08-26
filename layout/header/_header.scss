@@ -1,0 +1,49 @@
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 8;
+    background: $color1;
+    color: $color2;
+}
+
+.header-mobile {
+    display: flex;
+    align-items: center;
+    padding: 9px 15px;
+    > div + div {
+        margin-left: 15px;
+    }
+}
+.go-cart > b {
+    vertical-align: middle;
+}
+
+//footer mods extend obj
+%footer-mods-sub {
+    display: none;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    overflow: auto;
+    background: $color2;
+    color: $color1;
+
+    opacity: 0;
+    transform: translateY(50%);
+    transition: all .12s cubic-bezier(0.950, 0.050, 0.795, 0.035); /* easeInExpo */
+}
+%footer-mods-sub-ready {
+    display: block;
+}
+%footer-mods-sub-animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all .3s cubic-bezier(0.190, 1.000, 0.220, 1.000); /* easeOutExpo */
+}
+%footer-mods-sub-overlay {
+    display: block;
+}

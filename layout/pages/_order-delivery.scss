@@ -1,0 +1,164 @@
+.ems-order-delivery {
+    .ems-order-cart-grid {
+        > .ga1 {
+            display: none;
+        }
+    }
+}
+
+.ems-grid-table-address {
+    .ems-grid-row {
+        grid-template-columns: 1fr;
+        font-size: 15px;
+    }
+}
+
+a.btnAdresEkle,
+.dvFarkliFatAdrSec,
+.delivery-gift-select {
+    padding: 20px;
+    font-family: $font2;
+    font-size: 16px;
+}
+
+a.btnAdresEkle {
+    @extend %btn-reset;
+}
+
+.ems-delivery-tab {
+    position: relative;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+    overflow: hidden;
+}
+.ems-gift-tab {
+    background: $color3;
+    &::before {
+        content: "";
+        position: absolute;
+        right: 20px;
+        top: 11px;
+        width: 80px;
+        height: 49px;
+        background: url(/images/frontend/gift-pack.svg) center top no-repeat;
+    }
+    .ems-delivery-tab-wrp {
+        padding: 40px 20px 20px;
+        display: none;
+    }
+    [id$="txtSIP_HEDIYENOTU"] {
+        width: 100% !important;
+        height: 100px;
+    }
+    &-opened {
+        .ems-delivery-tab-wrp {
+            display: block;
+        }
+        &::before {
+            height: 127px;
+            background-position: center bottom;
+            transition: all .2s ease;
+        }
+    }
+}
+.ems-cargo-tab {
+
+}
+.divTeslimatKargo {
+    font-family: $font2;
+    font-size: 15px;
+    margin-top: 30px;
+    li {
+        position: relative;
+        padding: 20px 20px 20px 85px;
+        border: 1px solid $color5;
+        display: flex;
+        flex-wrap: wrap;
+        + li {
+            margin-top: 20px;
+        }
+
+        .sStylerWrp_radio {
+            position: static;
+            margin-right: 0;
+        }
+        .rStyler {
+            display: none;
+        }
+    }
+    img {
+        order: 1;
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: 44px;
+    }
+    .kargoAdi {
+        order: 2;
+    }
+    .fiyat {
+        order: 3;
+        &::before {
+            content: "-";
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    }
+    .kargoBilgi {
+        order: 4;
+        margin-top: 5px;
+        flex-basis: 100%;
+    }
+
+    .kargoAdi,
+    .fiyat {
+        font-weight: 700;
+    }
+
+    .radioButton {
+        @include ems-cover;
+        z-index: 1;
+        margin: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+}
+
+.ems-new-address {
+    padding-bottom: 30px;
+    .page-top-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-top: 15px;
+        border-bottom: none !important;
+        padding: 0 !important;
+    }
+    .ems-message {
+        margin-top: 30px;
+    }
+    .ems-form {
+        margin-top: 30px;
+    }
+    #plhAdresTipi {
+        justify-content: flex-start;
+    }
+    #plhTcDegilLabel {
+        margin-bottom: -1px;
+    }
+    a.btnAdresIptal {
+        @extend %btn-secondary;
+    }
+}
+.bireysel {
+    .vergNoCheck,
+    .vergCheck {
+        display: none;
+    }
+}
+.kurumsal {
+    .tcCheck,
+    .tcCheck-2 {
+        display: none;
+    }
+}

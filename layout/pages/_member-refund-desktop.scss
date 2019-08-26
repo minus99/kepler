@@ -1,0 +1,16 @@
+.ems-member-refund {
+    padding-top: 40px;
+}
+
+.ems-grid-table-refund {
+    > .ems-grid-row {
+        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    }
+}
+ul.rtnPrdInf {
+    grid-template-columns: 90px 30px 80px 1fr;
+    padding: 10px;
+}
+.rtnReason {
+    grid-column: span 1;
+}

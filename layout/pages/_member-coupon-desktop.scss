@@ -1,0 +1,15 @@
+.ems-member-coupon {}
+
+.coupon-tab {
+    margin: 30px 0 0 -10px;
+    a {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+.ems-grid-table-coupon {
+    > .ems-grid-row {
+        grid-template-columns: 1fr 2fr 150px 150px 1fr;
+    }
+}
