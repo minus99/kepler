@@ -1,9 +1,0 @@
-.ems-page-search {
-    &.no-result {
-        padding-top: 50px;
-        .ems-page-search-grid {
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-areas: ". ga3 .";
-        }
-    }
-}

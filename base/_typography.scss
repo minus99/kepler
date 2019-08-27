@@ -9,15 +9,15 @@
 //800	Extra Bold (Ultra Bold)
 //900	Black (Heavy)
 
-//DIN PRO
-@include fontFace('din', '/styles/fonts/din/DINPro-Bold', 700, normal);
-@include fontFace('din', '/styles/fonts/din/DINPro-Light', 300, normal);
+//Gotham
 
-//DINPRO CONDENSED
-@include fontFace('dinc', '/styles/fonts/din/DINPro-CondensedBold', 700, normal);
-@include fontFace('dinc', '/styles/fonts/din/DINPro-CondensedRegular', 400, normal);
+@include fontFace('gotham', '/styles/fonts/gotham/GothamBold', 700, normal);
+@include fontFace('gotham', '/styles/fonts/gotham/GothamMedium', 500, normal);
+@include fontFace('gotham', '/styles/fonts/gotham/GothamBook', 400, normal);
+@include fontFace('gotham', '/styles/fonts/gotham/GothamLight', 300, normal);
 
-//FIRA
-@include fontFace('fira', '/styles/fonts/fira/FiraSans-Bold', 700, normal);
-@include fontFace('fira', '/styles/fonts/fira/FiraSans-Medium', 500, normal);
-@include fontFace('fira', '/styles/fonts/fira/FiraSans-Regular', 400, normal);
+
+//Garamond
+@include fontFace('Garamond', '/styles/fonts/garamond/Garamond-Bold', 700, normal);
+@include fontFace('Garamond', '/styles/fonts/garamond/Garamond-Roman', 500, normal);
+@include fontFace('Garamond', '/styles/fonts/garamond/Garamond', 400, normal);
