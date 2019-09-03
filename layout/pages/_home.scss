@@ -1,69 +1,52 @@
-.top-notification {
-    background: $color4;
-
-    .swiper-container {
-        height: 50px;
-        overflow: hidden;
-    }
-    .swiper-wrapper {
-        align-items: center;
-    }
-}
-
-.homepage-slider {
-    background: $color1;
-}
-
-.primary-categories {
-    padding-top: 20px;
-    padding-bottom: 40px;
-    background: $color1;
-    color: $color2;
-    
-    $p: 15px;
-    .swiper-inner {
-        margin-left: #{-$p};
-    }
-    .swiper-slide {
-        padding-left: #{$p};
-        width: calc(100% / 3);
-    }
-}
-
-.new-season {
-    background: $color1;
-    .swiper-slide {
+// Homepage Full-Content Slider
+.homepage-slider{
+    &.swiper-container {
         width: 100%;
-    }
-}
-
-.collections {
-    background: $color1;
-    padding-top: 40px;
-
-    .swiper-wrapper {
-        flex-direction: column;
-    }
-}
-
-.best-sellers {
-    position: relative;
-    padding-top: 40px;
-    padding-bottom: 45px;
-}
-
-.campaigns {
-    background: $color1;
-
-    $p: 20px;
-    .swiper-inner {
-        padding-left: 10px;
-    }
-    .swiper-slide {
-        padding-left: #{$p};
-        width: 335px;
-    }
-    .swiper-pagination {
-        margin-top: -20px;
+        height: 100vh;
+        margin-left: auto;
+        margin-right: auto;
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            /* Center slide text vertically */
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            >div{
+                width:100%;
+                .first-content{
+                    background:url("/UPLOAD/frontend/first-banner.png");
+                    height:100vh;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: top center;
+                    .content-right{
+                        display: none;
+                    }
+                    .content-left{
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width:100%;
+                        &-text{
+                            > span{
+                                display: block;
+                                text-align: center;
+                                color:#fff;
+                                font-family: $font1;
+                                &:nth-child(1){
+                                    font-size:18px;
+                                }
+                                &:nth-child(2){
+                                    font-size:50px;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

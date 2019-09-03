@@ -1,0 +1,20 @@
+.ems-sticky-header{
+    .site-header{
+        background: #453d98;
+    }
+}
+
+.site-header{
+    height:52px;
+    transition: all .4s;
+    position: fixed;
+    top:0px;
+    width:100%;
+    z-index: 9999;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    &-grid{
+        align-content: center;
+    }
+}

@@ -1,78 +1,68 @@
-form[action*="/default.aspx"] {
-    .footer-content {
-        display: block;
-    } 
-}
-
-.homepage-slider {
-    .prm-media {
-        img {
-            @include setHeight(3840, 1678, 99.1vw);
+.homepage-slider{
+    .swiper-wrapper{
+        .swiper-slide{
+            &:nth-child(1){
+                .first-content{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: none;
+                    > div{
+                        width:50%;
+                    }
+                    .content-left{
+                        background: #453d98;
+                        height:100vh;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        flex-wrap: wrap;
+                        &-text{
+                            min-width: 580px;
+                            > span{
+                                text-align: left;
+                                &:nth-child(1){
+                                    font-size:18px;
+                                }
+                                &:nth-child(2){
+                                    font-size:68px;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+                    }
+                    .content-right{
+                        height:100vh;
+                        display: flex;
+                        background:url("/UPLOAD/frontend/first-banner.png");
+                    }
+                }
+            }
         }
     }
 }
 
-.primary-categories {
-    padding-top: 25px;
-    padding-bottom: 95px;
-    .ems-section-title {
-        display: none;
-    }
 
-    $p: 30px;
-    .swiper-inner {
-        margin-left: #{-$p};
-    }
-    .swiper-slide {
-        padding-left: #{$p};
-    }
-}
 
-.new-season {
-    padding-top: 85px;
-    padding-bottom: 85px;
-    .prm-media {
-        img {
-            @include setHeight(3840, 1678, 1200px);
-        }
-    }
-}
 
-.collections {
-    padding-top: 120px;
-    padding-bottom: 40px;
 
-    $p: 40px;
-    .swiper-inner {
-        margin-left: #{-$p};
-    }
-    .swiper-slide {
-        padding-left: #{$p};
-        width: calc(100% / 2);
-    }
-}
 
-.best-sellers {
-    padding-top: 60px;
-    padding-bottom: 90px;
-}
 
-.campaigns {
-    $p: 40px;
-    .swiper-inner {
-        padding-left: 0;
-        margin-left: #{-$p};
-    }
-    .swiper-slide {
-        padding-left: #{$p};
-        width: calc(100% / 3);
-    }
-    .swiper-pagination {
-        display: none;
-    }
-}
 
-.instagram-feed {
-    background: $color1;
-    padding-top: 60px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

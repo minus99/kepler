@@ -274,6 +274,10 @@ iframe {
 .site-main {
   min-height: 500px; }
 
+.row-container {
+  max-width: 1160px;
+  margin: 0 auto; }
+
 .ems-hidden {
   visibility: hidden; }
 
@@ -2276,10 +2280,35 @@ button.toast-close-button {
 .gridHeaderSepetStok {
   display: none; }
 
+.ems-sticky-header .site-header {
+  background: #453d98; }
+
+.site-header {
+  height: 52px;
+  -webkit-transition: all .4s;
+  -o-transition: all .4s;
+  transition: all .4s;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 9999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .site-header-grid {
+    -ms-flex-line-pack: center;
+    align-content: center; }
+
 .site-footer {
   background: #2e2f7d url(/images/frontend/footer-bg-mobile.png) center 60%/100% no-repeat;
   padding: 50px 0;
-  color: #a74792; }
+  color: #a74792;
+  display: none; }
 
 .footer-content {
   margin-top: 80px; }
@@ -2288,58 +2317,52 @@ button.toast-close-button {
     .footer-content .banner04 .banner-body {
       padding: 0; }
 
-.top-notification {
-  background: #0a71b6; }
-  .top-notification .swiper-container {
-    height: 50px;
-    overflow: hidden; }
-  .top-notification .swiper-wrapper {
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center; }
-
-.homepage-slider {
-  background: #2e2f7d; }
-
-.primary-categories {
-  padding-top: 20px;
-  padding-bottom: 40px;
-  background: #2e2f7d;
-  color: #a74792; }
-  .primary-categories .swiper-inner {
-    margin-left: -15px; }
-  .primary-categories .swiper-slide {
-    padding-left: 15px;
-    width: calc(100% / 3); }
-
-.new-season {
-  background: #2e2f7d; }
-  .new-season .swiper-slide {
-    width: 100%; }
-
-.collections {
-  background: #2e2f7d;
-  padding-top: 40px; }
-  .collections .swiper-wrapper {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column; }
-
-.best-sellers {
-  position: relative;
-  padding-top: 40px;
-  padding-bottom: 45px; }
-
-.campaigns {
-  background: #2e2f7d; }
-  .campaigns .swiper-inner {
-    padding-left: 10px; }
-  .campaigns .swiper-slide {
-    padding-left: 20px;
-    width: 335px; }
-  .campaigns .swiper-pagination {
-    margin-top: -20px; }
+.homepage-slider.swiper-container {
+  width: 100%;
+  height: 100vh;
+  margin-left: auto;
+  margin-right: auto; }
+  .homepage-slider.swiper-container .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+    -webkit-box-align: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important; }
+    .homepage-slider.swiper-container .swiper-slide > div {
+      width: 100%; }
+      .homepage-slider.swiper-container .swiper-slide > div .first-content {
+        background: url("/UPLOAD/frontend/first-banner.png");
+        height: 100vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top center; }
+        .homepage-slider.swiper-container .swiper-slide > div .first-content .content-right {
+          display: none; }
+        .homepage-slider.swiper-container .swiper-slide > div .first-content .content-left {
+          position: absolute;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+          width: 100%; }
+          .homepage-slider.swiper-container .swiper-slide > div .first-content .content-left-text > span {
+            display: block;
+            text-align: center;
+            color: #fff;
+            font-family: gotham, arial, sans-serif; }
+            .homepage-slider.swiper-container .swiper-slide > div .first-content .content-left-text > span:nth-child(1) {
+              font-size: 18px; }
+            .homepage-slider.swiper-container .swiper-slide > div .first-content .content-left-text > span:nth-child(2) {
+              font-size: 50px;
+              font-weight: 500; }
 
 @supports ((display: -ms-grid) or (display: grid)) {
   @media screen and (min-width: 1025px) {
@@ -2513,6 +2536,23 @@ button.toast-close-button {
       position: static; }
     .ems-grid-option1 {
       grid-column: span 1; }
+    .ems-sticky-header .site-header {
+      height: 84px; }
+    .site-header {
+      height: 168px;
+      pointer-events: none; }
+      .site-header a {
+        pointer-events: auto; }
+      .site-header-grid {
+        max-width: 1160px;
+        width: 100%;
+        margin: 0 auto;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start; }
     .site-footer {
       background-image: url(/images/frontend/footer-bg.png);
       background-position: center 80px;
@@ -2538,46 +2578,49 @@ button.toast-close-button {
         grid-area: ga7; }
       .site-footer-grid > .ga8 {
         grid-area: ga8; }
-    form[action*="/default.aspx"] .footer-content {
-      display: block; }
-    .homepage-slider .prm-media img {
-      height: calc(99.1vw / (3840 / 1678)); }
-    .primary-categories {
-      padding-top: 25px;
-      padding-bottom: 95px; }
-      .primary-categories .ems-section-title {
-        display: none; }
-      .primary-categories .swiper-inner {
-        margin-left: -30px; }
-      .primary-categories .swiper-slide {
-        padding-left: 30px; }
-    .new-season {
-      padding-top: 85px;
-      padding-bottom: 85px; }
-      .new-season .prm-media img {
-        height: calc(1200px / (3840 / 1678)); }
-    .collections {
-      padding-top: 120px;
-      padding-bottom: 40px; }
-      .collections .swiper-inner {
-        margin-left: -40px; }
-      .collections .swiper-slide {
-        padding-left: 40px;
-        width: calc(100% / 2); }
-    .best-sellers {
-      padding-top: 60px;
-      padding-bottom: 90px; }
-    .campaigns .swiper-inner {
-      padding-left: 0;
-      margin-left: -40px; }
-    .campaigns .swiper-slide {
-      padding-left: 40px;
-      width: calc(100% / 3); }
-    .campaigns .swiper-pagination {
-      display: none; }
-    .instagram-feed {
-      background: #2e2f7d;
-      padding-top: 60px; } } }
+    .homepage-slider .swiper-wrapper .swiper-slide:nth-child(1) .first-content {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      background: none; }
+      .homepage-slider .swiper-wrapper .swiper-slide:nth-child(1) .first-content > div {
+        width: 50%; }
+      .homepage-slider .swiper-wrapper .swiper-slide:nth-child(1) .first-content .content-left {
+        background: #453d98;
+        height: 100vh;
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap; }
+        .homepage-slider .swiper-wrapper .swiper-slide:nth-child(1) .first-content .content-left-text {
+          min-width: 580px; }
+          .homepage-slider .swiper-wrapper .swiper-slide:nth-child(1) .first-content .content-left-text > span {
+            text-align: left; }
+            .homepage-slider .swiper-wrapper .swiper-slide:nth-child(1) .first-content .content-left-text > span:nth-child(1) {
+              font-size: 18px; }
+            .homepage-slider .swiper-wrapper .swiper-slide:nth-child(1) .first-content .content-left-text > span:nth-child(2) {
+              font-size: 68px;
+              font-weight: 500; }
+      .homepage-slider .swiper-wrapper .swiper-slide:nth-child(1) .first-content .content-right {
+        height: 100vh;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        background: url("/UPLOAD/frontend/first-banner.png"); } } }
 
 .site-main {
   background: none; }

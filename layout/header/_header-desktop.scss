@@ -1,0 +1,20 @@
+.ems-sticky-header{
+    .site-header{
+        height:84px;
+    }
+}
+
+.site-header{
+    a{
+        pointer-events: auto;
+    }
+    height:168px;
+    pointer-events: none;
+    &-grid{
+        max-width:1160px;
+        width:100%;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: flex-start;
+    }
+}
