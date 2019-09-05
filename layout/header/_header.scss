@@ -11,10 +11,8 @@
     top:0px;
     width:100%;
     z-index: 9999;
-    display: flex;
-    align-content: center;
-    justify-content: space-between;
+    border:1px solid red;
     &-grid{
-        align-content: center;
+        border:1px solid red;
     }
 }

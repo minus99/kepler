@@ -2292,17 +2292,9 @@ button.toast-close-button {
   top: 0px;
   width: 100%;
   z-index: 9999;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-line-pack: center;
-  align-content: center;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between; }
+  border: 1px solid red; }
   .site-header-grid {
-    -ms-flex-line-pack: center;
-    align-content: center; }
+    border: 1px solid red; }
 
 .site-footer {
   background: #2e2f7d url(/images/frontend/footer-bg-mobile.png) center 60%/100% no-repeat;
@@ -2547,6 +2539,9 @@ button.toast-close-button {
         max-width: 1160px;
         width: 100%;
         margin: 0 auto;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
