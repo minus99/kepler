@@ -4,15 +4,49 @@
     }
 }
 
+.mobile-menu-ready{
+    .site-header{
+        &-grid{
+            .site-menu{
+                opacity: 1;
+                width: 100%;
+                height:100vh;
+            }
+        }
+    }
+}
+
 .site-header{
-    height:52px;
     transition: all .4s;
     position: fixed;
     top:0px;
     width:100%;
     z-index: 9999;
-    border:1px solid red;
+    height:52px;
     &-grid{
-        border:1px solid red;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding:0px 10px;
+        height:100%;
+        .site-menu{
+            position: fixed;
+            height: 0;
+            background: #fff;
+            top: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 3;
+            font-size: 30px;
+            text-align: center;
+            right: 0px;
+            transition: all .4s;
+            width: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            height: 100vh;
+        }
     }
 }
