@@ -39,6 +39,32 @@
                     }
                 }
             }
+            &:nth-child(2){
+                .second-slide{
+                    max-width: 1150px;
+                    padding: inherit;
+                    .second-left{
+                        margin-right:120px;
+                        display: block;
+                    }
+                    .second-right{
+                        text-align: left;
+                        .image-ico{
+                            margin-bottom:65px;
+                            svg{
+                                font-size:110px;
+                            }
+                        }
+                        .title{
+                            font-size:32px;
+                            margin-bottom:30px;
+                        }
+                        .content{
+                            font-size:20px;
+                        }
+                    }
+                }
+            }
         }
     }
 }

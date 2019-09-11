@@ -368,7 +368,7 @@ iframe {
     border-color: currentColor; }
   .ems-message-success {
     background: #a74792;
-    color: #dcdcdc;
+    color: #f7f7f7;
     border-color: currentColor; }
   .ems-message:empty {
     display: none; }
@@ -662,6 +662,9 @@ table {
   .anaBody > div[ondblclick][style] div {
     padding: 10px 15px;
     border-bottom: 1px solid #7b7b7b; }
+
+.bg-grey {
+  background: #f7f7f7 !important; }
 
 .btn,
 a.btnDefault {
@@ -2397,6 +2400,69 @@ button.toast-close-button {
             .homepage-slider.swiper-container .swiper-slide > div .first-content .content-left-text > span:nth-child(2) {
               font-size: 50px;
               font-weight: 500; }
+      .homepage-slider.swiper-container .swiper-slide > div .second-slide {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0px 30px; }
+        .homepage-slider.swiper-container .swiper-slide > div .second-slide .second-left {
+          display: none; }
+        .homepage-slider.swiper-container .swiper-slide > div .second-slide .second-right {
+          text-align: center; }
+          .homepage-slider.swiper-container .swiper-slide > div .second-slide .second-right .image-ico {
+            margin-bottom: 40px; }
+            .homepage-slider.swiper-container .swiper-slide > div .second-slide .second-right .image-ico svg {
+              font-size: 80px; }
+          .homepage-slider.swiper-container .swiper-slide > div .second-slide .second-right .title {
+            font-size: 24px;
+            color: #453d98;
+            font-weight: bold;
+            margin-bottom: 20px; }
+          .homepage-slider.swiper-container .swiper-slide > div .second-slide .second-right .content {
+            font-family: garamond, arial, sans-serif;
+            font-size: 18px;
+            line-height: 1.3; }
+      .homepage-slider.swiper-container .swiper-slide > div .third-header {
+        margin-bottom: 30px; }
+        .homepage-slider.swiper-container .swiper-slide > div .third-header h3 {
+          font-size: 24px;
+          font-weight: bold; }
+        .homepage-slider.swiper-container .swiper-slide > div .third-header p {
+          font-size: 18px;
+          color: #1d3243;
+          font-family: garamond, arial, sans-serif;
+          line-height: 1.22;
+          padding: 0px 20px; }
+      .homepage-slider.swiper-container .swiper-slide > div .third-body ul {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap; }
+        .homepage-slider.swiper-container .swiper-slide > div .third-body ul li {
+          width: calc(33% - 20px);
+          margin: 10px 10px; }
+          .homepage-slider.swiper-container .swiper-slide > div .third-body ul li img {
+            max-width: 60px;
+            margin-bottom: 10px; }
+          .homepage-slider.swiper-container .swiper-slide > div .third-body ul li span {
+            display: block;
+            font-size: 12px;
+            text-align: center;
+            color: #1d3243;
+            font-family: gotham, arial, sans-serif;
+            line-height: 1.33;
+            font-weight: normal; }
+      .homepage-slider.swiper-container .swiper-slide > div .third-footer {
+        margin-top: 30px; }
 
 @supports ((display: -ms-grid) or (display: grid)) {
   @media screen and (min-width: 1025px) {
@@ -2681,7 +2747,24 @@ button.toast-close-button {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
-        background: url("/UPLOAD/frontend/first-banner.png"); } } }
+        background: url("/UPLOAD/frontend/first-banner.png"); }
+    .homepage-slider .swiper-wrapper .swiper-slide:nth-child(2) .second-slide {
+      max-width: 1150px;
+      padding: inherit; }
+      .homepage-slider .swiper-wrapper .swiper-slide:nth-child(2) .second-slide .second-left {
+        margin-right: 120px;
+        display: block; }
+      .homepage-slider .swiper-wrapper .swiper-slide:nth-child(2) .second-slide .second-right {
+        text-align: left; }
+        .homepage-slider .swiper-wrapper .swiper-slide:nth-child(2) .second-slide .second-right .image-ico {
+          margin-bottom: 65px; }
+          .homepage-slider .swiper-wrapper .swiper-slide:nth-child(2) .second-slide .second-right .image-ico svg {
+            font-size: 110px; }
+        .homepage-slider .swiper-wrapper .swiper-slide:nth-child(2) .second-slide .second-right .title {
+          font-size: 32px;
+          margin-bottom: 30px; }
+        .homepage-slider .swiper-wrapper .swiper-slide:nth-child(2) .second-slide .second-right .content {
+          font-size: 20px; } } }
 
 .site-main {
   background: none; }
