@@ -27,7 +27,7 @@
 
 //PAGES
 @import 'layout/pages/home';
-
+//yorum
 //DESKTOP
 @supports (display: grid) {
     @include setMediaScreen(min-width, $breakpoint-medium) {
