@@ -1,7 +1,18 @@
 @import  './genel.scss';
 
-body{
-    margin:0;
-    background-color: red;
-    color:blue;
+
+// Mobile First İndex
+
+
+
+
+
+
+//DESKTOP
+@supports (display: grid) {
+    @include setMediaScreen(min-width, $breakpoint-medium) {
+
+        
+
+    }
 }

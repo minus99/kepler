@@ -27,10 +27,11 @@
 
 //PAGES
 @import 'layout/pages/home';
-//sssssssssiii
+
 //DESKTOP
 @supports (display: grid) {
     @include setMediaScreen(min-width, $breakpoint-medium) {
+
         //BASE
         @import 'base/global-desktop';
         

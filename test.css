@@ -2770,8 +2770,3 @@ button.toast-close-button {
   background: none; }
   .site-main > div {
     display: inherit; }
-
-body {
-  margin: 0;
-  background-color: red;
-  color: blue; }
