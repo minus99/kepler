@@ -65,6 +65,17 @@
                     }
                 }
             }
+            &:nth-child(3){
+                .third{
+                    &-body{
+                        ul{
+                            li{
+                                width:calc(100% / 6 - 30px);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

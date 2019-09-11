@@ -276,6 +276,7 @@ iframe {
 
 .row-container {
   max-width: 1160px;
+  width: 100%;
   margin: 0 auto; }
 
 .ems-hidden {
@@ -2764,7 +2765,9 @@ button.toast-close-button {
           font-size: 32px;
           margin-bottom: 30px; }
         .homepage-slider .swiper-wrapper .swiper-slide:nth-child(2) .second-slide .second-right .content {
-          font-size: 20px; } } }
+          font-size: 20px; }
+    .homepage-slider .swiper-wrapper .swiper-slide:nth-child(3) .third-body ul li {
+      width: calc(100% / 6 - 30px); } } }
 
 .site-main {
   background: none; }
