@@ -15,6 +15,8 @@
             align-items: center !important;
             >div{
                 width:100%;
+            }
+            &.screen-1{
                 .first-content{
                     background:url("/UPLOAD/frontend/first-banner.png");
                     height:100vh;
@@ -46,6 +48,8 @@
                         }
                     }
                 }
+            }
+            &.screen-2{
                 .second-slide{
                     display: flex;
                     align-items: center;
@@ -77,7 +81,8 @@
                         }
                     }
                 }
-
+            }
+            &.screen-3{
                 .third{
                     &-header{
                         margin-bottom:30px;
@@ -120,6 +125,9 @@
                         margin-top:30px;
                     }
                 }
+
+            }
+            &.screen-4{
 
             }
         }
