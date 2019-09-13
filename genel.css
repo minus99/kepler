@@ -2717,8 +2717,6 @@ button.toast-close-button {
       -ms-flex-pack: center;
       justify-content: center;
       background: none; }
-      .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .first-content > div {
-        width: 50%; }
       .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .first-content .content-left {
         background: #453d98;
         height: 100vh;
@@ -2733,7 +2731,8 @@ button.toast-close-button {
         -ms-flex-pack: end;
         justify-content: flex-end;
         -ms-flex-wrap: wrap;
-        flex-wrap: wrap; }
+        flex-wrap: wrap;
+        width: 50%; }
         .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .first-content .content-left-text {
           min-width: 580px; }
           .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .first-content .content-left-text > span {
@@ -2744,6 +2743,7 @@ button.toast-close-button {
               font-size: 68px;
               font-weight: 500; }
       .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .first-content .content-right {
+        width: 50%;
         height: 100vh;
         display: -webkit-box;
         display: -ms-flexbox;

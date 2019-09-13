@@ -7,9 +7,6 @@
                     align-items: center;
                     justify-content: center;
                     background: none;
-                    > div{
-                        width:50%;
-                    }
                     .content-left{
                         background: #453d98;
                         height:100vh;
@@ -18,6 +15,7 @@
                         align-items: center;
                         justify-content: flex-end;
                         flex-wrap: wrap;
+                        width:50%;
                         &-text{
                             min-width: 580px;
                             > span{
@@ -33,6 +31,7 @@
                         }
                     }
                     .content-right{
+                        width: 50%;
                         height:100vh;
                         display: flex;
                         background:url("/UPLOAD/frontend/first-banner.png");
