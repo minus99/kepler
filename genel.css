@@ -2766,8 +2766,34 @@ button.toast-close-button {
           margin-bottom: 30px; }
         .homepage-slider .swiper-wrapper .swiper-slide:nth-child(2) .second-slide .second-right .content {
           font-size: 20px; }
-    .homepage-slider .swiper-wrapper .swiper-slide:nth-child(3) .third-body ul li {
-      width: calc(100% / 6 - 30px); } } }
+    .homepage-slider .swiper-wrapper .swiper-slide:nth-child(3) .third {
+      max-width: 1150px;
+      margin: 0 auto; }
+      .homepage-slider .swiper-wrapper .swiper-slide:nth-child(3) .third-header {
+        margin-bottom: 50px; }
+        .homepage-slider .swiper-wrapper .swiper-slide:nth-child(3) .third-header p {
+          font-size: 20px;
+          line-height: 26px;
+          color: #1d3243; }
+      .homepage-slider .swiper-wrapper .swiper-slide:nth-child(3) .third-body ul li {
+        width: calc(100% / 6 - 30px); }
+        .homepage-slider .swiper-wrapper .swiper-slide:nth-child(3) .third-body ul li img {
+          max-width: 120px;
+          margin-bottom: 15px; }
+        .homepage-slider .swiper-wrapper .swiper-slide:nth-child(3) .third-body ul li span {
+          font-size: 16px;
+          line-height: 22px; }
+      .homepage-slider .swiper-wrapper .swiper-slide:nth-child(3) .third-footer {
+        margin-top: 95px; }
+        .homepage-slider .swiper-wrapper .swiper-slide:nth-child(3) .third-footer .btnDefault {
+          border-radius: 100px; }
+    .homepage-slider .swiper-wrapper .swiper-slide:nth-child(4) .how-it-works {
+      max-width: 1160px;
+      margin: 0 auto; }
+      .homepage-slider .swiper-wrapper .swiper-slide:nth-child(4) .how-it-works .hiw-left {
+        width: 50%; }
+      .homepage-slider .swiper-wrapper .swiper-slide:nth-child(4) .how-it-works .hiw-right {
+        width: 50%; } } }
 
 .site-main {
   background: none; }
