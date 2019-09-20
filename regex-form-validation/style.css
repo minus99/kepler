@@ -1,0 +1,109 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+form {
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+#location {
+  border: 1px solid black;
+  margin-bottom: 50px;
+}
+
+#person-container {
+  border: 1px solid black;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+}
+#person-container .info-wrapper {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+}
+.button-wrapper > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  border: 1px solid black;
+}
+.button-container {
+  height: 50px;
+  width: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.button-container input {
+  height: 30px;
+  width: 30px;
+}
+.button-container div {
+  height: 30px;
+  width: 30px;
+  border: 1px solid black;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: center;
+  line-height: 30px;
+}
+.input-info {
+  display: flex;
+  flex-direction: row;
+}
+.number-info {
+  width: 50px;
+}
+
+.date-picker-hours ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+  margin: 20px 0px;
+  padding: 0;
+  flex-wrap: wrap;
+  width: 100%;
+  border:1px solid black;
+}
+.date-picker-hours li {
+  width: 15%;
+  height: 30px;
+  cursor: pointer;
+}
+
+.checkInHour {
+  font-weight: bold;
+  color: blue;
+}
+.checkOutHour {
+  font-weight: bold;
+  color: red;
+}
+
+.betweenHour {
+  font-weight: bold;
+}
+
+.booked{
+  font-weight: bold;
+  border:1px solid gray;
+  background-color: darkgray;
+}
+
+.not-allowed{
+  pointer-events: none;
+  cursor: not-allowed;
+}
