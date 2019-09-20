@@ -7,9 +7,6 @@
                     align-items: center;
                     justify-content: center;
                     background: none;
-                    > div{
-                        width:50%;
-                    }
                     .content-left{
                         background: #453d98;
                         height:100vh;
@@ -18,6 +15,7 @@
                         align-items: center;
                         justify-content: flex-end;
                         flex-wrap: wrap;
+                        width:50%;
                         &-text{
                             min-width: 580px;
                             > span{
@@ -33,6 +31,7 @@
                         }
                     }
                     .content-right{
+                        width: 50%;
                         height:100vh;
                         display: flex;
                         background:url("/UPLOAD/frontend/first-banner.png");
@@ -105,43 +104,40 @@
                     .hiw-content{
                         max-width: 1160px;
                         width:100%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+                        flex-direction: inherit;
                         .hiw-left{
-                            width:50%;
+                            width:50% !important;
                             text-align: left;
                             span{
                                 display: block;
                                 width:100%;
-                                &:nth-child(1){
-                                    font-weight: bold;
-                                    font-size:32px;
-                                    font-family: $font1;
-                                    margin-bottom:81px;
+                                &.hiw-title{
+                                    font-size:28px;
+                                    margin-bottom:70px;
+                                }
+                                &.hiw-subtitle{
+                                    color: $font-color;
                                 }
                             }
                             p{
-                                font-family: $font2;
-                                line-height: 1.3;
-                                font-size:20px;
-                                color:$font-color;
                                 max-width: 420px;
                             }
                         }
                         .hiw-right{
                             width:50%;
+                            img{
+                                max-width:100%;
+                            }
                         }
                     }
                     .swiper-pagination{
                         position: absolute;
                         left: 50%;
+                        bottom:65px;
                         transform: translateX(-50%);
-                        display: flex;
-                        justify-content: flex-start;
-                        bottom: 65px;
                         padding: 0px;
                         width: 1160px;
+                        justify-content: flex-start;                        
                     }
                 }
             }
