@@ -404,8 +404,8 @@ orderForm.init();
 
 // $.ajax({
 //   type: "POST",
-//   url: "http://213.155.108.98/keplertest/token",
-//   data: { username: "Proje", password: "UT64LX9", grant_type: "password" },
+//   url: "http://***.***.***.**/",
+//   data: { username: "****", password: "****", grant_type: "password" },
 //   dataType: "json",
 
 //   error: function(e) {
@@ -418,7 +418,7 @@ orderForm.init();
 // });
 // $.ajax({
 //   type: "POST",
-//   url: "http://213.155.108.98/keplertest/Durum/kapasiteSorgula",
+//   url: "",
 //   data: {
 //     tarih: "2019-09-19",
 //     havalimaniId: "a381e989-53a7-4c97-ad82-f4cdb368a71d"
