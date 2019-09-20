@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Regex</title>
+  </head>
+  <body>
+    <button id="start">START</button>
+    <section class="booking-container">
+      <!-- <input
+        required
+        type="text"
+        name="location"
+        id="location"
+        placeholder="Location"
+      /> -->
+      <!-- <select id="location">
+        <option value="">--Please choose an option--</option>
+        <option value="SAW">Sabiha Gokcen</option>
+        <option value="IST">Istanbul Airport</option>
+      </select> -->
+
+      <div class="location dropdown">
+          <div class="input-title">Location</div>
+          <div class="input-info"></div>
+        <ul>
+            <li><b>Airports</b></li>
+            <li rel="SAW">Sabiha Gokcen</li>
+            <li rel="IST">Istanbul Airport</li>
+        </ul>
+        
+      </div>
+
+      <div class="counter-container">
+        <div class="info-wrapper">
+          <!-- TODO:Icon Eklenecek -->
+          <div class="input-title">Number of Adults</div>
+          <div class="input-info">
+            <div class="number-info"><span class="maleNumber">1</span>Male</div>
+            <div class="number-info"><span class="femaleNumber">1</span>Female</div>
+          </div>
+        </div>
+          <div class="counter-wrapper">
+            <div class="button-title">Male</div>
+            <div class="button-container">
+              <div rel="dec" class="button-counter">-</div>
+              <input data-target=".maleNumber" type="text" id="male" value="4"></input>
+              <div rel="inc" class="button-counter">+</div>
+            </div>
+          </div>
+          <div class="counter-wrapper">
+            <div class="button-title">Female</div>
+            <div class="button-container">
+              <div rel="dec" class="button-counter">-</div>
+              <input data-target=".femaleNumber" type="text" id="female" value="4"></input>
+              <div rel="inc" class="button-counter">+</div>
+            </div>
+          </div>
+      </div>
+      <div class="date-picker-container" >
+      <input
+        required
+        type="date"
+        id="checkInDay"
+        placeholder="Check-in-hour"
+        value="2019-09-19"
+      />
+      <input
+        required
+        type="date"
+        id="checkOutDay"
+        placeholder="Check-in-Out"
+        value="2019-09-20"
+      />
+      <div class="date-picker-hours">
+        <ul class="current-hours">
+          <li data-hour="00:00">00:00</li>
+          <li data-hour="01:00">01:00</li>
+          <li data-hour="02:00">02:00</li>
+          <li data-hour="03:00">03:00</li>
+          <li data-hour="04:00">04:00</li>
+          <li data-hour="05:00">05:00</li>
+          <li data-hour="06:00">06:00</li>
+          <li data-hour="07:00">07:00</li>
+          <li data-hour="08:00">08:00</li>
+          <li data-hour="09:00">09:00</li>
+          <li data-hour="10:00">10:00</li>
+          <li data-hour="11:00">11:00</li>
+          <li data-hour="12:00">12:00</li>
+          <li data-hour="13:00">13:00</li>
+          <li data-hour="14:00">14:00</li>
+          <li data-hour="15:00">15:00</li>
+          <li data-hour="16:00">16:00</li>
+          <li data-hour="17:00">17:00</li>
+          <li data-hour="18:00">18:00</li>
+          <li data-hour="19:00">19:00</li>
+          <li data-hour="20:00">20:00</li>
+          <li data-hour="21:00">21:00</li>
+          <li data-hour="22:00">22:00</li>
+          <li data-hour="23:00">23:00</li>
+        </ul>
+        <ul class="next-hours">
+          <li data-hour="00:00">00:00</li>
+          <li data-hour="01:00">01:00</li>
+          <li data-hour="02:00">02:00</li>
+          <li data-hour="03:00">03:00</li>
+          <li data-hour="04:00">04:00</li>
+          <li data-hour="05:00">05:00</li>
+          <li data-hour="06:00">06:00</li>
+          <li data-hour="07:00">07:00</li>
+          <li data-hour="08:00">08:00</li>
+          <li data-hour="09:00">09:00</li>
+          <li data-hour="10:00">10:00</li>
+          <li data-hour="11:00">11:00</li>
+          <li data-hour="12:00">12:00</li>
+          <li data-hour="13:00">13:00</li>
+          <li data-hour="14:00">14:00</li>
+          <li data-hour="15:00">15:00</li>
+          <li data-hour="16:00">16:00</li>
+          <li data-hour="17:00">17:00</li>
+          <li data-hour="18:00">18:00</li>
+          <li data-hour="19:00">19:00</li>
+          <li data-hour="20:00">20:00</li>
+          <li data-hour="21:00">21:00</li>
+          <li data-hour="22:00">22:00</li>
+          <li data-hour="23:00">23:00</li>
+        </ul>
+      </div>
+      <button class="next-button">NEXT OBJECT</button>
+    </div>
+    <section class="host-container">
+      <form>
+      <label for="first-name">First Name</label>
+      <input required type="text" name="first-name" id="firstName" value="Adi" />
+      <label for="last-name">Last Name</label>
+      <input required type="text" name="last-name" id="lastName" value="Soyadi"  />
+      <label for="gender">Gender</label>
+      <input required type="text" name="gender" id="gender"  value="Cinsiyet"/>
+      <label for="email">Email Address</label>
+      <input required type="text" name="email" id="email" value="mail@mail.com" />
+      <label for="mobile">Mobile Number</label>
+      <input required type="text" name="mobile" id="mobile" value="+905555555555" />     
+      <label for="birthdate">Birthdate</label>
+      <input required type="date" name="birtdate" id="birthdate" value="1999-01-01" />
+    </form>
+    <button class="next-button">SHOW OBJECT</button>
+    </section>
+  </body>
+
+  <script src="jquery.min.js"></script>
+  <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+  <script src="main.js"></script>
+</html>
