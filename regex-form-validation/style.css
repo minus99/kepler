@@ -2,11 +2,16 @@ body {
   display: flex;
   flex-direction: column;
 }
-form {
-  width: 400px;
+.booking-container {
+  max-width: 960px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+}
+.counter{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 #location {
   border: 1px solid black;
@@ -66,13 +71,48 @@ form {
 .number-info {
   width: 50px;
 }
+.date-picker-selection{
+  display: flex;
+  height: 40px;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.calendar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+.calendar input{
+  width:50%;
+}
+.calendar div{
+  width:20%;
+  border:1px solid black;
+  text-align: center;
+  cursor: pointer;
+}
+.date-picker-hours{
+  display: flex;
+  flex-direction: row;
+  max-width: 960px;
+}
+.ui-datepicker-calendar{
+  width: 100%;
+  background-color: palevioletred;
+}
+.ui-datepicker-header{
+  width: 100%;
+  background-color: pink;
+}
 
 .date-picker-hours ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   list-style: none;
-  margin: 20px 0px;
+  margin: 20px 20px;
   padding: 0;
   flex-wrap: wrap;
   width: 100%;
@@ -86,19 +126,23 @@ form {
 
 .checkInHour {
   font-weight: bold;
-  color: blue;
+  color:white;
+  background-color: blue !important;
 }
 .checkOutHour {
   font-weight: bold;
-  color: red;
+  color:white;
+  background-color: blue !important;
 }
 
 .betweenHour {
   font-weight: bold;
+  color:black;
+  background-color:lightblue;
 }
 
 .booked{
-  font-weight: bold;
+  color:white;
   border:1px solid gray;
   background-color: darkgray;
 }
@@ -106,4 +150,17 @@ form {
 .not-allowed{
   pointer-events: none;
   cursor: not-allowed;
+}
+
+/* #checkOutDay, #checkInDay{
+  display: none;
+} */
+
+.d-none{
+display: none !important;
+}
+
+.active{
+  color:violet;
+  font-weight: bold;
 }

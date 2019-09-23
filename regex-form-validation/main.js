@@ -13,10 +13,10 @@
 // };
 
 var bookedHours = [
-  "2019-09-19 19:00",
-  "2019-09-19 12:00",
-  "2019-09-20 10:00",
-  "2019-09-20 15:00"
+  "2019-09-23 19:00",
+  "2019-09-23 12:00",
+  "2019-09-24 10:00",
+  "2019-09-24 15:00"
 ];
 
 var Form = function(id, booking, host, card) {
@@ -57,6 +57,13 @@ var CreditCard = function(id, number, expiration, cvc, cardHolder) {
 };
 
 var orderForm = {
+  
+  today :function(addDay){ 
+    currentDate = new Date();
+    if(addDay === null || "undefined"){
+      addDay = 0;
+    }
+   return currentDate.getFullYear().toString()+"-"+ (currentDate.getMonth()+1).toString().padStart(2,0)+"-"+(currentDate.getDate()+addDay).toString().padStart(2,0)},
   el: {
     booking: ".booking-container",
     host: ".host-container",
@@ -68,6 +75,8 @@ var orderForm = {
     input: "input",
     showButton: ".next-button",
     time: ".date-picker-container",
+    calendar : ".calendar",
+    hours: ".date-picker-hours ul li",
     firstName: "#firstName",
     lastName: "#lastName",
     gender: "#gender",
@@ -86,58 +95,129 @@ var orderForm = {
   },
   startEvent: function() {
     var _t = this;
+
+    $(".calendar-button").on("click",function(){
+      $("#from").datepicker("setDate", _t.today());
+      $(".calendar-button").text($("#db_from").val().toString());
+      $("#from").datepicker( "show" )
+    } )
+    var from = $("#from")
+      .datepicker({
+        altFormat:"d M, y",
+        dateFormat:"yy-mm-dd",
+        altField:"#db_from",
+        defaultDate: "+1d",
+        changeMonth: true,
+        numberOfMonths: 1
+      })
+      .on("change", function() {
+        to.datepicker("option", "minDate", getDate(this));
+          $(".calendar-button").text($("#db_from").val().toString())
+      });
+    var to = $("#to")
+      .datepicker({
+        dateFormat:"d M, y",
+        altFormat:"yy-mm-dd",
+        altField:"#db_to",
+        defaultDate: "+1d",
+        changeMonth: true,
+        numberOfMonths: 1
+      })
+      .on("change", function() {
+        from.datepicker("option", "maxDate", getDate(this));
+        var cd = to.datepicker("getDate");
+      });
+    function getDate(element) {
+      var date;
+      try {
+        date = $.datepicker.parseDate("yy-mm-dd", element.value);
+      } catch (error) {
+        date = null;
+      }
+      return date;
+    }
+    // TODO: REFACTOR
     $(_t.el.time)
       .find(".date-picker-hours .current-hours li")
       .each(function() {
-        $(this).attr("data-day", $("#checkInDay").val());
+        $(this).attr("data-day", _t.today());
       });
     $(_t.el.time)
       .find(".date-picker-hours .next-hours li")
       .each(function() {
-        $(this).attr("data-day", $("#checkOutDay").val());
+        $(this).attr("data-day", _t.today());
       });
   },
   addEvent: function() {
     var _t = this;
     changeDay = function() {
+      // TODO: REFACTOR
       $(_t.el.time)
         .find(".date-picker-hours .current-hours li")
         .each(function() {
-          $(this).attr("data-day", $("#checkInDay").val());
+          $(this).attr("data-day", $("#from").val());
         });
       $(_t.el.time)
         .find(".date-picker-hours .next-hours li")
         .each(function() {
-          $(this).attr("data-day", $("#checkOutDay").val());
+          $(this).attr("data-day", $("#to").val());
         });
       _t.availability();
     };
-    $("#checkInDay").bind("change", changeDay);
-    $("#checkOutDay").bind("change", changeDay);
+    $("#from").bind("change", changeDay);
+    $("#to").bind("change", changeDay);
   },
   availability: function() {
     var _t = this;
+    var firstNotAllow = _t.cls.booked + " " + _t.cls.notAllow;
     $(".date-picker-hours ul li").each(function() {
       var ths = $(this);
       ths.removeClass(_t.cls.booked);
       bookedHours.forEach(el => {
         el == ths.attr("data-day") + " " + ths.attr("data-hour")
-          ? ths.addClass(_t.cls.booked)
+          ? ths.addClass(firstNotAllow)
           : null;
       });
     });
   },
-  controls:function(){
+  controls: function() {
     var _t = this;
-  
-    function dateControl(){
-      console.log($(".date-picker-hours ul").find(".booked").index())
-      console.log($(".date-picker-hours ul").find(".checkInHour").index())
+    function dateControl() {
       $(".date-picker-hours ul li").each(function() {
         var ths = $(this);
+        if (ths.hasClass(_t.cls.outHour)) {
+          $(".date-picker-hours .current-hours li").removeClass(
+            _t.cls.notAllow
+          );
+        } else if (ths.hasClass(_t.cls.inHour)) {
+          $(".date-picker-hours ul li").removeClass(_t.cls.notAllow);
+          ths
+            .nextAll(".booked")
+            .nextAll()
+            .addClass(_t.cls.notAllow);
+          if (ths.nextAll().hasClass(_t.cls.notAllow)) {
+            ths
+              .parent()
+              .next()
+              .find("li")
+              .addClass(_t.cls.notAllow);
+          }
+        } else if (
+          !ths
+            .parent()
+            .find("li")
+            .hasClass(_t.cls.outHour)
+        ) {
+          ths
+            .parent()
+            .next()
+            .find(".booked")
+            .nextAll()
+            .addClass(_t.cls.notAllow);
+        }
       });
     }
-    $(_t.el.time).bind("click", dateControl)
+    $(_t.el.time).bind("click", dateControl);
   },
   createForm: function() {
     var newForm = new Form();
@@ -206,11 +286,11 @@ var orderForm = {
           }
           newBooking.date = {
             checkIn:
-              date.find("#checkInDay")[0].value +
+              date.find("#from").val() +
               " " +
               hours.find(".checkInHour").attr("data-hour"),
             checkOut:
-              date.find("#checkOutDay")[0].value +
+              date.find("#to").val() +
               " " +
               hours.find(".checkOutHour").attr("data-hour")
           };
@@ -264,6 +344,10 @@ var orderForm = {
             ID.removeClass(_t.cls["opened"])
               .find("> .input-info")
               .html(ths.text());
+
+              $("#from").datepicker("setDate", _t.today());
+              $(".calendar-button").text($("#db_from").val().toString());
+              
           });
       },
       counter = function(ID) {
@@ -292,12 +376,21 @@ var orderForm = {
                 .addClass(_t.cls.inHour)
                 .siblings()
                 .removeClass(_t.cls.inHour);
+              var value = item.attr("data-hour")
+              $("#checkin-value").text(value)
+              $("#checkout-value").text("")
+              $("#checkin").find(".date-subtitle").removeClass("active")
+              $("#checkout").find(".date-subtitle").addClass("active")
               break;
             case "check out":
               item
                 .addClass(_t.cls.outHour)
                 .siblings()
                 .removeClass(_t.cls.outHour);
+                var value = item.attr("data-hour")
+                $("#checkout-value").text(value)
+                $("#checkout").find(".date-subtitle").removeClass("active")
+                $("#checkin").find(".date-subtitle").addClass("active")
               break;
             default:
               break;
@@ -312,17 +405,16 @@ var orderForm = {
           if (ths.parent().hasClass("current-hours")) {
             if (range[0] == null && range[1] == null) {
               range[0] = ths.index();
-
               addHour(ths, "check in");
             } else if (range[0] != null && range[1] == null) {
               if (ths.index() < range[1] || ths.index() < range[0]) {
                 range[0] = ths.index();
-
                 addHour(ths, "check in");
+  
               } else if (ths.index() > range[1] && ths.index() > range[0]) {
                 range[1] = ths.index();
-
                 addHour(ths, "check out");
+
               }
               for (let index = range[0] + 1; index < range[1]; index++) {
                 hours[index].classList.add(_t.cls.btwnHour);
@@ -331,7 +423,6 @@ var orderForm = {
               range[1] = null;
               range[0] = ths.index();
               hours.removeClass(_t.cls.inHour);
-
               addHour(ths, "check in");
               hours.removeClass(_t.cls.outHour);
               hours.removeClass(_t.cls.btwnHour);
@@ -400,41 +491,4 @@ var orderForm = {
 
 orderForm.init();
 
-// var token =""
 
-// $.ajax({
-//   type: "POST",
-//   url: "http://213.155.108.98/keplertest/token",
-//   data: { username: "Proje", password: "UT64LX9", grant_type: "password" },
-//   dataType: "json",
-
-//   error: function(e) {
-//     if (typeof callback !== "undefined") callback({ type: "error" });
-//   },
-//   timeout: 30000,
-//   success: function(res) {
-//     res.access_token = token;
-//   }
-// });
-// $.ajax({
-//   type: "POST",
-//   url: "http://213.155.108.98/keplertest/Durum/kapasiteSorgula",
-//   data: {
-//     tarih: "2019-09-19",
-//     havalimaniId: "a381e989-53a7-4c97-ad82-f4cdb368a71d"
-//   },
-//   dataType: "json",
-//   contentType: "application/json",
-//   headers: {
-//     Authorization:
-//       "Bearer " + token
-//   },
-//   error: function(e) {
-//     if (typeof callback !== "undefined") callback({ type: "error" });
-//   },
-//   timeout: 30000,
-//   success: function(d) {
-//     console.log(d);
-//     if (typeof callback !== "undefined") callback({ type: "success", val: d });
-//   }
-// });
