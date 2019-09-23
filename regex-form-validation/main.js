@@ -492,3 +492,42 @@ var orderForm = {
 orderForm.init();
 
 
+<<<<<<< HEAD
+=======
+// $.ajax({
+//   type: "POST",
+//   url: "http://***.***.***.**/",
+//   data: { username: "****", password: "****", grant_type: "password" },
+//   dataType: "json",
+
+//   error: function(e) {
+//     if (typeof callback !== "undefined") callback({ type: "error" });
+//   },
+//   timeout: 30000,
+//   success: function(res) {
+//     res.access_token = token;
+//   }
+// });
+// $.ajax({
+//   type: "POST",
+//   url: "",
+//   data: {
+//     tarih: "2019-09-19",
+//     havalimaniId: "a381e989-53a7-4c97-ad82-f4cdb368a71d"
+//   },
+//   dataType: "json",
+//   contentType: "application/json",
+//   headers: {
+//     Authorization:
+//       "Bearer " + token
+//   },
+//   error: function(e) {
+//     if (typeof callback !== "undefined") callback({ type: "error" });
+//   },
+//   timeout: 30000,
+//   success: function(d) {
+//     console.log(d);
+//     if (typeof callback !== "undefined") callback({ type: "success", val: d });
+//   }
+// });
+>>>>>>> 3efac8e29abbf78fc47469280e56a6145a115785
