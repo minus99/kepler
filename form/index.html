@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="jquery-ui.min.css" />
+    <title>Kepler Form</title>
+  </head>
+  <body>
+    <button id="start">START</button>
+    <!-- FORM BASLANGIC -->
+
+    <section class="booking-container">
+      <!-- LOKASYON SECIMI BASLANGIC -->
+      <section class="location-container">
+        <div class="info-wrapper">
+          <div class="input-icon"></div>
+          <div class="input-title-wrapper">
+            <div class="input-title">Location</div>
+            <div class="input-info"></div>
+          </div>
+        </div>
+        <div class="location-menu ems-none">
+          <div class="input-subtitle">Airports</div>
+          <ul>
+            <li rel="SAW">Istanbul Sabiha Gokcen(SAW), Turkey</li>
+            <li rel="IST">Istanbul(IST), Turkey</li>
+          </ul>
+        </div>
+      </section>
+      <!-- LOKASYON SECIMI BITIS -->
+      <!-- GUEST SAYISI SECIMI BASLANGIC -->
+      <section class="guest-container">
+        <div class="info-wrapper">
+          <div class="input-icon"></div>
+          <div class="input-title-wrapper ">
+            <div class="input-title">Number of Adults</div>
+            <div class="input-info ems-none">
+              <span class="maleNumber">1</span>Male,<span class="femaleNumber"
+                >1</span
+              >Female
+            </div>
+          </div>
+        </div>
+        <div class="counter-container ems-none">
+          <div class="counter-wrapper">
+            <div class="button-title">Male</div>
+            <div class="button-container">
+              <div rel="dec" class="button-counter">-</div>
+              <input
+                data-target=".maleNumber"
+                type="text"
+                id="male"
+                value="1"
+                class="ems-none"
+              />
+              <span class="maleNumber">1</span>
+              <div rel="inc" class="button-counter">+</div>
+            </div>
+          </div>
+          <div class="counter-wrapper">
+            <div class="button-title">Female</div>
+            <div class="button-container">
+              <div rel="dec" class="button-counter">-</div>
+              <input
+                data-target=".femaleNumber"
+                type="text"
+                id="female"
+                value="1"
+                class="ems-none"
+              />
+              <span class="femaleNumber">1</span>
+              <div rel="inc" class="button-counter">+</div>
+            </div>
+          </div>
+        </div>
+        <ul class="ems-none">
+          <li>
+            Please note that men and women have separate resting units in our
+            facilities.
+          </li>
+          <li>
+            Please note that we do not accept children <b>below 7 years old.</b>
+          </li>
+        </ul>
+      </section>
+      <!-- GUEST SAYISI SECIMI BITIS -->
+      <!-- DATEPICKER BASLANGIC -->
+      <section class="date-picker-container">
+        <div class="info-wrapper">
+          <div class="input-icon"></div>
+          <div class="input-title-wrapper">
+            <div class="input-title">Check-in / Check-out Time</div>
+          </div>
+        </div>
+        <!-- CHECK IN / OUT SECIMI BASLANGIC -->
+        <!-- ems-none gelecek olanlar : input-info, calendar-container, time-container -->
+        <div class="input-info">
+          <div class="check-in-info active">
+            <div class="date-subtitle">Check-in-Time</div>
+            <div class="time-info"></div>
+          </div>
+          <div class="check-out-info">
+            <div class="date-subtitle">Check-out-Time</div>
+            <div class="time-info"></div>
+          </div>
+        </div>
+        <!-- CHECK IN / OUT SECIMI BITIS -->
+        <!-- TARIH SECIMI BASLANGIC -->
+        <div class="calendar-container">
+          <div rel="date-dec" class="date-counter-button disabled">&#8592;</div>
+          <div class="calendar-button"></div>
+          <div id="datepicker"></div>
+          <input
+            autocomplete="off"
+            type="text"
+            id="in-date"
+            name="in-date"
+            class="ems-none"
+          />
+          <input type="text" id="db-in-date" class="ems-none" />
+          <input
+            autocomplete="off"
+            type="text"
+            id="out-date"
+            name="out-date"
+            class="ems-none"
+          />
+          <input type="text" id="db-out-date" class="ems-none" />
+          <div rel="date-inc" class="date-counter-button">&#8594;</div>
+          <!-- TARIH SECIMI BITIS -->
+        </div>
+        <!-- SAAT SECIMI BASLANGIC -->
+        <ul class="time-container">
+          <li data-time="00:00">00:00</li>
+          <li data-time="01:00">01:00</li>
+          <li data-time="02:00">02:00</li>
+          <li data-time="03:00">03:00</li>
+          <li data-time="04:00">04:00</li>
+          <li data-time="05:00">05:00</li>
+          <li data-time="06:00">06:00</li>
+          <li data-time="07:00">07:00</li>
+          <li data-time="08:00">08:00</li>
+          <li data-time="09:00">09:00</li>
+          <li data-time="10:00">10:00</li>
+          <li data-time="11:00">11:00</li>
+          <li data-time="12:00">12:00</li>
+          <li data-time="13:00">13:00</li>
+          <li data-time="14:00">14:00</li>
+          <li data-time="15:00">15:00</li>
+          <li data-time="16:00">16:00</li>
+          <li data-time="17:00">17:00</li>
+          <li data-time="18:00">18:00</li>
+          <li data-time="19:00">19:00</li>
+          <li data-time="20:00">20:00</li>
+          <li data-time="21:00">21:00</li>
+          <li data-time="22:00">22:00</li>
+          <li data-time="23:00">23:00</li>
+        </ul>
+        <!-- SAAT SECIMI BITIS -->
+        <!-- DATEPICKER BITIS -->
+      </section>
+      <button class="next-button">COMFIRM</button>
+      <section class="host-container">
+        <form>
+          <label for="first-name">First Name</label>
+          <input
+            required
+            type="text"
+            name="first-name"
+            id="firstName"
+            value="Adi"
+          />
+          <label for="last-name">Last Name</label>
+          <input
+            required
+            type="text"
+            name="last-name"
+            id="lastName"
+            value="Soyadi"
+          />
+          <label for="gender">Gender</label>
+          <input
+            required
+            type="text"
+            name="gender"
+            id="gender"
+            value="Cinsiyet"
+          />
+          <label for="email">Email Address</label>
+          <input
+            required
+            type="text"
+            name="email"
+            id="email"
+            value="mail@mail.com"
+          />
+          <label for="mobile">Mobile Number</label>
+          <input
+            required
+            type="text"
+            name="mobile"
+            id="mobile"
+            value="+905555555555"
+          />
+          <label for="birthdate">Birthdate</label>
+          <input
+            required
+            type="date"
+            name="birtdate"
+            id="birthdate"
+            value="1999-01-01"
+          />
+        </form>
+        <button class="next-button">SHOW OBJECT</button>
+      </section>
+    </section>
+    <!-- FORM BITIS -->
+    <script src="jquery.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <script async src="main.js"></script>
+  </body>
+</html>

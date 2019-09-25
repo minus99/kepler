@@ -2,5 +2,6 @@
 /.vscode/
 /zzzzz/
 
-index.html
-templates.html
+
+jquery-ui.min.js
+jquery.min.js

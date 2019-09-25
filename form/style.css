@@ -1,0 +1,297 @@
+/* GENEL */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  box-sizing: border-box;
+}
+.booking-container {
+  max-width: 400px;
+  padding: 0px 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+section {
+  padding: 30px 0px;
+  border-bottom: 1px solid slategray;
+}
+
+/* GENEL */
+
+/* EMOS ICINDE OLAN CLASSLAR */
+
+.ems-none {
+  display: none !important;
+}
+
+/* EMOS ICINDE OLAN CLASSLAR */
+
+/* GENEL TEKRARLAYAN CLASSLAR */
+.selected-item {
+  background-color: slategray;
+}
+.selected-button {
+  border: 2px solid palevioletred !important;
+}
+.selected-text {
+  color: palevioletred;
+  font-weight: bold;
+}
+.selected-time {
+  border-radius: 20px;
+  border: solid 2px palevioletred;
+  color: palevioletred;
+}
+
+.booked-time{
+    color: palevioletred;
+}
+
+.disabled {
+  opacity: 0.5;
+  user-select: none !important;
+  cursor: default !important;
+}
+
+.active {
+  font-weight: bold !important;
+  color: indigo;
+  border-bottom: 2px solid indigo;
+}
+.filled {
+  text-align: left !important;
+}
+
+.input-icon {
+  width: 30px;
+  height: 30px;
+  background-color: indigo;
+  margin-right: 30px;
+}
+.info-wrapper {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.input-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-title {
+  font-weight: bold;
+  color: indigo;
+  font-size: 16px;
+}
+.input-subtitle {
+  font-weight: bold;
+  color: indigo;
+}
+.input-info {
+  color: steelblue;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  line-height: 22px;
+  vertical-align: middle;
+}
+
+/* GENEL TEKRARLAYAN CLASSLAR */
+
+/* -LOCATION- */
+
+.location-container {
+  position: relative;
+}
+
+/* DROPDOWN MENU  */
+
+.location-menu {
+  position: absolute;
+  left: 60px;
+  top: 70px;
+  padding: 10px 0px;
+  max-width: 270px;
+  max-height: 270px;
+  overflow-x: hidden;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 1px solid #e0e0e0;
+  border-top: 3px solid palevioletred;
+  background-color: white;
+  font-size: 14px;
+}
+.location-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.location-menu div {
+  padding: 0px 30px;
+  line-height: 40px;
+  height: 40px;
+  width: 400px;
+}
+.location-menu ul li {
+  line-height: 40px;
+  padding: 0px 30px;
+  height: 40px;
+  width: 400px;
+  cursor: pointer;
+}
+
+.location-menu ul li:hover {
+  background-color: slategray;
+}
+
+/* DROPDOWN MENU  */
+
+/* -LOCATION- */
+
+/* -GUEST- */
+
+.guest-container .input-info span {
+  padding: 0px 5px;
+}
+.guest-container ul li {
+  padding-top: 10px;
+}
+
+/*COUNTER */
+
+.counter-container {
+  padding: 20px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.counter-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid slategray;
+  width: 145px;
+  height: 80px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.button-counter {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: indigo;
+  width: 28px;
+  cursor: pointer;
+}
+.button-container span {
+  width: 50px;
+  text-align: center;
+}
+
+/* COUNTER */
+
+/* -GUEST- */
+
+/* -DATEPICKER- */
+
+/* CHEKIN / OUT  */
+
+.date-picker-container .info-wrapper {
+  height: 80px;
+}
+
+.date-picker-container .input-info {
+  justify-content: space-between;
+}
+.date-picker-container .input-info > div {
+  width: 50%;
+  text-align: center;
+  border-bottom: 1px solid steelblue;
+  align-self: flex-end;
+}
+.date-picker-container .input-info .date-subtitle {
+  font-weight: lighter;
+  padding-bottom: 6px;
+}
+.date-picker-container .input-info .active {
+  font-weight: bold;
+  color: indigo;
+  border-bottom: 2px solid indigo;
+}
+
+.date-picker-container .input-info .filled {
+  text-align: left !important;
+}
+.date-picker-container .input-info .filled .date-subtitle {
+  font-size: 12px;
+  padding-bottom: 0px;
+}
+
+/* CHEKIN / OUT  */
+
+/* TARIH  */
+
+.calendar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 52px;
+  border-radius: 26px;
+  border: 1px solid slategray;
+  margin-top: 20px;
+}
+.date-counter-button {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid palevioletred;
+}
+.calendar-button {
+  font-weight: bold;
+  color: indigo;
+  width: 70%;
+  text-align: center;
+}
+
+/* TARIH  */
+
+/* SAAT */
+
+.time-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.time-container li {
+  width: 15%;
+  margin: 0px;
+  padding: 0px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  cursor: pointer;
+}
+/* SAAT */
