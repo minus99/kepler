@@ -672,20 +672,18 @@ a.btnDefault {
   position: relative;
   display: inline-block;
   padding: 0 20px;
-  background: #2e2f7d;
-  border: 1px solid transparent;
-  font-family: dinc, arial, sans-serif;
-  font-size: 16px;
-  color: #a74792;
-  font-weight: 700;
-  line-height: 42px;
-  letter-spacing: 1px;
+  border: 1px solid #453d98;
+  font-family: gotham, arial, sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  border-radius: 21px;
+  color: #453d98;
+  min-width: 200px;
   -webkit-transition: all .32s ease;
   -o-transition: all .32s ease;
-  transition: all .32s ease; }
-  .btn:hover,
-  a.btnDefault:hover {
-    background: #ffe5f7; }
+  transition: all .32s ease;
+  padding: 15px 0px;
+  text-transform: uppercase; }
   .btn > span, a.btnDefault > span {
     position: relative;
     display: -webkit-box;
@@ -2340,7 +2338,33 @@ button.toast-close-button {
       -ms-transform: translateX(-50%);
       transform: translateX(-50%);
       opacity: 0;
-      height: 100vh; }
+      height: 100vh;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+
+.booking-form-animate .booking-menu-overlay {
+  display: block;
+  z-index: 99999; }
+
+.booking-form-animate .booking-form {
+  width: 50%;
+  right: 0px;
+  visibility: visible;
+  background: #fff; }
+
+.booking-form {
+  border: 1px solid red;
+  position: fixed;
+  visibility: hidden;
+  width: 0px;
+  right: -100%;
+  top: 0px;
+  height: 100vh;
+  overflow-y: auto;
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+  z-index: 999999; }
 
 .site-footer {
   background: #2e2f7d url(/images/frontend/footer-bg-mobile.png) center 60%/100% no-repeat;
@@ -2611,6 +2635,10 @@ button.toast-close-button {
           border: 1px solid #453d98; }
           .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .swiper-pagination .swiper-pagination-bullet-active::before {
             background: #453d98; }
+    .homepage-slider.swiper-container .swiper-slide.screen-5 .slide-map {
+      width: 100%; }
+      .homepage-slider.swiper-container .swiper-slide.screen-5 .slide-map img {
+        width: 100%; }
 
 @supports ((display: -ms-grid) or (display: grid)) {
   @media screen and (min-width: 1025px) {
@@ -2816,9 +2844,9 @@ button.toast-close-button {
           background: none;
           font-size: 16px;
           line-height: 1.4;
-          -webkit-box-pack: start;
-          -ms-flex-pack: start;
-          justify-content: flex-start;
+          -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+          justify-content: space-between;
           padding-left: 120px; }
           .site-header-grid .site-menu-inner {
             display: -webkit-box;
@@ -2828,6 +2856,20 @@ button.toast-close-button {
               margin-right: 80px; }
               .site-header-grid .site-menu-inner li a {
                 color: #fff; }
+          .site-header-grid .site-menu .lang-menu {
+            border: 1px solid red;
+            min-width: 50px; }
+          .site-header-grid .site-menu .booking-button {
+            min-width: 200px; }
+            .site-header-grid .site-menu .booking-button .booking-menu-opened {
+              background: #fff;
+              color: #1d3243;
+              font-family: gotham, arial, sans-serif;
+              font-size: 14px;
+              font-weight: 500;
+              border-radius: 6px;
+              padding: 13.5px 0px;
+              width: 100%; }
     .site-footer {
       background-image: url(/images/frontend/footer-bg.png);
       background-position: center 80px;
@@ -2917,8 +2959,14 @@ button.toast-close-button {
       max-width: 1150px;
       margin: 0 auto; }
       .homepage-slider .swiper-wrapper .swiper-slide.screen-3 .third-header {
-        margin-bottom: 50px; }
+        margin-bottom: 50px;
+        text-align: center; }
+        .homepage-slider .swiper-wrapper .swiper-slide.screen-3 .third-header h3 {
+          font-size: 32px;
+          font-weight: bold; }
         .homepage-slider .swiper-wrapper .swiper-slide.screen-3 .third-header p {
+          max-width: 710px;
+          margin: 0 auto;
           font-size: 20px;
           line-height: 26px;
           color: #1d3243; }
@@ -2951,13 +2999,34 @@ button.toast-close-button {
             font-size: 28px;
             margin-bottom: 70px; }
           .homepage-slider .swiper-wrapper .swiper-slide.screen-4 .how-it-works .hiw-content .hiw-left span.hiw-subtitle {
-            color: #1d3243; }
+            color: #1d3243;
+            font-size: 28px !important; }
+            .homepage-slider .swiper-wrapper .swiper-slide.screen-4 .how-it-works .hiw-content .hiw-left span.hiw-subtitle b {
+              width: 42px;
+              height: 42px;
+              font-size: 18px; }
+              .homepage-slider .swiper-wrapper .swiper-slide.screen-4 .how-it-works .hiw-content .hiw-left span.hiw-subtitle b::before {
+                width: 0px;
+                height: 0px;
+                right: -7px;
+                top: -7px; }
+              .homepage-slider .swiper-wrapper .swiper-slide.screen-4 .how-it-works .hiw-content .hiw-left span.hiw-subtitle b::after {
+                width: 0px;
+                height: 0px;
+                left: -10px;
+                bottom: -10px; }
         .homepage-slider .swiper-wrapper .swiper-slide.screen-4 .how-it-works .hiw-content .hiw-left p {
           max-width: 420px; }
       .homepage-slider .swiper-wrapper .swiper-slide.screen-4 .how-it-works .hiw-content .hiw-right {
         width: 50%; }
         .homepage-slider .swiper-wrapper .swiper-slide.screen-4 .how-it-works .hiw-content .hiw-right img {
           max-width: 100%; }
+    .homepage-slider .swiper-wrapper .swiper-slide.screen-4 .how-it-works .swiper-slide.swiper-slide-active .hiw-content .hiw-subtitle b::before {
+      width: 13px;
+      height: 13px; }
+    .homepage-slider .swiper-wrapper .swiper-slide.screen-4 .how-it-works .swiper-slide.swiper-slide-active .hiw-content .hiw-subtitle b::after {
+      width: 27px;
+      height: 27px; }
     .homepage-slider .swiper-wrapper .swiper-slide.screen-4 .how-it-works .swiper-pagination {
       position: absolute;
       left: 50%;
@@ -2969,7 +3038,23 @@ button.toast-close-button {
       width: 1160px;
       -webkit-box-pack: start;
       -ms-flex-pack: start;
-      justify-content: flex-start; } } }
+      justify-content: flex-start; }
+    .homepage-slider .swiper-wrapper .swiper-slide.screen-5 .slide-map {
+      max-width: 873px;
+      margin: 0 auto; }
+      .homepage-slider .swiper-wrapper .swiper-slide.screen-5 .slide-map .slide-map-header {
+        margin-bottom: 40px; }
+        .homepage-slider .swiper-wrapper .swiper-slide.screen-5 .slide-map .slide-map-header .title {
+          font-size: 32px;
+          font-weight: bold;
+          color: #2e2f7d; }
+        .homepage-slider .swiper-wrapper .swiper-slide.screen-5 .slide-map .slide-map-header .description {
+          font-size: 20px;
+          line-height: 1.3;
+          font-family: garamond, arial, sans-serif;
+          color: #1d3243;
+          max-width: 60%;
+          margin: 10px auto; } } }
 
 .site-main {
   background: none; }

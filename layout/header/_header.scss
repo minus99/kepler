@@ -47,6 +47,35 @@
             transform: translateX(-50%);
             opacity: 0;
             height: 100vh;
+            flex-wrap: wrap;
         }
     }
+}
+
+
+
+.booking-form-animate{
+    .booking-menu-overlay{
+        display: block;
+        z-index: 99999;
+    }
+    .booking-form{
+        width:50%;
+        right:0px;
+        visibility: visible;
+        background: #fff;
+    }
+}
+
+.booking-form{
+    border: 1px solid red;
+    position: fixed;
+    visibility: hidden;
+    width: 0px;
+    right: -100%;
+    top: 0px;
+    height: 100vh;
+    overflow-y: auto;
+    transition: all 1s;
+    z-index: 999999;
 }

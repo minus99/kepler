@@ -70,7 +70,14 @@
                     margin:0 auto;
                     &-header{
                         margin-bottom: 50px;
+                        text-align: center;
+                        h3{
+                            font-size:32px;
+                            font-weight: bold;
+                        }
                         p{
+                            max-width: 710px;
+                            margin: 0 auto;
                             font-size:20px;
                             line-height: 26px;
                             color:$font-color;
@@ -117,6 +124,24 @@
                                 }
                                 &.hiw-subtitle{
                                     color: $font-color;
+                                    font-size:28px !important;
+                                    b{
+                                        width:42px;
+                                        height:42px;
+                                        font-size:18px;
+                                        &::before{
+                                            width:0px;
+                                            height:0px;
+                                            right:-7px;
+                                            top:-7px;
+                                        }
+                                        &::after{
+                                            width:0px;
+                                            height:0px;
+                                            left:-10px;
+                                            bottom:-10px;
+                                        }
+                                    }
                                 }
                             }
                             p{
@@ -130,6 +155,22 @@
                             }
                         }
                     }
+                    .swiper-slide.swiper-slide-active{
+                        .hiw-content{
+                            .hiw-subtitle{
+                                b{
+                                    &::before{
+                                        width:13px;
+                                        height:13px;
+                                    }
+                                    &::after{
+                                        width:27px;
+                                        height:27px;
+                                    }
+                                }
+                            }
+                        }
+                    }
                     .swiper-pagination{
                         position: absolute;
                         left: 50%;
@@ -138,6 +179,28 @@
                         padding: 0px;
                         width: 1160px;
                         justify-content: flex-start;                        
+                    }
+                }
+            }
+            &.screen-5{
+                .slide-map{
+                    max-width: 873px;
+                    margin:0 auto;
+                    .slide-map-header{
+                        margin-bottom: 40px;
+                        .title{
+                            font-size:32px;
+                            font-weight: bold;
+                            color:$color1;
+                        }
+                        .description{
+                            font-size:20px;
+                            line-height: 1.3;
+                            font-family: $font2;
+                            color:$font-color;
+                            max-width: 60%;
+                            margin:10px auto;
+                        }
                     }
                 }
             }
