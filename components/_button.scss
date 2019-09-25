@@ -4,18 +4,16 @@ $btn-cursor: 10px;
     position: relative;
     display: inline-block;
     padding: 0 20px;
-    background: $color1;
-    border: 1px solid transparent;
-    font-family: $font3;
-    font-size: 16px;
-    color: $color2;
-    font-weight: 700;
-    line-height: 42px;
-    letter-spacing: 1px;
+    border: 1px solid $color0;
+    font-family: $font1;
+    font-weight: 500;
+    font-size: 13px;
+    border-radius:21px;
+    color: $color0;
+    min-width:200px;
     transition: all .32s ease;
-    &:hover {
-        background: $color6;
-    }
+    padding:15px 0px;
+    text-transform: uppercase;
     > span {
         position: relative;
         display: flex;

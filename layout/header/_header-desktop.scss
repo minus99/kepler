@@ -33,7 +33,7 @@
             background: none;
             font-size:16px;
             line-height: 1.4;
-            justify-content: flex-start;
+            justify-content: space-between;
             padding-left:120px;
             &-inner{
                 display: flex;
@@ -44,6 +44,24 @@
                     }
                 }
             }
+            .lang-menu{
+                border:1px solid red;
+                min-width: 50px;
+            }
+            .booking-button{
+                min-width: 200px;
+                .booking-menu-opened{
+                    background: $white;
+                    color:$font-color;
+                    font-family: $font1;
+                    font-size:14px;
+                    font-weight: 500;
+                    border-radius: 6px;
+                    padding:13.5px 0px;
+                    width:100%;
+                }
+            }
         }
+        
     }
 }
