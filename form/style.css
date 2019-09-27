@@ -6,7 +6,7 @@ body {
   box-sizing: border-box;
 }
 .booking-container {
-  max-width: 400px;
+  max-width: 320px;
   padding: 0px 20px;
   margin: 0 auto;
   display: flex;
@@ -221,6 +221,7 @@ section {
   text-align: center;
   border-bottom: 1px solid steelblue;
   align-self: flex-end;
+
 }
 .date-picker-container .input-info .date-subtitle {
   font-weight: lighter;
@@ -295,3 +296,13 @@ section {
   cursor: pointer;
 }
 /* SAAT */
+
+
+
+.test{
+  position: absolute;
+  left:100px;
+  top:100px;
+  width:100px;
+  height: 100px;
+}
