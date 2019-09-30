@@ -1,12 +1,6 @@
 // Formun Kendisi ve Icindeki Parametreler Icin Olusturulan
 // ES5 Class Functions
 
-
-
-// TODO : Datepicker iki farklı gün arasında booked hours ayarlaması
-
-// TODO : Datepicker ileri geri tarih buttonları
-
 // TODO : Guest Seçimi Snrası Datepicker Açılımı
 
 var Form = function(id, booking, host, card) {
@@ -51,12 +45,13 @@ var CreditCard = function(id, number, expiration, cvc, cardHolder) {
 var state = {
   date: {
     checkIn: undefined,
-    checkOut: undefined
+    checkOut: undefined,
+    bookedHours: [],
+    totalHour: undefined
   },
   location: undefined,
-  femaleGuest: null,
-  maleGuest: null,
-  bookedHours: null
+  femaleGuest: undefined,
+  maleGuest: undefined
 };
 
 // Form Kontrolleri ve Secimleri
@@ -87,7 +82,8 @@ var setForm = {
     selectedText: "selected-text",
     selectedTime: "selected-time",
     bookedTime: "booked-time",
-    active: "active"
+    active: "active",
+    disabled: "disabled"
   },
   test: function() {
     $(".test").bind("click", function() {
@@ -123,6 +119,23 @@ var setForm = {
       el = _t.el,
       cls = _t.cls;
   },
+
+  controls: function() {
+    var _t = this,
+      el = _t.el,
+      cls = _t.cls;
+    var CI = state.date.checkIn,
+      CO = state.date.checkOut,
+      FG = state.femaleGuest,
+      MG = state.maleGuest,
+      L = state.location;
+    if (CI != null && CO != "" && FG != null && MG != null && L != null) {
+      $(".comfirm-button").attr("disabled", false);
+      $(".comfirm-button")
+        .removeClass(this.cls.disabled)
+        .addClass(this.cls.active);
+    }
+  },
   // Dropdown Menu, Counter, Datepicker Fonksiyonlarini Cagirir
   plugins: function() {
     // Fonksiyonlardaki 'id' Parametresi Containeri Belirtir
@@ -144,6 +157,9 @@ var setForm = {
           .siblings()
           .removeClass(cls.selectedItem);
         id.find(el.inputInfo).html($(this).text());
+
+        // State'e Value Yollar
+        state.location = $(this).attr("rel");
         // Bir Sonraki Adimi Aktif Hale Getirir
         id.next()
           .find(el.inputInfo)
@@ -172,6 +188,9 @@ var setForm = {
 
           target.length > 0 ? target.text(value) : "1";
 
+          // State'e value Yollar
+          state.maleGuest = $("#male").val();
+          state.femaleGuest = $("#female").val();
           // Ilgili counter'a class atar
           $(id)
             .addClass(cls.selectedButton)
@@ -219,145 +238,97 @@ var setForm = {
         });
     }),
       (customDatePicker = function() {
-        // Check-In Tarihini Secer ve Check-out Tarihine Atar
-        var from = $("#in-date")
-          .datepicker({
-            altFormat: "d M, y",
-            dateFormat: "yy-mm-dd",
-            altField: "#db-in-date",
-            defaultDate: "+3d",
-            changeMonth: false,
-            numberOfMonths: 1,
-            minDate: _t.getDate()
-          })
-          .on("change", function() {
-            // Zaman Aralığını Siler
-            $(el.time).removeClass(cls.selectedTime);
-            $(el.time).removeClass(cls.bookedTime);
-
-            to.datepicker("option", "minDate", _getDate(this));
-            to.datepicker("setDate", _getDate(this));
-
-            // Tarih Yazisini Degistirir
-            $(el.calendarButton).text(
-              $("#db-in-date")
-                .val()
-                .toString()
-            );
-            // Saat Seçimindeki Date attribute'u degistiri
-            $(el.time).attr("data-date", $("#in-date").val());
-
-            // state'i degistirir
-            if (state.date.checkIn != "") {
-              state.date.checkIn = state.date.checkIn.replace(
-                /^.{1,10}/,
-                $("#in-date").val()
-              );
-            }
-            // Secili Zamanı UI'da gösteri
-            $(el.time).each(function() {
-              var ths = $(this);
-              var fullDate =
-                ths.attr("data-date") + " " + ths.attr("data-time");
-              if (state.date.checkIn == fullDate) {
-                ths.removeClass(cls.selectedTime);
-                ths.addClass(cls.selectedTime);
-              }
-              if (state.date.checkOut == fullDate) {
-                ths.removeClass(cls.selectedTime);
-                ths.addClass(cls.selectedTime);
-              }
-            });
-            // state.date.checkOut = "";
-            // Zaman Aralığını Control Eder
-            checkBookedTimes();
-          });
-        // Check-Out Tarihini Secer ve Check-In Tarihine Atar
-        var to = $("#out-date")
-          .datepicker({
-            altFormat: "d M, y",
-            dateFormat: "yy-mm-dd",
-            altField: "#db-out-date",
-            defaultDate: "+1d",
-            changeMonth: false,
-            numberOfMonths: 1
-          })
-          .on("change", function() {
-            // Zaman Aralığını Siler
-            $(el.time).removeClass(cls.selectedTime);
-            $(el.time).removeClass(cls.bookedTime);
-
-            from.datepicker("option", "maxDate", _getDate(this));
-
-            // Tarih Yazisini Degistirir
-            $(el.calendarButton).text(
-              $("#db-out-date")
-                .val()
-                .toString()
-            );
-            // Saat Seçimindeki Date attribute'u degistiri
-            $(el.time).attr("data-date", $("#out-date").val());
-
-            // state'i degistirir
-            if (state.date.checkOut != "") {
-              state.date.checkOut = state.date.checkOut.replace(
-                /^.{1,10}/,
-                $("#out-date").val()
-              );
-            }
-            // Secili Zamanı UI'da gösteri
-            $(el.time).each(function() {
-              var ths = $(this);
-              var fullDate =
-                ths.attr("data-date") + " " + ths.attr("data-time");
-              if (state.date.checkIn == fullDate) {
-                ths.addClass(cls.selectedTime);
-              }
-              if (state.date.checkOut == fullDate) {
-                ths.addClass(cls.selectedTime);
-              }
-            });
-
-            // Zaman Aralığını Control Eder
-            checkBookedTimes();
-          });
-        // Secilen Tarih Degerini Alir
-        function _getDate(element) {
-          var date;
-          try {
-            date = $.datepicker.parseDate("yy-mm-dd", element.value);
-          } catch (error) {
-            date = null;
-          }
-          return date;
-        }
-
         // Check-in/out Tarih Secimi
         function setDate() {
+          // Check-In Tarihini Secer ve Check-out Tarihine Atar
+          $("#in-date")
+            .datepicker({
+              altFormat: "d M, y",
+              dateFormat: "yy-mm-dd",
+              altField: "#db-in-date",
+              defaultDate: "+3d",
+              changeMonth: false,
+              numberOfMonths: 1,
+              minDate: _t.getDate()
+            })
+            .on("change", function() {
+              $("#out-date").datepicker("setDate", _getDate(this));
+              $("#out-date").datepicker("option", "minDate", _getDate(this));
+
+              // Tarih Yazisini Degistirir
+              $(el.calendarButton).text(
+                $("#db-in-date")
+                  .val()
+                  .toString()
+              );
+
+              // Saat Seçimindeki Date attribute'u degistiri
+              $(el.time).attr("data-date", $("#in-date").val());
+
+              // Zaman Aralığını Control Eder
+              checkTimes();
+            });
+          // Check-Out Tarihini Secer ve Check-In Tarihine Atar
+          $("#out-date")
+            .datepicker({
+              altFormat: "d M, y",
+              dateFormat: "yy-mm-dd",
+              altField: "#db-out-date",
+              defaultDate: "+1d",
+              changeMonth: false,
+              numberOfMonths: 1
+            })
+            .on("change", function() {
+              // Tarih Yazisini Degistirir
+              $(el.calendarButton).text(
+                $("#db-out-date")
+                  .val()
+                  .toString()
+              );
+              // Saat Seçimindeki Date attribute'u degistirir
+              $(el.time).attr("data-date", $("#out-date").val());
+
+              // Zaman Aralığını Control Eder
+              checkTimes();
+            });
+          // Secilen Tarih Degerini Alir
+          function _getDate(element) {
+            var date;
+            try {
+              date = $.datepicker.parseDate("yy-mm-dd", element.value);
+            } catch (error) {
+              date = null;
+            }
+            return date;
+          }
+
           $(".date-picker-container .input-info >div").bind(
             "click",
             function() {
-              var type = $(this).attr("class");
-              var dataType;
-              if (type == "check-in-info") {
-                dataType = "#in-date";
-              } else if(type === "check-out-info"){
-                dataType = "#out-date";
-              }else{
-                dataType = "#in-date";
+              // İki tarih de seçli ise checkout tarihini seçtirmez
+              if (state.date.checkIn !== "" && state.date.checkOut !== "") {
+                $(".check-out-info").addClass(cls.disabled);
+                $(".check-out-info").removeClass(cls.active);
               }
-              // Ilgıli takvimi açar
-              $(dataType).datepicker("show");
+              var ths = $(this);
+
+              if (ths.hasClass("check-in-info")) {
+                $("#in-date").datepicker("show");
+                $(".check-out-info").removeClass(cls.disabled);
+              }
+              if (ths.hasClass("check-out-info")) {
+                if (!ths.hasClass(cls.disabled)) {
+                  $("#out-date").datepicker("show");
+                }
+              }
               // Check-in Check-out "active" class degistirir
-              $(this)
+              ths
                 .addClass(cls.active)
                 .siblings()
                 .removeClass(cls.active);
             }
           );
         }
-
-        setDate();
 
         // setTime fonksiyonu için [item = seçilen element] [type = seçimin türü]
         // type degeri iki farkli deger alabilir "check-in" || "check-out"
@@ -440,6 +411,63 @@ var setForm = {
                 .val()
                 .toString()
             );
+
+            // Booked Hours Hesaplar
+            if (!state.date.checkOut == "") {
+              var checkOutTime = state.date.checkOut.slice(11, -3);
+              var checkInTime = state.date.checkIn.slice(11, -3);
+              var checkOutDay = state.date.checkOut.slice(0, 11);
+              var checkInDay = state.date.checkIn.slice(0, 11);
+              var totalHour = 0;
+              var firstBookedHour = 0;
+              var secondBookedHour = 0;
+              var totalBookedHour = 0;
+              // Eger aynı gun secili ise
+              if (checkOutDay === checkInDay) {
+                state.date.bookedHours = [];
+                totalHour = parseInt(checkOutTime) - parseInt(checkInTime);
+                while (totalBookedHour < totalHour) {
+                  state.date.bookedHours.push(
+                    checkInDay +
+                      (parseInt(checkInTime) + totalBookedHour)
+                        .toString()
+                        .padStart(2, 0) +
+                      ":00"
+                  );
+                  totalBookedHour++;
+                }
+                state.date.totalHour = totalBookedHour;
+              }
+              // Eger farklı günler seçili ise
+              if (checkOutDay !== checkInDay) {
+                state.date.bookedHours = [];
+                var firstDay = 24 - parseInt(checkInTime);
+                var secondDay = parseInt(checkOutTime);
+                totalBookedHour = firstDay + secondDay;
+                while (firstBookedHour < firstDay) {
+                  state.date.bookedHours.push(
+                    checkInDay +
+                      (parseInt(checkInTime) + firstBookedHour)
+                        .toString()
+                        .padStart(2, 0) +
+                      ":00"
+                  );
+                  firstBookedHour++;
+                }
+                while (secondBookedHour < secondDay) {
+                  secondBookedHour++;
+                  state.date.bookedHours.push(
+                    checkOutDay +
+                      (parseInt(checkOutTime) - secondBookedHour)
+                        .toString()
+                        .padStart(2, 0) +
+                      ":00"
+                  );
+                }
+              }
+              state.date.totalHour = totalBookedHour;
+            }
+
             // Secili Zamanı UI'da gösterir
             if (state.date.checkOut == fullDate) {
               item.addClass(cls.selectedTime);
@@ -473,7 +501,7 @@ var setForm = {
             // secilen saat check-in saatinden küçük ise
             if (
               hour < parseInt(checkInState.slice(11, -3)) &&
-              $(this).attr("data-date") === $("#in-date").val()
+              $(this).attr("data-date") == $("#in-date").val()
             ) {
               setTime($(this), "check-in");
               $(this)
@@ -492,87 +520,60 @@ var setForm = {
             setTime($(this), "check-in");
           }
           // Zaman Aralığını Control Eder
-          checkBookedTimes();
+          checkTimes();
         });
 
-        function checkBookedTimes() {
-          var checkOutDay = state.date.checkOut.slice(0, 11);
-          var checkInDay = state.date.checkIn.slice(0, 11);
-          var checkOutTime = state.date.checkOut.slice(11, -3);
-          var checkInTime = state.date.checkIn.slice(11, -3);
-          var totalHour = 0;
-          var bookedHour = 0;
-          // Eger Seçili Tarih Aynı İse
-          if (!state.date.checkOut == "") {
-            if (checkOutDay === checkInDay) {
-              totalHour = parseInt(checkOutTime) - parseInt(checkInTime);
-              $(el.time).removeClass(cls.bookedTime);
-              // Check in saatinin üzerine saat ekler
-              while (bookedHour < totalHour - 1) {
-                bookedHour++;
-                $(el.time).each(function() {
-                  // Check-in saatinin üzerine eklenen saatler ile data-time attribute uyuşuyorsa class eklenir
-                  if (
-                    $(this).attr("data-time") ===
-                    (parseInt(checkInTime) + bookedHour)
-                      .toString()
-                      .padStart(2, 0) +
-                      ":00"
-                  ) {
-                    (parseInt(checkInTime) + bookedHour)
-                      .toString()
-                      .padStart(2, 0) + ":00";
+        function checkTimes() {
+          $(el.time).removeClass(cls.bookedTime);
+          $(el.time).removeClass(cls.selectedTime);
 
-                    $(this).addClass(cls.bookedTime);
-                  }
-                });
-              }
-              // Seçili Tarih Aynı Değil İse
-            } else if (checkOutDay !== checkInDay) {
-              // Zaman Aralığını Siler
-              $(el.time).removeClass(cls.bookedTime);
-              var firstDay = 24 - parseInt(checkInTime);
-              var secondDay = parseInt(checkOutTime);
-              totalHour = firstDay + secondDay;
-              // Check-in Günü Booked Time
-              if ($(el.time).attr("data-date") == checkInDay) {
-                while (bookedHour < firstDay) {
-                  bookedHour++;
-                
-                  $(el.time).each(function() {
-                    if (
-                      $(this).attr("data-time") ===
-                      (parseInt(checkInTime) + bookedHour)
-                        .toString()
-                        .padStart(2, 0) +
-                        ":00"
-                    ) {
-                      $(this).addClass(cls.bookedTime);
-                    }
-                  });
-                }
-              }
-              // Check-Out Günü Booked Time
-              if ($(el.time).attr("data-date") === checkOutDay) {
-                while (bookedHour < secondDay) {
-                  bookedHour++;
-                  $(el.time).each(function() {
-                    if (
-                      $(this).attr("data-time") ===
-                        (parseInt(checkOutTime) + bookedHour)
-                          .toString()
-                          .padStart(2, 0) +
-                          ":00" &&
-                      $(this).attr("data-date") === state.date.checkOut
-                    ) {
-                      $(this).addClass(cls.bookedTime);
-                    }
-                  });
-                }
-              }
+          $(el.time).each(function() {
+            var thisTime =
+              $(this).attr("data-date") + " " + $(this).attr("data-time");
+            if (
+              thisTime === state.date.checkIn ||
+              thisTime === state.date.checkOut
+            ) {
+              $(this).addClass(cls.selectedTime);
             }
-          }
+            if (state.date.checkOut != "") {
+              state.date.bookedHours.forEach(bookedHour => {
+                if (thisTime === bookedHour) {
+                  $(this).addClass(cls.bookedTime);
+                }
+              });
+            }
+          });
         }
+        // Tarih İleri Geri Buttonları
+        var dateButton = $(".date-counter-button");
+
+        dateButton.on("click", function() {
+          var type = $(this).attr("rel");
+          function counterDate(picker) {
+            var date = $("#" + picker).datepicker("getDate");
+            var multiply = 1;
+            type === "date-inc" ? (multiply = 1) : (multiply = -1);
+            date.setTime(date.getTime() + multiply * 1000 * 60 * 60 * 24);
+            $("#" + picker).datepicker("setDate", date);
+            $(el.calendarButton).text(
+              $("#db-" + picker)
+                .val()
+                .toString()
+            );
+          }
+
+          if ($(".check-in-info").hasClass(cls.active)) {
+            counterDate("in-date");
+          }
+          if ($(".check-out-info").hasClass(cls.active)) {
+            counterDate("out-date");
+          }
+        });
+        $(el.calendarButton).on("change", checkTimes);
+        $(el.calendarButton).on("change", checkTimes);
+
+        setDate();
       }),
       // Pluginleri Cagirir
       dropDown(el.dropDown); // dropdown
@@ -589,6 +590,8 @@ var setForm = {
     this.setInitialDate();
     this.plugins();
     this.test();
+    window.addEventListener("click", this.controls);
+    // this.controls();
   }
 };
 

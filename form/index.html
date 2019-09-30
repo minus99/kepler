@@ -97,7 +97,7 @@
         </div>
         <!-- CHECK IN / OUT SECIMI BASLANGIC -->
         <!-- ems-none gelecek olanlar : input-info, calendar-container, time-container -->
-        <div class="input-info">
+        <div class="input-info ems-none">
           <div class="check-in-info active">
             <div class="date-subtitle">Check-in-Time</div>
             <div class="time-info"></div>
@@ -109,7 +109,7 @@
         </div>
         <!-- CHECK IN / OUT SECIMI BITIS -->
         <!-- TARIH SECIMI BASLANGIC -->
-        <div class="calendar-container">
+        <div class="calendar-container ems-none">
           <div rel="date-dec" class="date-counter-button disabled">&#8592;</div>
           <div class="calendar-button"></div>
           <div id="datepicker"></div>
@@ -133,7 +133,7 @@
           <!-- TARIH SECIMI BITIS -->
         </div>
         <!-- SAAT SECIMI BASLANGIC -->
-        <ul class="time-container">
+        <ul class="time-container ems-none">
           <li data-time="00:00">00:00</li>
           <li data-time="01:00">01:00</li>
           <li data-time="02:00">02:00</li>
@@ -162,60 +162,60 @@
         <!-- SAAT SECIMI BITIS -->
         <!-- DATEPICKER BITIS -->
       </section>
-      <button class="next-button">COMFIRM</button>
-      <section class="host-container">
-        <form>
-          <label for="first-name">First Name</label>
-          <input
-            required
-            type="text"
-            name="first-name"
-            id="firstName"
-            value="Adi"
-          />
-          <label for="last-name">Last Name</label>
-          <input
-            required
-            type="text"
-            name="last-name"
-            id="lastName"
-            value="Soyadi"
-          />
-          <label for="gender">Gender</label>
-          <input
-            required
-            type="text"
-            name="gender"
-            id="gender"
-            value="Cinsiyet"
-          />
-          <label for="email">Email Address</label>
-          <input
-            required
-            type="text"
-            name="email"
-            id="email"
-            value="mail@mail.com"
-          />
-          <label for="mobile">Mobile Number</label>
-          <input
-            required
-            type="text"
-            name="mobile"
-            id="mobile"
-            value="+905555555555"
-          />
-          <label for="birthdate">Birthdate</label>
-          <input
-            required
-            type="date"
-            name="birtdate"
-            id="birthdate"
-            value="1999-01-01"
-          />
-        </form>
-        <button class="next-button">SHOW OBJECT</button>
-      </section>
+      <button disabled class="comfirm-button disabled">COMFIRM</button>
+    </section>
+    <section class="host-container">
+      <form>
+        <label for="first-name">First Name</label>
+        <input
+          required
+          type="text"
+          name="first-name"
+          id="firstName"
+          value="Adi"
+        />
+        <label for="last-name">Last Name</label>
+        <input
+          required
+          type="text"
+          name="last-name"
+          id="lastName"
+          value="Soyadi"
+        />
+        <label for="gender">Gender</label>
+        <input
+          required
+          type="text"
+          name="gender"
+          id="gender"
+          value="Cinsiyet"
+        />
+        <label for="email">Email Address</label>
+        <input
+          required
+          type="text"
+          name="email"
+          id="email"
+          value="mail@mail.com"
+        />
+        <label for="mobile">Mobile Number</label>
+        <input
+          required
+          type="text"
+          name="mobile"
+          id="mobile"
+          value="+905555555555"
+        />
+        <label for="birthdate">Birthdate</label>
+        <input
+          required
+          type="date"
+          name="birtdate"
+          id="birthdate"
+          value="1999-01-01"
+        />
+      </form>
+      <button class="next-button">SHOW OBJECT</button>
     </section>
     <!-- FORM BITIS -->
     <script src="jquery.min.js"></script>

@@ -297,7 +297,15 @@ section {
 }
 /* SAAT */
 
+/* COMFIRM BUTTON */
 
+.comfirm-button{
+  width: 240px;
+  height: 42px;
+  border-radius: 21px;
+  background-color: #eaeaea;
+}
+/* COMFIRM BUTTON */
 
 .test{
   position: absolute;
