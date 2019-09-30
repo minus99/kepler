@@ -2353,7 +2353,6 @@ button.toast-close-button {
   background: #fff; }
 
 .booking-form {
-  border: 1px solid red;
   position: fixed;
   visibility: hidden;
   width: 0px;
@@ -2366,18 +2365,61 @@ button.toast-close-button {
   transition: all 1s;
   z-index: 999999; }
 
-.site-footer {
-  background: #2e2f7d url(/images/frontend/footer-bg-mobile.png) center 60%/100% no-repeat;
-  padding: 50px 0;
-  color: #a74792;
-  display: none; }
+.ems-last-slide .site-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
 
-.footer-content {
-  margin-top: 80px; }
-  .footer-content .banner04 {
-    color: #ffdde0; }
-    .footer-content .banner04 .banner-body {
-      padding: 0; }
+.site-footer {
+  border: 1px solid red; }
+  .site-footer-inner {
+    width: 100%; }
+    .site-footer-inner .footer-wrapper .footer-area-1 {
+      height: 52px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      background: #453d98; }
+    .site-footer-inner .footer-wrapper .footer-area-2 {
+      padding: 40px 0px 0px 0px; }
+      .site-footer-inner .footer-wrapper .footer-area-2 ul li {
+        border: 1px solid red;
+        text-align: center;
+        color: #1d3243;
+        font-family: gotham, arial, sans-serif;
+        margin-bottom: 30px; }
+    .site-footer-inner .footer-wrapper .footer-area-3 {
+      margin-bottom: 30px; }
+      .site-footer-inner .footer-wrapper .footer-area-3 ul {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100px;
+        margin: 0 auto;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -ms-flex-line-pack: center;
+        align-content: center; }
+        .site-footer-inner .footer-wrapper .footer-area-3 ul li a {
+          border: 1px solid red;
+          font-size: 0px;
+          width: 25px;
+          height: 25px;
+          border-radius: 100%; }
+    .site-footer-inner .footer-wrapper .footer-area-4 {
+      background: blue; }
+
+body {
+  /* width */ }
+  body::-webkit-scrollbar {
+    width: 5px; }
 
 .homepage-slider.swiper-container {
   width: 100%;
@@ -2857,8 +2899,9 @@ button.toast-close-button {
               .site-header-grid .site-menu-inner li a {
                 color: #fff; }
           .site-header-grid .site-menu .lang-menu {
-            border: 1px solid red;
-            min-width: 50px; }
+            border: 1px solid #fff;
+            min-width: 50px;
+            height: 30px; }
           .site-header-grid .site-menu .booking-button {
             min-width: 200px; }
             .site-header-grid .site-menu .booking-button .booking-menu-opened {
@@ -2870,31 +2913,6 @@ button.toast-close-button {
               border-radius: 6px;
               padding: 13.5px 0px;
               width: 100%; }
-    .site-footer {
-      background-image: url(/images/frontend/footer-bg.png);
-      background-position: center 80px;
-      background-size: 100%;
-      padding: 70px 0; }
-    .site-footer-grid {
-      position: relative;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-areas: "ga1 ga1 ga1" ". ga8 ." ". ga2 ." "ga3 ga3 ga3" ". ga4 ." "ga6 ga5 ga5" "ga7 ga7 ga7"; }
-      .site-footer-grid > .ga1 {
-        grid-area: ga1; }
-      .site-footer-grid > .ga2 {
-        grid-area: ga2; }
-      .site-footer-grid > .ga3 {
-        grid-area: ga3; }
-      .site-footer-grid > .ga4 {
-        grid-area: ga4; }
-      .site-footer-grid > .ga5 {
-        grid-area: ga5; }
-      .site-footer-grid > .ga6 {
-        grid-area: ga6; }
-      .site-footer-grid > .ga7 {
-        grid-area: ga7; }
-      .site-footer-grid > .ga8 {
-        grid-area: ga8; }
     .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .first-content {
       display: -webkit-box;
       display: -ms-flexbox;
