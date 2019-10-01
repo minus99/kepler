@@ -9,6 +9,9 @@
 
 // TODO : CREDIT CARD
 
+// TODO : 7 YASINDAN KUCUKSE UYARI
+
+
 var Form = function(id, booking, host, card) {
   this.id = id;
   this.booking = booking;
@@ -106,6 +109,19 @@ var setForm = {
     guestPrice: ".bi-order-guest-price",
     totalPrice: ".bi-order-total-price"
   },
+  formInput: {
+    firstName: "#firstName",
+    lastName: "#lastName",
+    gender: "#gender",
+    email: "#email",
+    mobile: "#mobile",
+    birthdate: "#birthdate"
+  },
+  regex: {
+    email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    mobile: /^\+[1-9]{1}[0-9]{11,14}$/,
+    name: /\w\D/
+  },
   test: function() {
     $(".test").bind("click", function() {
       console.log(state);
@@ -139,11 +155,109 @@ var setForm = {
     var _t = this,
       el = _t.el,
       cls = _t.cls;
+    // Ilk asamadan ikinci asamaya gecerken olusacak durumlar
     $(".comfirm-button").bind("click", function() {
+      // State'deki valuelari html icine aktarir
       _t.bookingInfoParser();
+      // Ilk asamayi cikarip ikinci asamyi getirir
+      $(".booking-container").addClass("ems-none");
+      $(".booking-info-container").removeClass("ems-none");
+      // Step Asamasi
+      $(".booking-step-container ")
+        .removeClass("step0")
+        .addClass("step1");
+      // Order -info Container Gelir
+      $(".booking-info-order-container").removeClass("ems-none");
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+      });
     });
-  },
 
+    $(".form-submit").on("click", function(){
+      console.log("form clicked");
+      
+    })
+  },
+  // REGEX FORM VALIDATIONS
+  validations: function() {
+    var _t = this,
+      input = _t.formInput,
+      regex = _t.regex,
+      cls = _t.cls;
+
+    var checks = {
+      email: false,
+      firstName: false,
+      lastName: false,
+      mobile: false,
+      birthDate: false,
+      gender: false
+    };
+
+    $(input.email).on("input propertychange", function() {
+      if (regex.email.test($(this).val())) {
+        $(this)
+          .addClass("form-valid")
+          .removeClass("form-invalid");
+        checks.email = true;
+      } else {
+        $(this)
+          .addClass("form-invalid")
+          .removeClass("form-valid");
+        checks.email = false;
+      }
+    });
+    $(input.firstName).on("input propertychange", function() {
+      if (regex.name.test($(this).val())) {
+        $(this)
+          .addClass("form-valid")
+          .removeClass("form-invalid");
+        checks.firstName = true;
+      } else {
+        $(this)
+          .addClass("form-invalid")
+          .removeClass("form-valid");
+        checks.firstName = false;
+      }
+    });
+    $(input.lastName).on("input propertychange", function() {
+      if (regex.name.test($(this).val())) {
+        $(this)
+          .addClass("form-valid")
+          .removeClass("form-invalid");
+        checks.lastName = true;
+      } else {
+        $(this)
+          .addClass("form-invalid")
+          .removeClass("form-valid");
+        checks.lastName = false;
+      }
+    });
+    $(input.mobile).on("input propertychange", function() {
+      if (regex.mobile.test($(this).val())) {
+        $(this)
+          .addClass("form-valid")
+          .removeClass("form-invalid");
+        checks.mobile = true;
+      } else {
+        $(this)
+          .addClass("form-invalid")
+          .removeClass("form-valid");
+        checks.mobile = false;
+      }
+    });
+    // HER INPUT DEGISIKLIGINDE SUBMIT BUTTONUNU CONTROL EDER
+    $(".booking-host-container").find("input").on("input propertychange", function(){
+      if (checks.email && checks.mobile && checks.firstName && checks.lastName) {
+        $(".form-submit").removeClass(cls.disabled);
+      } else {
+        $(".form-submit").addClass(cls.disabled);
+      }
+    })
+ 
+  },
   controls: function() {
     var _t = this;
     (el = _t.el), (cls = _t.cls);
@@ -625,7 +739,7 @@ var setForm = {
       cls = _t.cls,
       info = _t.info;
     var fmarkup = "",
-    mmarkup = "";
+      mmarkup = "";
 
     // ILGILI ALANLARI STATE'DEN CEKEREK DOLDURUR
 
@@ -662,7 +776,7 @@ var setForm = {
         .replace(/[$][$]strURN_AD[$][$]/g, "Male")
         .replace(/[$][$]salesPrice[$][$]/g, 7)
         .replace(/{{hour}}/g, state.date.totalHour)
-        .replace(/{{price}}/g, state.date.totalHour * 7)
+        .replace(/{{price}}/g, state.date.totalHour * 7);
     }
 
     for (let i = 0; i < state.femaleGuest; i++) {
@@ -672,9 +786,9 @@ var setForm = {
         .replace(/[$][$]strURN_AD[$][$]/g, "Female")
         .replace(/[$][$]salesPrice[$][$]/g, 7)
         .replace(/{{hour}}/g, state.date.totalHour)
-        .replace(/{{price}}/g, state.date.totalHour * 7)
+        .replace(/{{price}}/g, state.date.totalHour * 7);
     }
-    
+
     $(".booking-info-product-wrapper").html(mmarkup + fmarkup);
   },
   // Butun Fonksiyonlari Cagirir
@@ -683,6 +797,7 @@ var setForm = {
     this.plugins();
     this.test();
     this.events();
+    this.validations();
   }
 };
 

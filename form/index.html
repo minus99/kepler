@@ -10,7 +10,7 @@
   </head>
   <body>
     <!-- STEP BASLANGIC -->
-    <section class="booking-step-container">
+    <section class="booking-step-container step0">
       <div class="booking-step step-area-1">
         <div class="step-number">
           1
@@ -193,7 +193,7 @@
     </section>
     <!-- BOOKING BITIS -->
     <!-- BOOKING INFO BASLANGIC -->
-    <section class="booking-info-container">
+    <section class="booking-info-container ems-none">
       <!-- CARD BASLANGIC -->
       <section class="booking-info-card-container">
         <div class="booking-info-card-wrapper">
@@ -252,7 +252,7 @@
                   </span>USD / hr
                 </div>
                 <div class="bi-product-price-wrapper">
-                  <span class="bi-product-price">{{price}}</span>USD
+                  <span class="bi-product-price">{{price}}</span> USD
                 </div>
               </div>
             </div>
@@ -260,40 +260,20 @@
         </script>
         <!-- GUEST TEMPLATE BITIS-->
         </div>
-        <div class="booking-info-order-container">
-        <div class="bi-order-amount-container">
-          <div class="bi-order-amount">
-            <div>
-              <span class="bi-order-total-guest"></span
-              > adult(s) x <span class="bi-order-guest-price"></span> USD
-            </div>
-          </div>
-          <div><span class="bi-order-total-price"></span> USD</div>
-        </div>
-        <div class="bi-order-total-container">
-          <div class="bi-order-total">
-            <div>Total</div>
-            <div><span class="bi-order-total-price"></span> USD</div>
-          </div>
-          <div class="bi-order-total-description">
-            Service charge 10%, excluding taxes
-          </div>
-          <div class="bi-order-continue-button">CONTINUE</div>
-        </div>
-      </div>
+
       </section>
       <!-- PRODUCT BITIS -->
     </section>
     <!-- BOOKING INFO BITIS -->
-    <section class="host-container">
-      <form>
+    <section class="booking-host-container">
+      <div id="guest-info">
         <label for="first-name">First Name</label>
         <input
           required
           type="text"
           name="first-name"
           id="firstName"
-          value="Adi"
+          placeholder="Adi"
         />
         <label for="last-name">Last Name</label>
         <input
@@ -301,23 +281,31 @@
           type="text"
           name="last-name"
           id="lastName"
-          value="Soyadi"
+          placeholder="Soyadi"
         />
         <label for="gender">Gender</label>
-        <input
+  
+        <select
           required
-          type="text"
           name="gender"
           id="gender"
-          value="Cinsiyet"
-        />
+        >
+        <option value="">
+        </option>
+        <option value="male">
+          Male
+        </option>
+        <option value="female">
+          Female
+        </option>
+      </select>
         <label for="email">Email Address</label>
         <input
           required
-          type="text"
+          type="email"
           name="email"
           id="email"
-          value="mail@mail.com"
+          placeholder="mail@mail.com"
         />
         <label for="mobile">Mobile Number</label>
         <input
@@ -325,7 +313,7 @@
           type="text"
           name="mobile"
           id="mobile"
-          value="+905555555555"
+          placeholder="+905555555555"
         />
         <label for="birthdate">Birthdate</label>
         <input
@@ -333,11 +321,32 @@
           type="date"
           name="birtdate"
           id="birthdate"
-          value="1999-01-01"
+         
         />
-      </form>
-      <button class="next-button">SHOW OBJECT</button>
+        <div class="form-submit disabled">SUBMIT</div>
+    </div>
     </section>
+    <div class="booking-info-order-container ems-none">
+      <div class="bi-order-amount-container">
+        <div class="bi-order-amount">
+          <div>
+            <span class="bi-order-total-guest"></span
+            > adult(s) x <span class="bi-order-guest-price"></span> USD
+          </div>
+        </div>
+        <div><span class="bi-order-total-price"></span> USD</div>
+      </div>
+      <div class="bi-order-total-container">
+        <div class="bi-order-total">
+          <div>Total</div>
+          <div><span class="bi-order-total-price"></span> USD</div>
+        </div>
+        <div class="bi-order-total-description">
+          Service charge 10%, excluding taxes
+        </div>
+        <div class="bi-order-continue-button">CONTINUE</div>
+      </div>
+    </div>
     <!-- FORM BITIS -->
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>

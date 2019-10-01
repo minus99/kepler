@@ -164,13 +164,17 @@ ul {
   display: none;
 }
 .step1 {
-  display: block;
+
+  background-color: lightblue;
+
 }
 .step2 {
-  display: block;
+
+  background-color: blue;
 }
 .step3 {
-  display: block;
+  
+  background-color: darkblue;
 }
 /* STEPS */
 
@@ -184,6 +188,7 @@ ul {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  
 }
 .booking-container > section {
   padding: 30px 0px;
@@ -390,12 +395,14 @@ ul {
 .comfirm-button {
   width: 240px;
   height: 42px;
+  margin-top: 40px;
   border-radius: 21px;
   text-align: center;
   line-height: 42px;
   border: none;
   background-color: #eaeaea;
   color: gray;
+  align-self: center;
 }
 /* COMFIRM BUTTON */
 
@@ -485,6 +492,7 @@ ul {
 .booking-info-product {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   padding: 20px 0px;
   border-bottom: 1px solid slategray;
 }
@@ -536,6 +544,8 @@ ul {
 /* BOOKING INFO ORDER CARD */
 
 .booking-info-order-container {
+  margin:0px auto;
+  max-width:320px;
   margin-top: 20px;
   border: solid 1px slategray;
   border-bottom-left-radius: 10px;
@@ -572,7 +582,7 @@ ul {
 .bi-order-total-description {
   font-size: 12px;
 }
-.bi-order-contine-button {
+.bi-order-continue-button {
   height: 42px;
   border-radius: 6px;
   background-color: #50cae0;
@@ -583,4 +593,46 @@ ul {
 
 /* BOOKNIG INFO ORDER CARD */
 
-/* BOOKING INFO PRODUCT BASLANGIC */
+/* HOST CONTAINER */
+
+.booking-host-container{
+  max-width:320px;
+  margin:0 auto;
+}
+
+.booking-host-container div{
+  display: flex;
+  flex-direction: column;
+}
+.booking-host-container div input{
+  margin:10px 0px;
+  height: 30px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  transition: border-color .5s ease-out;
+}
+.booking-host-container div select{
+  margin:10px 0px;
+  height: 30px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  transition: border-color .5s ease-out;
+}
+
+.form-valid {
+  border:1px solid palegreen !important;
+}
+.form-invalid {
+  border:1px solid salmon !important;
+}
+
+.form-submit{
+  height: 42px;
+  border-radius: 6px;
+  background-color: #50cae0;
+  line-height: 42px;
+  text-align: center;
+  color: white;
+}
+
+/* HOST CONTAINER */
