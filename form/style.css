@@ -5,16 +5,10 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   box-sizing: border-box;
 }
-.booking-container {
-  max-width: 320px;
-  padding: 0px 20px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-section {
-  padding: 30px 0px;
-  border-bottom: 1px solid slategray;
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 /* GENEL */
@@ -44,13 +38,14 @@ section {
   color: palevioletred;
 }
 
-.booked-time{
-    color: palevioletred;
+.booked-time {
+  color: palevioletred;
 }
 
 .disabled {
   opacity: 0.5;
   user-select: none !important;
+  pointer-events: none !important;
   cursor: default !important;
 }
 
@@ -58,6 +53,10 @@ section {
   font-weight: bold !important;
   color: indigo;
   border-bottom: 2px solid indigo;
+}
+.active-button {
+  background-color: indigo !important;
+  color: white !important;
 }
 .filled {
   text-align: left !important;
@@ -100,6 +99,96 @@ section {
 }
 
 /* GENEL TEKRARLAYAN CLASSLAR */
+
+/* STEPS */
+.booking-step-container {
+  margin:0 auto;
+  max-width: 320px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.booking-step {
+  position: relative;
+}
+.step-success{
+  display: none;
+}
+.step-number {
+  position: relative;
+  text-align: center;
+  line-height: 28px;
+  width: 28px;
+  height: 28px;
+  border-radius: 15px;
+  border: 1px solid darkblue;
+  z-index: 99;
+}
+.step-number::after {
+  content: "";
+  position: absolute;
+  left: -8px;
+  bottom: -8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #50cae0;
+  opacity: 0.5;
+}
+.step-number::before {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #50cae0;
+  opacity: 0.5;
+}
+.step-name{
+  position: absolute;
+  left:-50%;
+  width: 80px;
+  bottom:-30px;
+  color:indigo;
+  font-size: 12px;
+  font-weight: 500;
+}
+.dashed-line{
+  width: 60px;
+  border:1px dashed darkblue;
+}
+.step0 {
+  display: none;
+}
+.step1 {
+  display: block;
+}
+.step2 {
+  display: block;
+}
+.step3 {
+  display: block;
+}
+/* STEPS */
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+/* BOOKING */
+
+.booking-container {
+  max-width: 320px;
+  padding: 0px 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.booking-container > section {
+  padding: 30px 0px;
+  border-bottom: 1px solid slategray;
+}
 
 /* -LOCATION- */
 
@@ -221,7 +310,6 @@ section {
   text-align: center;
   border-bottom: 1px solid steelblue;
   align-self: flex-end;
-
 }
 .date-picker-container .input-info .date-subtitle {
   font-weight: lighter;
@@ -299,18 +387,200 @@ section {
 
 /* COMFIRM BUTTON */
 
-.comfirm-button{
+.comfirm-button {
   width: 240px;
   height: 42px;
   border-radius: 21px;
+  text-align: center;
+  line-height: 42px;
+  border: none;
   background-color: #eaeaea;
+  color: gray;
 }
 /* COMFIRM BUTTON */
 
-.test{
+.test {
   position: absolute;
-  left:100px;
-  top:100px;
-  width:100px;
-  height: 100px;
+  left: 100px;
+  top: 10px;
+  width: 80px;
+  height: 20px;
 }
+
+/* BOOKING */
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+/* BOOKING INFO */
+
+.booking-info-container {
+  max-width: 320px;
+  padding: 0px 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.booking-info-container > section {
+  padding: 30px 0px;
+}
+
+/* BOOKING INFO CARD BASLANGIC */
+
+.booking-info-card-container {
+  border-radius: 6px;
+  border: solid 1px slategray;
+  padding: 30px 20px !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 170px;
+}
+
+.booking-info-card-wrapper {
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.bi-button-back {
+  color: lightseagreen;
+  text-decoration: underline;
+  align-self: center;
+  cursor: pointer;
+}
+
+/* BOOKING INFO CARD BASLANGIC */
+
+/* BOOKING INFO PRODUCT BASLANGIC */
+
+.booking-info-product-container {
+  display: flex;
+  flex-direction: column;
+}
+.booking-info-product-container h3 {
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.38;
+  color: darkblue;
+  border-bottom: 1px solid slategray;
+  padding-bottom: 10px;
+}
+
+.booking-info-product-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* PRODUCT CARD */
+
+.booking-info-product {
+  display: flex;
+  flex-direction: row;
+  padding: 20px 0px;
+  border-bottom: 1px solid slategray;
+}
+
+.bi-product-image {
+  width: 120px;
+  height: 180px;
+  border-radius: 6px;
+}
+
+.bi-product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180px;
+}
+
+.bi-product-title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2.57;
+  color: indigo;
+}
+.bi-product-specs li {
+  font-size: 12px;
+  line-height: 3;
+}
+
+.bi-product-fee {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.bi-product-price-wrapper {
+  font-weight: 500;
+  letter-spacing: 0.24px;
+}
+
+.Male {
+  background-color: #50cae0;
+}
+.Female {
+  background-color: pink;
+}
+
+/* PRODUCT CARD */
+
+/* BOOKING INFO ORDER CARD */
+
+.booking-info-order-container {
+  margin-top: 20px;
+  border: solid 1px slategray;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bi-order-amount-container {
+  height: 50px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid slategray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+.bi-order-total-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px;
+  height: 160px;
+  justify-content: space-around;
+}
+.bi-order-total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+.bi-order-total-description {
+  font-size: 12px;
+}
+.bi-order-contine-button {
+  height: 42px;
+  border-radius: 6px;
+  background-color: #50cae0;
+  line-height: 42px;
+  text-align: center;
+  color: white;
+}
+
+/* BOOKNIG INFO ORDER CARD */
+
+/* BOOKING INFO PRODUCT BASLANGIC */

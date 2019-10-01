@@ -1,7 +1,13 @@
 // Formun Kendisi ve Icindeki Parametreler Icin Olusturulan
 // ES5 Class Functions
 
-// TODO : Guest Seçimi Snrası Datepicker Açılımı
+// TODO : GUNCEL SAAT ONCESI SECIM YAPILAMAZ
+
+// TODO : STEP'E ILIGILI CLASS ATAMA
+
+// TODO : REGEX KONTROL
+
+// TODO : CREDIT CARD
 
 var Form = function(id, booking, host, card) {
   this.id = id;
@@ -50,6 +56,7 @@ var state = {
     totalHour: undefined
   },
   location: undefined,
+  locationName: undefined,
   femaleGuest: undefined,
   maleGuest: undefined
 };
@@ -85,6 +92,20 @@ var setForm = {
     active: "active",
     disabled: "disabled"
   },
+  info: {
+    location: ".booking-info-location",
+    date: ".booking-info-date",
+    maleNumber: ".bi-male-number",
+    femaleNumber: ".bi-female-number",
+    checkInHour: ".bi-checkin-hour",
+    checkOutHour: ".bi-checkout-hour",
+    totalHour: ".bi-total-hour",
+    hour: ".bi-hour",
+    productPrice: ".bi-product-price",
+    totalGuest: ".bi-order-total-guest",
+    guestPrice: ".bi-order-guest-price",
+    totalPrice: ".bi-order-total-price"
+  },
   test: function() {
     $(".test").bind("click", function() {
       console.log(state);
@@ -112,29 +133,38 @@ var setForm = {
       el = _t.el,
       cls = _t.cls;
 
-    $(el.time).attr("data-date", this.getDate());
+    $(el.time).attr("data-date", _t.getDate());
   },
   events: function() {
     var _t = this,
       el = _t.el,
       cls = _t.cls;
+    $(".comfirm-button").bind("click", function() {
+      _t.bookingInfoParser();
+    });
   },
 
   controls: function() {
-    var _t = this,
-      el = _t.el,
-      cls = _t.cls;
+    var _t = this;
+    (el = _t.el), (cls = _t.cls);
     var CI = state.date.checkIn,
       CO = state.date.checkOut,
       FG = state.femaleGuest,
       MG = state.maleGuest,
       L = state.location;
-    if (CI != null && CO != "" && FG != null && MG != null && L != null) {
-      $(".comfirm-button").attr("disabled", false);
-      $(".comfirm-button")
-        .removeClass(this.cls.disabled)
-        .addClass(this.cls.active);
-    }
+
+    // Tüm Stateler Dolu ise Comfirm Buttonunu Active Hale Getirir
+    comfirmButton = function() {
+      if (CI != null && CO != "" && FG != null && MG != null && L != null) {
+        $(".comfirm-button")
+          .removeClass(cls.disabled)
+          .addClass("active-button");
+      } else {
+        $(".comfirm-button").addClass(cls.disabled);
+        $(".comfirm-button").removeClass("active-button");
+      }
+    };
+    comfirmButton();
   },
   // Dropdown Menu, Counter, Datepicker Fonksiyonlarini Cagirir
   plugins: function() {
@@ -148,6 +178,7 @@ var setForm = {
 
       id.bind("click", function() {
         $(el.dropDown).toggleClass(cls.none);
+        _t.controls();
       });
 
       // Lokasyon Secer
@@ -160,6 +191,7 @@ var setForm = {
 
         // State'e Value Yollar
         state.location = $(this).attr("rel");
+        state.locationName = $(this).text();
         // Bir Sonraki Adimi Aktif Hale Getirir
         id.next()
           .find(el.inputInfo)
@@ -235,6 +267,7 @@ var setForm = {
                 .toString()
             );
           }
+          _t.controls();
         });
     }),
       (customDatePicker = function() {
@@ -267,6 +300,7 @@ var setForm = {
 
               // Zaman Aralığını Control Eder
               checkTimes();
+              _t.controls();
             });
           // Check-Out Tarihini Secer ve Check-In Tarihine Atar
           $("#out-date")
@@ -290,6 +324,7 @@ var setForm = {
 
               // Zaman Aralığını Control Eder
               checkTimes();
+              _t.controls();
             });
           // Secilen Tarih Degerini Alir
           function _getDate(element) {
@@ -521,6 +556,7 @@ var setForm = {
           }
           // Zaman Aralığını Control Eder
           checkTimes();
+          _t.controls();
         });
 
         function checkTimes() {
@@ -562,7 +598,6 @@ var setForm = {
                 .toString()
             );
           }
-
           if ($(".check-in-info").hasClass(cls.active)) {
             counterDate("in-date");
           }
@@ -570,8 +605,6 @@ var setForm = {
             counterDate("out-date");
           }
         });
-        $(el.calendarButton).on("change", checkTimes);
-        $(el.calendarButton).on("change", checkTimes);
 
         setDate();
       }),
@@ -585,13 +618,71 @@ var setForm = {
       });
     customDatePicker();
   },
+  // Booking Info Sekmesine Bilgileri Aktarır
+  bookingInfoParser: function() {
+    var _t = this,
+      el = _t.el,
+      cls = _t.cls,
+      info = _t.info;
+    var fmarkup = "",
+    mmarkup = "";
+
+    // ILGILI ALANLARI STATE'DEN CEKEREK DOLDURUR
+
+    $(info.location).text(state.locationName);
+    $(info.date).text(
+      $("#db-in-date")
+        .val()
+        .substring(0, 6) +
+        " - " +
+        $("#db-out-date").val()
+    );
+    $(info.maleNumber).text(state.maleGuest);
+    $(info.femaleNumber).text(state.femaleGuest);
+    $(info.checkInHour).text(state.date.checkIn.substring(11, 16));
+    $(info.checkOutHour).text(state.date.checkOut.substring(11, 16));
+    $(info.totalHour).text(state.date.totalHour.toString());
+    $(info.guestPrice).text((state.date.totalHour * 7).toString());
+    $(info.totalGuest).text(
+      (parseInt(state.maleGuest) + parseInt(state.femaleGuest)).toString()
+    );
+    $(info.totalPrice).text(
+      (
+        (parseInt(state.maleGuest) + parseInt(state.femaleGuest)) *
+        (state.date.totalHour * 7)
+      ).toString()
+    );
+
+    // FEMALE VE MALE GUEST SAYISINA GORE PRODUCT CARD OLUSTURUR
+
+    for (let i = 0; i < state.maleGuest; i++) {
+      mmarkup += $("#guestTemplate")
+        .html()
+        .replace(/[$][$]strURN_KOD[$][$]/g, Math.floor(Math.random() * 10))
+        .replace(/[$][$]strURN_AD[$][$]/g, "Male")
+        .replace(/[$][$]salesPrice[$][$]/g, 7)
+        .replace(/{{hour}}/g, state.date.totalHour)
+        .replace(/{{price}}/g, state.date.totalHour * 7)
+    }
+
+    for (let i = 0; i < state.femaleGuest; i++) {
+      fmarkup += $("#guestTemplate")
+        .html()
+        .replace(/[$][$]strURN_KOD[$][$]/g, Math.floor(Math.random() * 10))
+        .replace(/[$][$]strURN_AD[$][$]/g, "Female")
+        .replace(/[$][$]salesPrice[$][$]/g, 7)
+        .replace(/{{hour}}/g, state.date.totalHour)
+        .replace(/{{price}}/g, state.date.totalHour * 7)
+    }
+    
+    $(".booking-info-product-wrapper").html(mmarkup + fmarkup);
+  },
   // Butun Fonksiyonlari Cagirir
   init: function() {
     this.setInitialDate();
     this.plugins();
     this.test();
-    window.addEventListener("click", this.controls);
-    // this.controls();
+    this.events();
   }
 };
 
