@@ -9,9 +9,36 @@
     <title>Kepler Form</title>
   </head>
   <body>
+    <!-- STEP BASLANGIC -->
+    <section class="booking-step-container step0">
+      <div class="booking-step step-area-1">
+        <div class="step-number">
+          1
+          <div class="step-success">OK</div>
+        </div>
+        <div class="step-name">Booking Info</div>
+      </div>
+      <div class="dashed-line"></div>
+      <div class="booking-step step-area-2">
+        <div class="step-number">
+          2
+          <div class="step-success">OK</div>
+        </div>
+        <div class="step-name">Guest Info</div>
+      </div>
+      <div class="dashed-line"></div>
+      <div class="booking-step step-area-3">
+        <div class="step-number">
+          3
+          <div class="step-success">OK</div>
+        </div>
+        <div class="step-name">Payment</div>
+      </div>
+    </section>
+    <!-- STEP BITIS -->
     <button id="start">START</button>
-    <!-- FORM BASLANGIC -->
     <button class="test">TEST</button>
+    <!-- BOOKING BASLANGIC -->
     <section class="booking-container">
       <!-- LOKASYON SECIMI BASLANGIC -->
       <section class="location-container">
@@ -97,7 +124,7 @@
         </div>
         <!-- CHECK IN / OUT SECIMI BASLANGIC -->
         <!-- ems-none gelecek olanlar : input-info, calendar-container, time-container -->
-        <div class="input-info">
+        <div class="input-info ems-none">
           <div class="check-in-info active">
             <div class="date-subtitle">Check-in-Time</div>
             <div class="time-info"></div>
@@ -109,7 +136,7 @@
         </div>
         <!-- CHECK IN / OUT SECIMI BITIS -->
         <!-- TARIH SECIMI BASLANGIC -->
-        <div class="calendar-container">
+        <div class="calendar-container ems-none">
           <div rel="date-dec" class="date-counter-button disabled">&#8592;</div>
           <div class="calendar-button"></div>
           <div id="datepicker"></div>
@@ -133,7 +160,7 @@
           <!-- TARIH SECIMI BITIS -->
         </div>
         <!-- SAAT SECIMI BASLANGIC -->
-        <ul class="time-container">
+        <ul class="time-container ems-none">
           <li data-time="00:00">00:00</li>
           <li data-time="01:00">01:00</li>
           <li data-time="02:00">02:00</li>
@@ -162,61 +189,164 @@
         <!-- SAAT SECIMI BITIS -->
         <!-- DATEPICKER BITIS -->
       </section>
-      <button class="next-button">COMFIRM</button>
-      <section class="host-container">
-        <form>
-          <label for="first-name">First Name</label>
-          <input
-            required
-            type="text"
-            name="first-name"
-            id="firstName"
-            value="Adi"
-          />
-          <label for="last-name">Last Name</label>
-          <input
-            required
-            type="text"
-            name="last-name"
-            id="lastName"
-            value="Soyadi"
-          />
-          <label for="gender">Gender</label>
-          <input
-            required
-            type="text"
-            name="gender"
-            id="gender"
-            value="Cinsiyet"
-          />
-          <label for="email">Email Address</label>
-          <input
-            required
-            type="text"
-            name="email"
-            id="email"
-            value="mail@mail.com"
-          />
-          <label for="mobile">Mobile Number</label>
-          <input
-            required
-            type="text"
-            name="mobile"
-            id="mobile"
-            value="+905555555555"
-          />
-          <label for="birthdate">Birthdate</label>
-          <input
-            required
-            type="date"
-            name="birtdate"
-            id="birthdate"
-            value="1999-01-01"
-          />
-        </form>
-        <button class="next-button">SHOW OBJECT</button>
-      </section>
+      <div class="comfirm-button disabled">COMFIRM</div>
     </section>
+    <!-- BOOKING BITIS -->
+    <!-- BOOKING INFO BASLANGIC -->
+    <section class="booking-info-container ems-none">
+      <!-- CARD BASLANGIC -->
+      <section class="booking-info-card-container">
+        <div class="booking-info-card-wrapper">
+          <div class="booking-info-location">
+           
+          </div>
+          <div>
+            <div class="booking-info-date"></div>
+            <div class="booking-info-guest">
+              <div class="booking-info-guest-number">
+                <span class="bi-male-number"></span> Male,
+                <span class="bi-female-number"></span> Famele
+              </div>
+              <div class="booking-info-guest-hours">
+                <span class="bi-checkin-hour"></span> -
+                <span class="bi-checkout-hour"></span> (<span
+                  class="bi-total-hour"
+                  ></span
+                >
+                hrs)
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bi-button-back">Start Again</div>
+      </section>
+      <!-- CARD BITIS -->
+      <!-- PRODUCT BASLANGIC -->
+      <section class="booking-info-product-container">
+        <h3>Your Unit Details</h3>
+        <div class="booking-info-product-wrapper">
+          <!-- GUEST TEMPLATE BASLANGIC-->
+          <script id="guestTemplate" type="text/template">
+          <div class="booking-info-product" rel="$$strURN_KOD$$">
+            <div class="bi-product-image $$strURN_AD$$">
+              <img src="$$strURN_RESIM$$" />
+            </div>
+            <div class="bi-product-info">
+              <div class="bi-product-title">
+                Nap Session (
+                <span class="bi-product-gender">
+                   $$strURN_AD$$
+                </span>) x 1
+              </div>
+              <ul class="bi-product-specs">
+                <li>Fully Equipped Unit</li>
+                <li>Pay Now</li>
+                <li>Free Cancellation</li>
+                <!-- prmACIKLAMA -->
+              </ul>
+              <div class="bi-product-fee">
+                <div class="bi-prodcut-hour">
+                  <span class="bi-hour">{{hour}}</span>hrs x
+                  <span class="bi-unit-price">
+                    $$salesPrice$$
+                  </span>USD / hr
+                </div>
+                <div class="bi-product-price-wrapper">
+                  <span class="bi-product-price">{{price}}</span> USD
+                </div>
+              </div>
+            </div>
+          </div>
+        </script>
+        <!-- GUEST TEMPLATE BITIS-->
+        </div>
+
+      </section>
+      <!-- PRODUCT BITIS -->
+    </section>
+    <!-- BOOKING INFO BITIS -->
+    <section class="booking-host-container">
+      <div id="guest-info">
+        <label for="first-name">First Name</label>
+        <input
+          required
+          type="text"
+          name="first-name"
+          id="firstName"
+          placeholder="Adi"
+        />
+        <label for="last-name">Last Name</label>
+        <input
+          required
+          type="text"
+          name="last-name"
+          id="lastName"
+          placeholder="Soyadi"
+        />
+        <label for="gender">Gender</label>
+  
+        <select
+          required
+          name="gender"
+          id="gender"
+        >
+        <option value="">
+        </option>
+        <option value="male">
+          Male
+        </option>
+        <option value="female">
+          Female
+        </option>
+      </select>
+        <label for="email">Email Address</label>
+        <input
+          required
+          type="email"
+          name="email"
+          id="email"
+          placeholder="mail@mail.com"
+        />
+        <label for="mobile">Mobile Number</label>
+        <input
+          required
+          type="text"
+          name="mobile"
+          id="mobile"
+          placeholder="+905555555555"
+        />
+        <label for="birthdate">Birthdate</label>
+        <input
+          required
+          type="date"
+          name="birtdate"
+          id="birthdate"
+         
+        />
+        <div class="form-submit disabled">SUBMIT</div>
+    </div>
+    </section>
+    <div class="booking-info-order-container ems-none">
+      <div class="bi-order-amount-container">
+        <div class="bi-order-amount">
+          <div>
+            <span class="bi-order-total-guest"></span
+            > adult(s) x <span class="bi-order-guest-price"></span> USD
+          </div>
+        </div>
+        <div><span class="bi-order-total-price"></span> USD</div>
+      </div>
+      <div class="bi-order-total-container">
+        <div class="bi-order-total">
+          <div>Total</div>
+          <div><span class="bi-order-total-price"></span> USD</div>
+        </div>
+        <div class="bi-order-total-description">
+          Service charge 10%, excluding taxes
+        </div>
+        <div class="bi-order-continue-button">CONTINUE</div>
+      </div>
+    </div>
     <!-- FORM BITIS -->
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>
