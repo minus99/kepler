@@ -28,14 +28,6 @@
 }
 .icon {
     @extend [class*="icon-"];
-    &-proj-e {
-        width: 57px;
-        height: 10px;
-    }
-    &-minus99 {
-        width: 22px;
-        height: 10px;
-    }
 }
 
 //BASE64

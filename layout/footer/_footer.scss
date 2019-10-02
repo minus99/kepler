@@ -5,7 +5,6 @@
 }
 
 .site-footer {   
-    border:1px solid red;
     &-inner{
         width:100%;
         .footer-wrapper{
@@ -21,11 +20,19 @@
                     padding: 40px 0px 0px 0px;
                     ul{
                         li{
-                            border:1px solid red;
+                            &:nth-child(1){
+                                font-weight: bold;
+                                color:$color0;
+                                font-size:15px;
+                            }
                             text-align: center;
                             color: $font-color;
                             font-family: $font1;
                             margin-bottom:30px;
+                            font-weight: 400;
+                            a{
+                                display:block;
+                            }
                         }
                     }
                 }
@@ -33,16 +40,14 @@
                     margin-bottom:30px;
                     ul{
                         display: flex;
-                        width:100px;
+                        width:160px;
                         margin:0 auto;
                         justify-content: space-between;
                         align-content: center;
                         li{
                             a{
-                                border:1px solid red;
-                                font-size: 0px;
-                                width:25px;
-                                height:25px;
+                                width:40px;
+                                height:40px;
                                 border-radius: 100%;
 
                             }
@@ -50,7 +55,38 @@
                     }
                 }
                 &-4{
-                    background: blue;
+                    background:  $color12;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    height: 60px;
+                    padding:0px 30px;
+                    > div{
+                        width:50%;
+                        text-align: center;
+                    }
+                    .copyright{
+                        font-size:12px;
+                        color:$font-color;
+                        font-family: $font1;
+                    }
+                    .minus99{
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        > div{
+                            margin-left:20px;
+                        }
+                        .icon-proje{
+                            font-size:60px;
+                            --color1:black;
+                        }
+                        .icon-minus99{
+                            font-size:23px;
+                            --color1:black;
+                        }
+                    }
                 }
             }
         }
