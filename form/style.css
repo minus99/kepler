@@ -11,6 +11,25 @@ ul {
   padding: 0;
 }
 
+*{
+  outline: none;
+}
+
+.test {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: slateblue;
+  color: white;
+  border:3px solid darkblue;
+  border-radius: 50%;
+}
+.test:focus{
+  background-color: indigo;
+}
+
 /* GENEL */
 
 /* EMOS ICINDE OLAN CLASSLAR */
@@ -108,6 +127,7 @@ ul {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-bottom:60px;
 }
 .booking-step {
   position: relative;
@@ -406,13 +426,6 @@ ul {
 }
 /* COMFIRM BUTTON */
 
-.test {
-  position: absolute;
-  left: 100px;
-  top: 10px;
-  width: 80px;
-  height: 20px;
-}
 
 /* BOOKING */
 
@@ -582,7 +595,7 @@ ul {
 .bi-order-total-description {
   font-size: 12px;
 }
-.bi-order-continue-button {
+.continue-button {
   height: 42px;
   border-radius: 6px;
   background-color: #50cae0;
@@ -595,44 +608,88 @@ ul {
 
 /* HOST CONTAINER */
 
-.booking-host-container{
+.booking-guest-info-container{
   max-width:320px;
   margin:0 auto;
 }
 
-.booking-host-container div{
+.booking-guest-info-container h3{
+  border-bottom:1px solid slategray;
+  padding-bottom:10px;
+}
+
+.booking-guest-info-container p {
+  font-size:12px;
+  margin-bottom:30px;
+}
+
+.guest-info-wrapper{
   display: flex;
   flex-direction: column;
 }
-.booking-host-container div input{
-  margin:10px 0px;
-  height: 30px;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  transition: border-color .5s ease-out;
+.guest-info-input{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top:20px;
 }
-.booking-host-container div select{
+.guest-info-wrapper input{
+  
   margin:10px 0px;
-  height: 30px;
+  height: 46px;
   border: 1px solid #eee;
-  border-radius: 5px;
+  border-radius: 3px;
   transition: border-color .5s ease-out;
+  font-size:14px;
+  padding: 0 20px;
+}
+.guest-info-input .gi-mobile {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.form-valid {
+#mobile{
+  width: 60%;
+}
+#country-code{
+  width: 10%;
+}
+.guest-info-wrapper label{
+  font-size:12px;
+  font-weight: 500;
+}
+.form-valid input {
   border:1px solid palegreen !important;
 }
-.form-invalid {
+
+.form-invalid input{
   border:1px solid salmon !important;
 }
 
-.form-submit{
-  height: 42px;
-  border-radius: 6px;
-  background-color: #50cae0;
-  line-height: 42px;
-  text-align: center;
-  color: white;
+.validation-icon{
+  position: absolute;
+  display: none;
+  right:20px;
+  top:50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  z-index: 99;
+  border:1px solid white none ;
+  transition: border-color .5s ease-out;
 }
+.form-valid .validation-icon{
+  display: block;
+
+  border:1px solid palegreen !important;
+}
+.form-invalid .validation-icon{
+  display: block;
+
+  border:1px solid salmon !important;
+}
+
 
 /* HOST CONTAINER */
