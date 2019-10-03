@@ -260,6 +260,7 @@
       <!-- PRODUCT BITIS -->
     </section>
     <!-- BOOKING INFO BITIS -->
+    <!-- BOOKING GUEST INFO BASLANGIC -->
     <section class="booking-guest-info-container ems-none">
       <p>
         Please provide us with your personal information on order to complete
@@ -320,19 +321,79 @@
             />
           </div>
         </div>
-        <div class="guest-info-input">
-            
+        <div class="guest-info-input"> 
           <label for="birthdate">Birthdate<sup>*</sup></label>
           <input
             required
             type="text"
-            name="birtdate"
+            name="birthdate"
             id="birthdate"
             placeholder="DD/MM/YYYY"
           />
         </div>
       </div>
     </section>
+     <!-- BOOKING GUEST INFO BITIS -->
+     <section class="booking-payment-details-container ems-none">
+      <div class="pd-credit-card"></div>
+      <div class="card-info-wrapper">
+        <div class="card-info">
+        <div class="validation-icon"></div>
+          <label for="card-number">Card Number<sup>*</sup></label>
+          <input
+            required
+            type="text"
+            name="card-number"
+            id="cardnumber"
+          />
+        </div>
+        <div class="card-info">
+          <div class="validation-icon"></div>
+          <div class="payment-credential">
+            <div>
+              <label for="expiration">Expiration<sup>*</sup></label>
+            <input
+              required
+              type="text"
+              id="expiration"
+              name="expiration"
+              placeholder="MM/YY"
+            />
+          </div>
+          <div>
+            <div class="cvc-info">?</div>
+            <label for="cvc">CVC<sup>*</sup></label>
+            <input
+              required
+              type="text"
+              name="cvc"
+              id="cvc"
+            />
+            </div>
+          </div>
+        </div>
+        <div class="card-info">
+            <div class="validation-icon"></div>
+          <label for="card-holder">Card Holder<sup>*</sup></label>
+          <input
+            required
+            type="text"
+            name="card-holder"
+            id="cardHolder"
+          />
+        </div>
+        <div class="pd-policies">
+          <div class="pd-term">
+            <div>I</div><div>Term of Use</div><div>></div>
+          </div>
+          <div class="pd-privacy">
+            <div>I</div><div>Privacy Policy</div><div>></div>
+          </div>
+          <div class="pd-accept">
+            <input type="checkbox" id="accept-pd" /> <p>By proceeding with this booking. I agree to <u>Kepler Club's</u> Terms of Use and <u>Privacy Policy</u>.</p>
+          </div>
+        </div>
+     </section>
     <div class="booking-info-order-container ems-none">
       <div class="bi-order-amount-container">
         <div class="bi-order-amount">
@@ -351,7 +412,7 @@
         <div class="bi-order-total-description">
           Service charge 10%, excluding taxes
         </div>
-        <div class="continue-button  bi-order-btn">CONTINUE</div>
+        <div rel="booking-info" class="continue-button">CONTINUE</div>
       </div>
     </div>
     <!-- FORM BITIS -->

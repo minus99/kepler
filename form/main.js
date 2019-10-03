@@ -1,11 +1,10 @@
 // Formun Kendisi ve Icindeki Parametreler Icin Olusturulan
 // ES5 Class Functions
 
-// TODO : GUNCEL SAAT ONCESI SECIM YAPILAMAZ
-
-// TODO : STEP'E ILIGILI CLASS ATAMA
-
-// TODO : CREDIT CARD
+// TODO : DATEPICKER BUGLAR
+// 1. NEXT AND PREV DAY BUTTONLARI
+// 2. AYNI SAATI HEM CHECKIN HEM CHECKOUT SECME
+// 3. CHECKOUT MAX 1 GUN SONRASI
 
 // TODO : 7 YASINDAN KUCUKSE UYARI ve DATE GIRILMEMISSE NOT VALID
 
@@ -116,7 +115,6 @@ var setForm = {
   formInput: {
     firstName: "#firstName",
     lastName: "#lastName",
-    gender: "#gender",
     email: "#email",
     mobile: "#mobile",
     countryCode: "#country-code",
@@ -124,9 +122,18 @@ var setForm = {
   },
   regex: {
     email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    countryCode : /^\+[1-9]{1}[0-9]{1,4}$/,
+    countryCode: /^\+[1-9]{1}[0-9]{1,4}$/,
     mobile: /^[0-9]{10,13}$/,
     name: /\w\D/
+  },
+  checks: {
+    email: false,
+    firstName: false,
+    lastName: false,
+    countryCode: true, // True cunku ilk acildigi +90 value'sunu aliyor
+    mobile: false,
+    birthDate: false,
+    gender: false
   },
 
   test: function() {
@@ -162,7 +169,7 @@ var setForm = {
     var _t = this,
       el = _t.el,
       cls = _t.cls;
-    // Ilk asamadan ikinci asamaya gecerken olusacak durumlar
+    // STEP 0 to 1
     $(".comfirm-button").bind("click", function() {
       // State'deki valuelari html icine aktarir
       _t.bookingInfoParser();
@@ -181,26 +188,61 @@ var setForm = {
         behavior: "smooth"
       });
     });
-    $(".bi-order-btn").on("click", function(){
-      // Ikinci asamayi cikarip ucuncu asamyi getirir
-      $(".booking-info-container").addClass("ems-none");
-      $(".booking-guest-info-container").removeClass("ems-none");
 
-      // Step Asamasi
-      $(".booking-step-container ")
-        .removeClass("step1")
-        .addClass("step2");
-      // Button Class Degisimi 
-      $(".continue-button").removeClass("bi-order-btn");
-      $(".continue-button").addClass("guest-info-btn");
+    // STEP 1 to 2
+    $(".continue-button").on("click", function() {
+
+      if ($(this).attr("rel") == "card-info") {
+        $(".booking-payment-details-container").addClass("ems-none");
+        $("").removeClass("ems-none");
+
+
+        // Step Asamasi
+        $(".booking-step-container ")
+          .removeClass("step3")
+          .addClass("step4");
+
+        $(this).attr("rel", "")
+      }
+
+      
+      if ($(this).attr("rel") == "guest-info") {
+        $(".booking-guest-info-container").addClass("ems-none");
+        $(".booking-payment-details-container").removeClass("ems-none");
+
+        // Guest Info Bolumundeki Form Inputlari State'e yollar
+        state.guest.firstName = $(_t.formInput.firstName).val();
+        state.guest.lastName = $(_t.formInput.lastName).val();
+        state.guest.email = $(_t.formInput.email).val();
+        state.guest.mobile = $(_t.formInput.countryCode).val()+$(_t.formInput.mobile).val();
+        state.guest.birtdate = $(_t.formInput.birtdate).val();
+
+        // Step Asamasi
+        $(".booking-step-container ")
+          .removeClass("step2")
+          .addClass("step3");
+        // Button Class Degisimi
+        $(".continue-button").text("COMFIRM PAYMENT");
+
+        $(this).attr("rel", "card-info")
+      }
+      if ($(this).attr('rel') == "booking-info") {
+        $(".booking-info-container").addClass("ems-none");
+        $(".booking-guest-info-container").removeClass("ems-none");
+
+        // Step Asamasi
+        $(".booking-step-container ")
+          .removeClass("step1")
+          .addClass("step2");
+
+        $(this).attr("rel", "guest-info")
+      }
+      $(".continue-button").addClass(cls.disabled);
       window.scrollTo({
         top: 0,
         left: 0,
         behavior: "smooth"
       });
-    })
-    $(".guest-info-btn").on("click", function() {
-      console.log("guest correct");
     });
   },
   // REGEX FORM VALIDATIONS
@@ -208,17 +250,9 @@ var setForm = {
     var _t = this,
       input = _t.formInput,
       regex = _t.regex,
-      cls = _t.cls;
+      cls = _t.cls,
+      checks = _t.checks;
 
-    var checks = {
-      email: false,
-      firstName: false,
-      lastName: false,
-      countryCode:false,
-      mobile: false,
-      birthDate: false,
-      gender: false
-    };
     // EMAIL VALIDATION
     $(input.email).on("input propertychange", function() {
       if (regex.email.test($(this).val())) {
@@ -267,26 +301,27 @@ var setForm = {
         checks.lastName = false;
       }
     });
-     // MOBILE VALIDATION
+    // MOBILE VALIDATION
     $(input.mobile).on("input propertychange", function() {
       if (regex.mobile.test($(this).val())) {
         $(this)
-          .parent().parent()
+          .parent()
+          .parent()
           .addClass("form-valid")
           .removeClass("form-invalid");
         checks.mobile = true;
       } else {
         $(this)
-          .parent().parent()
+          .parent()
+          .parent()
           .addClass("form-invalid")
           .removeClass("form-valid");
         checks.mobile = false;
       }
     });
     // COUNTRY CODE VALIDATION
+
     $(input.countryCode).on("input propertychange", function() {
-      console.log("readt");
-      
       if (regex.countryCode.test($(this).val())) {
         $(this)
           .parent()
@@ -308,7 +343,7 @@ var setForm = {
           .parent()
           .addClass("form-valid")
           .removeClass("form-invalid");
-        checks.birthDate = true;        
+        checks.birthDate = true;
       } else {
         $(this)
           .parent()
@@ -317,28 +352,13 @@ var setForm = {
         checks.birthDate = false;
       }
     });
-    // HER INPUT DEGISIKLIGINDE SUBMIT BUTTONUNU CONTROL EDER
-    $(".booking-guest-info-container")
-      .find("input")
-      .on("input propertychange, change", function() {
-        if (
-          checks.email &&
-          checks.mobile &&
-          checks.countryCode &&
-          checks.firstName &&
-          checks.lastName &&
-          checks.birthDate
-        ) {
-          $(".continue-button").removeClass(cls.disabled);
-        } else {
-          $(".continue-button").addClass(cls.disabled);
-        }
-      });
   },
   controls: function() {
     var _t = this,
-      el = _t.el,
-      cls = _t.cls;
+      input = _t.formInput,
+      regex = _t.regex,
+      cls = _t.cls,
+      checks = _t.checks;
     var CI = state.date.checkIn,
       CO = state.date.checkOut,
       FG = state.femaleGuest,
@@ -356,8 +376,28 @@ var setForm = {
         $(".comfirm-button").removeClass("active-button");
       }
     };
+    continueButtonS1 = function() {
+      // HER INPUT DEGISIKLIGINDE SUBMIT BUTTONUNU CONTROL EDER
+      $(".booking-guest-info-container")
+        .find("input")
+        .on("input propertychange, change", function() {
+          if (
+            checks.email &&
+            checks.mobile &&
+            checks.countryCode &&
+            checks.firstName &&
+            checks.lastName &&
+            checks.birthDate
+          ) {
+            $(".continue-button").removeClass(cls.disabled);
+          } else {
+            $(".continue-button").addClass(cls.disabled);
+          }
+        });
+    };
 
     comfirmButton();
+    continueButtonS1();
   },
   // Dropdown Menu, Counter, Datepicker Fonksiyonlarini Cagirir
   plugins: function() {
@@ -756,6 +796,9 @@ var setForm = {
           $(el.time).removeClass(cls.bookedTime);
           $(el.time).removeClass(cls.selectedTime);
 
+          var dt = new Date();
+          var currentHour = dt.getHours();
+
           $(el.time).each(function() {
             var thisTime =
               $(this).attr("data-date") + " " + $(this).attr("data-time");
@@ -772,8 +815,14 @@ var setForm = {
                 }
               });
             }
+            if($(this).attr("data-date") == _t.getDate() && parseInt($(this).attr("data-time"))<=currentHour){
+              $(this).addClass(cls.disabled);
+            }else{
+              $(this).removeClass(cls.disabled);
+            }
           });
         }
+        checkTimes();
         // Tarih İleri Geri Buttonları
         var dateButton = $(".date-counter-button");
 
@@ -810,10 +859,10 @@ var setForm = {
             changeMonth: false,
             numberOfMonths: 1
           })
-          .on("change", function() {            
-          });
+          .on("change", function() {});
         // TODO : 7 yas eksi validation
       });
+
     // Pluginleri Cagirir
     dropDown(el.dropDown); // dropdown
 
@@ -824,6 +873,7 @@ var setForm = {
       });
     customDatePicker(); //customDatepicker
     birthDatePicker(); //birtdatePciker
+    
   },
   // Booking Info Sekmesine Bilgileri Aktarır
   bookingInfoParser: function() {

@@ -691,5 +691,92 @@ ul {
   border:1px solid salmon !important;
 }
 
-
 /* HOST CONTAINER */
+
+/* CREDIT CARD */
+.booking-payment-details-container {
+  max-width:320px;
+  margin:0 auto;
+}
+
+.pd-credit-card{
+  width:315px;
+  height:190px;
+  border-radius: 8px;
+  background-color: greenyellow;
+}
+.card-info-wrapper{
+  display: flex;
+  flex-direction: column;
+}
+.card-info{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top:20px;
+}
+.card-info input{
+  margin:10px 0px;
+  height: 46px;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  transition: border-color .5s ease-out;
+  font-size:14px;
+  padding: 0 20px;
+}
+.payment-credential{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.payment-credential > div{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+#expiration{
+  width:50px;
+  margin-right:10px;
+}
+
+.pd-policies{
+  display: flex;
+  flex-direction: column;
+  padding-bottom:100px;
+  border-top:1px solid slategray;
+  border-bottom:1px solid slategray;
+}
+
+.pd-policies >div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin:20px 0;
+  height:30px;
+  align-items: center;
+  border-bottom:1px solid slategray;
+}
+
+.cvc-info{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  right:0px;
+  bottom:-12px;
+  font-size:24px;
+  color: indigo;
+  border-left:1px solid #eee;
+  padding-left:20px;
+  
+  height: 46px;
+  line-height: 46px;
+  text-align: center;
+}
+
+.pd-accept{
+  align-items: flex-start !important;
+  border-bottom:none !important;
+}
+.pd-accept p{
+  margin:0;
+  padding:0;
+}
