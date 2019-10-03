@@ -1,24 +1,57 @@
-.ems-sticky-header{
+.custom-home-page{
+    .ems-sticky-header{
+        .site-header{
+            background: $color0;
+        }
+    }
     .site-header{
-        background: #453d98;
+        position: fixed;
+        background: none;
     }
 }
 
 .mobile-menu-ready{
     .site-header{
+        &:after{
+            height:100%;
+        }
         &-grid{
+            z-index: 1;
             .site-menu{
                 opacity: 1;
-                width: 100%;
-                height:100vh;
+                width:100%;
+                right:0px;
+                &-wrapper{
+                    opacity: 1;
+                    bottom:0;
+                    height: auto;
+                    transition: all 1s;
+                    transition-delay: .5s;
+                }
+                .booking-button{
+                    position: relative;
+                    bottom:0px;
+                    opacity: 1;
+                    transition: all 1s;
+                    transition-delay: .5s;
+                }
+            }
+            .ga3{
+                .mobile-menu-opened{
+                    display: none;
+                }
+                .mobile-menu-closed{
+                    display: block;
+                }
             }
         }
     }
 }
 
 .site-header{
+    background: $color0;
     transition: all .4s;
-    position: fixed;
+    position: sticky;
     top:0px;
     width:100%;
     z-index: 9999;
@@ -29,26 +62,52 @@
         justify-content: space-between;
         padding:0px 10px;
         height:100%;
+        .ga1{
+            z-index: 5;
+        }
         .site-menu{
             position: fixed;
-            height: 0;
             background: #fff;
-            top: 50px;
+            top: 0px;
             display: flex;
             align-items: center;
             justify-content: center;
             line-height: 3;
             font-size: 30px;
             text-align: center;
-            right: 0px;
+            right: -200%;
             transition: all .4s;
-            width: 0px;
-            left: 50%;
-            transform: translateX(-50%);
             opacity: 0;
             height: 100vh;
             flex-wrap: wrap;
+            z-index: 3;
+            &-wrapper{
+                opacity: 0; 
+                position: relative;
+                bottom:-100px;
+            }
+            .booking-button{
+                position: relative;
+                bottom:-500px;
+                opacity: 0;
+            }
         }
+        .ga3{
+            z-index: 5;
+            .mobile-menu-closed{
+                display: none;
+            }
+        }
+    }
+    &:after{
+        content:'';
+        background: $color0;
+        height:0;
+        width:100%;
+        position: absolute;
+        top:0px;
+        transition: all .4s;
+        z-index: 4;
     }
 }
 

@@ -1,15 +1,22 @@
-.ems-sticky-header{
+.custom-home-page{
+    .ems-sticky-header{
+        .site-header{
+            height:84px;
+            background: $color0;
+        }
+    }
     .site-header{
-        height:84px;
+        a{
+            pointer-events: auto;
+        }
+        height:168px;
+        pointer-events: none;
     }
 }
 
 .site-header{
-    a{
-        pointer-events: auto;
-    }
-    height:168px;
-    pointer-events: none;
+    height:84px;
+    background: $color0;
     &-grid{
         max-width:1160px;
         width:100%;
@@ -35,6 +42,15 @@
             line-height: 1.4;
             justify-content: space-between;
             padding-left:120px;
+            &-wrapper{
+                bottom:0;
+                opacity: 1;
+                height: auto;
+            }
+            .booking-button{
+                bottom:0;
+                opacity: 1;
+            }
             &-inner{
                 display: flex;
                 li{
@@ -64,5 +80,8 @@
             }
         }
         
+    }
+    &:after{
+        content:none;
     }
 }

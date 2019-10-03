@@ -2143,17 +2143,44 @@ button.toast-close-button {
 .gridHeaderSepetStok {
   display: none; }
 
-.ems-sticky-header .site-header {
+.custom-home-page .ems-sticky-header .site-header {
   background: #453d98; }
 
-.mobile-menu-ready .site-header-grid .site-menu {
-  opacity: 1;
-  width: 100%;
-  height: 100vh; }
+.custom-home-page .site-header {
+  position: fixed;
+  background: none; }
+
+.mobile-menu-ready .site-header:after {
+  height: 100%; }
+
+.mobile-menu-ready .site-header-grid {
+  z-index: 1; }
+  .mobile-menu-ready .site-header-grid .site-menu {
+    opacity: 1;
+    width: 100%;
+    right: 0px; }
+    .mobile-menu-ready .site-header-grid .site-menu-wrapper {
+      opacity: 1;
+      bottom: 0;
+      height: auto;
+      transition: all 1s;
+      transition-delay: .5s; }
+    .mobile-menu-ready .site-header-grid .site-menu .booking-button {
+      position: relative;
+      bottom: 0px;
+      opacity: 1;
+      transition: all 1s;
+      transition-delay: .5s; }
+  .mobile-menu-ready .site-header-grid .ga3 .mobile-menu-opened {
+    display: none; }
+  .mobile-menu-ready .site-header-grid .ga3 .mobile-menu-closed {
+    display: block; }
 
 .site-header {
+  background: #453d98;
   transition: all .4s;
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
   top: 0px;
   width: 100%;
   z-index: 9999;
@@ -2164,26 +2191,45 @@ button.toast-close-button {
     justify-content: space-between;
     padding: 0px 10px;
     height: 100%; }
+    .site-header-grid .ga1 {
+      z-index: 5; }
     .site-header-grid .site-menu {
       position: fixed;
-      height: 0;
       background: #fff;
-      top: 50px;
+      top: 0px;
       display: flex;
       align-items: center;
       justify-content: center;
       line-height: 3;
       font-size: 30px;
       text-align: center;
-      right: 0px;
+      right: -200%;
       transition: all .4s;
-      width: 0px;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      transform: translateX(-50%);
       opacity: 0;
       height: 100vh;
-      flex-wrap: wrap; }
+      flex-wrap: wrap;
+      z-index: 3; }
+      .site-header-grid .site-menu-wrapper {
+        opacity: 0;
+        position: relative;
+        bottom: -100px; }
+      .site-header-grid .site-menu .booking-button {
+        position: relative;
+        bottom: -500px;
+        opacity: 0; }
+    .site-header-grid .ga3 {
+      z-index: 5; }
+      .site-header-grid .ga3 .mobile-menu-closed {
+        display: none; }
+  .site-header:after {
+    content: '';
+    background: #453d98;
+    height: 0;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    transition: all .4s;
+    z-index: 4; }
 
 .booking-form-animate .booking-menu-overlay {
   display: block;
@@ -2205,6 +2251,22 @@ button.toast-close-button {
   overflow-y: auto;
   transition: all 1s;
   z-index: 999999; }
+
+.custom-home-page .site-footer {
+  width: 100%;
+  height: 0px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 1s; }
+
+.custom-home-page .ems-last-slide::-webkit-scrollbar {
+  width: 0px; }
+
+.custom-home-page .ems-last-slide .site-footer {
+  height: auto;
+  visibility: visible;
+  opacity: 1; }
 
 .ems-last-slide .site-footer {
   display: flex; }
@@ -2270,11 +2332,6 @@ button.toast-close-button {
       .site-footer-inner .footer-wrapper .footer-area-4 .minus99 .icon-minus99 {
         font-size: 23px;
         --color1:black; }
-
-body {
-  /* width */ }
-  body::-webkit-scrollbar {
-    width: 5px; }
 
 .homepage-slider.swiper-container {
   width: 100%;
@@ -2611,13 +2668,17 @@ body {
       position: static; }
     .ems-grid-option1 {
       grid-column: span 1; }
-    .ems-sticky-header .site-header {
-      height: 84px; }
-    .site-header {
+    .custom-home-page .ems-sticky-header .site-header {
+      height: 84px;
+      background: #453d98; }
+    .custom-home-page .site-header {
       height: 168px;
       pointer-events: none; }
-      .site-header a {
+      .custom-home-page .site-header a {
         pointer-events: auto; }
+    .site-header {
+      height: 84px;
+      background: #453d98; }
       .site-header-grid {
         max-width: 1160px;
         width: 100%;
@@ -2642,6 +2703,13 @@ body {
           line-height: 1.4;
           justify-content: space-between;
           padding-left: 120px; }
+          .site-header-grid .site-menu-wrapper {
+            bottom: 0;
+            opacity: 1;
+            height: auto; }
+          .site-header-grid .site-menu .booking-button {
+            bottom: 0;
+            opacity: 1; }
           .site-header-grid .site-menu-inner {
             display: flex; }
             .site-header-grid .site-menu-inner li {
@@ -2663,6 +2731,8 @@ body {
               border-radius: 6px;
               padding: 13.5px 0px;
               width: 100%; }
+      .site-header:after {
+        content: none; }
     .site-footer-inner .footer-wrapper {
       background: #453d98;
       margin: 0 auto;
