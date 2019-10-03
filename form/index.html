@@ -36,7 +36,6 @@
       </div>
     </section>
     <!-- STEP BITIS -->
-    <button id="start">START</button>
     <button class="test">TEST</button>
     <!-- BOOKING BASLANGIC -->
     <section class="booking-container">
@@ -197,9 +196,7 @@
       <!-- CARD BASLANGIC -->
       <section class="booking-info-card-container">
         <div class="booking-info-card-wrapper">
-          <div class="booking-info-location">
-           
-          </div>
+          <div class="booking-info-location"></div>
           <div>
             <div class="booking-info-date"></div>
             <div class="booking-info-guest">
@@ -211,8 +208,7 @@
                 <span class="bi-checkin-hour"></span> -
                 <span class="bi-checkout-hour"></span> (<span
                   class="bi-total-hour"
-                  ></span
-                >
+                ></span>
                 hrs)
               </div>
             </div>
@@ -227,111 +223,122 @@
         <div class="booking-info-product-wrapper">
           <!-- GUEST TEMPLATE BASLANGIC-->
           <script id="guestTemplate" type="text/template">
-          <div class="booking-info-product" rel="$$strURN_KOD$$">
-            <div class="bi-product-image $$strURN_AD$$">
-              <img src="$$strURN_RESIM$$" />
-            </div>
-            <div class="bi-product-info">
-              <div class="bi-product-title">
-                Nap Session (
-                <span class="bi-product-gender">
-                   $$strURN_AD$$
-                </span>) x 1
+            <div class="booking-info-product" rel="$$strURN_KOD$$">
+              <div class="bi-product-image $$strURN_AD$$">
+                <img src="$$strURN_RESIM$$" />
               </div>
-              <ul class="bi-product-specs">
-                <li>Fully Equipped Unit</li>
-                <li>Pay Now</li>
-                <li>Free Cancellation</li>
-                <!-- prmACIKLAMA -->
-              </ul>
-              <div class="bi-product-fee">
-                <div class="bi-prodcut-hour">
-                  <span class="bi-hour">{{hour}}</span>hrs x
-                  <span class="bi-unit-price">
-                    $$salesPrice$$
-                  </span>USD / hr
+              <div class="bi-product-info">
+                <div class="bi-product-title">
+                  Nap Session (
+                  <span class="bi-product-gender">
+                     $$strURN_AD$$
+                  </span>) x 1
                 </div>
-                <div class="bi-product-price-wrapper">
-                  <span class="bi-product-price">{{price}}</span> USD
+                <ul class="bi-product-specs">
+                  <li>Fully Equipped Unit</li>
+                  <li>Pay Now</li>
+                  <li>Free Cancellation</li>
+                  <!-- prmACIKLAMA -->
+                </ul>
+                <div class="bi-product-fee">
+                  <div class="bi-prodcut-hour">
+                    <span class="bi-hour">{{hour}}</span>hrs x
+                    <span class="bi-unit-price">
+                      $$salesPrice$$
+                    </span>USD / hr
+                  </div>
+                  <div class="bi-product-price-wrapper">
+                    <span class="bi-product-price">{{price}}</span> USD
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </script>
-        <!-- GUEST TEMPLATE BITIS-->
+          </script>
+          <!-- GUEST TEMPLATE BITIS-->
         </div>
-
       </section>
       <!-- PRODUCT BITIS -->
     </section>
     <!-- BOOKING INFO BITIS -->
-    <section class="booking-host-container">
-      <div id="guest-info">
-        <label for="first-name">First Name</label>
-        <input
-          required
-          type="text"
-          name="first-name"
-          id="firstName"
-          placeholder="Adi"
-        />
-        <label for="last-name">Last Name</label>
-        <input
-          required
-          type="text"
-          name="last-name"
-          id="lastName"
-          placeholder="Soyadi"
-        />
-        <label for="gender">Gender</label>
-  
-        <select
-          required
-          name="gender"
-          id="gender"
-        >
-        <option value="">
-        </option>
-        <option value="male">
-          Male
-        </option>
-        <option value="female">
-          Female
-        </option>
-      </select>
-        <label for="email">Email Address</label>
-        <input
-          required
-          type="email"
-          name="email"
-          id="email"
-          placeholder="mail@mail.com"
-        />
-        <label for="mobile">Mobile Number</label>
-        <input
-          required
-          type="text"
-          name="mobile"
-          id="mobile"
-          placeholder="+905555555555"
-        />
-        <label for="birthdate">Birthdate</label>
-        <input
-          required
-          type="date"
-          name="birtdate"
-          id="birthdate"
-         
-        />
-        <div class="form-submit disabled">SUBMIT</div>
-    </div>
+    <section class="booking-guest-info-container ems-none">
+      <p>
+        Please provide us with your personal information on order to complete
+        your reservation.
+      </p>
+      <h3>Guest Info</h3>
+      <div class="guest-info-wrapper">
+        <div class="guest-info-input">
+        <div class="validation-icon"></div>
+          <label for="first-name">First Name<sup>*</sup></label>
+          <input
+            required
+            type="text"
+            name="first-name"
+            id="firstName"
+            placeholder="Adi"
+          />
+        </div>
+        <div class="guest-info-input">
+            <div class="validation-icon"></div>
+          <label for="last-name">Last Name<sup>*</sup></label>
+          <input
+            required
+            type="text"
+            name="last-name"
+            id="lastName"
+            placeholder="Soyadi"
+          />
+        </div>
+        <div class="guest-info-input">
+            <div class="validation-icon"></div>
+          <label for="email">Email Address<sup>*</sup></label>
+          <input
+            required
+            type="email"
+            name="email"
+            id="email"
+            placeholder="mail@mail.com"
+          />
+        </div>
+        <div class="guest-info-input">
+          <div class="validation-icon"></div>
+          <label for="mobile">Mobile Number<sup>*</sup></label>
+          <div class="gi-mobile">
+            <input
+              required
+              type="text"
+              id="country-code"
+              name="country-code"
+              value="+90"
+            />
+            <input
+              required
+              type="text"
+              name="mobile"
+              id="mobile"
+              placeholder="5555555555"
+            />
+          </div>
+        </div>
+        <div class="guest-info-input">
+            
+          <label for="birthdate">Birthdate<sup>*</sup></label>
+          <input
+            required
+            type="text"
+            name="birtdate"
+            id="birthdate"
+            placeholder="DD/MM/YYYY"
+          />
+        </div>
+      </div>
     </section>
     <div class="booking-info-order-container ems-none">
       <div class="bi-order-amount-container">
         <div class="bi-order-amount">
           <div>
-            <span class="bi-order-total-guest"></span
-            > adult(s) x <span class="bi-order-guest-price"></span> USD
+            <span class="bi-order-total-guest"></span> adult(s) x
+            <span class="bi-order-guest-price"></span> USD
           </div>
         </div>
         <div><span class="bi-order-total-price"></span> USD</div>
@@ -344,7 +351,7 @@
         <div class="bi-order-total-description">
           Service charge 10%, excluding taxes
         </div>
-        <div class="bi-order-continue-button">CONTINUE</div>
+        <div class="continue-button  bi-order-btn">CONTINUE</div>
       </div>
     </div>
     <!-- FORM BITIS -->

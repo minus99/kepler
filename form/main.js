@@ -5,12 +5,9 @@
 
 // TODO : STEP'E ILIGILI CLASS ATAMA
 
-// TODO : REGEX KONTROL
-
 // TODO : CREDIT CARD
 
-// TODO : 7 YASINDAN KUCUKSE UYARI
-
+// TODO : 7 YASINDAN KUCUKSE UYARI ve DATE GIRILMEMISSE NOT VALID
 
 var Form = function(id, booking, host, card) {
   this.id = id;
@@ -61,7 +58,14 @@ var state = {
   location: undefined,
   locationName: undefined,
   femaleGuest: undefined,
-  maleGuest: undefined
+  maleGuest: undefined,
+  guest: {
+    firstName: undefined,
+    lastName: undefined,
+    email: undefined,
+    mobile: undefined,
+    birtdate: undefined
+  }
 };
 
 // Form Kontrolleri ve Secimleri
@@ -115,13 +119,16 @@ var setForm = {
     gender: "#gender",
     email: "#email",
     mobile: "#mobile",
+    countryCode: "#country-code",
     birthdate: "#birthdate"
   },
   regex: {
     email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    mobile: /^\+[1-9]{1}[0-9]{11,14}$/,
+    countryCode : /^\+[1-9]{1}[0-9]{1,4}$/,
+    mobile: /^[0-9]{10,13}$/,
     name: /\w\D/
   },
+
   test: function() {
     $(".test").bind("click", function() {
       console.log(state);
@@ -174,11 +181,27 @@ var setForm = {
         behavior: "smooth"
       });
     });
+    $(".bi-order-btn").on("click", function(){
+      // Ikinci asamayi cikarip ucuncu asamyi getirir
+      $(".booking-info-container").addClass("ems-none");
+      $(".booking-guest-info-container").removeClass("ems-none");
 
-    $(".form-submit").on("click", function(){
-      console.log("form clicked");
-      
+      // Step Asamasi
+      $(".booking-step-container ")
+        .removeClass("step1")
+        .addClass("step2");
+      // Button Class Degisimi 
+      $(".continue-button").removeClass("bi-order-btn");
+      $(".continue-button").addClass("guest-info-btn");
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+      });
     })
+    $(".guest-info-btn").on("click", function() {
+      console.log("guest correct");
+    });
   },
   // REGEX FORM VALIDATIONS
   validations: function() {
@@ -191,76 +214,131 @@ var setForm = {
       email: false,
       firstName: false,
       lastName: false,
+      countryCode:false,
       mobile: false,
       birthDate: false,
       gender: false
     };
-
+    // EMAIL VALIDATION
     $(input.email).on("input propertychange", function() {
       if (regex.email.test($(this).val())) {
         $(this)
+          .parent()
           .addClass("form-valid")
           .removeClass("form-invalid");
         checks.email = true;
       } else {
         $(this)
+          .parent()
           .addClass("form-invalid")
           .removeClass("form-valid");
         checks.email = false;
       }
     });
+    // FIRSTNAME VALIDATION
     $(input.firstName).on("input propertychange", function() {
       if (regex.name.test($(this).val())) {
         $(this)
+          .parent()
           .addClass("form-valid")
           .removeClass("form-invalid");
         checks.firstName = true;
       } else {
         $(this)
+          .parent()
           .addClass("form-invalid")
           .removeClass("form-valid");
         checks.firstName = false;
       }
     });
+    // LASTNAME VALIDATION
     $(input.lastName).on("input propertychange", function() {
       if (regex.name.test($(this).val())) {
         $(this)
+          .parent()
           .addClass("form-valid")
           .removeClass("form-invalid");
         checks.lastName = true;
       } else {
         $(this)
+          .parent()
           .addClass("form-invalid")
           .removeClass("form-valid");
         checks.lastName = false;
       }
     });
+     // MOBILE VALIDATION
     $(input.mobile).on("input propertychange", function() {
       if (regex.mobile.test($(this).val())) {
         $(this)
+          .parent().parent()
           .addClass("form-valid")
           .removeClass("form-invalid");
         checks.mobile = true;
       } else {
         $(this)
+          .parent().parent()
           .addClass("form-invalid")
           .removeClass("form-valid");
         checks.mobile = false;
       }
     });
-    // HER INPUT DEGISIKLIGINDE SUBMIT BUTTONUNU CONTROL EDER
-    $(".booking-host-container").find("input").on("input propertychange", function(){
-      if (checks.email && checks.mobile && checks.firstName && checks.lastName) {
-        $(".form-submit").removeClass(cls.disabled);
+    // COUNTRY CODE VALIDATION
+    $(input.countryCode).on("input propertychange", function() {
+      console.log("readt");
+      
+      if (regex.countryCode.test($(this).val())) {
+        $(this)
+          .parent()
+          .addClass("form-valid")
+          .removeClass("form-invalid");
+        checks.countryCode = true;
       } else {
-        $(".form-submit").addClass(cls.disabled);
+        $(this)
+          .parent()
+          .addClass("form-invalid")
+          .removeClass("form-valid");
+        checks.countryCode = false;
       }
-    })
- 
+    });
+    //BIRTHDATE VALIDATION
+    $(input.birthdate).on("change", function() {
+      if ($(this).val() != "") {
+        $(this)
+          .parent()
+          .addClass("form-valid")
+          .removeClass("form-invalid");
+        checks.birthDate = true;        
+      } else {
+        $(this)
+          .parent()
+          .addClass("form-invalid")
+          .removeClass("form-valid");
+        checks.birthDate = false;
+      }
+    });
+    // HER INPUT DEGISIKLIGINDE SUBMIT BUTTONUNU CONTROL EDER
+    $(".booking-guest-info-container")
+      .find("input")
+      .on("input propertychange, change", function() {
+        if (
+          checks.email &&
+          checks.mobile &&
+          checks.countryCode &&
+          checks.firstName &&
+          checks.lastName &&
+          checks.birthDate
+        ) {
+          $(".continue-button").removeClass(cls.disabled);
+        } else {
+          $(".continue-button").addClass(cls.disabled);
+        }
+      });
   },
   controls: function() {
-    var _t = this;
-    (el = _t.el), (cls = _t.cls);
+    var _t = this,
+      el = _t.el,
+      cls = _t.cls;
     var CI = state.date.checkIn,
       CO = state.date.checkOut,
       FG = state.femaleGuest,
@@ -278,6 +356,7 @@ var setForm = {
         $(".comfirm-button").removeClass("active-button");
       }
     };
+
     comfirmButton();
   },
   // Dropdown Menu, Counter, Datepicker Fonksiyonlarini Cagirir
@@ -722,15 +801,29 @@ var setForm = {
 
         setDate();
       }),
-      // Pluginleri Cagirir
-      dropDown(el.dropDown); // dropdown
+      // Guest Info Bolumundeki Datepicker
+      (birthDatePicker = function() {
+        $("#birthdate")
+          .datepicker({
+            dateFormat: "dd/mm/yy",
+            defaultDate: "+3d",
+            changeMonth: false,
+            numberOfMonths: 1
+          })
+          .on("change", function() {            
+          });
+        // TODO : 7 yas eksi validation
+      });
+    // Pluginleri Cagirir
+    dropDown(el.dropDown); // dropdown
 
     $(el.counter)
       .find(el.counterWrapper)
       .each(function() {
         counter(this); // counter
       });
-    customDatePicker();
+    customDatePicker(); //customDatepicker
+    birthDatePicker(); //birtdatePciker
   },
   // Booking Info Sekmesine Bilgileri Aktarır
   bookingInfoParser: function() {
