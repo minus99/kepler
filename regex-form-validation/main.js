@@ -492,8 +492,6 @@ var orderForm = {
 orderForm.init();
 
 
-<<<<<<< HEAD
-=======
 // $.ajax({
 //   type: "POST",
 //   url: "http://***.***.***.**/",
@@ -530,4 +528,3 @@ orderForm.init();
 //     if (typeof callback !== "undefined") callback({ type: "success", val: d });
 //   }
 // });
->>>>>>> 3efac8e29abbf78fc47469280e56a6145a115785
