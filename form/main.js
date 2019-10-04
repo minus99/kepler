@@ -1,12 +1,16 @@
 // Formun Kendisi ve Icindeki Parametreler Icin Olusturulan
 // ES5 Class Functions
 
-// TODO : DATEPICKER BUGLAR
-// 1. NEXT AND PREV DAY BUTTONLARI
+// TODO
+// 1. NEXT AND PREV DAY BUTTONLARI DISABLE ATAMA
 // 2. AYNI SAATI HEM CHECKIN HEM CHECKOUT SECME
-// 3. CHECKOUT MAX 1 GUN SONRASI
 
-// TODO : 7 YASINDAN KUCUKSE UYARI ve DATE GIRILMEMISSE NOT VALID
+// 4. DATEPICKERIN ALTINA SAAT SAYISI VE FARKLI GUNLERDE ISE UYARI
+// 5. ERKEK VE KADIN SAYISINI x10  OLARAK GOSTERME
+// 6. THANK YOU SAYFASI
+// 7. DATA
+// 8. 7 YASINDAN KUCUKSE UYARI ve DATE GIRILMEMISSE NOT VALID
+// 9. SAFARI DESKTOP ICIN DATEPICKER
 
 var Form = function(id, booking, host, card) {
   this.id = id;
@@ -510,7 +514,7 @@ var setForm = {
               altFormat: "d M, y",
               dateFormat: "yy-mm-dd",
               altField: "#db-in-date",
-              defaultDate: "+3d",
+              defaultDate: "+1d",
               changeMonth: false,
               numberOfMonths: 1,
               minDate: _t.getDate()
@@ -518,8 +522,7 @@ var setForm = {
             .on("change", function() {
               $("#out-date").datepicker("setDate", _getDate(this));
               $("#out-date").datepicker("option", "minDate", _getDate(this));
-              $("#out-date").datepicker("option", "maxDate", _getDate(this));
-
+                            
               // Tarih Yazisini Degistirir
               $(el.calendarButton).text(
                 $("#db-in-date")
@@ -542,8 +545,13 @@ var setForm = {
               altField: "#db-out-date",
               defaultDate: "+1d",
               changeMonth: false,
-              numberOfMonths: 1
-              
+              numberOfMonths: 1,
+              minDate: _t.getDate(),
+              beforeShow : function (input, instance){
+                var maxDate = new Date($("#in-date").datepicker("getDate").valueOf())
+                maxDate.setDate(maxDate.getDate()+1);
+                $("#out-date").datepicker("option", "maxDate", maxDate)
+              }
             })
             .on("change", function() {
               // Tarih Yazisini Degistirir
@@ -596,6 +604,37 @@ var setForm = {
                 .removeClass(cls.active);
             }
           );
+          // Tarih İleri Geri Buttonları
+          var dateButton = $(".date-counter-button");
+
+          dateButton.on("click", function() {
+            var type = $(this).attr("rel");
+
+            function counterDate(picker) {
+              var date = $("#" + picker).datepicker("getDate");
+              var multiply = 1;
+              type === "date-inc" ? (multiply = 1) : (multiply = -1);
+              // Tarihi Değiştitir
+              date.setTime(date.getTime() + multiply * 1000 * 60 * 60 * 24);
+              // Tarihi Değiştirir
+              $("#" + picker).datepicker("setDate", date);
+              $(el.time).attr("data-date", $("#" + picker).val());
+              // Button Arasındaki Text i değiştirir
+              $(el.calendarButton).text(
+                $("#db-" + picker)
+                  .val()
+                  .toString()
+              );
+            }
+
+            if ($(".check-in-info").hasClass(cls.active)) {
+              counterDate("in-date");
+            }
+            if ($(".check-out-info").hasClass(cls.active)) {
+              counterDate("out-date");
+            }
+            checkTimes();
+          });
         }
 
         // setTime fonksiyonu için [item = seçilen element] [type = seçimin türü]
@@ -825,38 +864,6 @@ var setForm = {
           });
         }
         checkTimes();
-        // Tarih İleri Geri Buttonları
-        var dateButton = $(".date-counter-button");
-
-        dateButton.on("click", function() {
-          var type = $(this).attr("rel");
-
-          function counterDate(picker) {
-            var date = $("#" + picker).datepicker("getDate");
-            var multiply = 1;
-            type === "date-inc" ? (multiply = 1) : (multiply = -1);
-            // Tarihi Değiştitir
-            date.setTime(date.getTime() + multiply * 1000 * 60 * 60 * 24);
-            // Tarihi Değiştirir
-            $("#" + picker).datepicker("setDate", date);
-            $(el.time).attr("data-date", $("#" + picker)
-            .val())
-            // Button Arasındaki Text i değiştirir
-            $(el.calendarButton).text(
-              $("#db-" + picker)
-                .val()
-                .toString()
-            );
-          }
-
-          if ($(".check-in-info").hasClass(cls.active)) {
-            counterDate("in-date");
-          }
-          if ($(".check-out-info").hasClass(cls.active)) {
-            counterDate("out-date");
-          }
-          checkTimes();
-        });
 
         setDate();
       }),
