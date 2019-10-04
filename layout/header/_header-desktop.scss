@@ -46,24 +46,31 @@
                 bottom:0;
                 opacity: 1;
                 height: auto;
-            }
-            .booking-button{
-                bottom:0;
-                opacity: 1;
-            }
-            &-inner{
-                display: flex;
-                li{
-                    margin-right:80px;
-                    a{
-                        color:#fff;
+                width:auto;
+                .site-menu-inner{
+                    display: flex;
+                    li{
+                        margin-right:80px;
+                        margin-bottom: 0px;
+                        a{
+                            color:$white;
+                            font-size:16px;
+                        }
                     }
                 }
             }
+            .booking-button{
+                width:200px;
+                bottom:0;
+                opacity: 1;
+                margin-top:0px;
+            }
             .lang-menu{
                 border:1px solid #fff;
-                min-width: 50px;
+                width:50px;
+                bottom:0px;
                 height:30px;
+                position: relative;
             }
             .booking-button{
                 min-width: 200px;
@@ -84,4 +91,9 @@
     &:after{
         content:none;
     }
+}
+
+// Homepage Mobile Booking Form Trigger
+.booking-menu-opened.booking-menu-opened-fixed {
+    display: none !important;
 }

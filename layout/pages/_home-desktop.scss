@@ -1,8 +1,15 @@
 .homepage-slider{
+    > .swiper-inner{
+        > .swiper-wrapper{
+            > .swiper-slide{
+                padding: unset !important;
+            }
+        }
+    }
     .swiper-wrapper{
         .swiper-slide{
             &.screen-1{
-                .first-content{
+                .starter-content{
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -35,6 +42,18 @@
                         height:100vh;
                         display: flex;
                         background:url("/UPLOAD/frontend/first-banner.png");
+                    }
+                    &:after{
+                        content:none;
+                    }
+                }
+                .next-swiper{
+                    max-width:1160px;
+                    &-wrapper{
+                        max-width: 30px;
+                        svg{
+                            font-size:50px;
+                        }
                     }
                 }
             }
@@ -187,6 +206,7 @@
                     max-width: 873px;
                     margin:0 auto;
                     .slide-map-header{
+                        max-width: inherit;
                         margin-bottom: 40px;
                         .title{
                             font-size:32px;

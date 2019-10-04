@@ -5,6 +5,17 @@
         height: 100vh;
         margin-left: auto;
         margin-right: auto;
+        > .swiper-inner{
+            > .swiper-wrapper{
+                > .swiper-slide{
+                    padding-top:80px;
+                    padding-bottom:100px;
+                    &.screen-1{
+                        padding:unset;
+                    }
+                }
+            }
+        }
         .swiper-slide {
             text-align: center;
             font-size: 18px;
@@ -17,12 +28,16 @@
                 width:100%;
             }
             &.screen-1{
-                .first-content{
+                .starter-content{
+                    position: relative;
                     background:url("/UPLOAD/frontend/first-banner.png");
                     height:100vh;
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: top center;
+                    > div{
+                        z-index: 1;
+                    }
                     .content-right{
                         display: none;
                     }
@@ -38,14 +53,40 @@
                                 color:#fff;
                                 font-family: $font1;
                                 &:nth-child(1){
-                                    font-size:18px;
+                                    font-size:16px;
+                                    margin-bottom:5px;
                                 }
                                 &:nth-child(2){
-                                    font-size:50px;
+                                    font-size:32px;
                                     font-weight: 500;
+                                    line-height: 1.2;
                                 }
                             }
                         }
+                    }
+                    &:after{
+                        content:'';
+                        top:0px;
+                        left:0px;
+                        z-index: 0;
+                        position: absolute;
+                        width:100%;
+                        height: 100%;
+                        background: linear-gradient(to top, rgba(10, 12, 43, 0), #000000);
+                        opacity: .5;
+                    }
+                }
+                .next-swiper{
+                    max-width: 30px;
+                    width:100%;
+                    left:50%;
+                    transform: translateX(-50%);
+                    display: inline-block;
+                    position: absolute;
+                    bottom:100px;
+                    svg{
+                        transform:rotate(-90deg);
+                        display: inline-block;
                     }
                 }
             }
@@ -123,6 +164,9 @@
                     }
                     &-footer{
                         margin-top:30px;
+                        a{
+                            padding:12px 0px;
+                        }
                     }
                 }
 
@@ -265,6 +309,15 @@
             &.screen-5{
                 .slide-map{
                     width:100%;
+                    &-header{
+                        max-width: 315px;
+                        margin:0 auto;
+                        .title{
+                            font-size:24px;
+                            font-weight: bold;
+                            color: $color0;
+                        }
+                    }
                     img{
                         width:100%;
                     }
