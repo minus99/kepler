@@ -3,7 +3,7 @@
 
 // TODO
 // 1. NEXT AND PREV DAY BUTTONLARI DISABLE ATAMA
-// 2. AYNI SAATI HEM CHECKIN HEM CHECKOUT SECME
+
 
 // 4. DATEPICKERIN ALTINA SAAT SAYISI VE FARKLI GUNLERDE ISE UYARI
 // 5. ERKEK VE KADIN SAYISINI x10  OLARAK GOSTERME
@@ -522,7 +522,7 @@ var setForm = {
             .on("change", function() {
               $("#out-date").datepicker("setDate", _getDate(this));
               $("#out-date").datepicker("option", "minDate", _getDate(this));
-                            
+
               // Tarih Yazisini Degistirir
               $(el.calendarButton).text(
                 $("#db-in-date")
@@ -547,10 +547,14 @@ var setForm = {
               changeMonth: false,
               numberOfMonths: 1,
               minDate: _t.getDate(),
-              beforeShow : function (input, instance){
-                var maxDate = new Date($("#in-date").datepicker("getDate").valueOf())
-                maxDate.setDate(maxDate.getDate()+1);
-                $("#out-date").datepicker("option", "maxDate", maxDate)
+              beforeShow: function(input, instance) {
+                var maxDate = new Date(
+                  $("#in-date")
+                    .datepicker("getDate")
+                    .valueOf()
+                );
+                maxDate.setDate(maxDate.getDate() + 1);
+                $("#out-date").datepicker("option", "maxDate", maxDate);
               }
             })
             .on("change", function() {
@@ -692,32 +696,38 @@ var setForm = {
             }
           } else if (type === "check-out") {
             // Tarih Yazısını Degistirir
-            date = $("#db-out-date")
-              .val()
-              .toString();
-
-            // Secili Zaman Degerini Alır
-            dbDate = $("#out-date")
-              .val()
-              .toString();
-
-            // State'e tarihi ve zamanı yollar
-            state.date.checkOut = dbDate + " " + time;
-
-            // Active Seçimi Değiştirir
-            $(el.datePicker)
-              .find(".input-info .check-in-info")
-              .addClass(cls.active);
-
-            $(el.datePicker)
-              .find(".input-info .check-out-info")
-              .removeClass(cls.active);
-
-            $(el.calendarButton).text(
-              $("#db-out-date")
+            if (state.date.checkIn !== fullDate) {
+              date = $("#db-out-date")
                 .val()
-                .toString()
-            );
+                .toString();
+
+              // Secili Zaman Degerini Alır
+              dbDate = $("#out-date")
+                .val()
+                .toString();
+
+              // State'e tarihi ve zamanı yollar
+              state.date.checkOut = dbDate + " " + time;
+
+              // Active Seçimi Değiştirir
+              $(el.datePicker)
+                .find(".input-info .check-in-info")
+                .addClass(cls.active);
+
+              $(el.datePicker)
+                .find(".input-info .check-out-info")
+                .removeClass(cls.active);
+
+              $(el.calendarButton).text(
+                $("#db-out-date")
+                  .val()
+                  .toString()
+              );
+            }else{
+              state.date.checkOut = "";
+              time = "";
+              date= "";
+            }
           }
           // Booked Hours Hesaplar
           if (!state.date.checkOut == "") {
@@ -775,17 +785,15 @@ var setForm = {
             state.date.totalHour = totalBookedHour;
           }
 
-          // Secili Zamanı UI'da gösterir
-          if (state.date.checkOut == fullDate) {
-            item.addClass(cls.selectedTime);
-          }
-
           // Check-in Check-out Yazısını Değiştirir
-          $(el.datePicker)
-            .find(".input-info ." + type + "-info")
-            .addClass("filled")
-            .find(el.timeInfo)
-            .text(time + " - " + date);
+      
+
+            $(el.datePicker)
+              .find(".input-info ." + type + "-info")
+              .addClass("filled")
+              .find(el.timeInfo)
+              .text(time + " - " + date);
+       
         }
         // Saat Seçimi
         $(el.time).bind("click", function() {
