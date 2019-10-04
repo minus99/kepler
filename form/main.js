@@ -191,21 +191,18 @@ var setForm = {
 
     // STEP 1 to 2
     $(".continue-button").on("click", function() {
-
       if ($(this).attr("rel") == "card-info") {
         $(".booking-payment-details-container").addClass("ems-none");
         $("").removeClass("ems-none");
-
 
         // Step Asamasi
         $(".booking-step-container ")
           .removeClass("step3")
           .addClass("step4");
 
-        $(this).attr("rel", "")
+        $(this).attr("rel", "");
       }
 
-      
       if ($(this).attr("rel") == "guest-info") {
         $(".booking-guest-info-container").addClass("ems-none");
         $(".booking-payment-details-container").removeClass("ems-none");
@@ -214,7 +211,8 @@ var setForm = {
         state.guest.firstName = $(_t.formInput.firstName).val();
         state.guest.lastName = $(_t.formInput.lastName).val();
         state.guest.email = $(_t.formInput.email).val();
-        state.guest.mobile = $(_t.formInput.countryCode).val()+$(_t.formInput.mobile).val();
+        state.guest.mobile =
+          $(_t.formInput.countryCode).val() + $(_t.formInput.mobile).val();
         state.guest.birtdate = $(_t.formInput.birtdate).val();
 
         // Step Asamasi
@@ -224,9 +222,9 @@ var setForm = {
         // Button Class Degisimi
         $(".continue-button").text("COMFIRM PAYMENT");
 
-        $(this).attr("rel", "card-info")
+        $(this).attr("rel", "card-info");
       }
-      if ($(this).attr('rel') == "booking-info") {
+      if ($(this).attr("rel") == "booking-info") {
         $(".booking-info-container").addClass("ems-none");
         $(".booking-guest-info-container").removeClass("ems-none");
 
@@ -235,7 +233,7 @@ var setForm = {
           .removeClass("step1")
           .addClass("step2");
 
-        $(this).attr("rel", "guest-info")
+        $(this).attr("rel", "guest-info");
       }
       $(".continue-button").addClass(cls.disabled);
       window.scrollTo({
@@ -520,6 +518,7 @@ var setForm = {
             .on("change", function() {
               $("#out-date").datepicker("setDate", _getDate(this));
               $("#out-date").datepicker("option", "minDate", _getDate(this));
+              $("#out-date").datepicker("option", "maxDate", _getDate(this));
 
               // Tarih Yazisini Degistirir
               $(el.calendarButton).text(
@@ -544,6 +543,7 @@ var setForm = {
               defaultDate: "+1d",
               changeMonth: false,
               numberOfMonths: 1
+              
             })
             .on("change", function() {
               // Tarih Yazisini Degistirir
@@ -679,67 +679,66 @@ var setForm = {
                 .val()
                 .toString()
             );
-
-            // Booked Hours Hesaplar
-            if (!state.date.checkOut == "") {
-              var checkOutTime = state.date.checkOut.slice(11, -3);
-              var checkInTime = state.date.checkIn.slice(11, -3);
-              var checkOutDay = state.date.checkOut.slice(0, 11);
-              var checkInDay = state.date.checkIn.slice(0, 11);
-              var totalHour = 0;
-              var firstBookedHour = 0;
-              var secondBookedHour = 0;
-              var totalBookedHour = 0;
-              // Eger aynı gun secili ise
-              if (checkOutDay === checkInDay) {
-                state.date.bookedHours = [];
-                totalHour = parseInt(checkOutTime) - parseInt(checkInTime);
-                while (totalBookedHour < totalHour) {
-                  state.date.bookedHours.push(
-                    checkInDay +
-                      (parseInt(checkInTime) + totalBookedHour)
-                        .toString()
-                        .padStart(2, 0) +
-                      ":00"
-                  );
-                  totalBookedHour++;
-                }
-                state.date.totalHour = totalBookedHour;
-              }
-              // Eger farklı günler seçili ise
-              if (checkOutDay !== checkInDay) {
-                state.date.bookedHours = [];
-                var firstDay = 24 - parseInt(checkInTime);
-                var secondDay = parseInt(checkOutTime);
-                totalBookedHour = firstDay + secondDay;
-                while (firstBookedHour < firstDay) {
-                  state.date.bookedHours.push(
-                    checkInDay +
-                      (parseInt(checkInTime) + firstBookedHour)
-                        .toString()
-                        .padStart(2, 0) +
-                      ":00"
-                  );
-                  firstBookedHour++;
-                }
-                while (secondBookedHour < secondDay) {
-                  secondBookedHour++;
-                  state.date.bookedHours.push(
-                    checkOutDay +
-                      (parseInt(checkOutTime) - secondBookedHour)
-                        .toString()
-                        .padStart(2, 0) +
-                      ":00"
-                  );
-                }
+          }
+          // Booked Hours Hesaplar
+          if (!state.date.checkOut == "") {
+            var checkOutTime = state.date.checkOut.slice(11, -3);
+            var checkInTime = state.date.checkIn.slice(11, -3);
+            var checkOutDay = state.date.checkOut.slice(0, 11);
+            var checkInDay = state.date.checkIn.slice(0, 11);
+            var totalHour = 0;
+            var firstBookedHour = 0;
+            var secondBookedHour = 0;
+            var totalBookedHour = 0;
+            // Eger aynı gun secili ise
+            if (checkOutDay === checkInDay) {
+              state.date.bookedHours = [];
+              totalHour = parseInt(checkOutTime) - parseInt(checkInTime);
+              while (totalBookedHour < totalHour) {
+                state.date.bookedHours.push(
+                  checkInDay +
+                    (parseInt(checkInTime) + totalBookedHour)
+                      .toString()
+                      .padStart(2, 0) +
+                    ":00"
+                );
+                totalBookedHour++;
               }
               state.date.totalHour = totalBookedHour;
             }
-
-            // Secili Zamanı UI'da gösterir
-            if (state.date.checkOut == fullDate) {
-              item.addClass(cls.selectedTime);
+            // Eger farklı günler seçili ise
+            if (checkOutDay !== checkInDay) {
+              state.date.bookedHours = [];
+              var firstDay = 24 - parseInt(checkInTime);
+              var secondDay = parseInt(checkOutTime);
+              totalBookedHour = firstDay + secondDay;
+              while (firstBookedHour < firstDay) {
+                state.date.bookedHours.push(
+                  checkInDay +
+                    (parseInt(checkInTime) + firstBookedHour)
+                      .toString()
+                      .padStart(2, 0) +
+                    ":00"
+                );
+                firstBookedHour++;
+              }
+              while (secondBookedHour < secondDay) {
+                secondBookedHour++;
+                state.date.bookedHours.push(
+                  checkOutDay +
+                    (parseInt(checkOutTime) - secondBookedHour)
+                      .toString()
+                      .padStart(2, 0) +
+                    ":00"
+                );
+              }
             }
+            state.date.totalHour = totalBookedHour;
+          }
+
+          // Secili Zamanı UI'da gösterir
+          if (state.date.checkOut == fullDate) {
+            item.addClass(cls.selectedTime);
           }
 
           // Check-in Check-out Yazısını Değiştirir
@@ -815,9 +814,12 @@ var setForm = {
                 }
               });
             }
-            if($(this).attr("data-date") == _t.getDate() && parseInt($(this).attr("data-time"))<=currentHour){
+            if (
+              $(this).attr("data-date") == _t.getDate() &&
+              parseInt($(this).attr("data-time")) <= currentHour
+            ) {
               $(this).addClass(cls.disabled);
-            }else{
+            } else {
               $(this).removeClass(cls.disabled);
             }
           });
@@ -828,24 +830,32 @@ var setForm = {
 
         dateButton.on("click", function() {
           var type = $(this).attr("rel");
+
           function counterDate(picker) {
             var date = $("#" + picker).datepicker("getDate");
             var multiply = 1;
             type === "date-inc" ? (multiply = 1) : (multiply = -1);
+            // Tarihi Değiştitir
             date.setTime(date.getTime() + multiply * 1000 * 60 * 60 * 24);
+            // Tarihi Değiştirir
             $("#" + picker).datepicker("setDate", date);
+            $(el.time).attr("data-date", $("#" + picker)
+            .val())
+            // Button Arasındaki Text i değiştirir
             $(el.calendarButton).text(
               $("#db-" + picker)
                 .val()
                 .toString()
             );
           }
+
           if ($(".check-in-info").hasClass(cls.active)) {
             counterDate("in-date");
           }
           if ($(".check-out-info").hasClass(cls.active)) {
             counterDate("out-date");
           }
+          checkTimes();
         });
 
         setDate();
@@ -873,7 +883,6 @@ var setForm = {
       });
     customDatePicker(); //customDatepicker
     birthDatePicker(); //birtdatePciker
-    
   },
   // Booking Info Sekmesine Bilgileri Aktarır
   bookingInfoParser: function() {
