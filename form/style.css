@@ -11,7 +11,7 @@ ul {
   padding: 0;
 }
 
-*{
+* {
   outline: none;
 }
 
@@ -23,10 +23,10 @@ ul {
   height: 50px;
   background-color: slateblue;
   color: white;
-  border:3px solid darkblue;
+  border: 3px solid darkblue;
   border-radius: 50%;
 }
-.test:focus{
+.test:focus {
   background-color: indigo;
 }
 
@@ -121,18 +121,18 @@ ul {
 
 /* STEPS */
 .booking-step-container {
-  margin:0 auto;
+  margin: 0 auto;
   max-width: 320px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom:60px;
+  margin-bottom: 60px;
 }
 .booking-step {
   position: relative;
 }
-.step-success{
+.step-success {
   display: none;
 }
 .step-number {
@@ -167,33 +167,29 @@ ul {
   background-color: #50cae0;
   opacity: 0.5;
 }
-.step-name{
+.step-name {
   position: absolute;
-  left:-50%;
+  left: -50%;
   width: 80px;
-  bottom:-30px;
-  color:indigo;
+  bottom: -30px;
+  color: indigo;
   font-size: 12px;
   font-weight: 500;
 }
-.dashed-line{
+.dashed-line {
   width: 60px;
-  border:1px dashed darkblue;
+  border: 1px dashed darkblue;
 }
 .step0 {
   display: none;
 }
 .step1 {
-
   background-color: lightblue;
-
 }
 .step2 {
-
   background-color: blue;
 }
 .step3 {
-  
   background-color: darkblue;
 }
 /* STEPS */
@@ -208,7 +204,6 @@ ul {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  
 }
 .booking-container > section {
   padding: 30px 0px;
@@ -426,7 +421,6 @@ ul {
 }
 /* COMFIRM BUTTON */
 
-
 /* BOOKING */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -557,8 +551,8 @@ ul {
 /* BOOKING INFO ORDER CARD */
 
 .booking-info-order-container {
-  margin:0px auto;
-  max-width:320px;
+  margin: 0px auto;
+  max-width: 320px;
   margin-top: 20px;
   border: solid 1px slategray;
   border-bottom-left-radius: 10px;
@@ -608,175 +602,205 @@ ul {
 
 /* HOST CONTAINER */
 
-.booking-guest-info-container{
-  max-width:320px;
-  margin:0 auto;
+.booking-guest-info-container {
+  max-width: 320px;
+  margin: 0 auto;
 }
 
-.booking-guest-info-container h3{
-  border-bottom:1px solid slategray;
-  padding-bottom:10px;
+.booking-guest-info-container h3 {
+  border-bottom: 1px solid slategray;
+  padding-bottom: 10px;
 }
 
 .booking-guest-info-container p {
-  font-size:12px;
-  margin-bottom:30px;
+  font-size: 12px;
+  margin-bottom: 30px;
 }
 
-.guest-info-wrapper{
+.guest-info-wrapper {
   display: flex;
   flex-direction: column;
 }
-.guest-info-input{
+.guest-info-input {
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top:20px;
+  margin-top: 20px;
 }
-.guest-info-wrapper input{
-  
-  margin:10px 0px;
+.guest-info-wrapper input {
+  margin: 10px 0px;
   height: 46px;
   border: 1px solid #eee;
   border-radius: 3px;
-  transition: border-color .5s ease-out;
-  font-size:14px;
+  transition: border-color 0.5s ease-out;
+  font-size: 14px;
   padding: 0 20px;
 }
 .guest-info-input .gi-mobile {
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
 }
 
-#mobile{
+#mobile {
   width: 60%;
 }
-#country-code{
+#country-code {
   width: 10%;
 }
-.guest-info-wrapper label{
-  font-size:12px;
+.guest-info-wrapper label {
+  font-size: 12px;
   font-weight: 500;
 }
 .form-valid input {
-  border:1px solid palegreen !important;
+  border: 1px solid palegreen !important;
 }
 
-.form-invalid input{
-  border:1px solid salmon !important;
+.form-invalid input {
+  border: 1px solid salmon !important;
 }
 
-.validation-icon{
+.validation-icon {
   position: absolute;
   display: none;
-  right:20px;
-  top:50%;
+  right: 20px;
+  top: 50%;
   width: 20px;
   height: 20px;
   border-radius: 50%;
   z-index: 99;
-  border:1px solid white none ;
-  transition: border-color .5s ease-out;
+  border: 1px solid white none;
+  transition: border-color 0.5s ease-out;
 }
-.form-valid .validation-icon{
+.form-valid .validation-icon {
   display: block;
 
-  border:1px solid palegreen !important;
+  border: 1px solid palegreen !important;
 }
-.form-invalid .validation-icon{
+.form-invalid .validation-icon {
   display: block;
 
-  border:1px solid salmon !important;
+  border: 1px solid salmon !important;
+}
+
+.child-warning {
+  position: fixed;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 315px;
+  height: 80px;
+  border-radius: 8px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  z-index: 999;
+}
+.warning-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 998;
+  pointer-events: none !important; 
+  user-select: none !important;
 }
 
 /* HOST CONTAINER */
 
 /* CREDIT CARD */
 .booking-payment-details-container {
-  max-width:320px;
-  margin:0 auto;
+  max-width: 320px;
+  margin: 0 auto;
 }
 
-.pd-credit-card{
-  width:315px;
-  height:190px;
+.pd-credit-card {
+  width: 315px;
+  height: 190px;
   border-radius: 8px;
   background-color: greenyellow;
 }
-.card-info-wrapper{
+.card-info-wrapper {
   display: flex;
   flex-direction: column;
 }
-.card-info{
+.card-info {
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top:20px;
+  margin-top: 20px;
 }
-.card-info input{
-  margin:10px 0px;
+.card-info input {
+  margin: 10px 0px;
   height: 46px;
   border: 1px solid #eee;
   border-radius: 3px;
-  transition: border-color .5s ease-out;
-  font-size:14px;
+  transition: border-color 0.5s ease-out;
+  font-size: 14px;
   padding: 0 20px;
 }
-.payment-credential{
+.payment-credential {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.payment-credential > div{
+.payment-credential > div {
   display: flex;
   flex-direction: column;
   position: relative;
 }
-#expiration{
-  width:50px;
-  margin-right:10px;
+#expiration {
+  width: 50px;
+  margin-right: 10px;
 }
 
-.pd-policies{
+.pd-policies {
   display: flex;
   flex-direction: column;
-  padding-bottom:100px;
-  border-top:1px solid slategray;
-  border-bottom:1px solid slategray;
+  padding-bottom: 100px;
+  border-top: 1px solid slategray;
+  border-bottom: 1px solid slategray;
 }
 
-.pd-policies >div{
+.pd-policies > div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin:20px 0;
-  height:30px;
+  margin: 20px 0;
+  height: 30px;
   align-items: center;
-  border-bottom:1px solid slategray;
+  border-bottom: 1px solid slategray;
 }
 
-.cvc-info{
+.cvc-info {
   position: absolute;
   transform: translate(-50%, -50%);
-  right:0px;
-  bottom:-12px;
-  font-size:24px;
+  right: 0px;
+  bottom: -12px;
+  font-size: 24px;
   color: indigo;
-  border-left:1px solid #eee;
-  padding-left:20px;
-  
+  border-left: 1px solid #eee;
+  padding-left: 20px;
+
   height: 46px;
   line-height: 46px;
   text-align: center;
 }
 
-.pd-accept{
+.pd-accept {
   align-items: flex-start !important;
-  border-bottom:none !important;
+  border-bottom: none !important;
 }
-.pd-accept p{
-  margin:0;
-  padding:0;
+.pd-accept p {
+  margin: 0;
+  padding: 0;
 }
+/* CREDIT CARD */

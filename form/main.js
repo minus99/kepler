@@ -4,10 +4,9 @@
 // TODO
 // 1. NEXT AND PREV DAY BUTTONLARI DISABLE ATAMA
 
-
 // 6. THANK YOU SAYFASI
 // 7. DATA
-// 8. 7 YASINDAN KUCUKSE UYARI ve DATE GIRILMEMISSE NOT VALID
+
 // 9. SAFARI DESKTOP ICIN DATEPICKER
 
 var Form = function(id, booking, host, card) {
@@ -89,7 +88,7 @@ var setForm = {
     timeContainer: ".time-container",
     time: ".time-container li",
     timeInfo: ".time-info",
-    timePickerWarnings : ".time-picker-warnings"
+    timePickerWarnings: ".time-picker-warnings"
   },
   cls: {
     none: "ems-none",
@@ -148,15 +147,17 @@ var setForm = {
   // getDay Fonksiyonuna hernangi bir deger girilmez ise bugunun tarihini alir ve string'e cevirir
   // Girilen deger integer olmalidir
   // Deger girilir ise bugunun tarihine girilen deger kadar gun ekler
-  getDate: function(addDay) {
+  getDate: function(addDay, addMonth, addYear) {
     currentDate = new Date();
-    if (addDay === null || "undefined") {
+    if (addDay === null || "undefined" && addMonth === null || "undefined" && addDay === null || "undefined") {
       addDay = 0;
+      addMonth = 0;
+      addYear = 0;
     }
     return (
-      currentDate.getFullYear().toString() +
+      (currentDate.getFullYear() + addYear ).toString() +
       "-" +
-      (currentDate.getMonth() + 1).toString().padStart(2, 0) +
+      (currentDate.getMonth() + 1 + addMonth).toString().padStart(2, 0) +
       "-" +
       (currentDate.getDate() + addDay).toString().padStart(2, 0)
     );
@@ -164,14 +165,17 @@ var setForm = {
   setInitialDate: function() {
     var _t = this,
       el = _t.el,
-      cls = _t.cls;
+      cls = _t.cls,
+      formInput = _t.formInput;
 
     $(el.time).attr("data-date", _t.getDate());
+    $(formInput.birthdate).attr("min", _t.getDate(0,0,-7))
   },
   events: function() {
     var _t = this,
       el = _t.el,
-      cls = _t.cls;
+      cls = _t.cls,
+      formInput = _t.formInput;
     // STEP 0 to 1
     $(".comfirm-button").bind("click", function() {
       // State'deki valuelari html icine aktarir
@@ -192,7 +196,6 @@ var setForm = {
       });
     });
 
-    // STEP 1 to 2
     $(".continue-button").on("click", function() {
       if ($(this).attr("rel") == "card-info") {
         $(".booking-payment-details-container").addClass("ems-none");
@@ -245,6 +248,22 @@ var setForm = {
         behavior: "smooth"
       });
     });
+    // 7 Yas Uyarisini Cikarir
+    var s = 0;
+    $(formInput.birthdate).on("focus", function() {
+      if (s === 0) {
+        s++;
+        $(".child-warning").removeClass(cls.none);
+        $(".warning-background").removeClass(cls.none);
+      }
+    });
+    // 7 Yas Uarisini Kapatir
+    $(".child-warning")
+      .find("div")
+      .bind("click", function() {
+        $(".child-warning").addClass(cls.none);
+        $(".warning-background").addClass(cls.none);
+      });
   },
   // REGEX FORM VALIDATIONS
   validations: function() {
@@ -694,8 +713,7 @@ var setForm = {
               item.addClass(cls.selectedTime);
             }
             $(el.timePickerWarnings).addClass(cls.none);
-            $(".date-warning").addClass(cls.none)
-
+            $(".date-warning").addClass(cls.none);
           } else if (type === "check-out") {
             // Tarih Yazısını Degistirir
             if (state.date.checkIn !== fullDate) {
@@ -731,8 +749,11 @@ var setForm = {
               date = "";
             }
             $(el.timePickerWarnings).removeClass(cls.none);
-            if(state.date.checkOut.slice(0, 11) !== state.date.checkIn.slice(0, 11)){
-              $(".date-warning").removeClass(cls.none)
+            if (
+              state.date.checkOut.slice(0, 11) !==
+              state.date.checkIn.slice(0, 11)
+            ) {
+              $(".date-warning").removeClass(cls.none);
             }
           }
           // Booked Hours Hesaplar
@@ -798,7 +819,6 @@ var setForm = {
             .addClass("filled")
             .find(el.timeInfo)
             .text(time + " - " + date);
-
         }
         // Saat Seçimi
         $(el.time).bind("click", function() {
@@ -882,28 +902,31 @@ var setForm = {
         setDate();
 
         function timePickerWarnings() {
-          $("#tp-totalHour").text(state.date.totalHour)
-          $("#ci-day").text($("#db-in-date")
-          .val()
-          .substring(0, 5))
-          $("#co-day").text($("#db-out-date")
-          .val()
-          .substring(0, 5))
+          $("#tp-totalHour").text(state.date.totalHour);
+          $("#ci-day").text(
+            $("#db-in-date")
+              .val()
+              .substring(0, 5)
+          );
+          $("#co-day").text(
+            $("#db-out-date")
+              .val()
+              .substring(0, 5)
+          );
         }
-
       }),
       // Guest Info Bolumundeki Datepicker
-      (birthDatePicker = function() {
-        $("#birthdate")
-          .datepicker({
-            dateFormat: "dd/mm/yy",
-            defaultDate: "+3d",
-            changeMonth: false,
-            numberOfMonths: 1
-          })
-          .on("change", function() {});
-        // TODO : 7 yas eksi validation
-      });
+      // (birthDatePicker = function() {
+      //   $("#birthdate")
+      //     .datepicker({
+      //       dateFormat: "dd/mm/yy",
+      //       defaultDate: "+3d",
+      //       changeMonth: false,
+      //       numberOfMonths: 1
+      //     })
+      //     .on("change", function() {});
+      //   // TODO : 7 yas eksi validation
+      // });
 
     // Pluginleri Cagirir
     dropDown(el.dropDown); // dropdown
@@ -914,7 +937,7 @@ var setForm = {
         counter(this); // counter
       });
     customDatePicker(); //customDatepicker
-    birthDatePicker(); //birtdatePciker
+    // birthDatePicker(); //birtdatePciker
   },
   // Booking Info Sekmesine Bilgileri Aktarır
   bookingInfoParser: function() {
@@ -949,18 +972,21 @@ var setForm = {
         (state.date.totalHour * 7)
       ).toString()
     );
-    var maleCard = state.maleGuest > 0 ? 1 : 0 ;
+    var maleCard = state.maleGuest > 0 ? 1 : 0;
     var femaleCard = state.femaleGuest > 0 ? 1 : 0;
 
-    for (var i = 1-maleCard; i < 1+femaleCard; i++) {
+    for (var i = 1 - maleCard; i < 1 + femaleCard; i++) {
       markup += $("#guestTemplate")
-      .html()
-      .replace(/[$][$]strURN_KOD[$][$]/g, Math.floor(Math.random() * 10))
-      .replace(/[$][$]strURN_AD[$][$]/g, i==0?"Male":"Female")
-      .replace(/{{guestNumber}}/, i==0?state.maleGuest:state.femaleGuest)
-      .replace(/[$][$]salesPrice[$][$]/g, 7)
-      .replace(/{{hour}}/g, state.date.totalHour)
-      .replace(/{{price}}/g, state.date.totalHour * 7);
+        .html()
+        .replace(/[$][$]strURN_KOD[$][$]/g, Math.floor(Math.random() * 10))
+        .replace(/[$][$]strURN_AD[$][$]/g, i == 0 ? "Male" : "Female")
+        .replace(
+          /{{guestNumber}}/,
+          i == 0 ? state.maleGuest : state.femaleGuest
+        )
+        .replace(/[$][$]salesPrice[$][$]/g, 7)
+        .replace(/{{hour}}/g, state.date.totalHour)
+        .replace(/{{price}}/g, state.date.totalHour * 7);
     }
     $(".booking-info-product-wrapper").html(markup);
   },
@@ -971,7 +997,6 @@ var setForm = {
     this.test();
     this.events();
     this.validations();
-    
   }
 };
 

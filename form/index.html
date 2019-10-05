@@ -9,6 +9,7 @@
     <title>Kepler Form</title>
   </head>
   <body>
+      
     <!-- STEP BASLANGIC -->
     <section class="booking-step-container step0">
       <div class="booking-step step-area-1">
@@ -193,6 +194,7 @@
         <p class="date-warning ems-none">
           Your reservation is between <span id="ci-day"></span> and <span id="co-day"></span>
         </p>
+      
       </div>
       <div class="comfirm-button disabled">COMFIRM</div>
     </section>
@@ -268,6 +270,11 @@
     <!-- BOOKING INFO BITIS -->
     <!-- BOOKING GUEST INFO BASLANGIC -->
     <section class="booking-guest-info-container ems-none">
+      <div class="warning-background ems-none"></div>
+      <div class="child-warning ems-none">
+        <p>Unfortunately we do not accept children below 7 years old.</p>
+        <div>✕</div>
+      </div>
       <p>
         Please provide us with your personal information on order to complete
         your reservation.
@@ -331,10 +338,10 @@
           <label for="birthdate">Birthdate<sup>*</sup></label>
           <input
             required
-            type="text"
+            type="date"
             name="birthdate"
             id="birthdate"
-            placeholder="DD/MM/YYYY"
+           
           />
         </div>
       </div>
