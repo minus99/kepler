@@ -188,6 +188,12 @@
         <!-- SAAT SECIMI BITIS -->
         <!-- DATEPICKER BITIS -->
       </section>
+      <div class="time-picker-warnings ems-none">
+        <p class="total-hours-warning">You booked <span id="tp-totalHour"></span> hours</p>
+        <p class="date-warning ems-none">
+          Your reservation is between <span id="ci-day"></span> and <span id="co-day"></span>
+        </p>
+      </div>
       <div class="comfirm-button disabled">COMFIRM</div>
     </section>
     <!-- BOOKING BITIS -->
@@ -269,7 +275,7 @@
       <h3>Guest Info</h3>
       <div class="guest-info-wrapper">
         <div class="guest-info-input">
-        <div class="validation-icon"></div>
+          <div class="validation-icon"></div>
           <label for="first-name">First Name<sup>*</sup></label>
           <input
             required
@@ -280,7 +286,7 @@
           />
         </div>
         <div class="guest-info-input">
-            <div class="validation-icon"></div>
+          <div class="validation-icon"></div>
           <label for="last-name">Last Name<sup>*</sup></label>
           <input
             required
@@ -291,7 +297,7 @@
           />
         </div>
         <div class="guest-info-input">
-            <div class="validation-icon"></div>
+          <div class="validation-icon"></div>
           <label for="email">Email Address<sup>*</sup></label>
           <input
             required
@@ -321,7 +327,7 @@
             />
           </div>
         </div>
-        <div class="guest-info-input"> 
+        <div class="guest-info-input">
           <label for="birthdate">Birthdate<sup>*</sup></label>
           <input
             required
@@ -333,67 +339,61 @@
         </div>
       </div>
     </section>
-     <!-- BOOKING GUEST INFO BITIS -->
-     <section class="booking-payment-details-container ems-none">
+    <!-- BOOKING GUEST INFO BITIS -->
+    <section class="booking-payment-details-container ems-none">
       <div class="pd-credit-card"></div>
       <div class="card-info-wrapper">
         <div class="card-info">
-        <div class="validation-icon"></div>
+          <div class="validation-icon"></div>
           <label for="card-number">Card Number<sup>*</sup></label>
-          <input
-            required
-            type="text"
-            name="card-number"
-            id="cardnumber"
-          />
+          <input required type="text" name="card-number" id="cardnumber" />
         </div>
         <div class="card-info">
           <div class="validation-icon"></div>
           <div class="payment-credential">
             <div>
               <label for="expiration">Expiration<sup>*</sup></label>
-            <input
-              required
-              type="text"
-              id="expiration"
-              name="expiration"
-              placeholder="MM/YY"
-            />
-          </div>
-          <div>
-            <div class="cvc-info">?</div>
-            <label for="cvc">CVC<sup>*</sup></label>
-            <input
-              required
-              type="text"
-              name="cvc"
-              id="cvc"
-            />
+              <input
+                required
+                type="text"
+                id="expiration"
+                name="expiration"
+                placeholder="MM/YY"
+              />
+            </div>
+            <div>
+              <div class="cvc-info">?</div>
+              <label for="cvc">CVC<sup>*</sup></label>
+              <input required type="text" name="cvc" id="cvc" />
             </div>
           </div>
         </div>
         <div class="card-info">
-            <div class="validation-icon"></div>
+          <div class="validation-icon"></div>
           <label for="card-holder">Card Holder<sup>*</sup></label>
-          <input
-            required
-            type="text"
-            name="card-holder"
-            id="cardHolder"
-          />
+          <input required type="text" name="card-holder" id="cardHolder" />
         </div>
-        <div class="pd-policies">
-          <div class="pd-term">
-            <div>I</div><div>Term of Use</div><div>></div>
-          </div>
-          <div class="pd-privacy">
-            <div>I</div><div>Privacy Policy</div><div>></div>
-          </div>
-          <div class="pd-accept">
-            <input type="checkbox" id="accept-pd" /> <p>By proceeding with this booking. I agree to <u>Kepler Club's</u> Terms of Use and <u>Privacy Policy</u>.</p>
-          </div>
+      </div>
+      <div class="pd-policies">
+        <div class="pd-term">
+          <div>I</div>
+          <div>Term of Use</div>
+          <div>></div>
         </div>
-     </section>
+        <div class="pd-privacy">
+          <div>I</div>
+          <div>Privacy Policy</div>
+          <div>></div>
+        </div>
+        <div class="pd-accept">
+          <input type="checkbox" id="accept-pd" />
+          <p>
+            By proceeding with this booking. I agree to
+            <u>Kepler Club's</u> Terms of Use and <u>Privacy Policy</u>.
+          </p>
+        </div>
+      </div>
+    </section>
     <div class="booking-info-order-container ems-none">
       <div class="bi-order-amount-container">
         <div class="bi-order-amount">

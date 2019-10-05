@@ -4,7 +4,6 @@
 // TODO
 // 1. NEXT AND PREV DAY BUTTONLARI DISABLE ATAMA
 
-
 // 4. DATEPICKERIN ALTINA SAAT SAYISI VE FARKLI GUNLERDE ISE UYARI
 // 5. ERKEK VE KADIN SAYISINI x10  OLARAK GOSTERME
 // 6. THANK YOU SAYFASI
@@ -90,7 +89,8 @@ var setForm = {
     calendarButton: ".calendar-button",
     timeContainer: ".time-container",
     time: ".time-container li",
-    timeInfo: ".time-info"
+    timeInfo: ".time-info",
+    timePickerWarnings : ".time-picker-warnings"
   },
   cls: {
     none: "ems-none",
@@ -694,6 +694,9 @@ var setForm = {
             if (state.date.checkIn === fullDate) {
               item.addClass(cls.selectedTime);
             }
+            $(el.timePickerWarnings).addClass(cls.none);
+            $(".date-warning").addClass(cls.none)
+
           } else if (type === "check-out") {
             // Tarih Yazısını Degistirir
             if (state.date.checkIn !== fullDate) {
@@ -723,10 +726,14 @@ var setForm = {
                   .val()
                   .toString()
               );
-            }else{
+            } else {
               state.date.checkOut = "";
               time = "";
-              date= "";
+              date = "";
+            }
+            $(el.timePickerWarnings).removeClass(cls.none);
+            if(state.date.checkOut.slice(0, 11) !== state.date.checkIn.slice(0, 11)){
+              $(".date-warning").removeClass(cls.none)
             }
           }
           // Booked Hours Hesaplar
@@ -786,14 +793,13 @@ var setForm = {
           }
 
           // Check-in Check-out Yazısını Değiştirir
-      
 
-            $(el.datePicker)
-              .find(".input-info ." + type + "-info")
-              .addClass("filled")
-              .find(el.timeInfo)
-              .text(time + " - " + date);
-       
+          $(el.datePicker)
+            .find(".input-info ." + type + "-info")
+            .addClass("filled")
+            .find(el.timeInfo)
+            .text(time + " - " + date);
+
         }
         // Saat Seçimi
         $(el.time).bind("click", function() {
@@ -823,6 +829,7 @@ var setForm = {
                 .removeClass(cls.selectedTime);
             } else {
               setTime($(this), "check-out");
+              timePickerWarnings();
             }
           } else if (
             // check-in ve check-out seçili ise
@@ -871,9 +878,20 @@ var setForm = {
             }
           });
         }
-        checkTimes();
 
+        checkTimes();
         setDate();
+
+        function timePickerWarnings() {
+          $("#tp-totalHour").text(state.date.totalHour)
+          $("#ci-day").text($("#db-in-date")
+          .val()
+          .substring(0, 5))
+          $("#co-day").text($("#db-out-date")
+          .val()
+          .substring(0, 5))
+        }
+
       }),
       // Guest Info Bolumundeki Datepicker
       (birthDatePicker = function() {
@@ -965,6 +983,7 @@ var setForm = {
     this.test();
     this.events();
     this.validations();
+    
   }
 };
 
