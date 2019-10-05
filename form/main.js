@@ -4,8 +4,7 @@
 // TODO
 // 1. NEXT AND PREV DAY BUTTONLARI DISABLE ATAMA
 
-// 4. DATEPICKERIN ALTINA SAAT SAYISI VE FARKLI GUNLERDE ISE UYARI
-// 5. ERKEK VE KADIN SAYISINI x10  OLARAK GOSTERME
+
 // 6. THANK YOU SAYFASI
 // 7. DATA
 // 8. 7 YASINDAN KUCUKSE UYARI ve DATE GIRILMEMISSE NOT VALID
@@ -923,8 +922,7 @@ var setForm = {
       el = _t.el,
       cls = _t.cls,
       info = _t.info;
-    var fmarkup = "",
-      mmarkup = "";
+    var markup = "";
 
     // ILGILI ALANLARI STATE'DEN CEKEREK DOLDURUR
 
@@ -951,30 +949,20 @@ var setForm = {
         (state.date.totalHour * 7)
       ).toString()
     );
+    var maleCard = state.maleGuest > 0 ? 1 : 0 ;
+    var femaleCard = state.femaleGuest > 0 ? 1 : 0;
 
-    // FEMALE VE MALE GUEST SAYISINA GORE PRODUCT CARD OLUSTURUR
-
-    for (let i = 0; i < state.maleGuest; i++) {
-      mmarkup += $("#guestTemplate")
-        .html()
-        .replace(/[$][$]strURN_KOD[$][$]/g, Math.floor(Math.random() * 10))
-        .replace(/[$][$]strURN_AD[$][$]/g, "Male")
-        .replace(/[$][$]salesPrice[$][$]/g, 7)
-        .replace(/{{hour}}/g, state.date.totalHour)
-        .replace(/{{price}}/g, state.date.totalHour * 7);
+    for (var i = 1-maleCard; i < 1+femaleCard; i++) {
+      markup += $("#guestTemplate")
+      .html()
+      .replace(/[$][$]strURN_KOD[$][$]/g, Math.floor(Math.random() * 10))
+      .replace(/[$][$]strURN_AD[$][$]/g, i==0?"Male":"Female")
+      .replace(/{{guestNumber}}/, i==0?state.maleGuest:state.femaleGuest)
+      .replace(/[$][$]salesPrice[$][$]/g, 7)
+      .replace(/{{hour}}/g, state.date.totalHour)
+      .replace(/{{price}}/g, state.date.totalHour * 7);
     }
-
-    for (let i = 0; i < state.femaleGuest; i++) {
-      fmarkup += $("#guestTemplate")
-        .html()
-        .replace(/[$][$]strURN_KOD[$][$]/g, Math.floor(Math.random() * 10))
-        .replace(/[$][$]strURN_AD[$][$]/g, "Female")
-        .replace(/[$][$]salesPrice[$][$]/g, 7)
-        .replace(/{{hour}}/g, state.date.totalHour)
-        .replace(/{{price}}/g, state.date.totalHour * 7);
-    }
-
-    $(".booking-info-product-wrapper").html(mmarkup + fmarkup);
+    $(".booking-info-product-wrapper").html(markup);
   },
   // Butun Fonksiyonlari Cagirir
   init: function() {
