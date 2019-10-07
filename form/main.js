@@ -2,7 +2,7 @@
 // ES5 Class Functions
 
 // TODO
-// 1. NEXT AND PREV DAY BUTTONLARI DISABLE ATAMA
+// 1. BOOKED TIMES ILE SECILEN ZAMAN CAKISMASI BUG I
 
 // 6. THANK YOU SAYFASI
 // 7. DATA
@@ -149,13 +149,18 @@ var setForm = {
   // Deger girilir ise bugunun tarihine girilen deger kadar gun ekler
   getDate: function(addDay, addMonth, addYear) {
     currentDate = new Date();
-    if (addDay === null || "undefined" && addMonth === null || "undefined" && addDay === null || "undefined") {
+    if (
+      addDay === null ||
+      ("undefined" && addMonth === null) ||
+      ("undefined" && addDay === null) ||
+      "undefined"
+    ) {
       addDay = 0;
       addMonth = 0;
       addYear = 0;
     }
     return (
-      (currentDate.getFullYear() + addYear ).toString() +
+      (currentDate.getFullYear() + addYear).toString() +
       "-" +
       (currentDate.getMonth() + 1 + addMonth).toString().padStart(2, 0) +
       "-" +
@@ -169,7 +174,7 @@ var setForm = {
       formInput = _t.formInput;
 
     $(el.time).attr("data-date", _t.getDate());
-    $(formInput.birthdate).attr("min", _t.getDate(0,0,-7))
+    $(formInput.birthdate).attr("min", _t.getDate(0, 0, -7));
   },
   events: function() {
     var _t = this,
@@ -635,8 +640,25 @@ var setForm = {
             function counterDate(picker) {
               var date = $("#" + picker).datepicker("getDate");
               var multiply = 1;
-              type === "date-inc" ? (multiply = 1) : (multiply = -1);
+
               // Tarihi Değiştitir
+              if (
+                parseInt(
+                  $("#out-date")
+                    .val()
+                    .substring(8, 10)
+                ) <
+                parseInt(
+                  $("#in-date")
+                    .val()
+                    .substring(8, 10)
+                ) +
+                  1
+              ) {
+                type === "date-inc" ? (multiply = 1) : (multiply = -1);
+              } else {
+                type === "date-inc" ? (multiply = 0) : (multiply = -1);
+              }
               date.setTime(date.getTime() + multiply * 1000 * 60 * 60 * 24);
               // Tarihi Değiştirir
               $("#" + picker).datepicker("setDate", date);
@@ -648,15 +670,42 @@ var setForm = {
                   .toString()
               );
             }
-
+            
             if ($(".check-in-info").hasClass(cls.active)) {
               counterDate("in-date");
             }
             if ($(".check-out-info").hasClass(cls.active)) {
               counterDate("out-date");
             }
+            
             checkTimes();
+            dateButtonsControl();
           });
+          // Tarhi İleri Geri Buttonlarına Disable Class in  atar
+          dateButtonsControl = function() {
+            $(".date-counter-button").removeClass(cls.disabled);
+            $(".date-counter-button").each(function() {
+              if (state.date.checkIn != undefined) {
+                if (
+                  parseInt(
+                    $(el.time)
+                      .attr("data-date")
+                      .substring(8, 10)
+                  ) >=
+                  parseInt(state.date.checkIn.substring(8, 10)) + 1
+                ) {
+                  $(this).attr("rel") === "date-inc"
+                    ? $(this).addClass(cls.disabled)
+                    : null;
+                }
+                if ($(el.time).attr("data-date") === _t.getDate()) {
+                  $(this).attr("rel") === "date-dec"
+                    ? $(this).addClass(cls.disabled)
+                    : null;
+                }
+              }
+            });
+          };
         }
 
         // setTime fonksiyonu için [item = seçilen element] [type = seçimin türü]
@@ -846,7 +895,19 @@ var setForm = {
               $(this)
                 .siblings()
                 .removeClass(cls.selectedTime);
-            } else {
+            } else if (
+              parseInt(
+                $(this)
+                  .attr("data-date")
+                  .substring(8, 10)
+              ) >=
+                parseInt(
+                  $("#in-date")
+                    .val()
+                    .substring(8, 10)
+                ) &&
+              $(this).attr("data-time") !== state.date.checkIn.substring(11, 16)
+            ) {
               setTime($(this), "check-out");
               timePickerWarnings();
             }
@@ -861,6 +922,7 @@ var setForm = {
           }
           // Zaman Aralığını Control Eder
           checkTimes();
+          dateButtonsControl();
           _t.controls();
         });
 
@@ -928,8 +990,8 @@ var setForm = {
       //   // TODO : 7 yas eksi validation
       // });
 
-    // Pluginleri Cagirir
-    dropDown(el.dropDown); // dropdown
+      // Pluginleri Cagirir
+      dropDown(el.dropDown); // dropdown
 
     $(el.counter)
       .find(el.counterWrapper)
