@@ -812,3 +812,97 @@ ul {
   padding: 0;
 }
 /* CREDIT CARD */
+
+/* COMFIRMATION PAGE */
+
+.booking-comfirmation-container{
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.comfirmation-message{
+  text-align: center;
+}
+.comfirmation-message p {
+  font-size: 18px;
+}
+.comfirmation-message h4 {
+  font-size: 24px;
+  color: indigo;
+}
+
+.comfirmation-id{
+  height: 143px;
+  background-color: #f7f7f7;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.comfirmation-id p {
+  font-size: 14px;
+  margin:0;
+}
+.comfirmation-id h4 {
+  font-size: 18px;
+  color: #50cae0;
+  margin:0;
+}
+.comfirmation-summary{
+
+  display:flex;
+  flex-direction: column;
+
+}
+.comfirmation-summary >h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin:0;
+}
+
+.summary-location > h4 {
+  font-size: 16px;
+  font-weight: 500;
+ 
+}
+.summary-location > p {
+  font-size: 18px;
+  
+}
+.summary-location  > a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #50cae0;
+}
+
+.comfirmation-info-container > div{
+  border-bottom:1px solid gray;
+  padding:30px 0px;
+}
+.comfirmation-info-container > div:last-child{
+  border-bottom:none;
+  padding:30px 0px;
+}
+
+.c-info-title{
+  font-size: 16px;
+  font-weight: 500;
+  color: indigo;
+}
+.c-info-details{
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.comfirmation-cancel h4{
+  font-size: 12px;
+  font-weight: 500;
+}
+.comfirmation-cancel p{
+  font-size: 12px;
+  font-weight: normal;
+}
+
+
+  

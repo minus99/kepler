@@ -2,14 +2,15 @@
 // ES5 Class Functions
 
 // TODO
-// 1. BOOKED TIMES ILE SECILEN ZAMAN CAKISMASI BUG 
+// 1. BOOKED TIMES ILE SECILEN ZAMAN CAKISMASI BUG
 
-// 6. THANK YOU SAYFASI
 // 7. DATA
 
 // 10. START AGAIN BUTTON
 // 11. UYGUN OLMAYAN SAAT KONTROLU
 
+var mockJSON =
+  '{"booking":{"location":"SAW","date":"2019-10-08 14:00 2019-10-08 22:00","products":[{"id":832504,"gender":"m","hours":8},{"id":832504,"gender":"m","hours":8},{"id":832504,"gender":"m","hours":8}]},"guest":{"firstName":"Ad","lastName":"Soyad","email":"mail@mail.com","mobile":"+905355555555","birthDate":"2019-04-03"},"card":{"number":"4545 4545 4545 4545","expiration":"01 / 12","cvc":"456","holder":"Ad Soyad"},"reservation":{"id":"KPLR0051853"}}';
 
 var Form = function(booking, guest, card) {
   this.booking = booking;
@@ -201,10 +202,10 @@ var setForm = {
   getDate: function(addYear, addMonth, addDay) {
     currentDate = new Date();
     if (
-      (addDay === undefined ||
-      "undefined") || (addMonth === undefined ||
-      "undefined") || (addDay === undefined ||
-      "undefined")
+      addDay === undefined ||
+      "undefined" ||
+      (addMonth === undefined || "undefined") ||
+      (addDay === undefined || "undefined")
     ) {
       addDay = 0;
       addMonth = 0;
@@ -225,9 +226,8 @@ var setForm = {
       formInput = _t.formInput;
 
     $(el.time).attr("data-date", _t.getDate());
-    var maxDate = _t.getDate(-7,0,0)
+    var maxDate = _t.getDate(-7, 0, 0);
     $(formInput.birthdate).attr("max", maxDate);
-    
   },
   events: function() {
     var _t = this,
@@ -259,14 +259,15 @@ var setForm = {
     $(".continue-button").on("click", function() {
       if ($(this).attr("rel") == "card-info") {
         $(".booking-payment-details-container").addClass("ems-none");
-        $("").removeClass("ems-none");
+        $(".booking-comfirmation-container").removeClass("ems-none");
 
         // Step Asamasi
         $(".booking-step-container ")
           .removeClass("step3")
           .addClass("step4");
-
-        $(this).attr("rel", "");
+        $(".continue-button").text("BACK TO HOME PAGE");
+        $(this).attr("rel", "comfirm-info");
+        _t.comfirmationParser();
         _t.createFormObject();
       }
 
@@ -316,7 +317,7 @@ var setForm = {
         s++;
         $(".child-warning").removeClass(cls.none);
         $(".warning-background").removeClass(cls.none);
-        $(formInput.birthdate).val(_t.getDate(-7,0,0));
+        $(formInput.birthdate).val(_t.getDate(-7, 0, 0));
       }
     });
     // 7 Yas Uarisini Kapatir
@@ -327,29 +328,33 @@ var setForm = {
         $(".warning-background").addClass(cls.none);
       });
     // Privacy Policy Açar
-    $(".pd-privacy").find(".pd-icon").bind("click", function(){
-      $(".pp-warning").removeClass(cls.none);
-      $(".warning-background").removeClass(cls.none);
-    })
+    $(".pd-privacy")
+      .find(".pd-icon")
+      .bind("click", function() {
+        $(".pp-warning").removeClass(cls.none);
+        $(".warning-background").removeClass(cls.none);
+      });
     // Privacy Policy Kapatır
     $(".pp-warning")
-    .find("div")
-    .bind("click", function() {
-      $(".pp-warning").addClass(cls.none);
-      $(".warning-background").addClass(cls.none);
-    });
+      .find("div")
+      .bind("click", function() {
+        $(".pp-warning").addClass(cls.none);
+        $(".warning-background").addClass(cls.none);
+      });
     // Terms of Use Açar
-    $(".pd-term").find(".pd-icon").bind("click", function(){
-      $(".tou-warning").removeClass(cls.none);
-      $(".warning-background").removeClass(cls.none);
-    })
+    $(".pd-term")
+      .find(".pd-icon")
+      .bind("click", function() {
+        $(".tou-warning").removeClass(cls.none);
+        $(".warning-background").removeClass(cls.none);
+      });
     // terms of Use Kapatır
     $(".tou-warning")
-    .find("div")
-    .bind("click", function() {
-      $(".tou-warning").addClass(cls.none);
-      $(".warning-background").addClass(cls.none);
-    });
+      .find("div")
+      .bind("click", function() {
+        $(".tou-warning").addClass(cls.none);
+        $(".warning-background").addClass(cls.none);
+      });
   },
   // REGEX FORM VALIDATIONS
   validations: function() {
@@ -1083,19 +1088,6 @@ var setForm = {
           );
         }
       }),
-      // Guest Info Bolumundeki Datepicker
-      // (birthDatePicker = function() {
-      //   $("#birthdate")
-      //     .datepicker({
-      //       dateFormat: "dd/mm/yy",
-      //       defaultDate: "+3d",
-      //       changeMonth: false,
-      //       numberOfMonths: 1
-      //     })
-      //     .on("change", function() {});
-      //   // TODO : 7 yas eksi validation
-      // });
-
       // Pluginleri Cagirir
       dropDown(el.dropDown); // dropdown
 
@@ -1158,8 +1150,41 @@ var setForm = {
     }
     $(".booking-info-product-wrapper").html(markup);
   },
+
+  comfirmationParser: function() {
+    var _t = this,
+      el = _t.el,
+      cls = _t.cls,
+      info = _t.info;
+    var markup = "";
+    var data = JSON.parse(mockJSON);
+
+    var f = 0;
+    var m = 0;
+ 
+    data.booking.products.forEach(function(el) {
+      if (el.gender == "f") {
+        return f++;
+      }
+      if (el.gender == "m") {
+        return m++;
+      }
+    });
+
+    markup = $("#paymentMethodTemplate")
+      .html()
+      .replace(/{{reservationID}}/g, data.reservation.id)
+      .replace(/{{airport}}/g, data.bookinglocation)
+      .replace(/{{dates}}/g, data.booking.date)
+      .replace(/{{times}}/g, data.booking.date)
+      .replace(/{{guest}}/g, m + " Male, " + f + " Female");
+    $(".booking-comfirmation-container").html(markup);
+  },
+
   // Butun Fonksiyonlari Cagirir
   init: function() {
+    console.log(JSON.parse(mockJSON));
+    
     this.setInitialDate();
     this.plugins();
     this.test();
