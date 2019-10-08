@@ -34,7 +34,7 @@ ul {
 
 /* EMOS ICINDE OLAN CLASSLAR */
 
-.ems-none {
+.ems-none, .ems-hidden {
   display: none !important;
 }
 
@@ -710,8 +710,6 @@ ul {
   width: 100%;
   height: 100%;
   z-index: 998;
-  pointer-events: none !important; 
-  user-select: none !important;
 }
 
 /* HOST CONTAINER */
@@ -726,7 +724,7 @@ ul {
   width: 315px;
   height: 190px;
   border-radius: 8px;
-  background-color: greenyellow;
+  
 }
 .card-info-wrapper {
   display: flex;

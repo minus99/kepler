@@ -8,42 +8,39 @@
 // 7. DATA
 
 // 9. SAFARI DESKTOP ICIN DATEPICKER
+// 10. START AGAIN BUTTON
 
-var Form = function(id, booking, host, card) {
-  this.id = id;
+var Form = function(booking, guest, card) {
   this.booking = booking;
-  this.host = host;
+  this.guest = guest;
   this.card = card;
 };
 
-var Booking = function(id, location, date, guests) {
-  this.id = id;
+var Booking = function(location, date, products) {
   this.location = location;
   this.date = date;
-  this.guests = guests;
+  this.products = products;
 };
 
-var Guest = function(id, gender, hours) {
+var Product = function(id, gender, hours) {
   this.id = id;
   this.gender = gender;
   this.hours = hours;
 };
 
-var Host = function(id, firstName, lastName, gender, email, mobile, birthDate) {
-  this.id = id;
+var Guest = function(firstName, lastName, email, mobile, birthDate) {
   this.firstName = firstName;
   this.lastName = lastName;
-  this.gender = gender;
   this.email = email;
   this.mobile = mobile;
   this.birthDate = birthDate;
 };
 
-var CreditCard = function(id, number, expiration, cvc, cardHolder) {
-  this.id = id;
+var CreditCard = function(number, expiration, cvc, holder) {
   this.number = number;
-  (this.expiration = expiration), (this.cvc = cvc);
-  this.cardHolder = cardHolder;
+  this.expiration = expiration;
+  this.cvc = cvc;
+  this.holder = holder;
 };
 
 // Secimlerin Global Olarak Tutulmasi
@@ -122,6 +119,13 @@ var setForm = {
     countryCode: "#country-code",
     birthdate: "#birthdate"
   },
+  creditCardInput: {
+    number: "#cardnumber",
+    expiration: "#expiration",
+    cvc: "#cvc",
+    holder: "#cardHolder",
+    accept: "#accept-pd"
+  },
   regex: {
     email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     countryCode: /^\+[1-9]{1}[0-9]{1,4}$/,
@@ -138,9 +142,56 @@ var setForm = {
     gender: false
   },
 
+  createFormObject: function() {
+    // Guest Objects
+    var _product = [];
+    for (var i = 0; i < state.femaleGuest; i++) {
+      _product.push(new Product(832505, "f", state.date.totalHour));
+    }
+    for (var i = 0; i < state.maleGuest; i++) {
+      _product.push(new Product(832504, "m", state.date.totalHour));
+    }
+
+    // Host Object
+    var _guest = new Guest();
+
+    _guest.firstName = state.guest.firstName;
+    _guest.lastName = state.guest.lastName;
+    _guest.email = state.guest.email;
+    _guest.mobile = state.guest.mobile;
+    _guest.birthDate = state.guest.birthdate;
+
+    // Credit Card
+
+    var _card = new CreditCard();
+
+    _card.number = $(this.creditCardInput.number).val();
+    _card.expiration = $(this.creditCardInput.expiration).val();
+    _card.cvc = $(this.creditCardInput.cvc).val();
+    _card.holder = $(this.creditCardInput.holder).val();
+
+    // Booking Object
+    var _booking = new Booking();
+    _booking.location = state.location;
+    _booking.date = state.date.checkIn + " " + state.date.checkOut;
+    _booking.products = _product;
+
+    // Form Object
+
+    var _form = new Form();
+    _form.booking = _booking;
+    _form.guest = _guest;
+    _form.card = _card;
+
+    // Log
+    console.log(_form);
+    console.log(JSON.stringify(_form));
+  },
   test: function() {
+    var _t = this;
     $(".test").bind("click", function() {
-      console.log(state);
+      // console.log(state);
+      _t.createFormObject();
     });
   },
 
@@ -180,7 +231,9 @@ var setForm = {
     var _t = this,
       el = _t.el,
       cls = _t.cls,
-      formInput = _t.formInput;
+      formInput = _t.formInput,
+      card = _t.creditCardInput;
+
     // STEP 0 to 1
     $(".comfirm-button").bind("click", function() {
       // State'deki valuelari html icine aktarir
@@ -212,6 +265,7 @@ var setForm = {
           .addClass("step4");
 
         $(this).attr("rel", "");
+        _t.createFormObject();
       }
 
       if ($(this).attr("rel") == "guest-info") {
@@ -224,7 +278,7 @@ var setForm = {
         state.guest.email = $(_t.formInput.email).val();
         state.guest.mobile =
           $(_t.formInput.countryCode).val() + $(_t.formInput.mobile).val();
-        state.guest.birtdate = $(_t.formInput.birtdate).val();
+        state.guest.birthdate = $(_t.formInput.birthdate).val();
 
         // Step Asamasi
         $(".booking-step-container ")
@@ -380,16 +434,20 @@ var setForm = {
   },
   controls: function() {
     var _t = this,
-      input = _t.formInput,
-      regex = _t.regex,
       cls = _t.cls,
-      checks = _t.checks;
+      checks = _t.checks,
+      card = _t.creditCardInput;
     var CI = state.date.checkIn,
       CO = state.date.checkOut,
       FG = state.femaleGuest,
       MG = state.maleGuest,
       L = state.location;
 
+    var CCN = card.number,
+      CCE = card.expiration,
+      CVC = card.cvc,
+      CCH = card.holder,
+      CCA = card.accept;
     // Tüm Stateler Dolu ise Comfirm Buttonunu Active Hale Getirir
     comfirmButton = function() {
       if (CI != null && CO != "" && FG != null && MG != null && L != null) {
@@ -401,7 +459,7 @@ var setForm = {
         $(".comfirm-button").removeClass("active-button");
       }
     };
-    continueButtonS1 = function() {
+    continueButton = function() {
       // HER INPUT DEGISIKLIGINDE SUBMIT BUTTONUNU CONTROL EDER
       $(".booking-guest-info-container")
         .find("input")
@@ -421,8 +479,29 @@ var setForm = {
         });
     };
 
+    comfirmPaymentButton = function() {
+      $(".booking-payment-details-container")
+        .find("input")
+        .on("input propertychange, change", function() {
+          if (
+            $(CCN).val() != "" &&
+            $(CCE).val() != "" &&
+            $(CVC).val() != "" &&
+            $(CCH).val() != "" &&
+            $(CCA)[0].checked
+          ) {
+            console.log("true");
+            $(".continue-button").removeClass(cls.disabled);
+          } else {
+            console.log("false");
+            $(".continue-button").addClass(cls.disabled);
+          }
+        });
+    };
+
     comfirmButton();
-    continueButtonS1();
+    continueButton();
+    comfirmPaymentButton();
   },
   // Dropdown Menu, Counter, Datepicker Fonksiyonlarini Cagirir
   plugins: function() {
@@ -670,14 +749,14 @@ var setForm = {
                   .toString()
               );
             }
-            
+
             if ($(".check-in-info").hasClass(cls.active)) {
               counterDate("in-date");
             }
             if ($(".check-out-info").hasClass(cls.active)) {
               counterDate("out-date");
             }
-            
+
             checkTimes();
             dateButtonsControl();
           });
@@ -1059,7 +1138,140 @@ var setForm = {
     this.test();
     this.events();
     this.validations();
+    this.controls();
   }
 };
 
 setForm.init();
+
+/* 
+  bunu sil
+*/
+var translation = {};
+
+/* 
+    kredi kart
+*/
+var crediCart = {
+  el: {
+    wrp: ".ems-card-wrapper",
+    container: ".card-wrapper",
+    target: ".pd-credit-card",
+    card: ".jp-card-container .jp-card",
+
+    inputName: '[id$="cardHolder"]',
+    inputCVC: '[id$="cvc"]',
+    inputNumber: '[id$="cardnumber"]',
+    inputExpiry: '[id$="expiration"]',
+
+    targetInputName: '[id="card-name"]',
+    targetInputCVC: '[id="card-cvc"]',
+    targetInputNumber: '[id="card-number"]',
+    targetInputExpiry: '[id="card-expiry"]'
+  },
+  cls: { flipped: "jp-card-flipped" },
+  template:
+    '<div class="ems-card-wrapper"><div class="card-wrapper"></div><div class="ems-hidden"><input type="text" name="number" id="card-number"><input type="text" name="first-name" id="card-name"/><input type="text" name="expiry" id="card-expiry"/><input type="text" name="cvc" id="card-cvc"/></div></div>',
+  set: function(o) {
+    var _t = this,
+      ID = o["ID"],
+      target = o["target"],
+      evt = document.createEvent("HTMLEvents");
+    evt.initEvent("keyup", false, true);
+
+    setTimeout(function() {
+      target
+        .val(o["val"] || ID.val() || "")
+        .get(0)
+        .dispatchEvent(evt);
+    }, 1);
+  },
+  addEvent: function() {
+    var _t = this;
+
+    $(_t.el.inputName).bind("keyup", function() {
+      _t.set({ ID: $(this), target: $(_t.el.targetInputName) });
+    });
+
+    $(_t.el.inputCVC)
+      .bind("keyup", function() {
+        _t.set({ ID: $(this), target: $(_t.el.targetInputCVC) });
+      })
+      .bind("focus", function() {
+        $(_t.el.card).addClass(_t.cls["flipped"]);
+      })
+      .bind("blur", function() {
+        $(_t.el.card).removeClass(_t.cls["flipped"]);
+      });
+
+    $(_t.el.inputNumber).bind("keyup", function() {
+      _t.set({ ID: $(this), target: $(_t.el.targetInputNumber) });
+    });
+
+    $(_t.el.inputExpiry).bind("keyup", function() {
+      _t.set({ ID: $(this), target: $(_t.el.targetInputExpiry) });
+    });
+  },
+  initPlugins: function() {
+    var _t = this;
+
+    /*
+        payment
+      */
+
+    $.payment.formatExpiry = function(expiry) {
+      var mon, parts, sep, year;
+      parts = expiry.match(/^\D*(\d{1,2})(\D+)?(\d{1,2})?/);
+      if (!parts) {
+        return "";
+      }
+      mon = parts[1] || "";
+      sep = parts[2] || "";
+      year = parts[3] || "";
+      if (year.length > 0 || (sep.length > 0 && !/\ \/?\ ?/.test(sep))) {
+        sep = " / ";
+      }
+      if (mon.length === 1 && (mon !== "0" && mon !== "1")) {
+        mon = "0" + mon;
+        sep = " / ";
+      }
+      return mon + sep + year;
+    };
+
+    $(_t.el.inputNumber).payment("formatCardNumber");
+    $(_t.el.inputCVC).payment("formatCardCVC");
+    $(_t.el.inputExpiry).payment("formatCardExpiry");
+
+    /* 
+        kredi kart
+      */
+    $.getScript("card.js", function() {
+      $(_t.el.wrp).card({
+        container: _t.el.container,
+        formSelectors: {
+          numberInput: _t.el.targetInputNumber,
+          expiryInput: _t.el.targetInputExpiry,
+          cvcInput: _t.el.targetInputCVC,
+          nameInput: _t.el.targetInputName
+        },
+        placeholders: {
+          name: translation["crediCartName"] || "ADINIZ SOYADINIZ"
+        }
+      });
+      _t.addEvent();
+    });
+  },
+  add: function() {
+    var _t = this;
+    $(_t.el.target).append(_t.template);
+  },
+  init: function() {
+    var _t = this;
+    if ($(_t.el.target).length > 0 && $(_t.el.inputName).length > 0) {
+      _t.add();
+      _t.initPlugins();
+    }
+  }
+};
+
+crediCart.init();
