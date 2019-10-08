@@ -2,13 +2,14 @@
 // ES5 Class Functions
 
 // TODO
-// 1. BOOKED TIMES ILE SECILEN ZAMAN CAKISMASI BUG I
+// 1. BOOKED TIMES ILE SECILEN ZAMAN CAKISMASI BUG 
 
 // 6. THANK YOU SAYFASI
 // 7. DATA
 
-// 9. SAFARI DESKTOP ICIN DATEPICKER
 // 10. START AGAIN BUTTON
+// 11. UYGUN OLMAYAN SAAT KONTROLU
+
 
 var Form = function(booking, guest, card) {
   this.booking = booking;
@@ -184,7 +185,6 @@ var setForm = {
     _form.card = _card;
 
     // Log
-    console.log(_form);
     console.log(JSON.stringify(_form));
   },
   test: function() {
@@ -198,13 +198,13 @@ var setForm = {
   // getDay Fonksiyonuna hernangi bir deger girilmez ise bugunun tarihini alir ve string'e cevirir
   // Girilen deger integer olmalidir
   // Deger girilir ise bugunun tarihine girilen deger kadar gun ekler
-  getDate: function(addDay, addMonth, addYear) {
+  getDate: function(addYear, addMonth, addDay) {
     currentDate = new Date();
     if (
-      addDay === null ||
-      ("undefined" && addMonth === null) ||
-      ("undefined" && addDay === null) ||
-      "undefined"
+      (addDay === undefined ||
+      "undefined") || (addMonth === undefined ||
+      "undefined") || (addDay === undefined ||
+      "undefined")
     ) {
       addDay = 0;
       addMonth = 0;
@@ -225,7 +225,9 @@ var setForm = {
       formInput = _t.formInput;
 
     $(el.time).attr("data-date", _t.getDate());
-    $(formInput.birthdate).attr("min", _t.getDate(0, 0, -7));
+    var maxDate = _t.getDate(-7,0,0)
+    $(formInput.birthdate).attr("max", maxDate);
+    
   },
   events: function() {
     var _t = this,
@@ -307,13 +309,14 @@ var setForm = {
         behavior: "smooth"
       });
     });
-    // 7 Yas Uyarisini Cikarir
+    // 7 Yas Uyarisini Açar
     var s = 0;
     $(formInput.birthdate).on("focus", function() {
       if (s === 0) {
         s++;
         $(".child-warning").removeClass(cls.none);
         $(".warning-background").removeClass(cls.none);
+        $(formInput.birthdate).val(_t.getDate(-7,0,0));
       }
     });
     // 7 Yas Uarisini Kapatir
@@ -323,6 +326,30 @@ var setForm = {
         $(".child-warning").addClass(cls.none);
         $(".warning-background").addClass(cls.none);
       });
+    // Privacy Policy Açar
+    $(".pd-privacy").find(".pd-icon").bind("click", function(){
+      $(".pp-warning").removeClass(cls.none);
+      $(".warning-background").removeClass(cls.none);
+    })
+    // Privacy Policy Kapatır
+    $(".pp-warning")
+    .find("div")
+    .bind("click", function() {
+      $(".pp-warning").addClass(cls.none);
+      $(".warning-background").addClass(cls.none);
+    });
+    // Terms of Use Açar
+    $(".pd-term").find(".pd-icon").bind("click", function(){
+      $(".tou-warning").removeClass(cls.none);
+      $(".warning-background").removeClass(cls.none);
+    })
+    // terms of Use Kapatır
+    $(".tou-warning")
+    .find("div")
+    .bind("click", function() {
+      $(".tou-warning").addClass(cls.none);
+      $(".warning-background").addClass(cls.none);
+    });
   },
   // REGEX FORM VALIDATIONS
   validations: function() {

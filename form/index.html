@@ -9,7 +9,65 @@
     <title>Kepler Form</title>
   </head>
   <body>
-      
+    <div class="warning-background ems-none"></div>
+    <div class="form-warnings child-warning ems-none">
+      <div class="warning-title">
+        <p>Unfortunately we do not accept children below 7 years old.</p>
+        <div>✕</div>
+      </div>
+    </div>
+    <div class="form-warnings pp-warning ems-none">
+      <div class="warning-title">
+        <h2>Privacy Policy</h2>
+        <div>✕</div>
+      </div>
+      <h2>01. Why you Need a Privacy Policy</h2>
+      <p>
+        Privacy is not a new concept. Humans have always desired privacy in
+        their social as well as private lives. But the idea of privacy as a
+        human right is a relatively modern phenomenon.<br /><br />
+        Around the world, laws and regulations have been developed for the
+        protection of data related to government, education, health, children,
+        consumers, financial institutions, etc.<br /><br />
+        This data is critical to the person it belongs to. Data privacy and
+        security binds individuals and industries together and runs complex
+        systems in our society. From credit card numbers and social security
+        numbers to email addresses and phone numbers, our sensitive, personally
+        identifiable information is important. This sort of information in
+        unreliable hands can potentially have far-reaching consequences.<br /><br />
+        Companies or websites that handle customer information are required to
+        publish their Privacy Policies on their business websites. If you own a
+        website, web app, mobile app or desktop app that collects or processes
+        user data, you most certainly will have to post a Privacy Policy on your
+        website (or give in-app access to the full Privacy Policy agreement).
+      </p>
+    </div>
+    <div class="form-warnings tou-warning ems-none">
+        <div class="warning-title">
+            <h2>Terms of Use</h2>
+            <div>✕</div>
+          </div>
+          <h2>01. Why you Need a Terms of Use</h2>
+          <p>
+            Privacy is not a new concept. Humans have always desired privacy in
+            their social as well as private lives. But the idea of privacy as a
+            human right is a relatively modern phenomenon.<br /><br />
+            Around the world, laws and regulations have been developed for the
+            protection of data related to government, education, health, children,
+            consumers, financial institutions, etc.<br /><br />
+            This data is critical to the person it belongs to. Data privacy and
+            security binds individuals and industries together and runs complex
+            systems in our society. From credit card numbers and social security
+            numbers to email addresses and phone numbers, our sensitive, personally
+            identifiable information is important. This sort of information in
+            unreliable hands can potentially have far-reaching consequences.<br /><br />
+            Companies or websites that handle customer information are required to
+            publish their Privacy Policies on their business websites. If you own a
+            website, web app, mobile app or desktop app that collects or processes
+            user data, you most certainly will have to post a Privacy Policy on your
+            website (or give in-app access to the full Privacy Policy agreement).
+          </p>
+    </div>
     <!-- STEP BASLANGIC -->
     <section class="booking-step-container step0">
       <div class="booking-step step-area-1">
@@ -190,11 +248,13 @@
         <!-- DATEPICKER BITIS -->
       </section>
       <div class="time-picker-warnings ems-none">
-        <p class="total-hours-warning">You booked <span id="tp-totalHour"></span> hours</p>
-        <p class="date-warning ems-none">
-          Your reservation is between <span id="ci-day"></span> and <span id="co-day"></span>
+        <p class="total-hours-warning">
+          You booked <span id="tp-totalHour"></span> hours
         </p>
-      
+        <p class="date-warning ems-none">
+          Your reservation is between <span id="ci-day"></span> and
+          <span id="co-day"></span>
+        </p>
       </div>
       <div class="comfirm-button disabled">COMFIRM</div>
     </section>
@@ -270,11 +330,6 @@
     <!-- BOOKING INFO BITIS -->
     <!-- BOOKING GUEST INFO BASLANGIC -->
     <section class="booking-guest-info-container ems-none">
-      <div class="warning-background ems-none"></div>
-      <div class="child-warning ems-none">
-        <p>Unfortunately we do not accept children below 7 years old.</p>
-        <div>✕</div>
-      </div>
       <p>
         Please provide us with your personal information on order to complete
         your reservation.
@@ -338,10 +393,11 @@
           <label for="birthdate">Birthdate<sup>*</sup></label>
           <input
             required
-            type="date"
+            type="text"
+            onfocus="(this.type='date')"
             name="birthdate"
             id="birthdate"
-           
+            placeholder="DD/MM/YYYY"
           />
         </div>
       </div>
@@ -386,12 +442,12 @@
         <div class="pd-term">
           <div>I</div>
           <div>Term of Use</div>
-          <div>></div>
+          <div class="pd-icon">></div>
         </div>
         <div class="pd-privacy">
           <div>I</div>
           <div>Privacy Policy</div>
-          <div>></div>
+          <div class="pd-icon">></div>
         </div>
         <div class="pd-accept">
           <input required type="checkbox" id="accept-pd" />
@@ -402,7 +458,7 @@
         </div>
       </div>
     </section>
-     <!-- PAYMENT BASLANGIC -->
+    <!-- PAYMENT BASLANGIC -->
     <div class="booking-info-order-container ems-none">
       <div class="bi-order-amount-container">
         <div class="bi-order-amount">
@@ -429,6 +485,6 @@
     <script src="jquery-ui.min.js"></script>
     <script src="card.js"></script>
     <script src="payment.js"></script>
-    <script  src="main.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
