@@ -1,0 +1,196 @@
+//DESKTOP 
+@supports (display: grid) {
+  @include setMediaScreen(min-width, $breakpoint-medium) {
+
+    .room-detail-container{
+
+      .detail-cover{
+        &-img{
+          height:676px;
+          overflow: hidden;
+          img{
+            width:100%;
+          }
+        }
+        &-text{
+          width:100%;
+          max-width:1160px;
+          text-align: left;
+          .cover-title{
+            max-width:500px;
+            span{
+              font-size:18px;
+            }
+            h1{
+              font-size:38px;
+              line-height: 50px;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+
+      .detail-top-bar{
+        height:95px; 
+        display: flex;
+        align-items: flex-end;
+        position:sticky;
+        top:84px;
+        background:$white;
+        z-index: 9999;
+        .row-container{
+         border-bottom:1px solid #e0e0e0;
+          max-width:760px;
+          width:100%;
+          .topbar-swiper{
+            .swiper-wrapper{
+              justify-content: center;
+              .swiper-slide{
+                width:25% !important;
+                a{
+                  font-size: 16px;      
+                  color:$font-color;
+                  &:hover{
+                    color:$color0;
+                    font-weight: 500;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .detail-info{
+        min-height: 500px;
+        display: flex;
+        align-items: center;
+        > .row-container{
+          .info-text{
+            max-width:760px;
+            margin:0 auto;
+            text-align: center;
+            height:150px;
+            &.expand{
+              height:250px;
+            }
+          }
+          .expand-button-container{
+            justify-content: center;
+          }
+        }
+      }
+
+      .detail-feature{
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        flex-wrap:wrap;
+        .subtitle{
+          width:100%;
+          margin:60px 0px;
+        }
+        .feature-wrapper{
+          width:100%;
+          justify-content: center;
+          .feature{
+            width:20%;
+          }
+        }
+        .feature-wrapper{
+          &.two{
+            .feature{
+              > div{
+                max-width:300px;
+                width:100%; 
+                margin-bottom:15px;       
+              }
+              width:50%;
+              &-icon{
+              }
+              &-title{
+                display: block !important;
+              }
+              &-text{
+                height:auto;
+              }
+            }
+          }
+        }
+      }
+      
+      .room-gallery-full{
+        .swiper-container{
+          .swiper-inner{
+            .subtitle{
+              font-size:32px;
+            }
+            .swiper-wrapper{
+              .swiper-slide{
+                img{
+                  width:100%;
+                  height:676px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .detail-description{
+        padding:80px 0px;
+        margin-top:0px;
+        display: flex;
+        flex-wrap: wrap;
+        .unit-container{
+          max-width:520px;
+          .tooltip-container{
+            .unit-tooltip{
+              .rect{
+                width:174px;
+                min-height: 81px;
+                font-size:18px;
+                &:after{
+                  border-width:14px;
+                }
+              }
+            }
+            .unit-mark{
+              .mark-button{
+                font-size:30px;
+              }
+              .circle-container{
+                .circle{
+                  width:38px;
+                  height:38px;
+                }
+              }
+            }
+          }
+        }
+        .unit-container-items{
+          width:calc(100% - 600px);
+          padding-left:50px;
+
+        }
+      }
+
+    }
+
+    .detail-landing-page{
+      .navigasyon{
+        .navigation-full-path{
+          max-width:1160px;
+          width:100%;
+          padding:0px;
+          margin:0 auto;
+        }
+      }
+    }
+
+  }
+}
+
+
+
+
