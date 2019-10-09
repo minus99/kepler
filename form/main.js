@@ -23,6 +23,11 @@ var Booking = function(location, date, products) {
   this.date = date;
   this.products = products;
 };
+var BookingDate = function(checkIn, checkOut, bookedHour) {
+  this.checkIn = checkIn;
+  this.checkOut = checkOut;
+  this.bookedHour = bookedHour;
+};
 
 var Product = function(id, gender, hours) {
   this.id = id;
@@ -172,10 +177,17 @@ var setForm = {
     _card.cvc = $(this.creditCardInput.cvc).val();
     _card.holder = $(this.creditCardInput.holder).val();
 
+    // Booking Date
+
+    var _date = new BookingDate();
+    _date.checkIn = state.date.checkIn;
+    _date.checkOut = state.date.checkOut;
+    _date.bookedHour = state.date.bookedHours;
+
     // Booking Object
     var _booking = new Booking();
     _booking.location = state.location;
-    _booking.date = state.date.checkIn + " " + state.date.checkOut;
+    _booking.date = _date;
     _booking.products = _product;
 
     // Form Object
@@ -201,16 +213,9 @@ var setForm = {
   // Deger girilir ise bugunun tarihine girilen deger kadar gun ekler
   getDate: function(addYear, addMonth, addDay) {
     currentDate = new Date();
-    if (
-      addDay === undefined ||
-      "undefined" ||
-      (addMonth === undefined || "undefined") ||
-      (addDay === undefined || "undefined")
-    ) {
-      addDay = 0;
-      addMonth = 0;
-      addYear = 0;
-    }
+    addDay ===  undefined  ? addDay = 0 :  addDay;
+    addMonth ===  undefined  ? addMonth = 0 : addMonth;
+    addYear ===  undefined  ? addYear = 0 : addYear;
     return (
       (currentDate.getFullYear() + addYear).toString() +
       "-" +
@@ -226,8 +231,6 @@ var setForm = {
       formInput = _t.formInput;
 
     $(el.time).attr("data-date", _t.getDate());
-    var maxDate = _t.getDate(-7, 0, 0);
-    $(formInput.birthdate).attr("max", maxDate);
   },
   events: function() {
     var _t = this,
@@ -312,12 +315,16 @@ var setForm = {
     });
     // 7 Yas Uyarisini Açar
     var s = 0;
+    var maxDate = _t.getDate(-7,0,0);
+    var minDate = _t.getDate(-100,0,0);
     $(formInput.birthdate).on("focus", function() {
       if (s === 0) {
         s++;
         $(".child-warning").removeClass(cls.none);
         $(".warning-background").removeClass(cls.none);
-        $(formInput.birthdate).val(_t.getDate(-7, 0, 0));
+        $(this).attr("type", "date");
+        $(formInput.birthdate).attr("max", maxDate);
+       
       }
     });
     // 7 Yas Uarisini Kapatir
@@ -1161,7 +1168,7 @@ var setForm = {
 
     var f = 0;
     var m = 0;
- 
+
     data.booking.products.forEach(function(el) {
       if (el.gender == "f") {
         return f++;
@@ -1184,7 +1191,7 @@ var setForm = {
   // Butun Fonksiyonlari Cagirir
   init: function() {
     console.log(JSON.parse(mockJSON));
-    
+
     this.setInitialDate();
     this.plugins();
     this.test();
