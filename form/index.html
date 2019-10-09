@@ -136,7 +136,7 @@
         <!-- CHECK IN / OUT SECIMI BITIS -->
         <!-- TARIH SECIMI BASLANGIC -->
         <div class="calendar-container ems-none">
-          <div rel="date-dec" class="date-counter-button disabled">&#8592;</div>
+          <div rel="date-dec" class="date-counter-button">&#8592;</div>
           <div class="calendar-button"></div>
           <div id="datepicker"></div>
           <input
@@ -188,6 +188,15 @@
         <!-- SAAT SECIMI BITIS -->
         <!-- DATEPICKER BITIS -->
       </section>
+      <div class="time-picker-warnings ems-none">
+        <p class="total-hours-warning">
+          You booked <span id="tp-totalHour"></span> hours
+        </p>
+        <p class="date-warning ems-none">
+          Your reservation is between <span id="ci-day"></span> and
+          <span id="co-day"></span>
+        </p>
+      </div>
       <div class="comfirm-button disabled">COMFIRM</div>
     </section>
     <!-- BOOKING BITIS -->
@@ -232,7 +241,7 @@
                   Nap Session (
                   <span class="bi-product-gender">
                      $$strURN_AD$$
-                  </span>) x 1
+                  </span>) x {{guestNumber}}
                 </div>
                 <ul class="bi-product-specs">
                   <li>Fully Equipped Unit</li>
@@ -269,7 +278,7 @@
       <h3>Guest Info</h3>
       <div class="guest-info-wrapper">
         <div class="guest-info-input">
-        <div class="validation-icon"></div>
+          <div class="validation-icon"></div>
           <label for="first-name">First Name<sup>*</sup></label>
           <input
             required
@@ -280,7 +289,7 @@
           />
         </div>
         <div class="guest-info-input">
-            <div class="validation-icon"></div>
+          <div class="validation-icon"></div>
           <label for="last-name">Last Name<sup>*</sup></label>
           <input
             required
@@ -291,7 +300,7 @@
           />
         </div>
         <div class="guest-info-input">
-            <div class="validation-icon"></div>
+          <div class="validation-icon"></div>
           <label for="email">Email Address<sup>*</sup></label>
           <input
             required
@@ -321,11 +330,12 @@
             />
           </div>
         </div>
-        <div class="guest-info-input"> 
+        <div class="guest-info-input">
           <label for="birthdate">Birthdate<sup>*</sup></label>
           <input
             required
             type="text"
+            onfocus="(this.type='date')"
             name="birthdate"
             id="birthdate"
             placeholder="DD/MM/YYYY"
@@ -333,67 +343,149 @@
         </div>
       </div>
     </section>
-     <!-- BOOKING GUEST INFO BITIS -->
-     <section class="booking-payment-details-container ems-none">
+    <!-- BOOKING GUEST INFO BITIS -->
+    <!-- PAYMENT BASLANGIC -->
+    <section class="booking-payment-details-container ems-none">
       <div class="pd-credit-card"></div>
       <div class="card-info-wrapper">
         <div class="card-info">
-        <div class="validation-icon"></div>
+          <div class="validation-icon"></div>
           <label for="card-number">Card Number<sup>*</sup></label>
-          <input
-            required
-            type="text"
-            name="card-number"
-            id="cardnumber"
-          />
+          <input required type="text" name="card-number" id="cardnumber" />
         </div>
         <div class="card-info">
           <div class="validation-icon"></div>
           <div class="payment-credential">
             <div>
               <label for="expiration">Expiration<sup>*</sup></label>
-            <input
-              required
-              type="text"
-              id="expiration"
-              name="expiration"
-              placeholder="MM/YY"
-            />
-          </div>
-          <div>
-            <div class="cvc-info">?</div>
-            <label for="cvc">CVC<sup>*</sup></label>
-            <input
-              required
-              type="text"
-              name="cvc"
-              id="cvc"
-            />
+              <input
+                required
+                type="text"
+                id="expiration"
+                name="expiration"
+                placeholder="MM/YY"
+              />
+            </div>
+            <div>
+              <div class="cvc-info">?</div>
+              <label for="cvc">CVC<sup>*</sup></label>
+              <input required type="text" name="cvc" id="cvc" />
             </div>
           </div>
         </div>
         <div class="card-info">
-            <div class="validation-icon"></div>
+          <div class="validation-icon"></div>
           <label for="card-holder">Card Holder<sup>*</sup></label>
-          <input
-            required
-            type="text"
-            name="card-holder"
-            id="cardHolder"
-          />
+          <input required type="text" name="card-holder" id="cardHolder" />
         </div>
-        <div class="pd-policies">
-          <div class="pd-term">
-            <div>I</div><div>Term of Use</div><div>></div>
+      </div>
+      <div class="pd-policies">
+        <div class="pd-term">
+          <div>I</div>
+          <div>Term of Use</div>
+          <div class="pd-icon">></div>
+        </div>
+        <div class="pd-privacy">
+          <div>I</div>
+          <div>Privacy Policy</div>
+          <div class="pd-icon">></div>
+        </div>
+        <div class="pd-accept">
+          <input required type="checkbox" id="accept-pd" />
+          <p>
+            By proceeding with this booking. I agree to
+            <u>Kepler Club's</u> Terms of Use and <u>Privacy Policy</u>.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="booking-comfirmation-container ems-none">
+      <script id="paymentMethodTemplate" type="text/template">
+      <div class="comfirmation-message">
+        <h4>Thank you!</h4>
+        <p>
+          You successfully completed your reservation.<br /><br />
+          We will send you a confirmation email with your electronic receipt
+          shortly.
+        </p>
+      </div>
+      <div class="comfirmation-id">
+        <p>Your Reservation ID</p>
+        <h4>{{reservationID}}</h4>
+      </div>
+      <div class="comfirmation-summary">
+        <h4>Booking Summary</h4>
+        <img src="" />
+        <div class="summary-location">
+          <h4>Kepler Club, {{airport}}</h4>
+          <div>International Terminal, 3rd floor Airside</div>
+          <a href="#" target="_blank">View on Map</a>
+        </div>
+        <div class="comfirmation-info-container">
+          <div class="c-info-date">
+            <div class="c-info-title">
+              <i></i>
+              <h4>Check-in / Check-out-Time</h4>
+            </div>
+            <div class="c-info-details">{{dates}}</div>
           </div>
-          <div class="pd-privacy">
-            <div>I</div><div>Privacy Policy</div><div>></div>
+          <div class="c-info-time">
+            <div class="c-info-title">
+              <i></i>
+              <h4>Length of Stay</h4>
+            </div>
+            <div class="c-info-details">{{times}}</div>
           </div>
-          <div class="pd-accept">
-            <input type="checkbox" id="accept-pd" /> <p>By proceeding with this booking. I agree to <u>Kepler Club's</u> Terms of Use and <u>Privacy Policy</u>.</p>
+          <div class="c-info-guest">
+            <div class="c-info-title">
+              <i></i>
+              <h4>Guests</h4>
+            </div>
+            <div class="c-info-details">{{guests}}</div>
           </div>
         </div>
-     </section>
+      </div>
+      <!-- PRODUCT BASLANGIC -->
+      <section class="booking-info-product-container">
+        <h3>Your Unit Details</h3>
+        <div class="booking-info-product-wrapper">
+          <div class="booking-info-product" rel="$$strURN_KOD$$">
+            <div class="bi-product-image $$strURN_AD$$">
+              <img src="$$strURN_RESIM$$" />
+            </div>
+            <div class="bi-product-info">
+              <div class="bi-product-title">
+                Nap Session (
+                <span class="bi-product-gender"> $$strURN_AD$$ </span>) x
+                {{ guestNumber }}
+              </div>
+              <ul class="bi-product-specs">
+                <li>Fully Equipped Unit</li>
+                <li>Pay Now</li>
+                <li>Free Cancellation</li>
+                <!-- prmACIKLAMA -->
+              </ul>
+              <div class="bi-product-fee">
+                <div class="bi-prodcut-hour">
+                  <span class="bi-hour">{{ hour }}</span
+                  >hrs x <span class="bi-unit-price"> $$salesPrice$$ </span>USD
+                  / hr
+                </div>
+                <div class="bi-product-price-wrapper">
+                  <span class="bi-product-price">{{ price }}</span> USD
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="comfirmation-cancel">
+        <h4>Reservation Conditions and Cancellation Policy</h4>
+        <p>You can cancel your bookings 24 hours prior to arrival date by <a href="#">contacting us</a>. If you fail to arrive or cancel the reservation, no refund will be given.</p>
+      </div>
+      </script>
+    </section>
+    <!-- PAYMENT BASLANGIC -->
     <div class="booking-info-order-container ems-none">
       <div class="bi-order-amount-container">
         <div class="bi-order-amount">
@@ -412,12 +504,90 @@
         <div class="bi-order-total-description">
           Service charge 10%, excluding taxes
         </div>
+        <script id="paymentMethodTemplate" type="text/template">
+          <div class="bi-order-payment">
+            <div>Payment Method</div>
+            <div class="bi-order-payment-info">
+              <div>Card Holder</div>
+              <div>{{ biOrderCardHolder }}</div>
+            </div>
+            <div class="bi-order-payment-info">
+              <div>Card Holder</div>
+              <div>{{ biOrderCardType }}</div>
+            </div>
+            <div class="bi-order-payment-info">
+              <div>Card Holder</div>
+              <div>{{ biOrderCardNumber }}</div>
+            </div>
+          </div>
+        </script>
         <div rel="booking-info" class="continue-button">CONTINUE</div>
       </div>
+    </div>
+    <div class="warning-background ems-none"></div>
+    <div class="form-warnings child-warning ems-none">
+      <div class="warning-title">
+        <p>Unfortunately we do not accept children below 7 years old.</p>
+        <div>✕</div>
+      </div>
+    </div>
+    <div class="form-warnings pp-warning ems-none">
+      <div class="warning-title">
+        <h2>Privacy Policy</h2>
+        <div>✕</div>
+      </div>
+      <h2>01. Why you Need a Privacy Policy</h2>
+      <p>
+        Privacy is not a new concept. Humans have always desired privacy in
+        their social as well as private lives. But the idea of privacy as a
+        human right is a relatively modern phenomenon.<br /><br />
+        Around the world, laws and regulations have been developed for the
+        protection of data related to government, education, health, children,
+        consumers, financial institutions, etc.<br /><br />
+        This data is critical to the person it belongs to. Data privacy and
+        security binds individuals and industries together and runs complex
+        systems in our society. From credit card numbers and social security
+        numbers to email addresses and phone numbers, our sensitive, personally
+        identifiable information is important. This sort of information in
+        unreliable hands can potentially have far-reaching consequences.<br /><br />
+        Companies or websites that handle customer information are required to
+        publish their Privacy Policies on their business websites. If you own a
+        website, web app, mobile app or desktop app that collects or processes
+        user data, you most certainly will have to post a Privacy Policy on your
+        website (or give in-app access to the full Privacy Policy agreement).
+      </p>
+    </div>
+    <div class="form-warnings tou-warning ems-none">
+      <div class="warning-title">
+        <h2>Terms of Use</h2>
+        <div>✕</div>
+      </div>
+      <h2>01. Why you Need a Terms of Use</h2>
+      <p>
+        Privacy is not a new concept. Humans have always desired privacy in
+        their social as well as private lives. But the idea of privacy as a
+        human right is a relatively modern phenomenon.<br /><br />
+        Around the world, laws and regulations have been developed for the
+        protection of data related to government, education, health, children,
+        consumers, financial institutions, etc.<br /><br />
+        This data is critical to the person it belongs to. Data privacy and
+        security binds individuals and industries together and runs complex
+        systems in our society. From credit card numbers and social security
+        numbers to email addresses and phone numbers, our sensitive, personally
+        identifiable information is important. This sort of information in
+        unreliable hands can potentially have far-reaching consequences.<br /><br />
+        Companies or websites that handle customer information are required to
+        publish their Privacy Policies on their business websites. If you own a
+        website, web app, mobile app or desktop app that collects or processes
+        user data, you most certainly will have to post a Privacy Policy on your
+        website (or give in-app access to the full Privacy Policy agreement).
+      </p>
     </div>
     <!-- FORM BITIS -->
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>
-    <script async src="main.js"></script>
+    <script src="card.js"></script>
+    <script src="payment.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
