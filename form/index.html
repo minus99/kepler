@@ -345,7 +345,7 @@
     </section>
     <!-- BOOKING GUEST INFO BITIS -->
     <!-- PAYMENT BASLANGIC -->
-    <section class="booking-payment-details-container ems-none">
+    <section class="booking-payment-details-container">
       <div class="pd-credit-card"></div>
       <div class="card-info-wrapper">
         <div class="card-info">
@@ -397,6 +397,7 @@
             <u>Kepler Club's</u> Terms of Use and <u>Privacy Policy</u>.
           </p>
         </div>
+        <div rel="card-info" class="continue-button">CONTINUE</div>
       </div>
     </section>
     <section class="booking-comfirmation-container ems-none">
@@ -447,6 +448,7 @@
       </div>
       <!-- PRODUCT BASLANGIC -->
       <section class="booking-info-product-container">
+          <script id="guestTemplate" type="text/template">
         <h3>Your Unit Details</h3>
         <div class="booking-info-product-wrapper">
           <div class="booking-info-product" rel="$$strURN_KOD$$">
@@ -457,7 +459,7 @@
               <div class="bi-product-title">
                 Nap Session (
                 <span class="bi-product-gender"> $$strURN_AD$$ </span>) x
-                {{ guestNumber }}
+                {{guestNumber}}
               </div>
               <ul class="bi-product-specs">
                 <li>Fully Equipped Unit</li>
@@ -467,17 +469,18 @@
               </ul>
               <div class="bi-product-fee">
                 <div class="bi-prodcut-hour">
-                  <span class="bi-hour">{{ hour }}</span
+                  <span class="bi-hour">{{hour}}</span
                   >hrs x <span class="bi-unit-price"> $$salesPrice$$ </span>USD
                   / hr
                 </div>
                 <div class="bi-product-price-wrapper">
-                  <span class="bi-product-price">{{ price }}</span> USD
+                  <span class="bi-product-price">{{price}}</span> USD
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </script>
       </section>
       <div class="comfirmation-cancel">
         <h4>Reservation Conditions and Cancellation Policy</h4>

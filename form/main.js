@@ -258,7 +258,7 @@ var setForm = {
         behavior: "smooth"
       });
     });
-
+    
     $(".continue-button").on("click", function() {
       if ($(this).attr("rel") == "card-info") {
         $(".booking-payment-details-container").addClass("ems-none");
@@ -529,10 +529,8 @@ var setForm = {
             $(CCH).val() != "" &&
             $(CCA)[0].checked
           ) {
-            console.log("true");
             $(".continue-button").removeClass(cls.disabled);
           } else {
-            console.log("false");
             $(".continue-button").addClass(cls.disabled);
           }
         });
@@ -1165,27 +1163,60 @@ var setForm = {
       info = _t.info;
     var markup = "";
     var data = JSON.parse(mockJSON);
-
+    var asdsa = `2019-10-08 14:00 2019-10-08 22:00`
     var f = 0;
     var m = 0;
-
+    var months = ["UNKNOWN", "January", "February", "March", "April", "May", "June", "July", "Auguts", "September", "October", "November", "December"]
     data.booking.products.forEach(function(el) {
       if (el.gender == "f") {
-        return f++;
+        f++;
       }
       if (el.gender == "m") {
-        return m++;
+        m++;
       }
     });
+    function getMotnhs(number) {
+      return months[parseInt(number)]
+    }
+
+    function parseDates(date){
+      var checkIn = date.substring(8,10) + " " + getMotnhs(date.substring(5,7));
+      var checkOut = date.substring(25,27) + " " + getMotnhs(date.substring(22,24));
+      return checkIn + " - " + checkOut + ", " + date.substring(2,4)
+    }
+
+    function parseTimes(date){
+      var checkIn = date.substring(11,16)
+      var checkOut = date.substring(28,33)
+      return checkIn + " - " + checkOut 
+    }
 
     markup = $("#paymentMethodTemplate")
       .html()
       .replace(/{{reservationID}}/g, data.reservation.id)
-      .replace(/{{airport}}/g, data.bookinglocation)
-      .replace(/{{dates}}/g, data.booking.date)
-      .replace(/{{times}}/g, data.booking.date)
-      .replace(/{{guest}}/g, m + " Male, " + f + " Female");
+      .replace(/{{airport}}/g, data.booking.location)
+      .replace(/{{dates}}/g, parseDates(data.booking.date))
+      .replace(/{{times}}/g, parseTimes(data.booking.date) + " (" +  data.booking.products[0].hours + " hrs)") 
+      .replace(/{{guests}}/g, m + " Male, " + f + " Female");
     $(".booking-comfirmation-container").html(markup);
+
+    var guestMarkup = ""
+    var maleCard = state.maleGuest > 0 ? 1 : 0;
+    var femaleCard = state.femaleGuest > 0 ? 1 : 0;
+    for (var i = 1 - maleCard; i < 1 + femaleCard; i++) {
+      guestMarkup += $("#guestTemplate")
+        .html()
+        .replace(/[$][$]strURN_KOD[$][$]/g, Math.floor(Math.random() * 10))
+        .replace(/[$][$]strURN_AD[$][$]/g, i == 0 ? "Male" : "Female")
+        .replace(
+          /{{guestNumber}}/,
+          i == 0 ? state.maleGuest : state.femaleGuest
+        )
+        .replace(/[$][$]salesPrice[$][$]/g, 7)
+        .replace(/{{hour}}/g, state.date.totalHour)
+        .replace(/{{price}}/g, state.date.totalHour * 7);
+    }
+    $(".booking-info-product-container").html(guestMarkup);
   },
 
   // Butun Fonksiyonlari Cagirir
