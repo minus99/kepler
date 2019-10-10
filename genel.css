@@ -2664,7 +2664,7 @@ button.toast-close-button {
   position: sticky;
   top: 52px;
   background: #fff;
-  z-index: 9999; }
+  z-index: 100; }
   .room-detail-container .detail-top-bar .row-container {
     border-bottom: 1px solid #e0e0e0;
     width: calc(100% - 60px);
@@ -2717,10 +2717,11 @@ button.toast-close-button {
       font-weight: 500;
       letter-spacing: 2px; }
 
-.room-detail-container .detail-feature h2 {
+.room-detail-container .detail-feature .subtitle {
   font-weight: bold;
   font-size: 24px;
-  text-align: center; }
+  text-align: center;
+  margin: 60px 0px; }
 
 .room-detail-container .detail-feature .feature-wrapper {
   display: flex;
@@ -2746,6 +2747,28 @@ button.toast-close-button {
     .room-detail-container .detail-feature .feature-wrapper .feature-text {
       height: 50px;
       width: 100%; }
+  .room-detail-container .detail-feature .feature-wrapper.two {
+    justify-content: center; }
+    .room-detail-container .detail-feature .feature-wrapper.two .feature {
+      width: 100%; }
+      .room-detail-container .detail-feature .feature-wrapper.two .feature > div {
+        margin-bottom: 15px;
+        max-width: 280px;
+        width: 100%;
+        color: #1d3243; }
+      .room-detail-container .detail-feature .feature-wrapper.two .feature-icon {
+        margin-bottom: 20px !important; }
+        .room-detail-container .detail-feature .feature-wrapper.two .feature-icon img {
+          max-width: 140px; }
+      .room-detail-container .detail-feature .feature-wrapper.two .feature-title {
+        display: block !important;
+        font-size: 16px;
+        font-weight: bold; }
+      .room-detail-container .detail-feature .feature-wrapper.two .feature-text {
+        font-size: 18px;
+        font-family: garamond, arial, sans-serif;
+        line-height: 1.22;
+        height: auto; }
 
 .room-detail-container .room-gallery-full > .swiper-container .swiper-inner .subtitle {
   text-align: center; }
@@ -2905,6 +2928,56 @@ button.toast-close-button {
           display: inline-block;
           padding-left: 10px;
           vertical-align: top; }
+
+.room-detail-container .concept-unit-description .concept-unit-container {
+  display: flex;
+  flex-wrap: wrap; }
+  .room-detail-container .concept-unit-description .concept-unit-container > div {
+    width: 100%; }
+  .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html {
+    padding: 40px 5%; }
+    .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .subtitle {
+      font-size: 20px;
+      font-weight: bold; }
+    .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .concept-unit-props {
+      padding-left: 5%; }
+      .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .concept-unit-props li {
+        position: relative;
+        margin-bottom: 5px;
+        padding: 5px 0px;
+        font-size: 18px;
+        line-height: 1.22;
+        font-family: garamond, arial, sans-serif; }
+        .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .concept-unit-props li .unit-props-item {
+          width: 100%; }
+        .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .concept-unit-props li .unit-props-icon {
+          display: none; }
+      .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .concept-unit-props.no-icon li {
+        position: relative; }
+        .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .concept-unit-props.no-icon li:after {
+          content: '';
+          position: absolute;
+          left: -17px;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+          width: 7px;
+          height: 7px;
+          border-radius: 14px;
+          background: #e5e5e5; }
+      .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .concept-unit-props.tick-icon {
+        padding-left: 0px !important; }
+        .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .concept-unit-props.tick-icon li {
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          flex-wrap: wrap; }
+          .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .concept-unit-props.tick-icon li .unit-props-item {
+            width: 70%; }
+          .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .concept-unit-props.tick-icon li .unit-props-icon {
+            display: inline-block !important;
+            width: 30%;
+            text-align: right; }
 
 .detail-landing-page .navigasyon {
   background: #f7f7f7; }
@@ -3212,7 +3285,8 @@ button.toast-close-button {
       .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .starter-content:after {
         content: none; }
     .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .next-swiper {
-      max-width: 1160px; }
+      max-width: 1160px;
+      z-index: 1; }
       .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .next-swiper-wrapper {
         max-width: 30px; }
         .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .next-swiper-wrapper svg {
@@ -3390,8 +3464,7 @@ button.toast-close-button {
           align-items: center;
           flex-wrap: wrap; }
           .room-detail-container .detail-feature .subtitle {
-            width: 100%;
-            margin: 60px 0px; }
+            width: 100%; }
           .room-detail-container .detail-feature .feature-wrapper {
             width: 100%;
             justify-content: center; }
@@ -3399,14 +3472,12 @@ button.toast-close-button {
               width: 20%; }
           .room-detail-container .detail-feature .feature-wrapper.two .feature {
             width: 50%; }
+            .room-detail-container .detail-feature .feature-wrapper.two .feature-icon {
+              margin-bottom: 30px !important; }
+              .room-detail-container .detail-feature .feature-wrapper.two .feature-icon img {
+                max-width: 260px; }
             .room-detail-container .detail-feature .feature-wrapper.two .feature > div {
-              max-width: 300px;
-              width: 100%;
-              margin-bottom: 15px; }
-            .room-detail-container .detail-feature .feature-wrapper.two .feature-title {
-              display: block !important; }
-            .room-detail-container .detail-feature .feature-wrapper.two .feature-text {
-              height: auto; }
+              max-width: 300px; }
         .room-detail-container .room-gallery-full .swiper-container .swiper-inner .subtitle {
           font-size: 32px; }
         .room-detail-container .room-gallery-full .swiper-container .swiper-inner .swiper-wrapper .swiper-slide img {
@@ -3433,6 +3504,26 @@ button.toast-close-button {
           .room-detail-container .detail-description .unit-container-items {
             width: calc(100% - 600px);
             padding-left: 50px; }
+        .room-detail-container .concept-unit-description .concept-unit-container {
+          margin-bottom: 90px; }
+          .room-detail-container .concept-unit-description .concept-unit-container:last-child {
+            border-bottom: 1px solid #e5e5e5;
+            margin-bottom: 40px;
+            padding-bottom: 40px; }
+          .room-detail-container .concept-unit-description .concept-unit-container:nth-child(even) {
+            flex-direction: row-reverse; }
+          .room-detail-container .concept-unit-description .concept-unit-container > div {
+            width: 50%;
+            display: flex;
+            align-content: center;
+            justify-content: flex-start;
+            flex-wrap: wrap; }
+          .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-wrapper {
+            justify-content: center; }
+          .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .subtitle {
+            font-size: 32px; }
+          .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .concept-unit-props li {
+            font-size: 20px; }
         .detail-landing-page .navigasyon .navigation-full-path {
           max-width: 1160px;
           width: 100%;

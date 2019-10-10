@@ -40,7 +40,7 @@
     position:sticky;
     top:52px;
     background:$white;
-    z-index: 9999;
+    z-index: 100;
     .row-container{
      border-bottom:1px solid #e0e0e0;
       width:calc(100% - 60px);
@@ -116,10 +116,11 @@
   }
 
   .detail-feature {
-    h2 {
+    .subtitle {
       font-weight: bold;
       font-size: 24px;
       text-align: center;
+      margin:60px 0px;
     }
 
     .feature-wrapper {
@@ -127,7 +128,6 @@
       flex-wrap: wrap;
       justify-content: space-between;
       padding: 0px 30px;
-
       .feature {
         text-align: center;
         width: 49%;
@@ -154,6 +154,35 @@
         &-text {
           height: 50px;
           width:100%;
+        }
+      }
+      &.two{
+        justify-content: center;
+        .feature{
+          width:100%;
+          > div{
+            margin-bottom:15px;
+            max-width: 280px;
+            width:100%;
+            color:$font-color;
+          }
+          &-icon{
+            margin-bottom:20px !important;
+            img{
+              max-width:140px;
+            }
+          }
+          &-title{
+            display: block !important;
+            font-size:16px;
+            font-weight: bold;
+          }
+          &-text{
+            font-size:18px;
+            font-family: $font2;
+            line-height:1.22;
+            height:auto;
+          }
         }
       }
     }
@@ -359,6 +388,73 @@
     
   }
 
+
+  .concept-unit-description{
+      .concept-unit-container{
+        display: flex;
+        flex-wrap:wrap;
+        > div{
+          width:100%;
+        }
+        .concept-unit-html{
+          padding:40px 5%;
+          .subtitle{
+            font-size:20px;
+            font-weight: bold;
+          }
+          .concept-unit-props{
+            padding-left:5%;
+            li{
+              position: relative;
+              margin-bottom:5px;
+              padding:5px 0px;
+              font-size:18px;
+              line-height: 1.22;
+              font-family: $font2;
+              .unit-props-item{
+                width:100%;
+              }
+              .unit-props-icon{
+                display: none;
+              }
+            }
+            &.no-icon{
+              li{
+                position: relative;
+                &:after{
+                  content:'';
+                  position: absolute;;
+                  left:-17px;
+                  top:50%;
+                  transform: translateY(-50%);
+                  width:7px;
+                  height:7px;
+                  border-radius:14px;
+                  background: $color16;
+                }
+              }
+            }
+            &.tick-icon{
+              padding-left:0px !important;
+              li{
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+                flex-wrap:wrap;
+                .unit-props-item{
+                  width:70%;
+                }
+                .unit-props-icon{
+                  display: inline-block !important;
+                  width:30%;
+                  text-align: right;
+                }
+              }
+            }
+          }
+        }
+      }
+  }
 }
 
 
