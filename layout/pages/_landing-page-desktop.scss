@@ -1,7 +1,4 @@
 //DESKTOP 
-@supports (display: grid) {
-  @include setMediaScreen(min-width, $breakpoint-medium) {
-
     .room-detail-container {
 
       .detail-cover {
@@ -233,17 +230,3 @@
 
 
     }
-
-    .detail-landing-page {
-      .navigasyon {
-        .navigation-full-path {
-          max-width: 1160px;
-          width: 100%;
-          padding: 0px;
-          margin: 0 auto;
-        }
-      }
-    }
-
-  }
-}

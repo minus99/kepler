@@ -1,0 +1,18 @@
+.ems-page-hierarchy{
+    &-content{
+        &-wrapper{
+            background: red;
+            .ems-page-hierarchy-dropdown-menu{
+                top:84px;
+                order:2;
+            }
+            .ems-page-hierarchy-cover{
+                order:1;
+            }
+            .ems-page-hierarchy-html{
+                order:3;
+                min-height:900px;
+            }
+        }
+    }
+}

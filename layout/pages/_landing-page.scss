@@ -59,7 +59,9 @@
               padding:10px;
               font-size:12px;
               border-bottom:2px solid transparent;
-              &:hover{
+            }
+            &.selected{
+              a{
                 border-bottom:2px solid $color0;
               }
             }
@@ -455,36 +457,4 @@
         }
       }
   }
-}
-
-
-.detail-landing-page{
-   .navigasyon{
-    background: $color12;
-     ol{
-       display: none;
-     }
-     .navigation-full-path{
-       padding:0 5%;
-       height:43px;
-       display: flex;
-       align-items: center;
-       justify-content: flex-start;
-       .new-breadcrumb-home{
-         a{
-           svg{
-             font-size:25px;
-           }
-           svg:nth-child(2){
-             font-size:21px;
-             margin-left:5px;
-             margin-right:10px;
-           }
-         }
-       }
-       .new-breadcrumb-level{
-         color:$font-color;
-       }
-     }
-   }
 }
