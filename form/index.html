@@ -51,8 +51,10 @@
         <div class="location-menu ems-none">
           <div class="input-subtitle">Airports</div>
           <ul>
-            <li rel="SAW">Istanbul Sabiha Gokcen(SAW), Turkey</li>
-            <li rel="IST">Istanbul(IST), Turkey</li>
+            <li class="ajax-loader">Loading...</li>
+            <script id="locationTemplate" type="text/template">
+              <li airport-id=" {{item.id}} " airport-code=" {{item.kodu}} " airport-name=" {{item.adi}} "> {{item.adi}} ( {{item.kodu}} )</li>
+            </script>
           </ul>
         </div>
       </section>
@@ -64,8 +66,8 @@
           <div class="input-title-wrapper ">
             <div class="input-title">Number of Adults</div>
             <div class="input-info ems-none">
-              <span class="maleNumber">1</span>Male,<span class="femaleNumber"
-                >1</span
+              <span class="maleNumber">0</span>Male,<span class="femaleNumber"
+                >0</span
               >Female
             </div>
           </div>
@@ -79,10 +81,10 @@
                 data-target=".maleNumber"
                 type="text"
                 id="male"
-                value="1"
+                value="0"
                 class="ems-none"
               />
-              <span class="maleNumber">1</span>
+              <span class="maleNumber">0</span>
               <div rel="inc" class="button-counter">+</div>
             </div>
           </div>
@@ -94,10 +96,10 @@
                 data-target=".femaleNumber"
                 type="text"
                 id="female"
-                value="1"
+                value="0"
                 class="ems-none"
               />
-              <span class="femaleNumber">1</span>
+              <span class="femaleNumber">0</span>
               <div rel="inc" class="button-counter">+</div>
             </div>
           </div>

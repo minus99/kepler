@@ -9,6 +9,12 @@
 // 10. START AGAIN BUTTON
 // 11. UYGUN OLMAYAN SAAT KONTROLU
 
+var kapasiteURL = "https://api.myjson.com/bins/81cg2";
+
+var havalimaniURL = "https://api.myjson.com/bins/1b3sgu";
+
+var successURL = "https://api.myjson.com/bins/160zde";
+
 var mockJSON =
   '{"booking":{"location":"SAW","date":"2019-10-08 14:00 2019-10-08 22:00","products":[{"id":832504,"gender":"m","hours":8},{"id":832504,"gender":"m","hours":8},{"id":832504,"gender":"m","hours":8}]},"guest":{"firstName":"Ad","lastName":"Soyad","email":"mail@mail.com","mobile":"+905355555555","birthDate":"2019-04-03"},"card":{"number":"4545 4545 4545 4545","expiration":"01 / 12","cvc":"456","holder":"Ad Soyad"},"reservation":{"id":"KPLR0051853"}}';
 
@@ -203,8 +209,8 @@ var setForm = {
   test: function() {
     var _t = this;
     $(".test").bind("click", function() {
-      // console.log(state);
-      _t.createFormObject();
+      console.log(state);
+      //_t.createFormObject();
     });
   },
 
@@ -213,9 +219,9 @@ var setForm = {
   // Deger girilir ise bugunun tarihine girilen deger kadar gun ekler
   getDate: function(addYear, addMonth, addDay) {
     currentDate = new Date();
-    addDay ===  undefined  ? addDay = 0 :  addDay;
-    addMonth ===  undefined  ? addMonth = 0 : addMonth;
-    addYear ===  undefined  ? addYear = 0 : addYear;
+    addDay === undefined ? (addDay = 0) : addDay;
+    addMonth === undefined ? (addMonth = 0) : addMonth;
+    addYear === undefined ? (addYear = 0) : addYear;
     return (
       (currentDate.getFullYear() + addYear).toString() +
       "-" +
@@ -231,6 +237,64 @@ var setForm = {
       formInput = _t.formInput;
 
     $(el.time).attr("data-date", _t.getDate());
+  },
+
+  fetchAirports: function() {
+    var markup = "";
+    var _t = this;
+    $.ajax({
+      type: "GET",
+      url: havalimaniURL,
+      success: function(resp) {
+        resp.data.forEach(item => {
+          // Dropdown Seçeneklerini Getirir
+          markup += $("#locationTemplate")
+            .html()
+            .replace(/{{item.id}}/g, item.id)
+            .replace(/{{item.kodu}}/g, item.kodu)
+            .replace(/{{item.adi}}/g, item.adi);
+        });
+        $(_t.el.dropDown)
+        .find("ul")
+        .html(markup);
+      },
+      complete: function() {
+
+        // Dropdown Seçiminden Sonrki Actionlar
+        $(_t.el.dropDown)
+          .find("ul li")
+          .bind("click", function() {
+            // State'e Value Yolla
+            state.location = $(this).attr("airport-id");
+            state.locationName = $(this).attr("airport-name");
+            $(this)
+            .addClass(_t.cls.selectedItem)
+            .siblings()
+            .removeClass(_t.cls.selectedItem);
+           $(_t.el.location).find(_t.el.inputInfo).text($(this).text());
+          });
+  
+      },
+      dataType: "json",
+      timeout: 30000,
+      error: function() {
+        if (typeof callback !== "undefined") callback({ type: "error" });
+      }
+    });
+  },
+  fetchCapacity: function() {
+    $.ajax({
+      type: "GET",
+      url: kapasiteURL,
+      success: function(resp) {
+        console.log(resp);
+      },
+      dataType: "json",
+      timeout: 30000,
+      error: function() {
+        if (typeof callback !== "undefined") callback({ type: "error" });
+      }
+    });
   },
   events: function() {
     var _t = this,
@@ -315,8 +379,8 @@ var setForm = {
     });
     // 7 Yas Uyarisini Açar
     var s = 0;
-    var maxDate = _t.getDate(-7,0,0);
-    var minDate = _t.getDate(-100,0,0);
+    var maxDate = _t.getDate(-7, 0, 0);
+    var minDate = _t.getDate(-100, 0, 0);
     $(formInput.birthdate).on("focus", function() {
       if (s === 0) {
         s++;
@@ -324,7 +388,6 @@ var setForm = {
         $(".warning-background").removeClass(cls.none);
         $(this).attr("type", "date");
         $(formInput.birthdate).attr("max", maxDate);
-       
       }
     });
     // 7 Yas Uarisini Kapatir
@@ -550,32 +613,27 @@ var setForm = {
       cls = _t.cls;
     dropDown = function(id) {
       // Dropdown Menu Acilir || Kapanir
-      var id = $(id).parent();
-
-      id.bind("click", function() {
+      var _id = $(id).parent();
+      var isFetched = false;
+      _id.bind("click", function() {
         $(el.dropDown).toggleClass(cls.none);
         _t.controls();
+        if(!isFetched){
+          _t.fetchAirports();
+        }
+        isFetched =true
       });
 
       // Lokasyon Secer
-      id.find("ul li").bind("click", function() {
-        $(this)
-          .addClass(cls.selectedItem)
-          .siblings()
-          .removeClass(cls.selectedItem);
-        id.find(el.inputInfo).html($(this).text());
-
-        // State'e Value Yollar
-        state.location = $(this).attr("rel");
-        state.locationName = $(this).text();
+      _id.find("ul").bind("click", "li", function() {
         // Bir Sonraki Adimi Aktif Hale Getirir
-        id.next()
+        _id.next()
           .find(el.inputInfo)
           .removeClass(cls.none);
-        id.next()
+        _id.next()
           .find(el.counter)
           .removeClass(cls.none);
-        id.next()
+        _id.next()
           .find("ul")
           .removeClass(cls.none);
       });
@@ -644,6 +702,7 @@ var setForm = {
             );
           }
           _t.controls();
+          _t.fetchCapacity();
         });
     }),
       (customDatePicker = function() {
@@ -1190,8 +1249,6 @@ var setForm = {
 
   // Butun Fonksiyonlari Cagirir
   init: function() {
-    console.log(JSON.parse(mockJSON));
-
     this.setInitialDate();
     this.plugins();
     this.test();
@@ -1334,3 +1391,66 @@ var crediCart = {
 };
 
 crediCart.init();
+
+// var token = "";
+// var airport = "";
+// $.ajax({
+//   type: "POST",
+
+//   url: "http://213.155.108.98/keplertest/token",
+//   data: { username: "Proje", password: "UT64LX9", grant_type: "password" },
+//   dataType: "json",
+
+//   error: function(e) {
+//     if (typeof callback !== "undefined") callback({ type: "error" });
+//   },
+//   timeout: 30000,
+//   success: function(d) {
+//     token = d.access_token;
+//     $.ajax({
+//       type: "GET",
+
+//       url: "http://213.155.108.98/keplertest/Havalimani/havalimaniListele",
+//       headers: {
+//         Authorization: "Bearer " + token
+//       },
+//       dataType: "json",
+//       error: function(e) {
+//         if (typeof callback !== "undefined") callback({ type: "error" });
+//       },
+//       timeout: 30000,
+//       success: function(d) {
+//         console.log(d);
+
+//         airport = d[0].Id;
+//         console.log(airport);
+
+//         $.ajax({
+//           type: "POST",
+
+//           url: "http://213.155.108.98/keplertest/Durum/kapasiteSorgula",
+//           data: {
+//             baslangicTarih: "2019-10-10",
+//             bitisTarih: "2019-10-20",
+//             havalimaniId: airport
+//           },
+//           headers: {
+//             Authorization: "Bearer " + token
+//           },
+//           dataType: "json",
+//           error: function(e) {
+//             if (typeof callback !== "undefined") callback({ type: "error" });
+//           },
+//           timeout: 30000,
+//           success: function(d) {
+//             console.log(d);
+//             if (typeof callback !== "undefined")
+//               callback({ type: "success", val: d });
+//           }
+//         });
+//         if (typeof callback !== "undefined")
+//           callback({ type: "success", val: d });
+//       }
+//     });
+//   }
+// });
