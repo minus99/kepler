@@ -542,6 +542,29 @@ ul {
   letter-spacing: 0.24px;
 }
 
+.bi-order-payment{
+  display: flex;
+  flex-direction: column;
+  border-top:1px solid gray;
+  border-bottom:1px solid gray;
+  padding: 20px 0px;
+}
+
+.bi-order-payment-title{
+  font: 14px;
+  color: indigo;
+}
+.bi-order-payment-info{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size:12px;
+}
+.bi-order-payment-info div:last-child{
+  text-align: right;
+}
+
+
 .Male {
   background-color: #50cae0;
 }
@@ -578,7 +601,7 @@ ul {
   display: flex;
   flex-direction: column;
   padding: 0px 20px;
-  height: 160px;
+  min-height: 160px;
   justify-content: space-around;
 }
 .bi-order-total {
@@ -599,6 +622,12 @@ ul {
   line-height: 42px;
   text-align: center;
   color: white;
+}
+.continue-button[rel="comfirm-info"]{
+  color: indigo;
+  background-color: white;
+  border:1px solid indigo;
+  border-radius: 22px;
 }
 
 /* BOOKNIG INFO ORDER CARD */
@@ -903,6 +932,5 @@ ul {
   font-size: 12px;
   font-weight: normal;
 }
-
 
   

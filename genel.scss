@@ -17,7 +17,9 @@
 @import 'components/tab';
 @import 'components/toastr';
 @import 'components/paging';
+@import 'components/navigation';
 @import 'components/grid-table';
+@import 'components/dropdown';
 
 //HEADER
 @import 'layout/header/header';
@@ -28,6 +30,7 @@
 //PAGES
 @import 'layout/pages/home';
 @import 'layout/pages/landing-page';
+@import 'layout/pages/corporate-page';
 
 //DESKTOP
 @supports (display: grid) {
@@ -41,7 +44,9 @@
         @import 'components/form-desktop';
         @import 'components/swiper-desktop';
         @import 'components/paging-desktop';
+        @import 'components/navigation-desktop';
         @import 'components/grid-table-desktop';
+        @import 'components/dropdown-desktop';
 
         //HEADER
         @import 'layout/header/header-desktop';
@@ -52,6 +57,7 @@
         //PAGES
         @import 'layout/pages/home-desktop';
         @import 'layout/pages/landing-page-desktop';
+        @import 'layout/pages/corporate-page-desktop';
         
         //DESKTOP MINI
         @include setMediaScreen(max-width, $breakpoint-large) {

@@ -1,0 +1,49 @@
+//HIERARCHY MENU
+.mobi-dropdown {
+    > ul {
+        display: block;
+        position: relative;
+        max-height: none;
+        > li {
+            &.selected,
+            &.act {
+                display: block;
+            }
+        }
+    }
+}
+//SYSTEM MENU
+.kutuSolMenuTree {
+    .kutuBodySolMenuTree{
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        height:76px;
+        ul{
+            max-width:1160px;
+            width:100%;
+            margin:0 auto;
+            .mobi-dropdown {
+                border-bottom:1px solid #ddd;
+                > ul{
+                    padding:0px;
+                    background: none;
+                    display: flex;
+                    justify-content: center;
+                    li{
+                        a{
+                            border-bottom:2px solid transparent;
+                            font-size:16px;
+                            font-weight: normal;
+                        }
+                        &.act{
+                            a{
+                                border-bottom:2px solid $color1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

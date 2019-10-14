@@ -1,0 +1,96 @@
+//HIERARCHY MENU
+.mobi-dropdown {
+    position: sticky;
+    top:54px;
+    &-header {
+        position: relative;
+        padding: 15px 30px 15px 30px;
+        font-weight: 700;
+        letter-spacing: .93px;
+        min-height: 85px;
+        background: $white;
+        z-index: 2;
+        &::after {
+            content:'';
+            width:32px;
+            height:32px;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNSIgdmlld0JveD0iMCAwIDI0IDI1Ij4KICAgIDxwYXRoIGZpbGw9IiM0NTNEOTgiIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTguNjAyIDE4LjYwMmEuNTYzLjU2MyAwIDAgMCAuNzk2Ljc5Nmw1Ljk0Ny01Ljk0N2EuNjM4LjYzOCAwIDAgMCAwLS45MDJMOS4zOTggNi42MDJhLjU2Mi41NjIgMCAxIDAtLjc5Ni43OTZMMTQuMjA1IDEzbC01LjYwMyA1LjYwMnoiLz4KPC9zdmc+Cg==");
+            background-position: center;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+            transition: transform .32s ease;
+        }
+    }
+    li {
+        padding:0px 30px;
+        > a {
+            display: flex;
+            align-items: center;
+            border-top: 1px solid transparent;
+            border-bottom: 1px solid transparent;
+            padding: 20px 20px;
+            font-weight: 700;
+            letter-spacing: .93px;
+            border-bottom:1px solid #ddd;
+        }
+    }
+    svg {
+        flex: none;
+        margin: -7px 13px -7px 0;
+    }
+
+    > ul {
+        display: none;
+        animation: show .32s ease;
+        position: absolute;
+        top: 100%;
+        z-index: 1;
+        width: 100%;
+        background: $color12;
+        color: $font-color;
+        max-height: calc(100vh - 150px);
+        overflow: auto;
+        padding:20px 0px 40px 0px;
+        > li {
+            > a {
+                background: transparent right 70px center / 32px no-repeat;
+                transition: all .2s ease-in-out;
+            }
+            &.selected,
+            &.act {
+                display: none;
+            }
+        }
+    }
+
+    &.opened {
+        .mobi-dropdown-header {
+            &::after {
+                transform: translateY(-50%) rotate(-90deg);
+            }
+        }
+        > ul {
+            display: block;
+        }
+    }
+}
+//SYSTEM MENU
+.kutuSolMenuTree {
+    .mobi-dropdown {
+        > a {
+            display: none;
+            padding: 50px 20px 30px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+    }
+
+    b,
+    .kutuHeaderSolMenuTree,
+    .kutuFooterSolMenuTree,
+    .sev3 > ul {
+        display: none;
+    }
+}

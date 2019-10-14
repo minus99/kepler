@@ -16,7 +16,7 @@ var havalimaniURL = "https://api.myjson.com/bins/1b3sgu";
 var successURL = "https://api.myjson.com/bins/160zde";
 
 var mockJSON =
-  '{"booking":{"location":"SAW","date":"2019-10-08 14:00 2019-10-08 22:00","products":[{"id":832504,"gender":"m","hours":8},{"id":832504,"gender":"m","hours":8},{"id":832504,"gender":"m","hours":8}]},"guest":{"firstName":"Ad","lastName":"Soyad","email":"mail@mail.com","mobile":"+905355555555","birthDate":"2019-04-03"},"card":{"number":"4545 4545 4545 4545","expiration":"01 / 12","cvc":"456","holder":"Ad Soyad"},"reservation":{"id":"KPLR0051853"}}';
+  '{"booking":{"location":"SAW","date":"2019-10-08 14:00 2019-10-08 22:00","products":[{"id":832504,"gender":"m","hours":8},{"id":832504,"gender":"m","hours":8},{"id":832505,"gender":"f","hours":8}]},"guest":{"firstName":"Ad","lastName":"Soyad","email":"mail@mail.com","mobile":"+905355555555","birthDate":"2019-04-03"},"card":{"number":"4545 4545 4545 4545","expiration":"01 / 12","cvc":"456","holder":"Ad Soyad"},"reservation":{"id":"KPLR0051853"}}';
 
 var Form = function(booking, guest, card) {
   this.booking = booking;
@@ -303,6 +303,11 @@ var setForm = {
       formInput = _t.formInput,
       card = _t.creditCardInput;
 
+    $(".bi-button-back").bind("click", function() {
+      // Ilk Sayfaya Doner
+      location.reload(true);
+    });
+
     // STEP 0 to 1
     $(".comfirm-button").bind("click", function() {
       // State'deki valuelari html icine aktarir
@@ -327,7 +332,7 @@ var setForm = {
       if ($(this).attr("rel") == "card-info") {
         $(".booking-payment-details-container").addClass("ems-none");
         $(".booking-comfirmation-container").removeClass("ems-none");
-
+        $(".bi-order-payment ").removeClass("ems-none");
         // Step Asamasi
         $(".booking-step-container ")
           .removeClass("step3")
@@ -336,6 +341,7 @@ var setForm = {
         $(this).attr("rel", "comfirm-info");
         _t.comfirmationParser();
         _t.createFormObject();
+
       }
 
       if ($(this).attr("rel") == "guest-info") {
@@ -356,8 +362,8 @@ var setForm = {
           .addClass("step3");
         // Button Class Degisimi
         $(".continue-button").text("COMFIRM PAYMENT");
-
         $(this).attr("rel", "card-info");
+        $(".continue-button").addClass(cls.disabled);
       }
       if ($(this).attr("rel") == "booking-info") {
         $(".booking-info-container").addClass("ems-none");
@@ -369,8 +375,9 @@ var setForm = {
           .addClass("step2");
 
         $(this).attr("rel", "guest-info");
+        $(".continue-button").addClass(cls.disabled);
       }
-      $(".continue-button").addClass(cls.disabled);
+     
       window.scrollTo({
         top: 0,
         left: 0,
@@ -592,10 +599,8 @@ var setForm = {
             $(CCH).val() != "" &&
             $(CCA)[0].checked
           ) {
-            console.log("true");
             $(".continue-button").removeClass(cls.disabled);
           } else {
-            console.log("false");
             $(".continue-button").addClass(cls.disabled);
           }
         });
@@ -1224,27 +1229,92 @@ var setForm = {
       info = _t.info;
     var markup = "";
     var data = JSON.parse(mockJSON);
-
+    var asdsa = `2019-10-08 14:00 2019-10-08 22:00`;
     var f = 0;
     var m = 0;
-
+    var months = [
+      "UNKNOWN",
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "Auguts",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
     data.booking.products.forEach(function(el) {
       if (el.gender == "f") {
-        return f++;
+        f++;
       }
       if (el.gender == "m") {
-        return m++;
+        m++;
       }
     });
+    function getMotnhs(number) {
+      return months[parseInt(number)];
+    }
+
+    function parseDates(date) {
+      var checkIn =
+        date.substring(8, 10) + " " + getMotnhs(date.substring(5, 7));
+      var checkOut =
+        date.substring(25, 27) + " " + getMotnhs(date.substring(22, 24));
+      return checkIn + " - " + checkOut + ", " + date.substring(2, 4);
+    }
+
+    function parseTimes(date) {
+      var checkIn = date.substring(11, 16);
+      var checkOut = date.substring(28, 33);
+      return checkIn + " - " + checkOut;
+    }
 
     markup = $("#paymentMethodTemplate")
       .html()
       .replace(/{{reservationID}}/g, data.reservation.id)
-      .replace(/{{airport}}/g, data.bookinglocation)
-      .replace(/{{dates}}/g, data.booking.date)
-      .replace(/{{times}}/g, data.booking.date)
-      .replace(/{{guest}}/g, m + " Male, " + f + " Female");
+      .replace(/{{airport}}/g, data.booking.location)
+      .replace(/{{dates}}/g, parseDates(data.booking.date))
+      .replace(
+        /{{times}}/g,
+        parseTimes(data.booking.date) +
+          " (" +
+          data.booking.products[0].hours +
+          " hrs)"
+      )
+      .replace(/{{guests}}/g, m + " Male, " + f + " Female");
     $(".booking-comfirmation-container").html(markup);
+
+    var guestMarkup = "";
+    var maleCard = m > 0 ? 1 : 0;
+    var femaleCard = f > 0 ? 1 : 0;
+
+    for (var i = 1 - maleCard; i < 1 + femaleCard; i++) {
+      guestMarkup += $("#guestTemplateSuccess")
+        .html()
+        .replace(/[$][$]strURN_KOD[$][$]/g, i == 0 ? "84005" : "84004")
+        .replace(/[$][$]strURN_AD[$][$]/g, i == 0 ? "Male" : "Female")
+        .replace(/{{guestNumber}}/, i == 0 ? m : f)
+        .replace(/[$][$]salesPrice[$][$]/g, 7)
+        .replace(/{{hour}}/g, data.booking.products[0].hours)
+        .replace(/{{price}}/g, data.booking.products[0].hours * 7);
+    }
+    $(".booking-info-product-container").html(guestMarkup);
+
+    var paymentMarkup = "";
+
+    paymentMarkup = $("#paymentMethodTemplateBI")
+      .html()
+      .replace(/{{biOrderCardHolder}}/g, data.card.holder)
+      .replace(
+        /{{biOrderCardType}}/g,
+        data.card.number.substring(0, 2) === "45" ? "Visa" : "MasterCard"
+      )
+      .replace(/{{biOrderCardNumber}}/g, data.card.number);
+    $(".bi-order-payment").html(paymentMarkup);
   },
 
   // Butun Fonksiyonlari Cagirir

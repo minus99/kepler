@@ -1,0 +1,36 @@
+.ems-page-hierarchy{
+    &-content{
+        &-wrapper{
+            .ems-page-hierarchy-dropdown-menu{
+                top:84px;
+                order:2;
+            }
+            .ems-page-hierarchy-cover{
+                order:1;
+                position: relative;
+                .cover-img{
+                    min-height: 590px;
+                }
+                .cover-title{
+                    position: absolute;
+                    display: block;
+                    max-width: 1160px;
+                    width:100%;
+                    top:50%;
+                    left:50%;
+                    transform: translate(-50% , -50%);
+                    span{
+                        display:block;
+                        font-size:30px;
+                        color:$white;
+                        text-align: left;
+                    }
+                }
+            }
+            .ems-page-hierarchy-html{
+                order:3;
+                min-height:900px;
+            }
+        }
+    }
+}

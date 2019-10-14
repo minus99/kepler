@@ -403,90 +403,96 @@
     </section>
     <section class="booking-comfirmation-container ems-none">
       <script id="paymentMethodTemplate" type="text/template">
-      <div class="comfirmation-message">
-        <h4>Thank you!</h4>
-        <p>
-          You successfully completed your reservation.<br /><br />
-          We will send you a confirmation email with your electronic receipt
-          shortly.
-        </p>
-      </div>
-      <div class="comfirmation-id">
-        <p>Your Reservation ID</p>
-        <h4>{{reservationID}}</h4>
-      </div>
-      <div class="comfirmation-summary">
-        <h4>Booking Summary</h4>
-        <img src="" />
-        <div class="summary-location">
-          <h4>Kepler Club, {{airport}}</h4>
-          <div>International Terminal, 3rd floor Airside</div>
-          <a href="#" target="_blank">View on Map</a>
+        <div class="comfirmation-message">
+          <h4>Thank you!</h4>
+          <p>
+            You successfully completed your reservation.<br /><br />
+            We will send you a confirmation email with your electronic receipt
+            shortly.
+          </p>
         </div>
-        <div class="comfirmation-info-container">
-          <div class="c-info-date">
-            <div class="c-info-title">
-              <i></i>
-              <h4>Check-in / Check-out-Time</h4>
-            </div>
-            <div class="c-info-details">{{dates}}</div>
-          </div>
-          <div class="c-info-time">
-            <div class="c-info-title">
-              <i></i>
-              <h4>Length of Stay</h4>
-            </div>
-            <div class="c-info-details">{{times}}</div>
-          </div>
-          <div class="c-info-guest">
-            <div class="c-info-title">
-              <i></i>
-              <h4>Guests</h4>
-            </div>
-            <div class="c-info-details">{{guests}}</div>
-          </div>
+        <div class="comfirmation-id">
+          <p>Your Reservation ID</p>
+          <h4>{{reservationID}}</h4>
         </div>
-      </div>
-      <!-- PRODUCT BASLANGIC -->
-      <section class="booking-info-product-container">
-        <h3>Your Unit Details</h3>
-        <div class="booking-info-product-wrapper">
-          <div class="booking-info-product" rel="$$strURN_KOD$$">
-            <div class="bi-product-image $$strURN_AD$$">
-              <img src="$$strURN_RESIM$$" />
-            </div>
-            <div class="bi-product-info">
-              <div class="bi-product-title">
-                Nap Session (
-                <span class="bi-product-gender"> $$strURN_AD$$ </span>) x
-                {{ guestNumber }}
+        <div class="comfirmation-summary">
+          <h4>Booking Summary</h4>
+          <img src="" />
+          <div class="summary-location">
+            <h4>Kepler Club, {{airport}}</h4>
+            <div>International Terminal, 3rd floor Airside</div>
+            <a href="#" target="_blank">View on Map</a>
+          </div>
+          <div class="comfirmation-info-container">
+            <div class="c-info-date">
+              <div class="c-info-title">
+                <i></i>
+                <h4>Check-in / Check-out-Time</h4>
               </div>
-              <ul class="bi-product-specs">
-                <li>Fully Equipped Unit</li>
-                <li>Pay Now</li>
-                <li>Free Cancellation</li>
-                <!-- prmACIKLAMA -->
-              </ul>
-              <div class="bi-product-fee">
-                <div class="bi-prodcut-hour">
-                  <span class="bi-hour">{{ hour }}</span
-                  >hrs x <span class="bi-unit-price"> $$salesPrice$$ </span>USD
-                  / hr
-                </div>
-                <div class="bi-product-price-wrapper">
-                  <span class="bi-product-price">{{ price }}</span> USD
-                </div>
+              <div class="c-info-details">{{dates}}</div>
+            </div>
+            <div class="c-info-time">
+              <div class="c-info-title">
+                <i></i>
+                <h4>Length of Stay</h4>
               </div>
+              <div class="c-info-details">{{times}}</div>
+            </div>
+            <div class="c-info-guest">
+              <div class="c-info-title">
+                <i></i>
+                <h4>Guests</h4>
+              </div>
+              <div class="c-info-details">{{guests}}</div>
             </div>
           </div>
         </div>
-      </section>
-      <div class="comfirmation-cancel">
-        <h4>Reservation Conditions and Cancellation Policy</h4>
-        <p>You can cancel your bookings 24 hours prior to arrival date by <a href="#">contacting us</a>. If you fail to arrive or cancel the reservation, no refund will be given.</p>
-      </div>
+        <!-- PRODUCT BASLANGIC -->
+        <section class="booking-info-product-container">
+        </section>
+        <div class="comfirmation-cancel">
+            <h4>Reservation Conditions and Cancellation Policy</h4>
+            <p>
+              You can cancel your bookings 24 hours prior to arrival date by
+              <a href="#">contacting us</a>. If you fail to arrive or cancel the
+              reservation, no refund will be given.
+            </p>
+          </div>
       </script>
     </section>
+    <script id="guestTemplateSuccess" type="text/template">
+      <h3>Your Unit Details</h3>
+      <div class="booking-info-product-wrapper">
+        <div class="booking-info-product" rel="$$strURN_KOD$$">
+          <div class="bi-product-image $$strURN_AD$$">
+            <img src="$$strURN_RESIM$$" />
+          </div>
+          <div class="bi-product-info">
+            <div class="bi-product-title">
+              Nap Session (
+              <span class="bi-product-gender"> $$strURN_AD$$ </span>) x
+              {{guestNumber}}
+            </div>
+            <ul class="bi-product-specs">
+              <li>Fully Equipped Unit</li>
+              <li>Pay Now</li>
+              <li>Free Cancellation</li>
+              <!-- prmACIKLAMA -->
+            </ul>
+            <div class="bi-product-fee">
+              <div class="bi-prodcut-hour">
+                <span class="bi-hour">{{hour}}</span
+                >hrs x <span class="bi-unit-price"> $$salesPrice$$ </span>USD
+                / hr
+              </div>
+              <div class="bi-product-price-wrapper">
+                <span class="bi-product-price">{{price}}</span> USD
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
     <!-- PAYMENT BASLANGIC -->
     <div class="booking-info-order-container ems-none">
       <div class="bi-order-amount-container">
@@ -506,23 +512,23 @@
         <div class="bi-order-total-description">
           Service charge 10%, excluding taxes
         </div>
-        <script id="paymentMethodTemplate" type="text/template">
-          <div class="bi-order-payment">
-            <div>Payment Method</div>
+        <div class="bi-order-payment ems-none">
+          <script id="paymentMethodTemplateBI" type="text/template">
+            <div class="bi-order-payment-title">Payment Method</div>
             <div class="bi-order-payment-info">
               <div>Card Holder</div>
-              <div>{{ biOrderCardHolder }}</div>
+              <div>{{biOrderCardHolder}}</div>
             </div>
             <div class="bi-order-payment-info">
-              <div>Card Holder</div>
-              <div>{{ biOrderCardType }}</div>
+              <div>Card Type</div>
+              <div>{{biOrderCardType}}</div>
             </div>
             <div class="bi-order-payment-info">
-              <div>Card Holder</div>
-              <div>{{ biOrderCardNumber }}</div>
+              <div>Card Number</div>
+              <div>{{biOrderCardNumber}}</div>
             </div>
-          </div>
-        </script>
+          </script>
+        </div>
         <div rel="booking-info" class="continue-button">CONTINUE</div>
       </div>
     </div>
