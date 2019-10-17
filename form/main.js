@@ -109,7 +109,9 @@ var setForm = {
     selectedTime: "selected-time",
     bookedTime: "booked-time",
     active: "active",
-    disabled: "disabled"
+    disabled: "disabled",
+    notAvailable: "not-available",
+    notEnoughCapacity: "not-enough-capacity"
   },
   info: {
     location: ".booking-info-location",
@@ -290,7 +292,7 @@ var setForm = {
       url: kapasiteURL,
       success: function(resp) {
         state.date.notAvailable = [];
-        
+
         resp.data.forEach(function(data) {
           if (
             state.femaleGuest <= data.kadinKapasite &&
@@ -302,31 +304,29 @@ var setForm = {
               data.girisSaati.substring(0, 10) +
               " " +
               data.girisSaati.substring(11, 16);
-            
+
             state.date.notAvailable.push(notAvailable);
           }
-
-          
         });
       },
-      complete : function(){
+      complete: function() {
         console.log("--------------------------------");
-        $(_t.el.time).removeClass(_t.cls.disabled);
-        state.date.notAvailable.forEach(function(blocked){
-        $(_t.el.time).each(function(){
-          var time =
-          $(this).attr("data-date") + " " + $(this).attr("data-time");
+
+        $(_t.el.time).removeClass(_t.cls.notAvailable);
+        $(_t.el.time).removeClass(_t.cls.notEnoughCapacity);
+
+        state.date.notAvailable.forEach(function(blocked) {
+          $(_t.el.time).each(function() {
+            var time =
+              $(this).attr("data-date") + " " + $(this).attr("data-time");
+
             if (!blocked == time) {
-              $(this).removeClass(_t.cls.disabled);
+              $(this).removeClass(_t.cls.notEnoughCapacity);
             } else if (blocked == time) {
-              $(this).addClass(_t.cls.disabled)
+              $(this).next().addClass(_t.cls.notEnoughCapacity);
             }
-            if(blocked == time){
-           
-              console.log(time);
-            }
-          })
-        })
+          });
+        });
       },
       dataType: "json",
       timeout: 30000,
@@ -751,7 +751,6 @@ var setForm = {
           }
           _t.controls();
           _t.fetchCapacity();
-        
         });
     }),
       (customDatePicker = function() {
@@ -857,13 +856,13 @@ var setForm = {
                 .addClass(cls.active)
                 .siblings()
                 .removeClass(cls.active);
-              
-                _t.fetchCapacity();
+
+              _t.fetchCapacity();
             }
           );
           // Tarih İleri Geri Buttonları
           var dateButton = $(".date-counter-button");
-          
+
           function counterDate(picker, type) {
             var date = $("#" + picker).datepicker("getDate");
             var multiply = 1;
@@ -1190,10 +1189,23 @@ var setForm = {
             } else {
               $(this).removeClass(cls.disabled);
             }
+
+            // Uygun Olmayan Zaman Sonrası Seçimin İptali
+            if (
+              (state.date.checkOut == "" || undefined) &&
+              (state.date.checkIn != "" || undefined)
+            ) {
+              if ($(this).hasClass("not-enough-capacity")) {
+                $(this)
+                  .nextAll(".not-enough-capacity")
+                  .nextAll()
+                  .addClass(cls.notAvailable);
+              }
+            }
           });
         }
         setDate();
-    
+
         checkTimes();
 
         function timePickerWarnings() {
