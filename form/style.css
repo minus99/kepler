@@ -67,6 +67,17 @@ ul {
   pointer-events: none !important;
   cursor: default !important;
 }
+.not-available{
+  user-select: none !important;
+  pointer-events: none !important;
+  cursor: default !important;
+}
+.not-enough-capacity{
+  opacity: 0.5;
+  user-select: none !important;
+  pointer-events: none !important;
+  cursor: default !important;
+}
 
 .active {
   font-weight: bold !important;
