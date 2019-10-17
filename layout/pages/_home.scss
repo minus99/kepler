@@ -19,7 +19,7 @@
         .swiper-slide {
             text-align: center;
             font-size: 18px;
-            background: #fff;
+            background: $white;
             /* Center slide text vertically */
             display: flex !important;
             justify-content: center !important;
@@ -111,7 +111,6 @@
                         }
                         .title{
                             font-size:24px;
-                            color:#453d98;
                             font-weight: bold;
                             margin-bottom:20px;
                         }
@@ -297,9 +296,9 @@
                                 transition: all .5s;
                             }
                             &-active{
-                                border:1px solid #453d98;
+                                border:1px solid $color0;
                                 &::before{
-                                    background: #453d98;
+                                    background: $color0;
                                 }
                             }
                         }

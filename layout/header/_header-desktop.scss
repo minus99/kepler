@@ -25,8 +25,14 @@
         justify-content: flex-start;        
         grid-template-areas: "ga1 ga2";
         grid-template-columns: 120px 1fr;
+        padding:0px 10px;
         .ga1{
             grid-area: ga1;
+            .logo{
+                img{
+                    width:84px;
+                }
+            }
         }
         .ga2{
             grid-area: ga2;
@@ -96,4 +102,38 @@
 // Homepage Mobile Booking Form Trigger
 .booking-menu-opened.booking-menu-opened-fixed {
     display: none !important;
+}
+
+
+.ems-sticky-header{
+    .booking-menu-opened.booking-menu-opened-fixed{
+        background: $color15;
+        color:$white;
+        font-weight: normal;
+    }
+}
+
+.booking-form-animate{
+    .booking-menu-overlay{
+        display: block;
+        z-index: 99999;
+    }
+    .booking-form{
+        width:50%;
+        right:0px;
+        visibility: visible;
+        background: #fff;
+    }
+}
+
+.booking-form{
+    position: fixed;
+    visibility: hidden;
+    width: 0px;
+    right: -100%;
+    top: 0px;
+    height: 100vh;
+    overflow-y: auto;
+    transition: all .6s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    z-index: 999999;
 }

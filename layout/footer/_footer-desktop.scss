@@ -30,6 +30,11 @@
                     display: flex;
                     justify-content: flex-start;
                     align-items: center;
+                    a{
+                        img{
+                            width:84px;
+                        }
+                    }
                 }
                 &-2{
                     width:760px;

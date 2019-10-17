@@ -4,15 +4,15 @@ select, .sStylerWrp_select, .dropdown-header,
 textarea {
     font-family: $font2;
     font-size: 15px;
-    background: $color2;
-    color: $color1;
+    background: $input-bg;
+    color: $font-color;
     font-weight: 400;
     letter-spacing: .7px;
     width: 100%;
     line-height: $line-height;
     height: $form-element-height;
     padding: 0 15px;
-    border: 1px solid $color5;
+    border: 1px solid $input-border;
     border-radius: 0;
     outline: none;
     appearance: none;

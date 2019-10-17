@@ -228,7 +228,7 @@ body {
   margin: 0;
   font-family: gotham, arial, sans-serif;
   font-size: 14px;
-  color: #2e2f7d;
+  color: #465dc8;
   font-weight: 400;
   line-height: 1.3; }
 
@@ -595,12 +595,12 @@ a.btnDefault {
   position: relative;
   display: inline-block;
   padding: 0 20px;
-  border: 1px solid #453d98;
+  border: 1px solid #465dc8;
   font-family: gotham, arial, sans-serif;
   font-weight: 500;
   font-size: 13px;
   border-radius: 21px;
-  color: #453d98;
+  color: #465dc8;
   min-width: 200px;
   transition: all .32s ease;
   padding: 15px 0px;
@@ -677,15 +677,15 @@ select, .sStylerWrp_select, .dropdown-header,
 textarea {
   font-family: garamond, arial, sans-serif;
   font-size: 15px;
-  background: #a74792;
-  color: #2e2f7d;
+  background: #fff;
+  color: #1d3243;
   font-weight: 400;
   letter-spacing: .7px;
   width: 100%;
   line-height: 1.3;
   height: 44px;
   padding: 0 15px;
-  border: 1px solid #d1cdff;
+  border: 1px solid #e0e0e0;
   border-radius: 0;
   outline: none;
   -webkit-appearance: none;
@@ -2242,7 +2242,7 @@ button.toast-close-button {
   display: none; }
 
 .custom-home-page .ems-sticky-header .site-header {
-  background: #453d98; }
+  background: #465dc8; }
 
 .custom-home-page .site-header {
   position: fixed;
@@ -2279,7 +2279,7 @@ button.toast-close-button {
     display: block; }
 
 .site-header {
-  background: #453d98;
+  background: #465dc8;
   transition: all .4s;
   position: -webkit-sticky;
   position: sticky;
@@ -2291,10 +2291,12 @@ button.toast-close-button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 10px;
+    padding: 0px 30px;
     height: 100%; }
     .site-header-grid .ga1 {
       z-index: 5; }
+      .site-header-grid .ga1 .logo img {
+        width: 60px; }
     .site-header-grid .site-menu {
       position: fixed;
       background: #fff;
@@ -2323,7 +2325,7 @@ button.toast-close-button {
             color: #1d3243; }
           .site-header-grid .site-menu-wrapper .site-menu-inner li.obj-mobile a {
             font-weight: bold;
-            color: #453d98;
+            color: #465dc8;
             font-size: 24px; }
       .site-header-grid .site-menu .booking-button {
         width: 100%;
@@ -2332,7 +2334,7 @@ button.toast-close-button {
         opacity: 0;
         margin-top: 10px; }
         .site-header-grid .site-menu .booking-button .booking-menu-opened {
-          border: 1px solid #453d98;
+          border: 1px solid #465dc8;
           border-radius: 21px;
           min-width: 200px;
           padding: 12px 0px;
@@ -2351,7 +2353,7 @@ button.toast-close-button {
         display: none; }
   .site-header:after {
     content: '';
-    background: #453d98;
+    background: #465dc8;
     height: 0;
     width: 100%;
     position: absolute;
@@ -2377,19 +2379,28 @@ button.toast-close-button {
   transition: background .4s; }
 
 .ems-sticky-header .booking-menu-opened.booking-menu-opened-fixed {
-  background: #50cae0;
+  background-image: linear-gradient(261deg, #304293 74%, #272768 -16%);
   color: #fff;
   font-weight: normal; }
 
-.booking-form-animate .booking-menu-overlay {
-  display: block;
-  z-index: 99999; }
+.site-container {
+  transition: -webkit-transform .4s;
+  transition: transform .4s;
+  transition: transform .4s, -webkit-transform .4s; }
 
-.booking-form-animate .booking-form {
-  width: 100%;
-  right: 0px;
-  visibility: visible;
-  background: #fff; }
+.booking-form-animate {
+  overflow: hidden; }
+  .booking-form-animate .site-container {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%); }
+  .booking-form-animate .booking-menu-overlay {
+    display: block;
+    z-index: 99999; }
+  .booking-form-animate .booking-form {
+    width: 100%;
+    right: 0px;
+    visibility: visible;
+    background: #fff; }
 
 .booking-form {
   position: fixed;
@@ -2429,7 +2440,7 @@ button.toast-close-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #453d98; }
+    background: #465dc8; }
   .site-footer-inner .footer-wrapper .footer-area-2 {
     padding: 40px 0px 0px 0px; }
     .site-footer-inner .footer-wrapper .footer-area-2 ul li {
@@ -2440,7 +2451,7 @@ button.toast-close-button {
       font-weight: 400; }
       .site-footer-inner .footer-wrapper .footer-area-2 ul li:nth-child(1) {
         font-weight: bold;
-        color: #453d98;
+        color: #465dc8;
         font-size: 15px; }
       .site-footer-inner .footer-wrapper .footer-area-2 ul li a {
         display: block; }
@@ -2573,7 +2584,6 @@ button.toast-close-button {
             font-size: 80px; }
         .homepage-slider.swiper-container .swiper-slide.screen-2 .second-slide .second-right .title {
           font-size: 24px;
-          color: #453d98;
           font-weight: bold;
           margin-bottom: 20px; }
         .homepage-slider.swiper-container .swiper-slide.screen-2 .second-slide .second-right .content {
@@ -2715,9 +2725,9 @@ button.toast-close-button {
           border-radius: 100%;
           transition: all .5s; }
         .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .swiper-pagination .swiper-pagination-bullet-active {
-          border: 1px solid #453d98; }
+          border: 1px solid #465dc8; }
           .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .swiper-pagination .swiper-pagination-bullet-active::before {
-            background: #453d98; }
+            background: #465dc8; }
     .homepage-slider.swiper-container .swiper-slide.screen-5 .slide-map {
       width: 100%; }
       .homepage-slider.swiper-container .swiper-slide.screen-5 .slide-map-header {
@@ -2726,7 +2736,7 @@ button.toast-close-button {
         .homepage-slider.swiper-container .swiper-slide.screen-5 .slide-map-header .title {
           font-size: 24px;
           font-weight: bold;
-          color: #453d98; }
+          color: #465dc8; }
       .homepage-slider.swiper-container .swiper-slide.screen-5 .slide-map img {
         width: 100%; }
 
@@ -2780,7 +2790,7 @@ button.toast-close-button {
         font-size: 12px;
         border-bottom: 2px solid transparent; }
       .room-detail-container .detail-top-bar .row-container .topbar-swiper .swiper-wrapper .swiper-slide.selected a {
-        border-bottom: 2px solid #453d98; }
+        border-bottom: 2px solid #465dc8; }
 
 .room-detail-container .detail-info {
   background: #f7f7f7;
@@ -3107,7 +3117,7 @@ button.toast-close-button {
     .ems-page-hierarchy-content-wrapper .ems-page-hierarchy-html .title {
       font-size: 24px;
       font-weight: bold;
-      color: #453d98; }
+      color: #465dc8; }
     .ems-page-hierarchy-content-wrapper .ems-page-hierarchy-html .description {
       font-size: 18px;
       line-height: 1.22;
@@ -3150,7 +3160,7 @@ button.toast-close-button {
                 margin-bottom: 3px;
                 font-weight: bold;
                 font-size: 16px;
-                color: #453d98; }
+                color: #465dc8; }
         .ems-page-hierarchy-content-wrapper .ems-page-hierarchy-html-contact-us .airports-contact-item:last-child {
           border-bottom: none; }
   .ems-page-hierarchy-content-wrapper .ems-page-references {
@@ -3204,8 +3214,6 @@ button.toast-close-button {
 /* GENEL */
 .booking-form {
   /* GENEL */
-  /* EMOS ICINDE OLAN CLASSLAR */
-  /* EMOS ICINDE OLAN CLASSLAR */
   /* GENEL TEKRARLAYAN CLASSLAR */
   /* GENEL TEKRARLAYAN CLASSLAR */
   /* STEPS */
@@ -3256,17 +3264,6 @@ button.toast-close-button {
     border-radius: 50%; }
   .booking-form .test:focus {
     background-color: indigo; }
-  .booking-form .ems-none, .booking-form .ayiracDefault,
-  .booking-form .kutuBosluk,
-  .booking-form .icerikTemplateListeEtiket,
-  .booking-form .brFiyat,
-  .booking-form .satBrFiyat,
-  .booking-form .floatFixer,
-  .booking-form .ems-obj-required,
-  .booking-form .ems-login .ems-obj-logoff, .ems-login .booking-form .ems-obj-logoff,
-  .booking-form .ems-logoff .ems-obj-login, .ems-logoff .booking-form .ems-obj-login,
-  .booking-form .ems-step1 .ems-obj-step0, .ems-step1 .booking-form .ems-obj-step0, .booking-form .ems-hidden {
-    display: none !important; }
   .booking-form .selected-item {
     background-color: slategray; }
   .booking-form .selected-button {
@@ -3327,7 +3324,8 @@ button.toast-close-button {
     vertical-align: middle; }
   .booking-form .booking-step-container {
     margin: 0 auto;
-    max-width: 400px;
+    max-width: 360px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -3388,7 +3386,8 @@ button.toast-close-button {
   .booking-form .step4 {
     background-color: tomato; }
   .booking-form .booking-container {
-    max-width: 320px;
+    max-width: 360px;
+    width: 100%;
     padding: 0px 20px;
     margin: 0 auto;
     display: flex;
@@ -3537,7 +3536,8 @@ button.toast-close-button {
     color: gray;
     align-self: center; }
   .booking-form .booking-info-container {
-    max-width: 320px;
+    max-width: 360px;
+    width: 100%;
     padding: 0px 20px;
     margin: 0 auto;
     display: flex;
@@ -3635,7 +3635,8 @@ button.toast-close-button {
     background-color: pink; }
   .booking-form .booking-info-order-container {
     margin: 0px auto;
-    max-width: 320px;
+    max-width: 360px;
+    width: 100%;
     margin-top: 20px;
     border: solid 1px slategray;
     border-bottom-left-radius: 10px;
@@ -3679,7 +3680,8 @@ button.toast-close-button {
     border: 1px solid indigo;
     border-radius: 22px; }
   .booking-form .booking-guest-info-container {
-    max-width: 320px;
+    max-width: 360px;
+    width: 100%;
     margin: 0 auto; }
   .booking-form .booking-guest-info-container h3 {
     border-bottom: 1px solid slategray;
@@ -3711,7 +3713,7 @@ button.toast-close-button {
   .booking-form #mobile {
     width: 60%; }
   .booking-form #country-code {
-    width: 10%; }
+    width: 30%; }
   .booking-form .guest-info-wrapper label {
     font-size: 12px;
     font-weight: 500; }
@@ -3767,7 +3769,8 @@ button.toast-close-button {
     height: 100%;
     z-index: 998; }
   .booking-form .booking-payment-details-container {
-    max-width: 320px;
+    max-width: 360px;
+    width: 100%;
     margin: 0 auto; }
   .booking-form .pd-credit-card {
     width: 315px;
@@ -3834,7 +3837,8 @@ button.toast-close-button {
     margin: 0;
     padding: 0; }
   .booking-form .booking-comfirmation-container {
-    max-width: 320px;
+    max-width: 360px;
+    width: 100%;
     margin: 0 auto; }
   .booking-form .comfirmation-message {
     text-align: center; }
@@ -5540,7 +5544,7 @@ body .ui-tooltip {
               border-bottom: 2px solid #2e2f7d; }
     .custom-home-page .ems-sticky-header .site-header {
       height: 84px;
-      background: #453d98; }
+      background: #465dc8; }
     .custom-home-page .site-header {
       height: 168px;
       pointer-events: none; }
@@ -5548,7 +5552,7 @@ body .ui-tooltip {
         pointer-events: auto; }
     .site-header {
       height: 84px;
-      background: #453d98; }
+      background: #465dc8; }
       .site-header-grid {
         max-width: 1160px;
         width: 100%;
@@ -5556,9 +5560,12 @@ body .ui-tooltip {
         margin: 0 auto;
         justify-content: flex-start;
         grid-template-areas: "ga1 ga2";
-        grid-template-columns: 120px 1fr; }
+        grid-template-columns: 120px 1fr;
+        padding: 0px 10px; }
         .site-header-grid .ga1 {
           grid-area: ga1; }
+          .site-header-grid .ga1 .logo img {
+            width: 84px; }
         .site-header-grid .ga2 {
           grid-area: ga2; }
         .site-header-grid .site-menu {
@@ -5612,10 +5619,32 @@ body .ui-tooltip {
         content: none; }
     .booking-menu-opened.booking-menu-opened-fixed {
       display: none !important; }
+    .ems-sticky-header .booking-menu-opened.booking-menu-opened-fixed {
+      background: #50cae0;
+      color: #fff;
+      font-weight: normal; }
+    .booking-form-animate .booking-menu-overlay {
+      display: block;
+      z-index: 99999; }
+    .booking-form-animate .booking-form {
+      width: 50%;
+      right: 0px;
+      visibility: visible;
+      background: #fff; }
+    .booking-form {
+      position: fixed;
+      visibility: hidden;
+      width: 0px;
+      right: -100%;
+      top: 0px;
+      height: 100vh;
+      overflow-y: auto;
+      transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+      z-index: 999999; }
     .ems-last-slide .site-footer {
       padding-bottom: 0px; }
     .site-footer-inner .footer-wrapper {
-      background: #453d98;
+      background: #465dc8;
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
@@ -5630,6 +5659,8 @@ body .ui-tooltip {
         display: flex;
         justify-content: flex-start;
         align-items: center; }
+        .site-footer-inner .footer-wrapper .footer-area-1 a img {
+          width: 84px; }
       .site-footer-inner .footer-wrapper .footer-area-2 {
         width: 760px;
         order: 2;
@@ -5669,7 +5700,7 @@ body .ui-tooltip {
       justify-content: center;
       background: none; }
       .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .starter-content .content-left {
-        background: #453d98;
+        background: #465dc8;
         height: 100vh;
         position: relative;
         display: flex;
@@ -5716,7 +5747,8 @@ body .ui-tooltip {
           font-size: 32px;
           margin-bottom: 30px; }
         .homepage-slider .swiper-wrapper .swiper-slide.screen-2 .second-slide .second-right .content {
-          font-size: 20px; }
+          font-size: 20px;
+          color: #1d3243; }
     .homepage-slider .swiper-wrapper .swiper-slide.screen-3 .third {
       max-width: 1150px;
       margin: 0 auto; }
@@ -5850,7 +5882,7 @@ body .ui-tooltip {
               font-size: 16px;
               color: #1d3243; }
               .room-detail-container .detail-top-bar .row-container .topbar-swiper .swiper-wrapper .swiper-slide a:hover {
-                color: #453d98;
+                color: #465dc8;
                 font-weight: 500; }
     .room-detail-container .detail-info {
       min-height: 500px;
@@ -6028,7 +6060,7 @@ body .ui-tooltip {
       margin: 70px auto;
       max-width: 720px; }
       .ems-page-hierarchy-content .icerikTemplateListeContainer .icerikTemplateListeItem .ems-tab-inner-header {
-        color: #453d98; }
+        color: #465dc8; }
       .ems-page-hierarchy-content .icerikTemplateListeContainer .icerikTemplateListeItem.selected .ems-tab-inner-content {
         padding: 20px 0px 40px 0px; } } }
 

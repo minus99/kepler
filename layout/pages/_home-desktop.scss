@@ -15,7 +15,7 @@
                     justify-content: center;
                     background: none;
                     .content-left{
-                        background: #453d98;
+                        background: $color0;
                         height:100vh;
                         position: relative;
                         display: flex;
@@ -80,6 +80,7 @@
                         }
                         .content{
                             font-size:20px;
+                            color:$font-color;
                         }
                     }
                 }

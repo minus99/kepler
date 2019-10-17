@@ -17,14 +17,6 @@
   
   /* GENEL */
   
-  /* EMOS ICINDE OLAN CLASSLAR */
-  
-  .ems-none, .ems-hidden {
-    display: none !important;
-  }
-  
-  /* EMOS ICINDE OLAN CLASSLAR */
-  
   /* GENEL TEKRARLAYAN CLASSLAR */
   .selected-item {
     background-color: slategray;
@@ -104,10 +96,12 @@
   
   /* GENEL TEKRARLAYAN CLASSLAR */
   
+  
   /* STEPS */
   .booking-step-container {
     margin: 0 auto;
-    max-width: 400px;
+    max-width: 360px;
+    width:100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -187,7 +181,8 @@
   /* BOOKING */
   
   .booking-container {
-    max-width: 320px;
+    max-width: 360px;
+    width:100%;
     padding: 0px 20px;
     margin: 0 auto;
     display: flex;
@@ -416,7 +411,8 @@
   /* BOOKING INFO */
   
   .booking-info-container {
-    max-width: 320px;
+    max-width: 360px;
+    width:100%;
     padding: 0px 20px;
     margin: 0 auto;
     display: flex;
@@ -563,7 +559,8 @@
   
   .booking-info-order-container {
     margin: 0px auto;
-    max-width: 320px;
+    max-width: 360px;
+    width:100%;
     margin-top: 20px;
     border: solid 1px slategray;
     border-bottom-left-radius: 10px;
@@ -620,7 +617,8 @@
   /* HOST CONTAINER */
   
   .booking-guest-info-container {
-    max-width: 320px;
+    max-width: 360px;
+    width:100%;
     margin: 0 auto;
   }
   
@@ -664,7 +662,7 @@
     width: 60%;
   }
   #country-code {
-    width: 10%;
+    width: 30%;
   }
   .guest-info-wrapper label {
     font-size: 12px;
@@ -740,7 +738,8 @@
   
   /* CREDIT CARD */
   .booking-payment-details-container {
-    max-width: 320px;
+    max-width: 360px;
+    width:100%;
     margin: 0 auto;
   }
   
@@ -830,7 +829,8 @@
   /* COMFIRMATION PAGE */
   
   .booking-comfirmation-container{
-    max-width: 320px;
+    max-width: 360px;
+    width:100%;
     margin: 0 auto;
   }
   
