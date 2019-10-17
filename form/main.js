@@ -305,6 +305,12 @@ var setForm = {
       formInput = _t.formInput,
       card = _t.creditCardInput;
 
+    // Start Again Button
+  
+    $(".bi-button-back").bind("click", function(){
+      location.reload();
+    })
+
     // STEP 0 to 1
     $(".comfirm-button").bind("click", function() {
       // State'deki valuelari html icine aktarir
