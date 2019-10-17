@@ -9,7 +9,7 @@
 // 10. START AGAIN BUTTON
 // 11. UYGUN OLMAYAN SAAT KONTROLU
 
-var kapasiteURL = "https://api.myjson.com/bins/81cg2";
+var kapasiteURL = "https://api.myjson.com/bins/ehy54";
 
 var havalimaniURL = "https://api.myjson.com/bins/1b3sgu";
 
@@ -63,7 +63,8 @@ var state = {
     checkIn: undefined,
     checkOut: undefined,
     bookedHours: [],
-    totalHour: undefined
+    totalHour: undefined,
+    notAvailable: []
   },
   location: undefined,
   locationName: undefined,
@@ -246,7 +247,7 @@ var setForm = {
       type: "GET",
       url: havalimaniURL,
       success: function(resp) {
-        resp.data.forEach(item => {
+        resp.data.forEach(function(item) {
           // Dropdown Seçeneklerini Getirir
           markup += $("#locationTemplate")
             .html()
@@ -255,11 +256,10 @@ var setForm = {
             .replace(/{{item.adi}}/g, item.adi);
         });
         $(_t.el.dropDown)
-        .find("ul")
-        .html(markup);
+          .find("ul")
+          .html(markup);
       },
       complete: function() {
-
         // Dropdown Seçiminden Sonrki Actionlar
         $(_t.el.dropDown)
           .find("ul li")
@@ -268,12 +268,13 @@ var setForm = {
             state.location = $(this).attr("airport-id");
             state.locationName = $(this).attr("airport-name");
             $(this)
-            .addClass(_t.cls.selectedItem)
-            .siblings()
-            .removeClass(_t.cls.selectedItem);
-           $(_t.el.location).find(_t.el.inputInfo).text($(this).text());
+              .addClass(_t.cls.selectedItem)
+              .siblings()
+              .removeClass(_t.cls.selectedItem);
+            $(_t.el.location)
+              .find(_t.el.inputInfo)
+              .text($(this).text());
           });
-  
       },
       dataType: "json",
       timeout: 30000,
@@ -283,13 +284,49 @@ var setForm = {
     });
   },
   fetchCapacity: function() {
+    var _t = this;
     $.ajax({
       type: "GET",
       url: kapasiteURL,
       success: function(resp) {
-        console.log(state.location);
+        state.date.notAvailable = [];
         
-        console.log(resp);
+        resp.data.forEach(function(data) {
+          if (
+            state.femaleGuest <= data.kadinKapasite &&
+            state.maleGuest <= data.erkekKapasite
+          ) {
+            // console.log("available : " + data.girisSaati);
+          } else {
+            var notAvailable =
+              data.girisSaati.substring(0, 10) +
+              " " +
+              data.girisSaati.substring(11, 16);
+            
+            state.date.notAvailable.push(notAvailable);
+          }
+
+          
+        });
+      },
+      complete : function(){
+        console.log("--------------------------------");
+        $(_t.el.time).removeClass(_t.cls.disabled);
+        state.date.notAvailable.forEach(function(blocked){
+        $(_t.el.time).each(function(){
+          var time =
+          $(this).attr("data-date") + " " + $(this).attr("data-time");
+            if (!blocked == time) {
+              $(this).removeClass(_t.cls.disabled);
+            } else if (blocked == time) {
+              $(this).addClass(_t.cls.disabled)
+            }
+            if(blocked == time){
+           
+              console.log(time);
+            }
+          })
+        })
       },
       dataType: "json",
       timeout: 30000,
@@ -306,10 +343,10 @@ var setForm = {
       card = _t.creditCardInput;
 
     // Start Again Button
-  
-    $(".bi-button-back").bind("click", function(){
+
+    $(".bi-button-back").bind("click", function() {
       location.reload();
-    })
+    });
 
     // STEP 0 to 1
     $(".comfirm-button").bind("click", function() {
@@ -626,22 +663,25 @@ var setForm = {
       _id.bind("click", function() {
         $(el.dropDown).toggleClass(cls.none);
         _t.controls();
-        if(!isFetched){
+        if (!isFetched) {
           _t.fetchAirports();
         }
-        isFetched =true
+        isFetched = true;
       });
 
       // Lokasyon Secer
       _id.find("ul").bind("click", "li", function() {
         // Bir Sonraki Adimi Aktif Hale Getirir
-        _id.next()
+        _id
+          .next()
           .find(el.inputInfo)
           .removeClass(cls.none);
-        _id.next()
+        _id
+          .next()
           .find(el.counter)
           .removeClass(cls.none);
-        _id.next()
+        _id
+          .next()
           .find("ul")
           .removeClass(cls.none);
       });
@@ -711,6 +751,7 @@ var setForm = {
           }
           _t.controls();
           _t.fetchCapacity();
+        
         });
     }),
       (customDatePicker = function() {
@@ -743,6 +784,7 @@ var setForm = {
 
               // Zaman Aralığını Control Eder
               checkTimes();
+              _t.fetchCapacity();
               _t.controls();
             });
           // Check-Out Tarihini Secer ve Check-In Tarihine Atar
@@ -777,6 +819,7 @@ var setForm = {
 
               // Zaman Aralığını Control Eder
               checkTimes();
+              _t.fetchCapacity();
               _t.controls();
             });
           // Secilen Tarih Degerini Alir
@@ -814,56 +857,59 @@ var setForm = {
                 .addClass(cls.active)
                 .siblings()
                 .removeClass(cls.active);
+              
+                _t.fetchCapacity();
             }
           );
           // Tarih İleri Geri Buttonları
           var dateButton = $(".date-counter-button");
+          
+          function counterDate(picker, type) {
+            var date = $("#" + picker).datepicker("getDate");
+            var multiply = 1;
 
-          dateButton.on("click", function() {
+            // Tarihi Değiştitir
+            if (
+              parseInt(
+                $("#out-date")
+                  .val()
+                  .substring(8, 10)
+              ) <
+              parseInt(
+                $("#in-date")
+                  .val()
+                  .substring(8, 10)
+              ) +
+                1
+            ) {
+              type === "date-inc" ? (multiply = 1) : (multiply = -1);
+            } else {
+              type === "date-inc" ? (multiply = 0) : (multiply = -1);
+            }
+            date.setTime(date.getTime() + multiply * 1000 * 60 * 60 * 24);
+            // Tarihi Değiştirir
+            $("#" + picker).datepicker("setDate", date);
+            $(el.time).attr("data-date", $("#" + picker).val());
+            // Button Arasındaki Text i değiştirir
+            $(el.calendarButton).text(
+              $("#db-" + picker)
+                .val()
+                .toString()
+            );
+          }
+
+          dateButton.bind("click", function() {
             var type = $(this).attr("rel");
 
-            function counterDate(picker) {
-              var date = $("#" + picker).datepicker("getDate");
-              var multiply = 1;
-
-              // Tarihi Değiştitir
-              if (
-                parseInt(
-                  $("#out-date")
-                    .val()
-                    .substring(8, 10)
-                ) <
-                parseInt(
-                  $("#in-date")
-                    .val()
-                    .substring(8, 10)
-                ) +
-                  1
-              ) {
-                type === "date-inc" ? (multiply = 1) : (multiply = -1);
-              } else {
-                type === "date-inc" ? (multiply = 0) : (multiply = -1);
-              }
-              date.setTime(date.getTime() + multiply * 1000 * 60 * 60 * 24);
-              // Tarihi Değiştirir
-              $("#" + picker).datepicker("setDate", date);
-              $(el.time).attr("data-date", $("#" + picker).val());
-              // Button Arasındaki Text i değiştirir
-              $(el.calendarButton).text(
-                $("#db-" + picker)
-                  .val()
-                  .toString()
-              );
-            }
-
             if ($(".check-in-info").hasClass(cls.active)) {
-              counterDate("in-date");
+              counterDate("in-date", type);
             }
             if ($(".check-out-info").hasClass(cls.active)) {
-              counterDate("out-date");
+              counterDate("out-date", type);
             }
 
             checkTimes();
+            _t.fetchCapacity();
             dateButtonsControl();
           });
           // Tarhi İleri Geri Buttonlarına Disable Class in  atar
@@ -1047,7 +1093,6 @@ var setForm = {
           }
 
           // Check-in Check-out Yazısını Değiştirir
-
           $(el.datePicker)
             .find(".input-info ." + type + "-info")
             .addClass("filled")
@@ -1121,12 +1166,14 @@ var setForm = {
           $(el.time).each(function() {
             var thisTime =
               $(this).attr("data-date") + " " + $(this).attr("data-time");
+            // Check in ve Check out Saat Seçimi
             if (
               thisTime === state.date.checkIn ||
               thisTime === state.date.checkOut
             ) {
               $(this).addClass(cls.selectedTime);
             }
+            // Seçilen Saatler
             if (state.date.checkOut != "") {
               state.date.bookedHours.forEach(bookedHour => {
                 if (thisTime === bookedHour) {
@@ -1134,6 +1181,7 @@ var setForm = {
                 }
               });
             }
+            // Simdiki saatten önceki saatler
             if (
               $(this).attr("data-date") == _t.getDate() &&
               parseInt($(this).attr("data-time")) <= currentHour
@@ -1144,9 +1192,9 @@ var setForm = {
             }
           });
         }
-
-        checkTimes();
         setDate();
+    
+        checkTimes();
 
         function timePickerWarnings() {
           $("#tp-totalHour").text(state.date.totalHour);
