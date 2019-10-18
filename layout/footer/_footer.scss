@@ -37,6 +37,11 @@
                     align-items: center;
                     justify-content: center;
                     background: $color0;
+                    a{
+                        img{
+                            width:63px;
+                        }
+                    }
                 }
                 &-2{
                     padding: 40px 0px 0px 0px;

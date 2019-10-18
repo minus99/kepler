@@ -125,7 +125,6 @@
     z-index: 99;
   }
   .step-number::after {
-    content: "";
     position: absolute;
     left: -8px;
     bottom: -8px;
@@ -136,7 +135,6 @@
     opacity: 0.5;
   }
   .step-number::before {
-    content: "";
     position: absolute;
     right: -8px;
     top: -8px;

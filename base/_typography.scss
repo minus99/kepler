@@ -16,8 +16,15 @@
 @include fontFace('gotham', '/styles/fonts/gotham/GothamBook', 400, normal);
 @include fontFace('gotham', '/styles/fonts/gotham/GothamLight', 300, normal);
 
+// TTHOVES
+@include fontFace('tthoves', '/styles/fonts/TTHoves/tthoves_demibold', 700, normal);
+@include fontFace('tthoves', '/styles/fonts/TTHoves/tthoves_medium', 600, normal);
+@include fontFace('tthoves', '/styles/fonts/TTHoves/tthoves_regular', 500, normal);
+@include fontFace('tthoves', '/styles/fonts/TTHoves/tthoves_light', 400, normal);
+
 
 //Garamond
 @include fontFace('Garamond', '/styles/fonts/garamond/Garamond-Bold', 700, normal);
 @include fontFace('Garamond', '/styles/fonts/garamond/Garamond-Roman', 500, normal);
 @include fontFace('Garamond', '/styles/fonts/garamond/Garamond', 400, normal);
+

@@ -257,11 +257,11 @@
         .unit-tooltip {
           position: absolute;
           text-align: center;
-          color: white;
+          color: $white;
           z-index: 98;
           .rect {
             background-color: $color1;
-            font-weight: 600;
+            font-weight: 500;
             width: 92px;
             min-height: 46px;
             border-radius: 6px;
