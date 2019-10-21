@@ -36,9 +36,11 @@ var Guest = function(firstName, lastName, email, mobile, birthDate) {
   this.birthDate = birthDate;
 };
 
-var CreditCard = function(number, expiration, cvc, holder) {
+var CreditCard = function(number, expiration, month, year, cvc, holder) {
   this.number = number;
   this.expiration = expiration;
+  this.month = month;
+  this.year = year;
   this.cvc = cvc;
   this.holder = holder;
 };
@@ -168,8 +170,9 @@ var setForm = {
 
     var _card = new CreditCard();
 
-    _card.number = $(this.creditCardInput.number).val();
-    _card.expiration = $(this.creditCardInput.expiration).val();
+    _card.number = $(this.creditCardInput.number).val().replace(/ /g, "");
+    _card.month = $(this.creditCardInput.expiration).val().substring(0,2)
+    _card.year ="20"+ $(this.creditCardInput.expiration).val().substring(5,9)
     _card.cvc = $(this.creditCardInput.cvc).val();
     _card.holder = $(this.creditCardInput.holder).val();
 
@@ -200,7 +203,7 @@ var setForm = {
     var _t = this;
     $(".test").bind("click", function() {
       console.log(state);
-      //_t.createFormObject();
+      _t.createFormObject();
     });
   },
 
