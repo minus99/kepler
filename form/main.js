@@ -3,20 +3,7 @@
 
 // TODO
 // 1. BOOKED TIMES ILE SECILEN ZAMAN CAKISMASI BUG
-
-// 7. DATA
-
-// 10. START AGAIN BUTTON
-// 11. UYGUN OLMAYAN SAAT KONTROLU
-
-var kapasiteURL = "https://api.myjson.com/bins/ehy54";
-
-var havalimaniURL = "https://api.myjson.com/bins/1b3sgu";
-
-var successURL = "https://api.myjson.com/bins/160zde";
-
-var mockJSON =
-  '{"booking":{"location":"SAW","date":"2019-10-08 14:00 2019-10-08 22:00","products":[{"id":832504,"gender":"m","hours":8},{"id":832504,"gender":"m","hours":8},{"id":832504,"gender":"m","hours":8}]},"guest":{"firstName":"Ad","lastName":"Soyad","email":"mail@mail.com","mobile":"+905355555555","birthDate":"2019-04-03"},"card":{"number":"4545 4545 4545 4545","expiration":"01 / 12","cvc":"456","holder":"Ad Soyad"},"reservation":{"id":"KPLR0051853"}}';
+// 2. CreateBooking soap request
 
 var Form = function(booking, guest, card) {
   this.booking = booking;
@@ -238,16 +225,15 @@ var setForm = {
       el = _t.el,
       cls = _t.cls,
       formInput = _t.formInput;
-
-    $(el.time).attr("data-date", _t.getDate());
+      $(el.time).attr("data-date", _t.getDate());
   },
 
   fetchAirports: function() {
     var markup = "";
     var _t = this;
     $.ajax({
-      type: "GET",
-      url: havalimaniURL,
+      type: "POST",
+      url: "/custom/kepler/keplerservice.asmx/GetAirportList",
       success: function(resp) {
         resp.data.forEach(function(item) {
           // Dropdown Seçeneklerini Getirir
@@ -288,8 +274,11 @@ var setForm = {
   fetchCapacity: function() {
     var _t = this;
     $.ajax({
-      type: "GET",
-      url: kapasiteURL,
+      type: "POST",
+      url: "/custom/kepler/keplerservice.asmx/GetAirportAvailableHours",
+      data: 
+        "checkInDate="+ state.date.checkIn +"&checkOutDate=" + "" +"&airtportId=" + state.location
+      ,
       success: function(resp) {
         state.date.notAvailable = [];
 
@@ -310,8 +299,6 @@ var setForm = {
         });
       },
       complete: function() {
-        console.log("--------------------------------");
-
         $(_t.el.time).removeClass(_t.cls.notAvailable);
         $(_t.el.time).removeClass(_t.cls.notEnoughCapacity);
 
@@ -323,12 +310,29 @@ var setForm = {
             if (!blocked == time) {
               $(this).removeClass(_t.cls.notEnoughCapacity);
             } else if (blocked == time) {
-              $(this).next().addClass(_t.cls.notEnoughCapacity);
+              $(this)
+                .next()
+                .addClass(_t.cls.notEnoughCapacity);
+            }
+
+            // Uygun Olmayan Zaman Sonrası Seçimin İptali
+            if (
+              (state.date.checkOut == "" || undefined) &&
+              (state.date.checkIn != "" || undefined)
+            ) {
+              $(this)
+                .nextAll(".not-enough-capacity")
+                .nextAll()
+                .addClass(_t.cls.notAvailable);
+            } else if (
+              (state.date.checkOut != "" || undefined) &&
+              (state.date.checkIn != "" || undefined)
+            ) {
+              $(_t.el.time).removeClass(_t.cls.notAvailable);
             }
           });
         });
       },
-      dataType: "json",
       timeout: 30000,
       error: function() {
         if (typeof callback !== "undefined") callback({ type: "error" });
@@ -749,6 +753,7 @@ var setForm = {
                 .toString()
             );
           }
+
           _t.controls();
           _t.fetchCapacity();
         });
@@ -1153,6 +1158,7 @@ var setForm = {
           checkTimes();
           dateButtonsControl();
           _t.controls();
+          _t.fetchCapacity();
         });
 
         function checkTimes() {
@@ -1191,17 +1197,20 @@ var setForm = {
             }
 
             // Uygun Olmayan Zaman Sonrası Seçimin İptali
-            if (
-              (state.date.checkOut == "" || undefined) &&
-              (state.date.checkIn != "" || undefined)
-            ) {
-              if ($(this).hasClass("not-enough-capacity")) {
-                $(this)
-                  .nextAll(".not-enough-capacity")
-                  .nextAll()
-                  .addClass(cls.notAvailable);
-              }
-            }
+            // if (
+            //   (state.date.checkOut == "" || undefined) &&
+            //   (state.date.checkIn != "" || undefined)
+            // ) {
+            //   $(this)
+            //     .nextAll(".not-enough-capacity")
+            //     .nextAll()
+            //     .addClass(cls.notAvailable);
+            // } else if (
+            //   (state.date.checkOut != "" || undefined) &&
+            //   (state.date.checkIn != "" || undefined)
+            // ) {
+            //   $(el.time).removeClass(cls.notAvailable);
+            // }
           });
         }
         setDate();
@@ -1311,7 +1320,7 @@ var setForm = {
       .replace(/{{airport}}/g, data.bookinglocation)
       .replace(/{{dates}}/g, data.booking.date)
       .replace(/{{times}}/g, data.booking.date)
-      .replace(/{{guest}}/g, m + " Male, " + f + " Female");
+      .replace(/{{guests}}/g, m + " Male, " + f + " Female");
     $(".booking-comfirmation-container").html(markup);
   },
 
@@ -1429,7 +1438,7 @@ var crediCart = {
     /* 
         kredi kart
       */
-    $.getScript("card.js", function() {
+    $.getScript("styles/js/card.js", function() {
       $(_t.el.wrp).card({
         container: _t.el.container,
         formSelectors: {
