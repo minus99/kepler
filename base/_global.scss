@@ -12,7 +12,7 @@
     display: none !important;
 }
 
-.border-radius-6{
+.img-border-radius{
     border-radius: 6px;
 }
 
@@ -32,7 +32,7 @@ body {
     margin: 0;
     font-family: $font1;
     font-size: $font-size;
-    color: $color0;
+    color: $font-color;
     font-weight: $font-weight;
     line-height: $line-height;
 }

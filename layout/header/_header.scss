@@ -78,7 +78,7 @@
         .site-menu{
             position: fixed;
             background: #fff;
-            top: 0px;
+            top: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -86,7 +86,7 @@
             right: -200%;
             transition: all .4s;
             opacity: 0;
-            height: 100vh;
+            height: calc(100vh - 52px);
             flex-wrap: wrap;
             z-index: 3;
             align-content: center;
@@ -124,7 +124,8 @@
                     border-radius: 21px;
                     min-width:200px;
                     padding:12px 0px;
-                    font-weight: 500;
+                    color:$color0;
+                    font-weight: 700;
                     font-size:13px;
                 }
             }
@@ -168,7 +169,7 @@
     transform: translateX(-50%);
     padding: 20px;
     border-radius: 6px;
-    font-weight: 500;
+    font-weight: 600;
     color:$font-color;
     font-size:14px;
     transition: background .4s;
@@ -178,7 +179,7 @@
     .booking-menu-opened.booking-menu-opened-fixed{
         background: linear-gradient(270deg, #304293 30%, #272768 100%);
         color:$white;
-        font-weight: normal;
+        font-weight: 500;
     }
 }
 
