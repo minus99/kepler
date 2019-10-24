@@ -183,17 +183,23 @@
     }
 }
 
-.site-container{
-    transition: transform .4s;
-}
 .booking-form-animate{
     overflow: hidden;
-    .site-container{
-        transform: translateX(-50%);
+    .site-header{
+        z-index: 9999;
+        &:after{
+            height:52px;
+        }
+        .mobile-menu-opened{
+            display: none;
+        }
+        .mobile-menu-closed{
+            display: inline-block;
+        }
     }
     .booking-menu-overlay{
         display: block;
-        z-index: 99999;
+        z-index: 999;
     }
     .booking-form{
         width:100%;
@@ -208,9 +214,10 @@
     visibility: hidden;
     width: 0px;
     right: -100%;
-    top: 0px;
+    top:52px;
     height: 100vh;
     overflow-y: auto;
     transition: all .6s cubic-bezier(0.215, 0.610, 0.355, 1.000);
     z-index: 999999;
+    padding-bottom:100px;
 }

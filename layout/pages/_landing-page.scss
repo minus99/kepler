@@ -119,6 +119,7 @@
 
   .detail-feature {
     .subtitle {
+      color:$color0;
       font-weight: bold;
       font-size: 24px;
       text-align: center;
@@ -195,6 +196,7 @@
       .swiper-inner {
         .subtitle {
           text-align: center;
+          color:$color0;
         }
 
         .swiper-slide {
@@ -247,6 +249,7 @@
     margin-top:50px;
     .subtitle {
       margin-bottom: 20px;
+      color:$color0;
     }
     .unit-container {
       position: relative;
@@ -395,6 +398,13 @@
       .concept-unit-container{
         display: flex;
         flex-wrap:wrap;
+        &:nth-child(1){
+          .concept-unit-img{
+            &.obj-mobile{
+              display: none;
+            }
+          }
+        }
         > div{
           width:100%;
         }
@@ -403,6 +413,7 @@
           .subtitle{
             font-size:20px;
             font-weight: bold;
+            color:$color0;
           }
           .concept-unit-props{
             padding-left:5%;
