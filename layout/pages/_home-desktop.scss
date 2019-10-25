@@ -13,7 +13,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background: none;
+                    background-image: none !important;
                     .content-left{
                         background: $color0;
                         height:100vh;
@@ -41,7 +41,6 @@
                         width: 50%;
                         height:100vh;
                         display: flex;
-                        background:url("/UPLOAD/frontend/first-banner.png");
                     }
                     &:after{
                         content:none;

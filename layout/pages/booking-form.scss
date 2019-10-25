@@ -32,23 +32,23 @@
   }
 
   .selected-item {
-    background-color: slategray;
+    background-color: $input-border;
   }
   .selected-button {
-    border: 2px solid palevioletred !important;
+    border: 2px solid $color18 !important;
   }
   .selected-text {
-    color: palevioletred;
-    font-weight: bold;
+    color: $color18;
+    font-weight: 600;
   }
   .selected-time {
     border-radius: 20px;
-    border: solid 2px palevioletred;
-    color: palevioletred;
+    border: solid 2px $color18;
+    color: $color18;
   }
   
   .booked-time {
-    color: palevioletred;
+    color: $color18;
   }
   
   .disabled {
@@ -60,11 +60,11 @@
   
   .active {
     font-weight: bold !important;
-    color: indigo;
-    border-bottom: 2px solid indigo;
+    color: $color0;
+    border-bottom: 2px solid $color0;
   }
   .active-button {
-    background-color: indigo !important;
+    background-color: $color0 !important;
     color: white !important;
   }
   .filled {
@@ -74,8 +74,10 @@
   .input-icon {
     width: 30px;
     height: 30px;
-    background-color: indigo;
     margin-right: 30px;
+    .icon{
+      --color3: #465dc8;
+    }
   }
   .info-wrapper {
     cursor: pointer;
@@ -91,15 +93,15 @@
   
   .input-title {
     font-weight: bold;
-    color: indigo;
+    color: $color0;
     font-size: 16px;
   }
   .input-subtitle {
     font-weight: bold;
-    color: indigo;
+    color: $color0;
   }
   .input-info {
-    color: steelblue;
+    color: $font-color;
     display: flex;
     flex-direction: row;
     font-size: 14px;
@@ -109,82 +111,159 @@
   
   /* GENEL TEKRARLAYAN CLASSLAR */
   
+  /* Form Header */
+
+  .booking-form-header{
+    background: $color0;
+    padding:0px 30px;
+    height:52px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    .booking-form-logo{
+      img{
+        max-width:60px;
+      }
+    }
+  }
   
   /* STEPS */
-  .booking-step-container {
-    margin: 0 auto;
-    max-width: 360px;
+  .booking-step-container{
+    margin:30px auto;
+    max-width: 320px;
     width:100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 60px;
+    .booking-step {
+      position: relative;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      .step-number {
+        position: relative;
+        text-align: center;
+        width: 28px !important;
+        height: 28px !important;
+        border-radius: 15px;
+        margin-bottom:20px;
+        border: 1px solid $font-color;
+        z-index: 99;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .step-success {
+          display: none;
+        }
+      }
+      .step-name {
+        color: $font-color;
+        font-size: 12px;
+        font-weight: 600;
+        text-align: center;
+      }
+    }
+    .dashed-line {
+      width: 60px;
+      border: 1px dashed $color0;
+      position: relative;
+      bottom:15px;
+    }
+    &.step0 {
+      display: none;
+    }
+    &.step1{
+      .step-area-1{
+        .step-number{
+          border:1px solid $color0;
+        }
+        .step-name{
+          color:$color0;
+        }
+      }
+    }
+    &.step2 {
+      .step-area-1{
+        .step-number{
+          background:$color0;
+          border:none;
+          font-size:0px;
+          .step-success{
+            display:block;
+            border-radius: 20px;
+            border:1px solid $color0;
+            font-size:14px;
+            .icon{
+              --color3:white;
+            }
+          }
+        }
+        .step-name{
+          color:$color0;
+        }
+      }
+      .step-area-2{
+        .step-number{
+          border:1px solid $color0;
+        }
+        .step-name{
+          color:$color0;
+        }
+      }
+    }
+    &.step3 {
+      .step-area-1 , .step-area-2{
+        .step-number{
+          background:$color0;
+          border:none;
+          font-size:0px;
+          .step-success{
+            display:block;
+            border-radius: 20px;
+            border:1px solid $color0;
+            font-size:14px;
+            .icon{
+              --color3:white;
+            }
+          }
+        }
+        .step-name{
+          color:$color0;
+        }
+      }
+      .step-area-3{
+        .step-name{
+          color:$color0;
+        }
+      }
+    }
+    &.step4 {
+      .step-area-1 , .step-area-2 , .step-area-3{
+        .step-number{
+          background:$color0;
+          border:none;
+          font-size:0px;
+          .step-success{
+            display:block;
+            border-radius: 20px;
+            border:1px solid $color0;
+            font-size:14px;
+            .icon{
+              --color3:white;
+            }
+          }
+        }
+        .step-name{
+          color:$color0;
+        }
+      }
+    }
   }
-  .booking-step {
-    position: relative;
-  }
-  .step-success {
-    display: none;
-  }
-  .step-number {
-    position: relative;
-    text-align: center;
-    line-height: 28px;
-    width: 28px;
-    height: 28px;
-    border-radius: 15px;
-    border: 1px solid darkblue;
-    z-index: 99;
-  }
-  .step-number::after {
-    position: absolute;
-    left: -8px;
-    bottom: -8px;
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
-    background-color: #50cae0;
-    opacity: 0.5;
-  }
-  .step-number::before {
-    position: absolute;
-    right: -8px;
-    top: -8px;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    background-color: #50cae0;
-    opacity: 0.5;
-  }
-  .step-name {
-    position: absolute;
-    left: -50%;
-    width: 80px;
-    bottom: -30px;
-    color: indigo;
-    font-size: 12px;
-    font-weight: 500;
-  }
-  .dashed-line {
-    width: 60px;
-    border: 1px dashed darkblue;
-  }
-  .step0 {
-    display: none;
-  }
-  .step1 {
-    background-color: lightblue;
-  }
-  .step2 {
-    background-color: blue;
-  }
-  .step3 {
-    background-color: indigo;
-  }
-  .step4 {
-    background-color: tomato;
-  }
+
+ 
+
   /* STEPS */
   
   /* ////////////////////////////////////////////////////////////////////// */
@@ -201,7 +280,7 @@
   }
   .booking-container > section {
     padding: 30px 0px;
-    border-bottom: 1px solid slategray;
+    border-bottom: 1px solid $input-border;
   }
   
   /* -LOCATION- */
@@ -216,16 +295,17 @@
     position: absolute;
     left: 60px;
     top: 70px;
-    padding: 10px 0px;
+    padding: 10px 0px 40px 0px;
     max-width: 270px;
     max-height: 270px;
     overflow-x: hidden;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    border: 1px solid #e0e0e0;
-    border-top: 3px solid palevioletred;
-    background-color: white;
+    border: 1px solid $input-border;
+    border-top: 3px solid $color18;
+    background-color: $white;
     font-size: 14px;
+    color:$font-color;
   }
   .location-menu ul {
     list-style: none;
@@ -247,7 +327,7 @@
   }
   
   .location-menu ul li:hover {
-    background-color: slategray;
+    background-color: $color12;
   }
   
   /* DROPDOWN MENU  */
@@ -259,8 +339,24 @@
   .guest-container .input-info span {
     padding: 0px 5px;
   }
+  .guest-container ul{
+    padding-bottom:30px;
+  }
   .guest-container ul li {
+    font-size:12px;
     padding-top: 10px;
+    position:relative;
+    padding-left:20px;
+    &:after{
+      content:'';
+      background: $color16;
+      width:7px;
+      height:7px;
+      position:absolute;
+      left:5px;
+      top:50%;
+      transform:translate(-50% , -50%);
+    }
   }
   
   /*COUNTER */
@@ -277,7 +373,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid slategray;
+    border: 1px solid $input-border;
     width: 145px;
     height: 80px;
     padding: 10px 20px;
@@ -295,7 +391,7 @@
     text-align: center;
     font-size: 28px;
     font-weight: bold;
-    color: indigo;
+    color: $color0;
     width: 28px;
     cursor: pointer;
   }
@@ -312,8 +408,12 @@
   
   /* CHEKIN / OUT  */
   
+  .date-picker-container{
+    padding:0px !important;
+    border-bottom:none !important;
+  }
   .date-picker-container .info-wrapper {
-    height: 80px;
+    height: 90px;
   }
   
   .date-picker-container .input-info {
@@ -322,17 +422,19 @@
   .date-picker-container .input-info > div {
     width: 50%;
     text-align: center;
-    border-bottom: 1px solid steelblue;
+    border-bottom: 1px solid $input-border;
     align-self: flex-end;
   }
   .date-picker-container .input-info .date-subtitle {
-    font-weight: lighter;
+    font-weight: 500;
     padding-bottom: 6px;
   }
   .date-picker-container .input-info .active {
-    font-weight: bold;
-    color: indigo;
-    border-bottom: 2px solid indigo;
+    color: $color0;
+    border-bottom: 2px solid $color0;
+    .date-subtitle{
+      font-weight:600;
+    }
   }
   
   .date-picker-container .input-info .filled {
@@ -355,7 +457,7 @@
     width: 100%;
     height: 52px;
     border-radius: 26px;
-    border: 1px solid slategray;
+    border: 1px solid $input-border;
     margin-top: 20px;
   }
   .date-counter-button {
@@ -364,11 +466,10 @@
     line-height: 32px;
     border-radius: 16px;
     text-align: center;
-    border: 1px solid palevioletred;
   }
   .calendar-button {
     font-weight: bold;
-    color: indigo;
+    color: $color0;
     width: 70%;
     text-align: center;
   }
@@ -387,16 +488,20 @@
     margin-top: 30px;
     flex-wrap: wrap;
     width: 100%;
+      li {
+        width: 16.6%;
+        margin: 1px 0px;
+        padding:9px 0px;
+        font-size:12px;
+        text-align: center;
+        border-radius: 18px;
+        cursor: pointer;
+        &.selected-time{
+          border:2px solid $color18;
+        }
+      }
   }
-  .time-container li {
-    width: 15%;
-    margin: 0px;
-    padding: 0px;
-    height: 36px;
-    line-height: 36px;
-    text-align: center;
-    cursor: pointer;
-  }
+
   /* SAAT */
   
   /* COMFIRM BUTTON */
@@ -404,14 +509,15 @@
   .comfirm-button {
     width: 240px;
     height: 42px;
-    margin-top: 40px;
+    margin-top: 50px;
     border-radius: 21px;
     text-align: center;
     line-height: 42px;
     border: none;
-    background-color: #eaeaea;
-    color: gray;
+    background-color: $buton-disable;
+    color: #ababab;
     align-self: center;
+    font-weight: 600;
   }
   /* COMFIRM BUTTON */
   

@@ -66,6 +66,9 @@
                     background: none;
                     justify-content: flex-end;
                     padding:0px;
+                    > div{
+                        justify-content: flex-end;
+                    }
                     .copyright{
                         display: none;
                     }

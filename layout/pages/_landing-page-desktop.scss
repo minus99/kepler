@@ -33,7 +33,7 @@
       }
 
       .detail-top-bar {
-        height: 95px;
+        height: 77px;
         display: flex;
         align-items: flex-end;
         position: sticky;
@@ -132,6 +132,7 @@
       }
 
       .room-gallery-full {
+        margin-bottom:80px;
         .swiper-container {
           .swiper-inner {
             .subtitle {

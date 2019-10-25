@@ -243,7 +243,7 @@
 .emos_invisible {
   display: none !important; }
 
-.border-radius-6 {
+.img-border-radius {
   border-radius: 6px; }
 
 *,
@@ -259,7 +259,7 @@ body {
   margin: 0;
   font-family: tthoves, arial, sans-serif;
   font-size: 14px;
-  color: #465dc8;
+  color: #1d3243;
   font-weight: 400;
   line-height: 1.3; }
 
@@ -628,7 +628,7 @@ a.btnDefault {
   padding: 0 20px;
   border: 1px solid #465dc8;
   font-family: tthoves, arial, sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 13px;
   border-radius: 21px;
   color: #465dc8;
@@ -2331,7 +2331,7 @@ button.toast-close-button {
     .site-header-grid .site-menu {
       position: fixed;
       background: #fff;
-      top: 0px;
+      top: 52px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -2339,7 +2339,7 @@ button.toast-close-button {
       right: -200%;
       transition: all .4s;
       opacity: 0;
-      height: 100vh;
+      height: calc(100vh - 52px);
       flex-wrap: wrap;
       z-index: 3;
       align-content: center; }
@@ -2369,7 +2369,8 @@ button.toast-close-button {
           border-radius: 21px;
           min-width: 200px;
           padding: 12px 0px;
-          font-weight: 500;
+          color: #465dc8;
+          font-weight: 700;
           font-size: 13px; }
       .site-header-grid .site-menu .lang-menu {
         position: absolute;
@@ -2404,7 +2405,7 @@ button.toast-close-button {
   transform: translateX(-50%);
   padding: 20px;
   border-radius: 6px;
-  font-weight: 500;
+  font-weight: 600;
   color: #1d3243;
   font-size: 14px;
   transition: background .4s; }
@@ -2412,21 +2413,21 @@ button.toast-close-button {
 .ems-sticky-header .booking-menu-opened.booking-menu-opened-fixed {
   background: linear-gradient(270deg, #304293 30%, #272768 100%);
   color: #fff;
-  font-weight: normal; }
-
-.site-container {
-  transition: -webkit-transform .4s;
-  transition: transform .4s;
-  transition: transform .4s, -webkit-transform .4s; }
+  font-weight: 500; }
 
 .booking-form-animate {
   overflow: hidden; }
-  .booking-form-animate .site-container {
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%); }
+  .booking-form-animate .site-header {
+    z-index: 9999; }
+    .booking-form-animate .site-header:after {
+      height: 52px; }
+    .booking-form-animate .site-header .mobile-menu-opened {
+      display: none; }
+    .booking-form-animate .site-header .mobile-menu-closed {
+      display: inline-block; }
   .booking-form-animate .booking-menu-overlay {
     display: block;
-    z-index: 99999; }
+    z-index: 999; }
   .booking-form-animate .booking-form {
     width: 100%;
     right: 0px;
@@ -2438,11 +2439,12 @@ button.toast-close-button {
   visibility: hidden;
   width: 0px;
   right: -100%;
-  top: 0px;
+  top: 52px;
   height: 100vh;
   overflow-y: auto;
   transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
-  z-index: 999999; }
+  z-index: 999999;
+  padding-bottom: 100px; }
 
 .custom-home-page .site-footer {
   width: 100%;
@@ -2490,6 +2492,8 @@ button.toast-close-button {
         display: block; }
   .site-footer-inner .footer-wrapper .footer-area-3 {
     margin-bottom: 30px; }
+    .site-footer-inner .footer-wrapper .footer-area-3 > div {
+      width: 100%; }
     .site-footer-inner .footer-wrapper .footer-area-3 ul {
       display: flex;
       width: 160px;
@@ -2509,8 +2513,12 @@ button.toast-close-button {
     height: 60px;
     padding: 0px 30px; }
     .site-footer-inner .footer-wrapper .footer-area-4 > div {
-      width: 50%;
-      text-align: center; }
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+      .site-footer-inner .footer-wrapper .footer-area-4 > div > div {
+        width: 50%; }
     .site-footer-inner .footer-wrapper .footer-area-4 .copyright {
       font-size: 12px;
       color: #1d3243;
@@ -2550,7 +2558,6 @@ button.toast-close-button {
       width: 100%; }
     .homepage-slider.swiper-container .swiper-slide.screen-1 .starter-content {
       position: relative;
-      background: url("/UPLOAD/frontend/first-banner.png");
       height: 100vh;
       background-size: cover;
       background-repeat: no-repeat;
@@ -2618,7 +2625,8 @@ button.toast-close-button {
         .homepage-slider.swiper-container .swiper-slide.screen-2 .second-slide .second-right .title {
           font-size: 24px;
           font-weight: bold;
-          margin-bottom: 20px; }
+          margin-bottom: 20px;
+          color: #465dc8; }
         .homepage-slider.swiper-container .swiper-slide.screen-2 .second-slide .second-right .content {
           font-family: garamond, arial, sans-serif;
           font-size: 18px;
@@ -2627,7 +2635,8 @@ button.toast-close-button {
       margin-bottom: 30px; }
       .homepage-slider.swiper-container .swiper-slide.screen-3 .third-header h3 {
         font-size: 24px;
-        font-weight: bold; }
+        font-weight: bold;
+        color: #465dc8; }
       .homepage-slider.swiper-container .swiper-slide.screen-3 .third-header p {
         font-size: 18px;
         color: #1d3243;
@@ -2666,20 +2675,24 @@ button.toast-close-button {
         width: 100%;
         text-align: center; }
         .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .hiw-content .hiw-left span {
-          display: block;
+          display: flex;
+          justify-content: center;
           width: 100%; }
           .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .hiw-content .hiw-left span.hiw-title {
+            color: #465dc8;
             font-weight: bold;
             font-size: 32px;
             font-family: tthoves, arial, sans-serif; }
           .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .hiw-content .hiw-left span.hiw-subtitle {
-            font-size: 20px; }
+            font-size: 20px;
+            font-weight: 500; }
             .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .hiw-content .hiw-left span.hiw-subtitle b {
-              border: 1px solid #1d3243;
+              border: 1px solid #465dc8;
               width: 26px;
               height: 26px;
               font-size: 14px;
               display: inline-flex;
+              font-weight: 500;
               align-items: center;
               justify-content: center;
               border-radius: 50%;
@@ -2712,10 +2725,12 @@ button.toast-close-button {
           display: block;
           font-size: 24px;
           font-weight: bold;
-          margin-bottom: 20px; }
+          margin-bottom: 20px;
+          color: #465dc8; }
         .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .hiw-content .hiw-right img {
           max-width: 230px;
-          margin-bottom: 25px; }
+          margin-bottom: 25px;
+          border-radius: 6px; }
     .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .swiper-slide.swiper-slide-active .hiw-content .hiw-subtitle {
       font-size: 20px; }
       .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .swiper-slide.swiper-slide-active .hiw-content .hiw-subtitle b::before {
@@ -2856,6 +2871,7 @@ button.toast-close-button {
       letter-spacing: 2px; }
 
 .room-detail-container .detail-feature .subtitle {
+  color: #465dc8;
   font-weight: bold;
   font-size: 24px;
   text-align: center;
@@ -2909,7 +2925,8 @@ button.toast-close-button {
         height: auto; }
 
 .room-detail-container .room-gallery-full > .swiper-container .swiper-inner .subtitle {
-  text-align: center; }
+  text-align: center;
+  color: #465dc8; }
 
 .room-detail-container .room-gallery-full > .swiper-container .swiper-inner .swiper-slide .obj-mobile {
   min-height: 440px;
@@ -2946,7 +2963,8 @@ button.toast-close-button {
 .room-detail-container .detail-description {
   margin-top: 50px; }
   .room-detail-container .detail-description .subtitle {
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    color: #465dc8; }
   .room-detail-container .detail-description .unit-container {
     position: relative;
     width: 85%;
@@ -3070,13 +3088,16 @@ button.toast-close-button {
 .room-detail-container .concept-unit-description .concept-unit-container {
   display: flex;
   flex-wrap: wrap; }
+  .room-detail-container .concept-unit-description .concept-unit-container:nth-child(1) .concept-unit-img.obj-mobile {
+    display: none; }
   .room-detail-container .concept-unit-description .concept-unit-container > div {
     width: 100%; }
   .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html {
     padding: 40px 5%; }
     .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .subtitle {
       font-size: 20px;
-      font-weight: bold; }
+      font-weight: bold;
+      color: #465dc8; }
     .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .concept-unit-props {
       padding-left: 5%; }
       .room-detail-container .concept-unit-description .concept-unit-container .concept-unit-html .concept-unit-props li {
@@ -3246,6 +3267,7 @@ button.toast-close-button {
   /* GENEL */
   /* GENEL TEKRARLAYAN CLASSLAR */
   /* GENEL TEKRARLAYAN CLASSLAR */
+  /* Form Header */
   /* STEPS */
   /* STEPS */
   /* ////////////////////////////////////////////////////////////////////// */
@@ -3310,18 +3332,18 @@ button.toast-close-button {
     pointer-events: none !important;
     cursor: default !important; }
   .booking-form .selected-item {
-    background-color: slategray; }
+    background-color: #e0e0e0; }
   .booking-form .selected-button {
-    border: 2px solid palevioletred !important; }
+    border: 2px solid #fe838d !important; }
   .booking-form .selected-text {
-    color: palevioletred;
-    font-weight: bold; }
+    color: #fe838d;
+    font-weight: 600; }
   .booking-form .selected-time {
     border-radius: 20px;
-    border: solid 2px palevioletred;
-    color: palevioletred; }
+    border: solid 2px #fe838d;
+    color: #fe838d; }
   .booking-form .booked-time {
-    color: palevioletred; }
+    color: #fe838d; }
   .booking-form .disabled {
     opacity: 0.5;
     -webkit-user-select: none !important;
@@ -3332,18 +3354,19 @@ button.toast-close-button {
     cursor: default !important; }
   .booking-form .active {
     font-weight: bold !important;
-    color: indigo;
-    border-bottom: 2px solid indigo; }
+    color: #465dc8;
+    border-bottom: 2px solid #465dc8; }
   .booking-form .active-button {
-    background-color: indigo !important;
+    background-color: #465dc8 !important;
     color: white !important; }
   .booking-form .filled {
     text-align: left !important; }
   .booking-form .input-icon {
     width: 30px;
     height: 30px;
-    background-color: indigo;
     margin-right: 30px; }
+    .booking-form .input-icon .icon {
+      --color3: #465dc8; }
   .booking-form .info-wrapper {
     cursor: pointer;
     display: flex;
@@ -3355,79 +3378,116 @@ button.toast-close-button {
     justify-content: center; }
   .booking-form .input-title {
     font-weight: bold;
-    color: indigo;
+    color: #465dc8;
     font-size: 16px; }
   .booking-form .input-subtitle {
     font-weight: bold;
-    color: indigo; }
+    color: #465dc8; }
   .booking-form .input-info {
-    color: steelblue;
+    color: #1d3243;
     display: flex;
     flex-direction: row;
     font-size: 14px;
     line-height: 22px;
     vertical-align: middle; }
+  .booking-form .booking-form-header {
+    background: #465dc8;
+    padding: 0px 30px;
+    height: 52px;
+    display: none;
+    align-items: center;
+    justify-content: space-between; }
+    .booking-form .booking-form-header .booking-form-logo img {
+      max-width: 60px; }
   .booking-form .booking-step-container {
-    margin: 0 auto;
-    max-width: 360px;
+    margin: 30px auto;
+    max-width: 320px;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 60px; }
-  .booking-form .booking-step {
-    position: relative; }
-  .booking-form .step-success {
-    display: none; }
-  .booking-form .step-number {
-    position: relative;
-    text-align: center;
-    line-height: 28px;
-    width: 28px;
-    height: 28px;
-    border-radius: 15px;
-    border: 1px solid darkblue;
-    z-index: 99; }
-  .booking-form .step-number::after {
-    position: absolute;
-    left: -8px;
-    bottom: -8px;
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
-    background-color: #50cae0;
-    opacity: 0.5; }
-  .booking-form .step-number::before {
-    position: absolute;
-    right: -8px;
-    top: -8px;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    background-color: #50cae0;
-    opacity: 0.5; }
-  .booking-form .step-name {
-    position: absolute;
-    left: -50%;
-    width: 80px;
-    bottom: -30px;
-    color: indigo;
-    font-size: 12px;
-    font-weight: 500; }
-  .booking-form .dashed-line {
-    width: 60px;
-    border: 1px dashed darkblue; }
-  .booking-form .step0 {
-    display: none; }
-  .booking-form .step1 {
-    background-color: lightblue; }
-  .booking-form .step2 {
-    background-color: blue; }
-  .booking-form .step3 {
-    background-color: indigo; }
-  .booking-form .step4 {
-    background-color: tomato; }
+    align-items: center; }
+    .booking-form .booking-step-container .booking-step {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap; }
+      .booking-form .booking-step-container .booking-step .step-number {
+        position: relative;
+        text-align: center;
+        width: 28px !important;
+        height: 28px !important;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        border: 1px solid #1d3243;
+        z-index: 99;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+        .booking-form .booking-step-container .booking-step .step-number .step-success {
+          display: none; }
+      .booking-form .booking-step-container .booking-step .step-name {
+        color: #1d3243;
+        font-size: 12px;
+        font-weight: 600;
+        text-align: center; }
+    .booking-form .booking-step-container .dashed-line {
+      width: 60px;
+      border: 1px dashed #465dc8;
+      position: relative;
+      bottom: 15px; }
+    .booking-form .booking-step-container.step0 {
+      display: none; }
+    .booking-form .booking-step-container.step1 .step-area-1 .step-number {
+      border: 1px solid #465dc8; }
+    .booking-form .booking-step-container.step1 .step-area-1 .step-name {
+      color: #465dc8; }
+    .booking-form .booking-step-container.step2 .step-area-1 .step-number {
+      background: #465dc8;
+      border: none;
+      font-size: 0px; }
+      .booking-form .booking-step-container.step2 .step-area-1 .step-number .step-success {
+        display: block;
+        border-radius: 20px;
+        border: 1px solid #465dc8;
+        font-size: 14px; }
+        .booking-form .booking-step-container.step2 .step-area-1 .step-number .step-success .icon {
+          --color3:white; }
+    .booking-form .booking-step-container.step2 .step-area-1 .step-name {
+      color: #465dc8; }
+    .booking-form .booking-step-container.step2 .step-area-2 .step-number {
+      border: 1px solid #465dc8; }
+    .booking-form .booking-step-container.step2 .step-area-2 .step-name {
+      color: #465dc8; }
+    .booking-form .booking-step-container.step3 .step-area-1 .step-number, .booking-form .booking-step-container.step3 .step-area-2 .step-number {
+      background: #465dc8;
+      border: none;
+      font-size: 0px; }
+      .booking-form .booking-step-container.step3 .step-area-1 .step-number .step-success, .booking-form .booking-step-container.step3 .step-area-2 .step-number .step-success {
+        display: block;
+        border-radius: 20px;
+        border: 1px solid #465dc8;
+        font-size: 14px; }
+        .booking-form .booking-step-container.step3 .step-area-1 .step-number .step-success .icon, .booking-form .booking-step-container.step3 .step-area-2 .step-number .step-success .icon {
+          --color3:white; }
+    .booking-form .booking-step-container.step3 .step-area-1 .step-name, .booking-form .booking-step-container.step3 .step-area-2 .step-name {
+      color: #465dc8; }
+    .booking-form .booking-step-container.step3 .step-area-3 .step-name {
+      color: #465dc8; }
+    .booking-form .booking-step-container.step4 .step-area-1 .step-number, .booking-form .booking-step-container.step4 .step-area-2 .step-number, .booking-form .booking-step-container.step4 .step-area-3 .step-number {
+      background: #465dc8;
+      border: none;
+      font-size: 0px; }
+      .booking-form .booking-step-container.step4 .step-area-1 .step-number .step-success, .booking-form .booking-step-container.step4 .step-area-2 .step-number .step-success, .booking-form .booking-step-container.step4 .step-area-3 .step-number .step-success {
+        display: block;
+        border-radius: 20px;
+        border: 1px solid #465dc8;
+        font-size: 14px; }
+        .booking-form .booking-step-container.step4 .step-area-1 .step-number .step-success .icon, .booking-form .booking-step-container.step4 .step-area-2 .step-number .step-success .icon, .booking-form .booking-step-container.step4 .step-area-3 .step-number .step-success .icon {
+          --color3:white; }
+    .booking-form .booking-step-container.step4 .step-area-1 .step-name, .booking-form .booking-step-container.step4 .step-area-2 .step-name, .booking-form .booking-step-container.step4 .step-area-3 .step-name {
+      color: #465dc8; }
   .booking-form .booking-container {
     max-width: 360px;
     width: 100%;
@@ -3437,23 +3497,24 @@ button.toast-close-button {
     flex-direction: column; }
   .booking-form .booking-container > section {
     padding: 30px 0px;
-    border-bottom: 1px solid slategray; }
+    border-bottom: 1px solid #e0e0e0; }
   .booking-form .location-container {
     position: relative; }
   .booking-form .location-menu {
     position: absolute;
     left: 60px;
     top: 70px;
-    padding: 10px 0px;
+    padding: 10px 0px 40px 0px;
     max-width: 270px;
     max-height: 270px;
     overflow-x: hidden;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border: 1px solid #e0e0e0;
-    border-top: 3px solid palevioletred;
-    background-color: white;
-    font-size: 14px; }
+    border-top: 3px solid #fe838d;
+    background-color: #fff;
+    font-size: 14px;
+    color: #1d3243; }
   .booking-form .location-menu ul {
     list-style: none;
     margin: 0;
@@ -3470,11 +3531,26 @@ button.toast-close-button {
     width: 400px;
     cursor: pointer; }
   .booking-form .location-menu ul li:hover {
-    background-color: slategray; }
+    background-color: #f7f7f7; }
   .booking-form .guest-container .input-info span {
     padding: 0px 5px; }
+  .booking-form .guest-container ul {
+    padding-bottom: 30px; }
   .booking-form .guest-container ul li {
-    padding-top: 10px; }
+    font-size: 12px;
+    padding-top: 10px;
+    position: relative;
+    padding-left: 20px; }
+    .booking-form .guest-container ul li:after {
+      content: '';
+      background: #e5e5e5;
+      width: 7px;
+      height: 7px;
+      position: absolute;
+      left: 5px;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%); }
   .booking-form .counter-container {
     padding: 20px 0px;
     display: flex;
@@ -3485,7 +3561,7 @@ button.toast-close-button {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid slategray;
+    border: 1px solid #e0e0e0;
     width: 145px;
     height: 80px;
     padding: 10px 20px;
@@ -3500,28 +3576,32 @@ button.toast-close-button {
     text-align: center;
     font-size: 28px;
     font-weight: bold;
-    color: indigo;
+    color: #465dc8;
     width: 28px;
     cursor: pointer; }
   .booking-form .button-container span {
     width: 50px;
     text-align: center; }
+  .booking-form .date-picker-container {
+    padding: 0px !important;
+    border-bottom: none !important; }
   .booking-form .date-picker-container .info-wrapper {
-    height: 80px; }
+    height: 90px; }
   .booking-form .date-picker-container .input-info {
     justify-content: space-between; }
   .booking-form .date-picker-container .input-info > div {
     width: 50%;
     text-align: center;
-    border-bottom: 1px solid steelblue;
+    border-bottom: 1px solid #e0e0e0;
     align-self: flex-end; }
   .booking-form .date-picker-container .input-info .date-subtitle {
-    font-weight: lighter;
+    font-weight: 500;
     padding-bottom: 6px; }
   .booking-form .date-picker-container .input-info .active {
-    font-weight: bold;
-    color: indigo;
-    border-bottom: 2px solid indigo; }
+    color: #465dc8;
+    border-bottom: 2px solid #465dc8; }
+    .booking-form .date-picker-container .input-info .active .date-subtitle {
+      font-weight: 600; }
   .booking-form .date-picker-container .input-info .filled {
     text-align: left !important; }
   .booking-form .date-picker-container .input-info .filled .date-subtitle {
@@ -3535,18 +3615,17 @@ button.toast-close-button {
     width: 100%;
     height: 52px;
     border-radius: 26px;
-    border: 1px solid slategray;
+    border: 1px solid #e0e0e0;
     margin-top: 20px; }
   .booking-form .date-counter-button {
     width: 32px;
     height: 32px;
     line-height: 32px;
     border-radius: 16px;
-    text-align: center;
-    border: 1px solid palevioletred; }
+    text-align: center; }
   .booking-form .calendar-button {
     font-weight: bold;
-    color: indigo;
+    color: #465dc8;
     width: 70%;
     text-align: center; }
   .booking-form .time-container {
@@ -3559,25 +3638,28 @@ button.toast-close-button {
     margin-top: 30px;
     flex-wrap: wrap;
     width: 100%; }
-  .booking-form .time-container li {
-    width: 15%;
-    margin: 0px;
-    padding: 0px;
-    height: 36px;
-    line-height: 36px;
-    text-align: center;
-    cursor: pointer; }
+    .booking-form .time-container li {
+      width: 16.6%;
+      margin: 1px 0px;
+      padding: 9px 0px;
+      font-size: 12px;
+      text-align: center;
+      border-radius: 18px;
+      cursor: pointer; }
+      .booking-form .time-container li.selected-time {
+        border: 2px solid #fe838d; }
   .booking-form .comfirm-button {
     width: 240px;
     height: 42px;
-    margin-top: 40px;
+    margin-top: 50px;
     border-radius: 21px;
     text-align: center;
     line-height: 42px;
     border: none;
     background-color: #eaeaea;
-    color: gray;
-    align-self: center; }
+    color: #ababab;
+    align-self: center;
+    font-weight: 600; }
   .booking-form .booking-info-container {
     max-width: 360px;
     width: 100%;
@@ -5654,7 +5736,7 @@ body .ui-tooltip {
               color: #1d3243;
               font-family: tthoves, arial, sans-serif;
               font-size: 14px;
-              font-weight: 500;
+              font-weight: 600;
               border-radius: 6px;
               padding: 13.5px 0px;
               width: 100%; }
@@ -5729,6 +5811,8 @@ body .ui-tooltip {
         background: none;
         justify-content: flex-end;
         padding: 0px; }
+        .site-footer-inner .footer-wrapper .footer-area-4 > div {
+          justify-content: flex-end; }
         .site-footer-inner .footer-wrapper .footer-area-4 .copyright {
           display: none; }
         .site-footer-inner .footer-wrapper .footer-area-4 .icon {
@@ -5741,7 +5825,7 @@ body .ui-tooltip {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: none; }
+      background-image: none !important; }
       .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .starter-content .content-left {
         background: #465dc8;
         height: 100vh;
@@ -5763,8 +5847,7 @@ body .ui-tooltip {
       .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .starter-content .content-right {
         width: 50%;
         height: 100vh;
-        display: flex;
-        background: url("/UPLOAD/frontend/first-banner.png"); }
+        display: flex; }
       .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .starter-content:after {
         content: none; }
     .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .next-swiper {
@@ -5905,7 +5988,7 @@ body .ui-tooltip {
           line-height: 50px;
           font-weight: 500; }
     .room-detail-container .detail-top-bar {
-      height: 95px;
+      height: 77px;
       display: flex;
       align-items: flex-end;
       position: -webkit-sticky;
@@ -5960,11 +6043,13 @@ body .ui-tooltip {
             max-width: 260px; }
         .room-detail-container .detail-feature .feature-wrapper.two .feature > div {
           max-width: 300px; }
-    .room-detail-container .room-gallery-full .swiper-container .swiper-inner .subtitle {
-      font-size: 32px; }
-    .room-detail-container .room-gallery-full .swiper-container .swiper-inner .swiper-wrapper .swiper-slide img {
-      width: 100%;
-      height: 676px; }
+    .room-detail-container .room-gallery-full {
+      margin-bottom: 80px; }
+      .room-detail-container .room-gallery-full .swiper-container .swiper-inner .subtitle {
+        font-size: 32px; }
+      .room-detail-container .room-gallery-full .swiper-container .swiper-inner .swiper-wrapper .swiper-slide img {
+        width: 100%;
+        height: 676px; }
     .room-detail-container .detail-description {
       padding: 80px 0px;
       margin-top: 0px;
