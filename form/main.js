@@ -35,7 +35,7 @@ Checkin tarihi seçerken bir önceki gün tarihi seçiyor ve disable saate denk 
 */
 
 /*
-7. Loading Seçiliyor Seçilmemesi Lazım
+7. Loading Seçiliyor Seçilmemesi Lazım  -------- YAPIlDI
 */
 
 /*
@@ -437,7 +437,7 @@ var setForm = {
         .addClass("step1");
       // Order -info Container Gelir
       $(".booking-info-order-container").removeClass("ems-none");
-      window.scrollTo({
+      window.scrollTop({
         top: 0,
         left: 0,
         behavior: "smooth"
@@ -501,7 +501,7 @@ var setForm = {
         $(this).attr("rel", "guest-info");
       }
       $(".continue-button").addClass(cls.disabled);
-      window.scrollTo({
+      window.scrollTop({
         top: 0,
         left: 0,
         behavior: "smooth"
@@ -510,14 +510,22 @@ var setForm = {
     // 7 Yas Uyarisini Açar
     var s = 0;
     var maxDate = _t.getDate(-7, 0, 0);
-    var minDate = _t.getDate(-100, 0, 0);
+
     $(formInput.birthdate).on("focus", function() {
       if (s === 0) {
         s++;
+        if (isMobile) {
+          $(this).attr("type", "date");
+          $(formInput.birthdate).attr("max", maxDate);
+        } else {
+          $(formInput.birthdate).datepicker({
+            maxDate: "-7y",
+            changeMonth: true,
+            changeYear: true
+          });
+        }
         $(".child-warning").removeClass(cls.none);
         $(".warning-background").removeClass(cls.none);
-        $(this).attr("type", "date");
-        $(formInput.birthdate).attr("max", maxDate);
       }
     });
     // 7 Yas Uarisini Kapatir
@@ -722,10 +730,8 @@ var setForm = {
             $(CCH).val() != "" &&
             $(CCA)[0].checked
           ) {
-            console.log("true");
             $(".continue-button").removeClass(cls.disabled);
           } else {
-            console.log("false");
             $(".continue-button").addClass(cls.disabled);
           }
         });
@@ -757,18 +763,20 @@ var setForm = {
       // Lokasyon Secer
       _id.find("ul").bind("click", "li", function() {
         // Bir Sonraki Adimi Aktif Hale Getirir
-        _id
-          .next()
-          .find(el.inputInfo)
-          .removeClass(cls.none);
-        _id
-          .next()
-          .find(el.counter)
-          .removeClass(cls.none);
-        _id
-          .next()
-          .find("ul")
-          .removeClass(cls.none);
+        if (state.location != null) {
+          _id
+            .next()
+            .find(el.inputInfo)
+            .removeClass(cls.none);
+          _id
+            .next()
+            .find(el.counter)
+            .removeClass(cls.none);
+          _id
+            .next()
+            .find("ul")
+            .removeClass(cls.none);
+        }
       });
     };
     // Guest Miktarini Degistirir
@@ -1392,7 +1400,6 @@ var setForm = {
     var femaleCard = state.femaleGuest > 0 ? 1 : 0;
 
     for (var i = 1 - maleCard; i < 1 + femaleCard; i++) {
-
       var price = $("#guestTemplate" + "-" + (i == 0 ? "Male" : "Female"))
         .find(".bi-unit-price")
         .text();
@@ -1554,7 +1561,7 @@ var crediCart = {
     /* 
         kredi kart
       */
-    $.getScript("styles/js/card.js", function() {
+    $.getScript("/styles/js/card.js", function() {
       $(_t.el.wrp).card({
         container: _t.el.container,
         formSelectors: {
