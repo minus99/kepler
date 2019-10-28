@@ -27,6 +27,9 @@
                     display: none;
                 }
             }
+            .career-form-show{
+                order:3;
+            }
             .ems-page-hierarchy-html{
                 order:3;
                 min-height:500px;
@@ -80,6 +83,7 @@
                                     margin-bottom:30px;
                                     .info-icon{
                                         margin-right:10px;
+                                        --color3:#465dc8;
                                     }
                                     .info-text{
                                         > span{

@@ -411,38 +411,37 @@
   .date-picker-container{
     padding:0px !important;
     border-bottom:none !important;
-  }
-  .date-picker-container .info-wrapper {
-    height: 90px;
+    .info-wrapper {
+      height: 90px;
+    }
   }
   
   .date-picker-container .input-info {
     justify-content: space-between;
-  }
-  .date-picker-container .input-info > div {
-    width: 50%;
-    text-align: center;
-    border-bottom: 1px solid $input-border;
-    align-self: flex-end;
-  }
-  .date-picker-container .input-info .date-subtitle {
-    font-weight: 500;
-    padding-bottom: 6px;
-  }
-  .date-picker-container .input-info .active {
-    color: $color0;
-    border-bottom: 2px solid $color0;
-    .date-subtitle{
-      font-weight:600;
+    > div {
+      width: 50%;
+      text-align: center;
+      border-bottom: 1px solid $input-border;
+      align-self: flex-end;
     }
-  }
-  
-  .date-picker-container .input-info .filled {
-    text-align: left !important;
-  }
-  .date-picker-container .input-info .filled .date-subtitle {
-    font-size: 12px;
-    padding-bottom: 0px;
+    .date-subtitle {
+      font-weight: 500;
+      padding-bottom: 6px;
+    }
+    .filled {
+      text-align: left !important;
+      .date-subtitle {
+        font-size: 12px;
+        padding-bottom: 0px;
+      }
+      &.active{
+        color: $color0;
+        border-bottom: 2px solid $color0;
+        .date-subtitle{
+          font-weight:600;
+        }
+      }
+    }
   }
   
   /* CHEKIN / OUT  */
@@ -534,42 +533,58 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-  }
-  .booking-info-container > section {
-    padding: 30px 0px;
+    font-size:12px;
+    > section {
+      padding: 30px 0px;
+    }
   }
   
   /* BOOKING INFO CARD BASLANGIC */
   
   .booking-info-card-container {
     border-radius: 6px;
-    border: solid 1px slategray;
+    border: solid 1px $input-border;
     padding: 30px 20px !important;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 170px;
+      .booking-info-card-wrapper {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: normal;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 75%;
+        .booking-info-card-item{
+          display: flex;
+          margin-bottom:10px;
+          &-icon{
+            margin-right:10px;
+            --color3:#465dc8;
+            .icon{
+              font-size:20px;
+            }
+          }
+          .booking-info-item-detail{
+            .booking-info-date{
+              font-weight: 600;
+              font-size:12px;
+              color:$color0;
+            }
+          }
+        }
+      }
+      .bi-button-back {
+        color: $color15;
+        text-decoration: underline;
+        align-self: center;
+        cursor: pointer;
+        width:25%;
+      }
   }
   
-  .booking-info-card-wrapper {
-    font-size: 12px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.5;
-    letter-spacing: normal;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 50%;
-  }
-  
-  .bi-button-back {
-    color: lightseagreen;
-    text-decoration: underline;
-    align-self: center;
-    cursor: pointer;
-  }
   
   /* BOOKING INFO CARD BASLANGIC */
   
@@ -578,96 +593,86 @@
   .booking-info-product-container {
     display: flex;
     flex-direction: column;
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.38;
+      color: $font-color;
+      border-bottom: 1px solid $input-border;
+      padding-bottom: 10px;
+    }
+    .booking-info-product-wrapper {
+      display: flex;
+      flex-direction: column;
+      .booking-info-product {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px 0px;
+        border-bottom: 1px solid $input-border;
+        .bi-product-image {
+          width: 120px;
+          border-radius: 6px;
+        }
+        .bi-product-info {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          width:57%;
+          .bi-product-title {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 2.57;
+            color: $color0;
+          }
+          .bi-product-specs{
+            li{
+            font-size: 12px;
+            line-height: 3;
+            padding-left:32px;
+            position: relative;
+            &::after{
+              content:'';
+              background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMC4zMjgiIGhlaWdodD0iNy40NTQiIHZpZXdCb3g9IjAgMCAxMC4zMjggNy40NTQiPg0KICA8cGF0aCBpZD0iY2hlY2stZGVmYXVsdCIgZD0iTTIwLjI2NSwxMi42MTFBLjguOCwwLDAsMSwyMS40LDEzLjc0MmgwTDE1LjcsMTkuNDM3YS44MTguODE4LDAsMCwxLS4xMjQuMTYuOC44LDAsMCwxLTEuMTMxLDBoMGwtMi45MTEtMi45MTFhLjguOCwwLDAsMSwxLjEzMS0xLjEzMWgwbDIuMzI2LDIuMzI3WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTExLjMwMiAtMTIuMzc3KSIgZmlsbD0iIzQ2NWRjOCIvPg0KPC9zdmc+DQo=");
+              background-position: center;
+              background-size: 12px;
+              background-repeat: no-repeat;
+              position: absolute;
+              left:-8px;
+              top:0px;
+              width:32px;
+              height: 32px;
+              }
+            }
+          }
+          .bi-product-fee{
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+            margin-top:25px;
+            .bi-prodcut-hour{
+              .bi-hour{
+                margin-right:2px;
+              }
+            }
+            .bi-product-price-wrapper {
+              font-weight: 600;
+              font-size:12px;
+              margin-top:6px;
+            }
+          }    
+        }
+      }
+    }
   }
-  .booking-info-product-container h3 {
-    font-size: 16px;
-    font-weight: 500;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.38;
-    color: darkblue;
-    border-bottom: 1px solid slategray;
-    padding-bottom: 10px;
-  }
-  
-  .booking-info-product-wrapper {
-    display: flex;
-    flex-direction: column;
-  }
-  
+
   /* PRODUCT CARD */
   
-  .booking-info-product {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 20px 0px;
-    border-bottom: 1px solid slategray;
-  }
-  
-  .bi-product-image {
-    width: 120px;
-    height: 180px;
-    border-radius: 6px;
-  }
-  
-  .bi-product-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 180px;
-  }
-  
-  .bi-product-title {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 2.57;
-    color: indigo;
-  }
-  .bi-product-specs li {
-    font-size: 12px;
-    line-height: 3;
-  }
-  
-  .bi-product-fee {
-    display: flex;
-    flex-direction: column;
-    text-align: right;
-  }
-  
-  .bi-product-price-wrapper {
-    font-weight: 500;
-    letter-spacing: 0.24px;
-  }
-  
-  .bi-order-payment{
-    display: flex;
-    flex-direction: column;
-    border-top:1px solid gray;
-    border-bottom:1px solid gray;
-    padding: 20px 0px;
-  }
-  
-  .bi-order-payment-title{
-    font: 14px;
-    color: indigo;
-  }
-  .bi-order-payment-info{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size:12px;
-  }
-  .bi-order-payment-info div:last-child{
-    text-align: right;
-  }
-  
-  
   .Male {
-    background-color: #50cae0;
+    background-color: #c6dadd;
   }
   .Female {
-    background-color: pink;
+    background-color: #ffdde0;
   }
   
   /* PRODUCT CARD */
@@ -676,56 +681,78 @@
   
   .booking-info-order-container {
     margin: 0px auto;
-    max-width: 360px;
+    max-width: 320px;
     width:100%;
     margin-top: 20px;
-    border: solid 1px slategray;
+    border: solid 1px $input-border;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     display: flex;
     flex-direction: column;
+    .bi-order-amount-container {
+      height: 50px;
+      background-color: $color12;
+      border-bottom: 1px solid $input-border;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+    .bi-order-total-container {
+      display: flex;
+      flex-direction: column;
+      padding: 0px 20px;
+      min-height: 160px;
+      justify-content: space-around;
+      .bi-order-total {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .bi-order-total-description {
+        font-size: 12px;
+      }
+      .bi-order-payment{
+        display: flex;
+        flex-direction: column;
+        border-top:1px solid gray;
+        border-bottom:1px solid gray;
+        padding: 20px 0px;
+        .bi-order-payment-title{
+          font: 14px;
+          color: indigo;
+        }
+        .bi-order-payment-info{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          font-size:12px;
+        }
+        .bi-order-payment-info div:last-child{
+          text-align: right;
+        }
+      }
+    }
   }
-  
-  .bi-order-amount-container {
-    height: 50px;
-    background-color: #f7f7f7;
-    border-bottom: 1px solid slategray;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-  }
-  .bi-order-total-container {
-    display: flex;
-    flex-direction: column;
-    padding: 0px 20px;
-    min-height: 160px;
-    justify-content: space-around;
-  }
-  .bi-order-total {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .bi-order-total-description {
-    font-size: 12px;
-  }
+
   .continue-button {
     height: 42px;
     border-radius: 6px;
-    background-color: #50cae0;
+    background: linear-gradient(270deg, #304293 30%, #272768 100%);
+    font-weight: 600;
     line-height: 42px;
     text-align: center;
-    color: white;
+    color: $white;
   }
+
   .continue-button[rel="comfirm-info"]{
-    color: indigo;
-    background-color: white;
-    border:1px solid indigo;
+    color: $color0;
+    background-color: $white;
+    border:1px solid $color0;
     border-radius: 22px;
   }
   
@@ -734,45 +761,42 @@
   /* HOST CONTAINER */
   
   .booking-guest-info-container {
-    max-width: 360px;
+    max-width: 320px;
     width:100%;
     margin: 0 auto;
-  }
-  
-  .booking-guest-info-container h3 {
-    border-bottom: 1px solid slategray;
-    padding-bottom: 10px;
-  }
-  
-  .booking-guest-info-container p {
-    font-size: 12px;
-    margin-bottom: 30px;
+    h3 {
+      border-bottom: 1px solid $input-border;
+      padding-bottom: 10px;
+    }
+    p {
+      font-size: 12px;
+      margin-bottom: 30px;
+    }
   }
   
   .guest-info-wrapper {
     display: flex;
     flex-direction: column;
-  }
-  .guest-info-input {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-  }
-  .guest-info-wrapper input {
-    margin: 10px 0px;
-    height: 46px;
-    border: 1px solid #eee;
-    border-radius: 3px;
-    transition: border-color 0.5s ease-out;
-    font-size: 14px;
-    padding: 0 20px;
-  }
-  .guest-info-input .gi-mobile {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
+    .guest-info-input {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+      label {
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom:10px;
+      }
+      input{
+        padding-right:50px;
+      }
+      .gi-mobile {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
   }
   
   #mobile {
@@ -781,39 +805,39 @@
   #country-code {
     width: 30%;
   }
-  .guest-info-wrapper label {
-    font-size: 12px;
-    font-weight: 500;
-  }
+
   .form-valid input {
-    border: 1px solid palegreen !important;
+    border: 1px solid $input-success !important;
   }
   
   .form-invalid input {
-    border: 1px solid salmon !important;
+    border: 1px solid $input-alert !important;
   }
   
   .validation-icon {
     position: absolute;
     display: none;
     right: 20px;
-    top: 50%;
+    top: 55%;
     width: 20px;
     height: 20px;
     border-radius: 50%;
     z-index: 99;
-    border: 1px solid white none;
     transition: border-color 0.5s ease-out;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all .4s;
+    opacity: 0;
   }
   .form-valid .validation-icon {
     display: block;
-  
-    border: 1px solid palegreen !important;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxMCIgdmlld0JveD0iMCAwIDE0IDEwIj4KICAgIDxwYXRoIGZpbGw9IiM5MEI1QkMiIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTExLjk3OS4zMTRhLjk2My45NjMgMCAwIDEgMS40MjMgMCAxLjEyMyAxLjEyMyAwIDAgMSAwIDEuNTE4TDYuMzAyIDkuNGExLjA1IDEuMDUgMCAwIDEtLjE5OC4zMDIuOTY2Ljk2NiAwIDAgMS0xLjQyNS0uMDExTC45ODMgNS43NkExLjEyMSAxLjEyMSAwIDAgMSAuOTcgNC4yNDVhLjk2Ni45NjYgMCAwIDEgMS40MjYuMDFsMi45NDUgMy4xMzJ6Ii8+Cjwvc3ZnPgo=");
+    opacity: 1;
   }
   .form-invalid .validation-icon {
     display: block;
-  
-    border: 1px solid salmon !important;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMSIgaGVpZ2h0PSIxMCIgdmlld0JveD0iMCAwIDExIDEwIj4KICAgIDxwYXRoIGZpbGw9IiNGRjVENkEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjRkY1RDZBIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik01LjM0NiA1TDEuMjczLjkyN2EuMjQ5LjI0OSAwIDAgMCAuMzUxLS4zNTJsMy43MTggMy43MTguMzU1LjM1Nkw5Ljc3LjU3NWEuMjQ5LjI0OSAwIDAgMCAuMzUyLjM1Mkw2LjA0OCA1bDQuMDc0IDQuMDczYS4yNDkuMjQ5IDAgMCAwLS4zNTIuMzUyTDYuMDUzIDUuNzA3bC0uMzU2LS4zNTYtNC4wNzIgNC4wNzRhLjI0OS4yNDkgMCAwIDAtLjM1My0uMzUyTDQuOTkgNS4zNTYgNS4zNDYgNXoiLz4KPC9zdmc+Cg==");
+    opacity: 1;
   }
   
   .form-warnings{
@@ -855,14 +879,20 @@
   
   /* CREDIT CARD */
   .booking-payment-details-container {
-    max-width: 360px;
+    max-width: 320px;
     width:100%;
     margin: 0 auto;
+    .jp-card .jp-card-front{
+      //background-image: url('/UPLOAD/frontend/card-bg.png');
+      background-size:cover;
+      background: #90b5bc;
+    }
   }
   
   .pd-credit-card {
-    width: 315px;
+    width: 320px;
     height: 190px;
+    margin:20px auto;
     border-radius: 8px;
     
   }
@@ -904,8 +934,8 @@
     display: flex;
     flex-direction: column;
     padding-bottom: 100px;
-    border-top: 1px solid slategray;
-    border-bottom: 1px solid slategray;
+    border-top: 1px solid $input-border;
+    border-bottom: 1px solid $input-border;
   }
   
   .pd-policies > div {
@@ -915,7 +945,7 @@
     margin: 20px 0;
     height: 30px;
     align-items: center;
-    border-bottom: 1px solid slategray;
+    border-bottom: 1px solid $input-border;
   }
   
   .cvc-info {
@@ -924,8 +954,8 @@
     right: 0px;
     bottom: -12px;
     font-size: 24px;
-    color: indigo;
-    border-left: 1px solid #eee;
+    color: $color0;
+    border-left: 1px solid $input-border;
     padding-left: 20px;
   
     height: 46px;
@@ -988,13 +1018,13 @@
   }
   .comfirmation-summary >h4 {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     margin:0;
   }
   
   .summary-location > h4 {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
    
   }
   .summary-location > p {
@@ -1003,7 +1033,7 @@
   }
   .summary-location  > a {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     color: #50cae0;
   }
   
