@@ -2,8 +2,48 @@
 // ES5 Class Functions
 
 // TODO
+
 // 1. BOOKED TIMES ILE SECILEN ZAMAN CAKISMASI BUG
+
 // 2. CreateBooking soap request
+/*
+
+3. 
+Datepicker ileri tarih seç
+Checkin saat seç
+Checkout saat seç (aynı gün)
+Geri tarihe git (button ile)
+Checkin saat seç
+İleri tarihe git (button ile)
+Gidilen tarih datepicker ile seçilen tarih ile aynı
+*/
+
+/*
+4.
+Checkin tarihi seç
+Bir sonraki check out tariihi seç
+Checkin tarihi seçerken bir önceki gün tarihi seçiyor ve disable saate denk geliyor ise seçiyor
+
+*/
+
+/* 
+5. Secili Saat ve Tarih Uyarısı Cıkmıyor ----------------------------- YAPILDI
+*/
+
+/* 
+6. Start Again Buttonu 
+*/
+
+/*
+7. Loading Seçiliyor Seçilmemesi Lazım
+*/
+
+/*
+8. Timepicker Request Bitmeden Seçiliyor Seçilememesi Lazım
+*/
+
+var mockJSON =
+  '{"booking":{"location":"SAW","date":"2019-10-08 14:00 2019-10-08 22:00","products":[{"id":832504,"gender":"m","hours":8},{"id":832504,"gender":"m","hours":8},{"id":832505,"gender":"f","hours":8}]},"guest":{"firstName":"Ad","lastName":"Soyad","email":"mail@mail.com","mobile":"+905355555555","birthDate":"2019-04-03"},"card":{"number":"4545 4545 4545 4545","expiration":"01 / 12","cvc":"456","holder":"Ad Soyad"},"reservation":{"id":"KPLR0051853"}}';
 
 var Form = function(booking, guest, card) {
   this.booking = booking;
@@ -36,9 +76,11 @@ var Guest = function(firstName, lastName, email, mobile, birthDate) {
   this.birthDate = birthDate;
 };
 
-var CreditCard = function(number, expiration, cvc, holder) {
+var CreditCard = function(number, expiration, month, year, cvc, holder) {
   this.number = number;
   this.expiration = expiration;
+  this.month = month;
+  this.year = year;
   this.cvc = cvc;
   this.holder = holder;
 };
@@ -101,6 +143,7 @@ var setForm = {
     notEnoughCapacity: "not-enough-capacity"
   },
   info: {
+    product: "booking-info-product",
     location: ".booking-info-location",
     date: ".booking-info-date",
     maleNumber: ".bi-male-number",
@@ -148,11 +191,24 @@ var setForm = {
   createFormObject: function() {
     // Guest Objects
     var _product = [];
+    var _t = this;
     for (var i = 0; i < state.femaleGuest; i++) {
-      _product.push(new Product(832505, "f", state.date.totalHour));
+      _product.push(
+        new Product(
+          parseInt($(_t.info.product)[0].getAttribute("rel")),
+          "f",
+          state.date.totalHour
+        )
+      );
     }
     for (var i = 0; i < state.maleGuest; i++) {
-      _product.push(new Product(832504, "m", state.date.totalHour));
+      _product.push(
+        new Product(
+          parseInt($(_t.info.product)[1].getAttribute("rel")),
+          "m",
+          state.date.totalHour
+        )
+      );
     }
 
     // Host Object
@@ -168,8 +224,17 @@ var setForm = {
 
     var _card = new CreditCard();
 
-    _card.number = $(this.creditCardInput.number).val();
-    _card.expiration = $(this.creditCardInput.expiration).val();
+    _card.number = $(this.creditCardInput.number)
+      .val()
+      .replace(/ /g, "");
+    _card.month = $(this.creditCardInput.expiration)
+      .val()
+      .substring(0, 2);
+    _card.year =
+      "20" +
+      $(this.creditCardInput.expiration)
+        .val()
+        .substring(5, 9);
     _card.cvc = $(this.creditCardInput.cvc).val();
     _card.holder = $(this.creditCardInput.holder).val();
 
@@ -200,7 +265,7 @@ var setForm = {
     var _t = this;
     $(".test").bind("click", function() {
       console.log(state);
-      //_t.createFormObject();
+      _t.createFormObject();
     });
   },
 
@@ -225,7 +290,7 @@ var setForm = {
       el = _t.el,
       cls = _t.cls,
       formInput = _t.formInput;
-      $(el.time).attr("data-date", _t.getDate());
+    $(el.time).attr("data-date", _t.getDate());
   },
 
   fetchAirports: function() {
@@ -276,9 +341,13 @@ var setForm = {
     $.ajax({
       type: "POST",
       url: "/custom/kepler/keplerservice.asmx/GetAirportAvailableHours",
-      data: 
-        "checkInDate="+ state.date.checkIn +"&checkOutDate=" + "" +"&airtportId=" + state.location
-      ,
+      data:
+        "checkInDate=" +
+        state.date.checkIn +
+        "&checkOutDate=" +
+        "" +
+        "&airtportId=" +
+        state.location,
       success: function(resp) {
         state.date.notAvailable = [];
 
@@ -363,6 +432,9 @@ var setForm = {
       $(".booking-step-container ")
         .removeClass("step0")
         .addClass("step1");
+      $("body")
+        .removeClass("step0")
+        .addClass("step1");
       // Order -info Container Gelir
       $(".booking-info-order-container").removeClass("ems-none");
       window.scrollTo({
@@ -379,6 +451,9 @@ var setForm = {
 
         // Step Asamasi
         $(".booking-step-container ")
+          .removeClass("step3")
+          .addClass("step4");
+        $("body")
           .removeClass("step3")
           .addClass("step4");
         $(".continue-button").text("BACK TO HOME PAGE");
@@ -403,6 +478,9 @@ var setForm = {
         $(".booking-step-container ")
           .removeClass("step2")
           .addClass("step3");
+        $("body")
+          .removeClass("step2")
+          .addClass("step3");
         // Button Class Degisimi
         $(".continue-button").text("COMFIRM PAYMENT");
 
@@ -414,6 +492,9 @@ var setForm = {
 
         // Step Asamasi
         $(".booking-step-container ")
+          .removeClass("step1")
+          .addClass("step2");
+        $("body")
           .removeClass("step1")
           .addClass("step2");
 
@@ -672,7 +753,7 @@ var setForm = {
         }
         isFetched = true;
       });
-
+      //
       // Lokasyon Secer
       _id.find("ul").bind("click", "li", function() {
         // Bir Sonraki Adimi Aktif Hale Getirir
@@ -971,7 +1052,7 @@ var setForm = {
 
             // Checkout'u UI'da Siler
             $(el.datePicker)
-              .find(".input-info .check-out-info .time-info") // bu bug lı çalışıyor şu an
+              .find(".input-info .check-out-info .time-info")
               .removeClass("filled")
               .text("");
 
@@ -992,10 +1073,14 @@ var setForm = {
                 .val()
                 .toString()
             );
-            // Seçili Zamanı UI'da gösterir
-            if (state.date.checkIn === fullDate) {
-              item.addClass(cls.selectedTime);
-            }
+
+            // BURASI GEREKSIZ OLABILIR
+
+            // // Seçili Zamanı UI'da gösterir
+            // if (state.date.checkIn === fullDate) {
+            //   item.addClass(cls.selectedTime);
+            // }
+
             $(el.timePickerWarnings).addClass(cls.none);
             $(".date-warning").addClass(cls.none);
           } else if (type === "check-out") {
@@ -1033,6 +1118,8 @@ var setForm = {
               date = "";
             }
             $(el.timePickerWarnings).removeClass(cls.none);
+
+            // Aynı gun degıl ise zaman uayarısını açar
             if (
               state.date.checkOut.slice(0, 11) !==
               state.date.checkIn.slice(0, 11)
@@ -1108,6 +1195,7 @@ var setForm = {
           var checkInState = state.date.checkIn;
           var checkOutState = state.date.checkOut;
           var hour = parseInt($(this).attr("data-time"));
+
           if (
             // check-in ve check-out seçili değil ise
             checkInState == "" &&
@@ -1121,29 +1209,62 @@ var setForm = {
           ) {
             // secielen saat aynı günde ise
             // secilen saat check-in saatinden küçük ise
-            if (
-              hour < parseInt(checkInState.slice(11, -3)) &&
-              $(this).attr("data-date") == $("#in-date").val()
-            ) {
-              setTime($(this), "check-in");
-              $(this)
-                .siblings()
-                .removeClass(cls.selectedTime);
-            } else if (
-              parseInt(
+            if ($(this).attr("data-date") == $("#in-date").val()) {
+              if (hour < parseInt(checkInState.slice(11, -3))) {
+                setTime($(this), "check-in");
                 $(this)
-                  .attr("data-date")
-                  .substring(8, 10)
-              ) >=
+                  .siblings()
+                  .removeClass(cls.selectedTime);
+                // secilen saat check-in saatinden buyuk ise
+              } else if (
+                $(this).attr("data-time") !==
+                state.date.checkIn.substring(11, 16)
+              ) {
+                setTime($(this), "check-out");
+              }
+            } else if ($(this).attr("data-date") != $("#in-date").val()) {
+              // seclıen ay check-ın tarhinden büyükse
+              if (
+                parseInt(
+                  $(this)
+                    .attr("data-date")
+                    .substring(5, 7)
+                ) >
                 parseInt(
                   $("#in-date")
                     .val()
-                    .substring(8, 10)
-                ) &&
-              $(this).attr("data-time") !== state.date.checkIn.substring(11, 16)
-            ) {
-              setTime($(this), "check-out");
-              timePickerWarnings();
+                    .substring(5, 7)
+                )
+              ) {
+                setTime($(this), "check-out");
+                // seclıen ay check-ın tarihi aynıysa
+              } else if (
+                parseInt(
+                  $(this)
+                    .attr("data-date")
+                    .substring(5, 7)
+                ) ==
+                parseInt(
+                  $("#in-date")
+                    .val()
+                    .substring(5, 7)
+                )
+              ) {
+                if (
+                  parseInt(
+                    $(this)
+                      .attr("data-date")
+                      .substring(8, 10)
+                  ) >
+                  parseInt(
+                    $("#in-date")
+                      .val()
+                      .substring(8, 10)
+                  )
+                ) {
+                  setTime($(this), "check-out");
+                }
+              }
             }
           } else if (
             // check-in ve check-out seçili ise
@@ -1151,10 +1272,10 @@ var setForm = {
             checkOutState != ""
           ) {
             $(el.time).attr("data-date", $("#in-date").val());
-
             setTime($(this), "check-in");
           }
           // Zaman Aralığını Control Eder
+          timePickerWarnings();
           checkTimes();
           dateButtonsControl();
           _t.controls();
@@ -1195,26 +1316,14 @@ var setForm = {
             } else {
               $(this).removeClass(cls.disabled);
             }
-
-            // Uygun Olmayan Zaman Sonrası Seçimin İptali
-            // if (
-            //   (state.date.checkOut == "" || undefined) &&
-            //   (state.date.checkIn != "" || undefined)
-            // ) {
-            //   $(this)
-            //     .nextAll(".not-enough-capacity")
-            //     .nextAll()
-            //     .addClass(cls.notAvailable);
-            // } else if (
-            //   (state.date.checkOut != "" || undefined) &&
-            //   (state.date.checkIn != "" || undefined)
-            // ) {
-            //   $(el.time).removeClass(cls.notAvailable);
-            // }
           });
+          if ($(this).hasClass(cls.disabled)) {
+            $(this).removeClass(cls.selectedTime);
+            state.date.checkIn = "";
+            state.date.checkOut = "";
+          }
         }
         setDate();
-
         checkTimes();
 
         function timePickerWarnings() {
@@ -1222,12 +1331,12 @@ var setForm = {
           $("#ci-day").text(
             $("#db-in-date")
               .val()
-              .substring(0, 5)
+              .substring(0, 6)
           );
           $("#co-day").text(
             $("#db-out-date")
               .val()
-              .substring(0, 5)
+              .substring(0, 6)
           );
         }
       }),
@@ -1265,32 +1374,39 @@ var setForm = {
     $(info.checkInHour).text(state.date.checkIn.substring(11, 16));
     $(info.checkOutHour).text(state.date.checkOut.substring(11, 16));
     $(info.totalHour).text(state.date.totalHour.toString());
-    $(info.guestPrice).text((state.date.totalHour * 7).toString());
     $(info.totalGuest).text(
       (parseInt(state.maleGuest) + parseInt(state.femaleGuest)).toString()
     );
     $(info.totalPrice).text(
       (
         (parseInt(state.maleGuest) + parseInt(state.femaleGuest)) *
-        (state.date.totalHour * 7)
+        (state.date.totalHour *
+          parseInt(
+            $("#guestTemplate-Female")
+              .find(".bi-unit-price")
+              .text()
+          ))
       ).toString()
     );
     var maleCard = state.maleGuest > 0 ? 1 : 0;
     var femaleCard = state.femaleGuest > 0 ? 1 : 0;
 
     for (var i = 1 - maleCard; i < 1 + femaleCard; i++) {
-      markup += $("#guestTemplate")
+
+      var price = $("#guestTemplate" + "-" + (i == 0 ? "Male" : "Female"))
+        .find(".bi-unit-price")
+        .text();
+
+      markup += $("#guestTemplate" + "-" + (i == 0 ? "Male" : "Female"))
         .html()
-        .replace(/[$][$]strURN_KOD[$][$]/g, Math.floor(Math.random() * 10))
-        .replace(/[$][$]strURN_AD[$][$]/g, i == 0 ? "Male" : "Female")
         .replace(
-          /{{guestNumber}}/,
+          /{{guestNumber}}/g,
           i == 0 ? state.maleGuest : state.femaleGuest
         )
-        .replace(/[$][$]salesPrice[$][$]/g, 7)
         .replace(/{{hour}}/g, state.date.totalHour)
-        .replace(/{{price}}/g, state.date.totalHour * 7);
+        .replace(/{{price}}/g, state.date.totalHour * parseInt(price));
     }
+
     $(".booking-info-product-wrapper").html(markup);
   },
 
