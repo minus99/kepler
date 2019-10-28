@@ -2,8 +2,8 @@ $form-element-height: 44px;
 input:not([type=checkbox]):not([type=radio]),
 select, .sStylerWrp_select, .dropdown-header,
 textarea {
-    font-family: $font2;
-    font-size: 15px;
+    font-family: $font1;
+    font-size: 12px;
     background: $input-bg;
     color: $font-color;
     font-weight: 400;
@@ -13,7 +13,7 @@ textarea {
     height: $form-element-height;
     padding: 0 15px;
     border: 1px solid $input-border;
-    border-radius: 0;
+    border-radius: 3px;
     outline: none;
     appearance: none;
 }
@@ -57,8 +57,11 @@ textarea {
     vertical-align: -0.1em;
     margin-right: 7px;
     user-select: none;
+    border:1px solid $checkbox-border;
     > span {
         display: block;
+        background-size:0px;
+        transition: background-size .3s;
         svg {
             display: block;
             font-size: 13px;
@@ -67,6 +70,10 @@ textarea {
             }
         }
         &.checked {
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjUuNzgiIHZpZXdCb3g9IjAgMCA4IDUuNzgiPg0KICA8cGF0aCBpZD0iY2hlY2stZGVmYXVsdCIgZD0iTTE4LjI0NSwxMi41NThhLjYyLjYyLDAsMCwxLC44NzYuODc3aDBMMTQuNzEsMTcuODUxYS42MzQuNjM0LDAsMCwxLS4xLjEyNC42MTkuNjE5LDAsMCwxLS44NzYsMGgwbC0yLjI1NS0yLjI1N2EuNjIuNjIsMCwwLDEsLjg3Ni0uODc3aDBsMS44LDEuOFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMS4zMDIgLTEyLjM3NykiIGZpbGw9IiM5MWVmOTAiLz4NCjwvc3ZnPg0K");
+            background-size:8px;
+            background-position: center;
+            background-repeat: no-repeat;
             svg {
                 display: none;
                 &[class*="active"] {
@@ -151,7 +158,7 @@ textarea {
                 overflow: auto;
                 padding: 0 10px !important;
                 line-height: $form-element-height;
-                font-family: $font2;
+                font-family: $font1;
                 font-size: 15px;
                 color: $color1;
                 font-weight: 400;
@@ -206,9 +213,9 @@ textarea {
     }
     &-label {
         position: relative;
-        font-family: $font2;
+        font-family: $font1;
         font-size: 13px;
-        color: $color6;
+        color: $font-color;
         font-weight: 500;
         margin-bottom: 5px;
         &:empty {
@@ -223,7 +230,7 @@ textarea {
         > span,
         > label,
         #lnkSifremiUnuttum {
-            font-family: $font2;
+            font-family: $font1;
             font-size: 15px;
         }
         &.chk-padding {
