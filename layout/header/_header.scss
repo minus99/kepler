@@ -205,11 +205,12 @@
         width:100%;
         right:0px;
         visibility: visible;
-        background: #fff;
+        background: $white;
     }
 }
 
 .booking-form{
+    display:block !important;
     position: fixed;
     visibility: hidden;
     width: 0px;

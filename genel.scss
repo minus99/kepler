@@ -20,6 +20,7 @@
 @import 'components/navigation';
 @import 'components/grid-table';
 @import 'components/dropdown';
+@import 'components/jquery-ui';
 
 //HEADER
 @import 'layout/header/header';
@@ -49,6 +50,7 @@
         @import 'components/grid-table-desktop';
         @import 'components/dropdown-desktop';
 
+
         //HEADER
         @import 'layout/header/header-desktop';
         
@@ -71,3 +73,15 @@
 
 //go go go
 @import 'base/css-loaded';
+.site-app-shell{
+    display: none;
+}
+.site-content{
+    display: block;
+}
+
+.booking-form{
+    > div{
+        display: block;
+    }
+}

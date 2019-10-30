@@ -59,6 +59,8 @@ textarea {
     user-select: none;
     border:1px solid $checkbox-border;
     > span {
+        width:16px;
+        height:16px;
         display: block;
         background-size:0px;
         transition: background-size .3s;

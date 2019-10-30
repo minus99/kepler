@@ -1,0 +1,18 @@
+.booking-form-header{
+    background: $color0;
+    padding:0px 30px;
+    height:84px;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    .booking-form-title{
+      span{
+          font-size:16px;
+          color:$white;
+          font-weight: 500;
+      }
+    }
+    .booking-form-closed{
+        cursor: pointer;
+    }
+  }
