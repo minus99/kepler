@@ -25,7 +25,7 @@
         justify-content: flex-start;        
         grid-template-areas: "ga1 ga2";
         grid-template-columns: 120px 1fr;
-        padding:0px 10px;
+        padding:0px 0px;
         .ga1{
             grid-area: ga1;
             .logo{

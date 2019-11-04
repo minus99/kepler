@@ -1,28 +1,14 @@
 .custom-home-page{
     .site-footer{
         width:100%;
-        height:0px;
-        overflow: hidden;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 1s;
-    }
-    .ems-last-slide{
-        &::-webkit-scrollbar {
-            width: 0px;
-        }
-        .site-footer{
-            height: auto;
-            visibility: visible;
-            opacity: 1;
-        }
+        display: none;
     }
 }
-
-.ems-last-slide{
-    .site-footer{
-        padding-bottom:100px;
-        display: flex;
+.custom-home-page{
+    .footer-append{
+        .site-footer{
+            display: block;
+        }
     }
 }
 

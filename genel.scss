@@ -33,6 +33,7 @@
 @import 'layout/pages/landing-page';
 @import 'layout/pages/corporate-page';
 @import 'layout/pages/booking-form';
+@import 'layout/pages/gallery';
 
 //DESKTOP
 @supports (display: grid) {
@@ -62,6 +63,7 @@
         @import 'layout/pages/landing-page-desktop';
         @import 'layout/pages/corporate-page-desktop';
         @import 'layout/pages/booking-form-desktop';
+        @import 'layout/pages/gallery-desktop';
         
         //DESKTOP MINI
         @include setMediaScreen(max-width, $breakpoint-large) {

@@ -663,12 +663,12 @@ button.swiper-pagination-bullet {
 
 //no swipe
 .not-trigger {
-  .swiper-inner {
+  > .swiper-inner {
     overflow: visible;
   }
   .swiper-slide {
-    width: auto;
-    flex-shrink: 1;
+    width: 100%;
+    //flex-shrink: 1;
   }
 }
 

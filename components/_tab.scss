@@ -7,7 +7,7 @@
         margin-bottom: 30px;
         overflow: auto;
         > * {
-            font-weight: 700;
+            font-weight: 600;
             letter-spacing: .9px;
             padding: 10px 20px;
             border: 1px solid transparent;
@@ -15,7 +15,7 @@
             cursor: pointer;
             &.selected,
             &.emos_selected {
-                border-color: $color5;
+                border-color: $color0;
             }
         }
         &::-webkit-scrollbar {
@@ -42,7 +42,7 @@
     //checkbox
     &-checkbox {
         &-header {
-            background: $color3;
+            background: $color0;
             padding: 20px;
             font-family: $font2;
             font-size: 16px;
@@ -50,7 +50,7 @@
         }
         &-content {
             display: none;
-            border: 1px solid $color3;
+            border: 1px solid $color0;
         }
         &.opened {
             .ems-tab-checkbox-content {
