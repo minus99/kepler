@@ -106,6 +106,7 @@
                     }
                     &-body{
                         ul{
+                            justify-content: space-between;
                             li{
                                 width:calc(100% / 6 - 30px);
                                 img{
