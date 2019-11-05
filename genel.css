@@ -4870,7 +4870,7 @@ body .ui-tooltip {
     border: 3px solid darkblue;
     border-radius: 50%; }
   .booking-form .test:focus {
-    background-color: indigo; }
+    background-color: #465dc8; }
   .booking-form .not-available {
     -webkit-user-select: none !important;
     -moz-user-select: none !important;
@@ -5264,55 +5264,55 @@ body .ui-tooltip {
       color: #1d3243;
       border-bottom: 1px solid #e0e0e0;
       padding-bottom: 10px; }
-    .booking-form .booking-info-product-container .booking-info-product-wrapper {
+  .booking-form .booking-info-product-wrapper {
+    display: flex;
+    flex-direction: column; }
+    .booking-form .booking-info-product-wrapper .booking-info-product {
       display: flex;
-      flex-direction: column; }
-      .booking-form .booking-info-product-container .booking-info-product-wrapper .booking-info-product {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 20px 0px;
+      border-bottom: 1px solid #e0e0e0; }
+      .booking-form .booking-info-product-wrapper .booking-info-product .bi-product-image {
+        width: 120px;
+        border-radius: 6px; }
+      .booking-form .booking-info-product-wrapper .booking-info-product .bi-product-info {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 20px 0px;
-        border-bottom: 1px solid #e0e0e0; }
-        .booking-form .booking-info-product-container .booking-info-product-wrapper .booking-info-product .bi-product-image {
-          width: 120px;
-          border-radius: 6px; }
-        .booking-form .booking-info-product-container .booking-info-product-wrapper .booking-info-product .bi-product-info {
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 57%; }
+        .booking-form .booking-info-product-wrapper .booking-info-product .bi-product-info .bi-product-title {
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 2.57;
+          color: #465dc8; }
+        .booking-form .booking-info-product-wrapper .booking-info-product .bi-product-info .bi-product-specs li {
+          font-size: 12px;
+          line-height: 3;
+          padding-left: 32px;
+          position: relative; }
+          .booking-form .booking-info-product-wrapper .booking-info-product .bi-product-info .bi-product-specs li::after {
+            content: '';
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMC4zMjgiIGhlaWdodD0iNy40NTQiIHZpZXdCb3g9IjAgMCAxMC4zMjggNy40NTQiPg0KICA8cGF0aCBpZD0iY2hlY2stZGVmYXVsdCIgZD0iTTIwLjI2NSwxMi42MTFBLjguOCwwLDAsMSwyMS40LDEzLjc0MmgwTDE1LjcsMTkuNDM3YS44MTguODE4LDAsMCwxLS4xMjQuMTYuOC44LDAsMCwxLTEuMTMxLDBoMGwtMi45MTEtMi45MTFhLjguOCwwLDAsMSwxLjEzMS0xLjEzMWgwbDIuMzI2LDIuMzI3WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTExLjMwMiAtMTIuMzc3KSIgZmlsbD0iIzQ2NWRjOCIvPg0KPC9zdmc+DQo=");
+            background-position: center;
+            background-size: 12px;
+            background-repeat: no-repeat;
+            position: absolute;
+            left: -8px;
+            top: 0px;
+            width: 32px;
+            height: 32px; }
+        .booking-form .booking-info-product-wrapper .booking-info-product .bi-product-info .bi-product-fee {
           display: flex;
           flex-direction: column;
-          justify-content: flex-start;
-          width: 57%; }
-          .booking-form .booking-info-product-container .booking-info-product-wrapper .booking-info-product .bi-product-info .bi-product-title {
-            font-size: 14px;
+          text-align: right;
+          margin-top: 25px; }
+          .booking-form .booking-info-product-wrapper .booking-info-product .bi-product-info .bi-product-fee .bi-prodcut-hour .bi-hour {
+            margin-right: 2px; }
+          .booking-form .booking-info-product-wrapper .booking-info-product .bi-product-info .bi-product-fee .bi-product-price-wrapper {
             font-weight: 600;
-            line-height: 2.57;
-            color: #465dc8; }
-          .booking-form .booking-info-product-container .booking-info-product-wrapper .booking-info-product .bi-product-info .bi-product-specs li {
             font-size: 12px;
-            line-height: 3;
-            padding-left: 32px;
-            position: relative; }
-            .booking-form .booking-info-product-container .booking-info-product-wrapper .booking-info-product .bi-product-info .bi-product-specs li::after {
-              content: '';
-              background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMC4zMjgiIGhlaWdodD0iNy40NTQiIHZpZXdCb3g9IjAgMCAxMC4zMjggNy40NTQiPg0KICA8cGF0aCBpZD0iY2hlY2stZGVmYXVsdCIgZD0iTTIwLjI2NSwxMi42MTFBLjguOCwwLDAsMSwyMS40LDEzLjc0MmgwTDE1LjcsMTkuNDM3YS44MTguODE4LDAsMCwxLS4xMjQuMTYuOC44LDAsMCwxLTEuMTMxLDBoMGwtMi45MTEtMi45MTFhLjguOCwwLDAsMSwxLjEzMS0xLjEzMWgwbDIuMzI2LDIuMzI3WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTExLjMwMiAtMTIuMzc3KSIgZmlsbD0iIzQ2NWRjOCIvPg0KPC9zdmc+DQo=");
-              background-position: center;
-              background-size: 12px;
-              background-repeat: no-repeat;
-              position: absolute;
-              left: -8px;
-              top: 0px;
-              width: 32px;
-              height: 32px; }
-          .booking-form .booking-info-product-container .booking-info-product-wrapper .booking-info-product .bi-product-info .bi-product-fee {
-            display: flex;
-            flex-direction: column;
-            text-align: right;
-            margin-top: 25px; }
-            .booking-form .booking-info-product-container .booking-info-product-wrapper .booking-info-product .bi-product-info .bi-product-fee .bi-prodcut-hour .bi-hour {
-              margin-right: 2px; }
-            .booking-form .booking-info-product-container .booking-info-product-wrapper .booking-info-product .bi-product-info .bi-product-fee .bi-product-price-wrapper {
-              font-weight: 600;
-              font-size: 12px;
-              margin-top: 6px; }
+            margin-top: 6px; }
   .booking-form .Male {
     background-color: #c6dadd; }
   .booking-form .Female {
@@ -5359,7 +5359,7 @@ body .ui-tooltip {
         padding: 20px 0px; }
         .booking-form .booking-info-order-container .bi-order-total-container .bi-order-payment .bi-order-payment-title {
           font: 14px;
-          color: indigo; }
+          color: #465dc8; }
         .booking-form .booking-info-order-container .bi-order-total-container .bi-order-payment .bi-order-payment-info {
           display: flex;
           flex-direction: row;
@@ -5554,7 +5554,7 @@ body .ui-tooltip {
     font-size: 18px; }
   .booking-form .comfirmation-message h4 {
     font-size: 24px;
-    color: indigo; }
+    color: #465dc8; }
   .booking-form .comfirmation-id {
     height: 143px;
     background-color: #f7f7f7;
@@ -5594,7 +5594,7 @@ body .ui-tooltip {
   .booking-form .c-info-title {
     font-size: 16px;
     font-weight: 500;
-    color: indigo; }
+    color: #465dc8; }
   .booking-form .c-info-details {
     font-size: 14px;
     font-weight: normal; }
