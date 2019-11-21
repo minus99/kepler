@@ -42,8 +42,8 @@ Checkin tarihi seçerken bir önceki gün tarihi seçiyor ve disable saate denk 
 8. Timepicker Request Bitmeden Seçiliyor Seçilememesi Lazım
 */
 
-var mockJSON =
-  '{"booking":{"location":"SAW","date":"2019-10-08 14:00 2019-10-08 22:00","products":[{"id":832504,"gender":"m","hours":8},{"id":832504,"gender":"m","hours":8},{"id":832505,"gender":"f","hours":8}]},"guest":{"firstName":"Ad","lastName":"Soyad","email":"mail@mail.com","mobile":"+905355555555","birthDate":"2019-04-03"},"card":{"number":"4545 4545 4545 4545","expiration":"01 / 12","cvc":"456","holder":"Ad Soyad"},"reservation":{"id":"KPLR0051853"}}';
+// CArd'da fiyat dogru degil kişi sayısı ile çarpması gerekiyor
+
 
 var Form = function(booking, guest, card) {
   this.booking = booking;
@@ -51,15 +51,10 @@ var Form = function(booking, guest, card) {
   this.card = card;
 };
 
-var Booking = function(location, date, products) {
-  this.location = location;
-  this.date = date;
-  this.products = products;
-};
-var BookingDate = function(checkIn, checkOut, bookedHour) {
-  this.checkIn = checkIn;
-  this.checkOut = checkOut;
-  this.bookedHour = bookedHour;
+var Booking = function(airportId, checkInDate, checkOutDate) {
+  this.airportId = airportId;
+  this.checkInDate = checkInDate;
+  this.checkOutDate = checkOutDate;
 };
 
 var Product = function(id, gender, hours) {
@@ -192,23 +187,35 @@ var setForm = {
     // Guest Objects
     var _product = [];
     var _t = this;
-    for (var i = 0; i < state.femaleGuest; i++) {
-      _product.push(
-        new Product(
-          parseInt($(_t.info.product)[0].getAttribute("rel")),
-          "f",
-          state.date.totalHour
-        )
-      );
+    if (state.maleGuest != null) {
+      for (var i = 0; i < state.femaleGuest; i++) {
+        _product.push(
+          new Product(
+            parseInt(
+              $("#guestTemplate-Female")
+                .find(".booking-info-product")
+                .attr("rel")
+            ),
+            "f",
+            state.date.totalHour
+          )
+        );
+      }
     }
-    for (var i = 0; i < state.maleGuest; i++) {
-      _product.push(
-        new Product(
-          parseInt($(_t.info.product)[1].getAttribute("rel")),
-          "m",
-          state.date.totalHour
-        )
-      );
+    if (state.femaleGuest != null) {
+      for (var i = 0; i < state.maleGuest; i++) {
+        _product.push(
+          new Product(
+            parseInt(
+              $("#guestTemplate-Male")
+                .find(".booking-info-product")
+                .attr("rel")
+            ),
+            "m",
+            state.date.totalHour
+          )
+        );
+      }
     }
 
     // Host Object
@@ -217,7 +224,8 @@ var setForm = {
     _guest.firstName = state.guest.firstName;
     _guest.lastName = state.guest.lastName;
     _guest.email = state.guest.email;
-    _guest.mobile = state.guest.mobile;
+    // Backend Telefon Fixinden sonra substring olmadan yolla.
+    _guest.mobile = state.guest.mobile.substring(2, state.guest.mobile.length);
     _guest.birthDate = state.guest.birthdate;
 
     // Credit Card
@@ -238,17 +246,11 @@ var setForm = {
     _card.cvc = $(this.creditCardInput.cvc).val();
     _card.holder = $(this.creditCardInput.holder).val();
 
-    // Booking Date
-
-    var _date = new BookingDate();
-    _date.checkIn = state.date.checkIn;
-    _date.checkOut = state.date.checkOut;
-    _date.bookedHour = state.date.bookedHours;
-
     // Booking Object
     var _booking = new Booking();
-    _booking.location = state.location;
-    _booking.date = _date;
+    _booking.airportId = state.location.replace(/ /g, "");
+    _booking.checkInDate = state.date.checkIn;
+    _booking.checkOutDate = state.date.checkOut;
     _booking.products = _product;
 
     // Form Object
@@ -257,9 +259,9 @@ var setForm = {
     _form.booking = _booking;
     _form.guest = _guest;
     _form.card = _card;
-
+    console.log(_form);
     // Log
-    console.log(JSON.stringify(_form));
+    return JSON.stringify({ data: _form });
   },
   test: function() {
     var _t = this;
@@ -287,9 +289,7 @@ var setForm = {
   },
   setInitialDate: function() {
     var _t = this,
-      el = _t.el,
-      cls = _t.cls,
-      formInput = _t.formInput;
+      el = _t.el;
     $(el.time).attr("data-date", _t.getDate());
   },
 
@@ -408,6 +408,41 @@ var setForm = {
       }
     });
   },
+  createBooking: function() {
+    var _t = this;
+    var data = null;
+    $.ajax({
+      type: "POST",
+      url: "/custom/kepler/KeplerService.asmx/CreateBooking",
+      data: _t.createFormObject(),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function(resp) {
+        data = resp.data;
+        console.log(resp);
+        console.log(JSON.stringify(resp.data));
+      },
+      complete: function() {
+        _t.comfirmationParser(data);
+        $(".booking-payment-details-container").addClass("ems-none");
+        $(".booking-comfirmation-container").removeClass("ems-none");
+        $(".bi-order-payment ").removeClass("ems-none");
+        // Step Asamasi
+        $(".booking-step-container ")
+          .removeClass("step3")
+          .addClass("step4");
+        $("body")
+          .removeClass("step3")
+          .addClass("step4");
+        $(".continue-button").text("BACK TO HOME PAGE");
+        $(".continue-button").attr("rel", "comfirm-info");
+      },
+      failure: function(resp) {
+        console.log(resp.message);
+        alert("error");
+      }
+    });
+  },
   events: function() {
     var _t = this,
       el = _t.el,
@@ -437,7 +472,7 @@ var setForm = {
         .addClass("step1");
       // Order -info Container Gelir
       $(".booking-info-order-container").removeClass("ems-none");
-      window.scrollTop({
+      $(".booking-form").scrollTop({
         top: 0,
         left: 0,
         behavior: "smooth"
@@ -446,20 +481,10 @@ var setForm = {
 
     $(".continue-button").on("click", function() {
       if ($(this).attr("rel") == "card-info") {
-        $(".booking-payment-details-container").addClass("ems-none");
-        $(".booking-comfirmation-container").removeClass("ems-none");
+        // _t.comfirmationParser();
 
-        // Step Asamasi
-        $(".booking-step-container ")
-          .removeClass("step3")
-          .addClass("step4");
-        $("body")
-          .removeClass("step3")
-          .addClass("step4");
-        $(".continue-button").text("BACK TO HOME PAGE");
-        $(this).attr("rel", "comfirm-info");
-        _t.comfirmationParser();
-        _t.createFormObject();
+        // _t.createFormObject();
+        _t.createBooking();
       }
 
       if ($(this).attr("rel") == "guest-info") {
@@ -501,7 +526,7 @@ var setForm = {
         $(this).attr("rel", "guest-info");
       }
       $(".continue-button").addClass(cls.disabled);
-      window.scrollTop({
+      $(".booking-form").scrollTop({
         top: 0,
         left: 0,
         behavior: "smooth"
@@ -521,7 +546,8 @@ var setForm = {
           $(formInput.birthdate).datepicker({
             maxDate: "-7y",
             changeMonth: true,
-            changeYear: true
+            changeYear: true,
+            dateFormat: "yy-mm-dd"
           });
         }
         $(".child-warning").removeClass(cls.none);
@@ -1411,40 +1437,92 @@ var setForm = {
           i == 0 ? state.maleGuest : state.femaleGuest
         )
         .replace(/{{hour}}/g, state.date.totalHour)
-        .replace(/{{price}}/g, state.date.totalHour * parseInt(price));
+        .replace(/{{price}}/g, (i == 0 ? state.maleGuest : state.femaleGuest) +" x " +  state.date.totalHour * parseInt(price));
     }
 
-    $(".booking-info-product-wrapper").html(markup);
+    $(".booking-info-product-container .booking-info-product-wrapper").html(
+      markup
+    );
   },
 
-  comfirmationParser: function() {
+  comfirmationParser: function(data) {
     var _t = this,
       el = _t.el,
       cls = _t.cls,
       info = _t.info;
-    var markup = "";
-    var data = JSON.parse(mockJSON);
 
-    var f = 0;
-    var m = 0;
+    // Reservation Parser
 
-    data.booking.products.forEach(function(el) {
-      if (el.gender == "f") {
-        return f++;
-      }
-      if (el.gender == "m") {
-        return m++;
-      }
-    });
+    var bookingDate =
+      data.bookingTime.checkInDate +
+      " - " +
+      data.bookingTime.checkInDate +
+      ", " +
+      data.bookingTime.year;
 
-    markup = $("#paymentMethodTemplate")
+    var bookingHour =
+      data.bookingTime.checkInTime +
+      "-" +
+      data.bookingTime.checkOutTime +
+      " (" +
+      data.bookingTime.totalHours +
+      " hrs)";
+
+    reservationMarkup = $("#paymentMethodTemplate")
       .html()
-      .replace(/{{reservationID}}/g, data.reservation.id)
-      .replace(/{{airport}}/g, data.bookinglocation)
-      .replace(/{{dates}}/g, data.booking.date)
-      .replace(/{{times}}/g, data.booking.date)
-      .replace(/{{guests}}/g, m + " Male, " + f + " Female");
-    $(".booking-comfirmation-container").html(markup);
+      .replace(/{{reservationID}}/g, data.id)
+      .replace(/{{airport}}/g, "Location")
+      .replace(/{{dates}}/g, bookingDate)
+      .replace(/{{times}}/g, bookingHour)
+      .replace(
+        /{{guests}}/g,
+        data.guest.maleCount + " Male, " + data.guest.femaleCount + " Female"
+      );
+    $(".booking-comfirmation-container .booking-comfirmation-reservation").html(
+      reservationMarkup
+    );
+
+    //Product Parser
+
+    var productMarkup = "";
+
+    var maleCard = data.guest.maleCount > 0 ? 1 : 0;
+    var femaleCard = data.guest.femaleCount > 0 ? 1 : 0;
+
+    for (var i = 1 - maleCard; i < 1 + femaleCard; i++) {
+      var price = $("#guestTemplate" + "-" + (i == 0 ? "Male" : "Female"))
+        .find(".bi-unit-price")
+        .text();
+
+      productMarkup += $("#guestTemplate" + "-" + (i == 0 ? "Male" : "Female"))
+        .html()
+        .replace(
+          /{{guestNumber}}/g,
+          i == 0 ? data.guest.maleCount : data.guest.femaleCount
+        )
+        .replace(/{{hour}}/g, data.bookingTime.totalHours)
+        .replace(/{{price}}/g, data.bookingTime.totalHours * parseInt(price));
+    }
+    $(".booking-comfirmation-container .booking-info-product-wrapper").html(
+      productMarkup
+    );
+
+    // Payment Parser
+
+    var paymentMarkup = $("#paymentMethodTemplateBI")
+      .html()
+      .replace(/{{biOrderCardHolder}}/g, data.card.holder)
+      .replace(/{{biOrderCardNumber}}/g, data.card.number);
+
+    $(".bi-order-payment").html(paymentMarkup);
+
+    //Info Parser
+
+    $(info.totalHour).text(data.bookingTime.totalHours.toString());
+    $(info.totalGuest).text(
+      (data.guest.femaleCount + data.guest.maleCount).toString()
+    );
+    $(info.totalPrice).text(data.totalAmount.toString());
   },
 
   // Butun Fonksiyonlari Cagirir
