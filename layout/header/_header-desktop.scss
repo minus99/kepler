@@ -72,7 +72,6 @@
                 margin-top:0px;
             }
             .lang-menu{
-                display: none !important;
                 border:1px solid #fff;
                 width:50px;
                 bottom:0px;
@@ -122,6 +121,8 @@
     }
     .booking-form{
         width:50%;
+        min-width:720px;
+        max-width:960px;
         right:0px;
         visibility: visible;
         background: #fff;

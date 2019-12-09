@@ -4851,18 +4851,6 @@ body .ui-tooltip {
   /* CREDIT CARD */
   /* CREDIT CARD */
   /* COMFIRMATION PAGE */ }
-  .booking-form .test {
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: slateblue;
-    color: white;
-    border: 3px solid darkblue;
-    border-radius: 50%; }
-  .booking-form .test:focus {
-    background-color: #465dc8; }
   .booking-form .not-available {
     -webkit-user-select: none !important;
     -moz-user-select: none !important;
@@ -4918,7 +4906,8 @@ body .ui-tooltip {
     cursor: pointer;
     display: flex;
     flex-direction: row;
-    align-items: center; }
+    align-items: center;
+    flex-wrap: wrap; }
   .booking-form .input-title-wrapper {
     display: flex;
     flex-direction: column;
@@ -4971,7 +4960,8 @@ body .ui-tooltip {
         color: #1d3243;
         font-size: 12px;
         font-weight: 600;
-        text-align: center; }
+        text-align: center;
+        width: 100%; }
     .booking-form .booking-step-container .dashed-line {
       width: 60px;
       border: 1px dashed #465dc8;
@@ -5029,15 +5019,28 @@ body .ui-tooltip {
     .booking-form .booking-step-container.step4 .step-area-1 .step-name, .booking-form .booking-step-container.step4 .step-area-2 .step-name, .booking-form .booking-step-container.step4 .step-area-3 .step-name {
       color: #465dc8; }
   .booking-form .booking-container {
-    max-width: 360px;
+    max-width: 320px;
     width: 100%;
-    padding: 0px 20px;
     margin: 0 auto;
     display: flex;
     flex-direction: column; }
-  .booking-form .booking-container > section {
-    padding: 30px 0px;
-    border-bottom: 1px solid #e0e0e0; }
+    .booking-form .booking-container > section {
+      padding: 30px 0px;
+      border-bottom: 1px solid #e0e0e0; }
+    .booking-form .booking-container .guest-family-info {
+      background: url("/UPLOAD/frontend/adult-info.svg");
+      background-repeat: no-repeat;
+      background-position: 30px 50%;
+      background-color: #ecedff;
+      margin-top: 20px;
+      padding: 20px 30px 20px 95px;
+      border-radius: 6px; }
+      .booking-form .booking-container .guest-family-info .family-info-title {
+        font-weight: bold;
+        margin-bottom: 5px; }
+      .booking-form .booking-container .guest-family-info .family-info-phrase a {
+        color: #50cae0;
+        text-decoration: underline; }
   .booking-form .location-container {
     position: relative; }
   .booking-form .location-menu {
@@ -5102,11 +5105,13 @@ body .ui-tooltip {
     align-items: center;
     justify-content: space-between;
     border: 1px solid #e0e0e0;
-    width: 145px;
+    width: 50%;
     height: 80px;
     padding: 10px 20px;
     border-radius: 6px;
     font-size: 16px; }
+    .booking-form .counter-wrapper:first-child {
+      margin-right: 30px; }
   .booking-form .button-container {
     display: flex;
     flex-direction: row;
@@ -5203,9 +5208,8 @@ body .ui-tooltip {
     align-self: center;
     font-weight: 600; }
   .booking-form .booking-info-container {
-    max-width: 360px;
+    max-width: 320px;
     width: 100%;
-    padding: 0px 20px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -5537,7 +5541,7 @@ body .ui-tooltip {
     margin: 0;
     padding: 0; }
   .booking-form .booking-comfirmation-container {
-    max-width: 360px;
+    max-width: 320px;
     width: 100%;
     margin: 0 auto; }
   .booking-form .comfirmation-message {
@@ -5970,7 +5974,6 @@ body .ui-tooltip {
             opacity: 1;
             margin-top: 0px; }
           .site-header-grid .site-menu .lang-menu {
-            display: none !important;
             border: 1px solid #fff;
             width: 50px;
             bottom: 0px;
@@ -6001,6 +6004,8 @@ body .ui-tooltip {
       z-index: 99999; }
     .booking-form-animate .booking-form {
       width: 50%;
+      min-width: 720px;
+      max-width: 960px;
       right: 0px;
       visibility: visible;
       background: #fff; }
@@ -6477,6 +6482,20 @@ body .ui-tooltip {
         font-weight: 500; }
       .booking-form-header .booking-form-closed {
         cursor: pointer; }
+    .booking-info-container {
+      max-width: 430px !important; }
+    .booking-info-order-container {
+      max-width: 430px !important; }
+    .booking-guest-info-container {
+      max-width: 430px !important; }
+    .booking-payment-details-container {
+      max-width: 430px !important; }
+    .booking-comfirmation-container {
+      max-width: 430px !important; }
+    .booking-step-container {
+      max-width: 430px !important; }
+    .booking-container {
+      max-width: 430px !important; }
     .ems-page-gallery .ems-gallery-slider-hide {
       max-width: 1160px; }
       .ems-page-gallery .ems-gallery-slider-hide .swiper-container {

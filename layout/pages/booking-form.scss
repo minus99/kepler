@@ -1,19 +1,5 @@
 /* GENEL */
 .booking-form{
-  .test {
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: slateblue;
-    color: white;
-    border: 3px solid darkblue;
-    border-radius: 50%;
-  }
-  .test:focus {
-    background-color: $color0;
-  }
   
   /* GENEL */
   
@@ -84,6 +70,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap:wrap;
   }
   .input-title-wrapper {
     display: flex;
@@ -120,7 +107,7 @@
   /* STEPS */
   .booking-step-container{
     margin:30px auto;
-    max-width: 320px;
+    max-width: $container-m;
     width:100%;
     display: flex;
     flex-direction: row;
@@ -153,6 +140,7 @@
         font-size: 12px;
         font-weight: 600;
         text-align: center;
+        width:100%;
       }
     }
     .dashed-line {
@@ -261,16 +249,34 @@
   /* BOOKING */
   
   .booking-container {
-    max-width: 360px;
+    max-width: $container-m;
     width:100%;
-    padding: 0px 20px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-  }
-  .booking-container > section {
-    padding: 30px 0px;
-    border-bottom: 1px solid $input-border;
+     > section{
+        padding: 30px 0px;
+        border-bottom: 1px solid $input-border;
+     }
+     .guest-family-info{
+        background: url('/UPLOAD/frontend/adult-info.svg');
+        background-repeat: no-repeat;
+        background-position: 30px 50%;
+        background-color: #ecedff;
+        margin-top:20px;
+        padding:20px 30px 20px 95px;
+        border-radius: 6px;
+        .family-info-title{
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+        .family-info-phrase{
+          a{
+            color:$color15;
+            text-decoration: underline;
+          }
+        }
+     }
   }
   
   /* -LOCATION- */
@@ -364,11 +370,14 @@
     align-items: center;
     justify-content: space-between;
     border: 1px solid $input-border;
-    width: 145px;
+    width: 50%;
     height: 80px;
     padding: 10px 20px;
     border-radius: 6px;
     font-size: 16px;
+    &:first-child{
+      margin-right:30px;
+    }
   }
   
   .button-container {
@@ -519,9 +528,8 @@
   /* BOOKING INFO */
   
   .booking-info-container {
-    max-width: 360px;
+    max-width: $container-m;
     width:100%;
-    padding: 0px 20px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -673,7 +681,7 @@
   
   .booking-info-order-container {
     margin: 0px auto;
-    max-width: 320px;
+    max-width: $container-m;
     width:100%;
     margin-top: 20px;
     border: solid 1px $input-border;
@@ -754,7 +762,7 @@
   /* HOST CONTAINER */
   
   .booking-guest-info-container {
-    max-width: 320px;
+    max-width: $container-m;
     width:100%;
     margin: 0 auto;
     h3 {
@@ -874,7 +882,7 @@
   
   /* CREDIT CARD */
   .booking-payment-details-container {
-    max-width: 320px;
+    max-width: $container-m;
     width:100%;
     margin: 0 auto;
     .jp-card .jp-card-front{
@@ -971,7 +979,7 @@
   /* COMFIRMATION PAGE */
   
   .booking-comfirmation-container{
-    max-width: 360px;
+    max-width: $container-m;
     width:100%;
     margin: 0 auto;
   }
