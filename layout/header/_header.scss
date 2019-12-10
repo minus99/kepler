@@ -135,7 +135,60 @@
                 width:100%;
                 background: $color12;
                 height:60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 z-index: 1;
+                .mini-lang{
+                    .sub{
+                        width:100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        overflow: hidden;
+                        li{
+                            a{
+                                color:$color9;
+                                display: block;
+                                > span{
+                                    img{
+                                        display: none;
+                                    }
+                                    b{
+                                        display: block !important;
+                                        font-size:14px;
+                                        font-weight: 400;
+                                        line-height: 3;
+                                        &:before{
+                                            content:'';
+                                            border:1px solid $color11;
+                                            margin:0px 7.5px;
+                                        }
+                                    }
+                                }
+                                &.selected{
+                                    color:$color0;
+                                    span{
+                                        b{
+                                            font-weight: bold;
+                                        }
+                                    }
+                                }
+                            }
+                            &:first-child{
+                                a{
+                                    > span{
+                                        b{
+                                            &::before{
+                                                content:none;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         .ga3{

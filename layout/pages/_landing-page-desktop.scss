@@ -39,7 +39,7 @@
         position: sticky;
         top: 84px;
         background: $white;
-        z-index: 9999;
+        z-index: 9990;
 
         .row-container {
           border-bottom: 1px solid #e0e0e0;
@@ -229,5 +229,37 @@
         }
       }
 
+
+      .concept-pricing{
+        .row-container{
+          max-width: 600px;
+        }
+        &-header{
+          border-top:none;
+          .svg-icon{
+            img{
+              max-width: 66px;
+            }
+          }
+        }
+        &-body{
+          .body-title{
+            text-align: center;
+          }          
+          .body-p{
+            height:160px;
+            &::-webkit-scrollbar {
+              width: 4px;
+            }
+            &::-webkit-scrollbar-thumb {
+              border-radius: 4px;
+              background: $color3;
+            }
+          }
+        }
+        &-footer{
+          
+        }
+      }
 
     }

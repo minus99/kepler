@@ -38,6 +38,7 @@
             grid-area: ga2;
         }
         .site-menu{
+            overflow: visible !important;
             position: inherit;
             height:auto;
             width:100%;
@@ -72,11 +73,81 @@
                 margin-top:0px;
             }
             .lang-menu{
-                border:1px solid #fff;
-                width:50px;
+                background: none;
+                width:80px;
+                color:$white;
                 bottom:0px;
                 height:30px;
                 position: relative;
+                *{
+                    pointer-events: auto;
+                }
+                .mini-lang{
+                    width:100%;
+                    display: block;
+                    .header-height{
+                        > span{
+                            display: block !important;
+                            img{
+                                display: none;
+                            }
+                            b{
+                                display: flex !important;
+                                align-items: center;
+                                justify-content: center;
+                                font-weight: 400;
+                                cursor: pointer;
+                                &:after{
+                                    content:'';
+                                    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgICA8cGF0aCBmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9Im5vbnplcm8iIGQ9Ik0xOS40ODkgMTAuNTNhLjc1Ljc1IDAgMCAwLTEuMDYtMS4wNmwtNS45MyA1LjkyOWEuODUuODUgMCAwIDAgMCAxLjIwMmw1LjkzIDUuOTNhLjc1Ljc1IDAgMCAwIDEuMDYtMS4wNjFMMTQuMDE5IDE2bDUuNDctNS40N3oiLz4KPC9zdmc+Cg==");
+                                    transform: rotate(270deg);
+                                    width:32px;
+                                    height:32px;
+                                }
+                            }
+                        }
+                    }
+                    .sub{
+                        display: none;
+                        border-bottom-left-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                        background: $white;
+                        position: absolute;
+                        top:30px;
+                        left:0px;
+                        width:80px;
+                        border-top:3px solid $color3;
+                        overflow: hidden;
+                        flex-wrap: wrap;
+                        li{
+                            width:100%;
+                            a{
+                                > span{
+                                    b{
+                                        &::before{
+                                            content:none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        li:hover , li.selected{
+                            background: $color12;
+                        }
+                    }
+                    &.opened{
+                        .header-height{
+                            b{
+                                &:after{
+                                    transform: rotate(90deg);
+                                }
+                            }
+                        }
+                        .sub{
+                            display: block;
+                        }
+                    }
+                }
             }
             .booking-button{
                 min-width: 200px;
