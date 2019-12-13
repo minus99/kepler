@@ -33,7 +33,7 @@
                     padding: 40px 0px 0px 0px;
                     ul{
                         li{
-                            &:nth-child(1){
+                            &.menu-active{
                                 font-weight: bold;
                                 color:$color0;
                                 font-size:15px;

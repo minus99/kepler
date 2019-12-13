@@ -88,6 +88,7 @@
                         &-item{
                             border-bottom:none;
                             width:48%;
+                            margin: 0 auto;
                             > span{
                                 display: block;
                                 font-size:18px;
@@ -103,8 +104,8 @@
                                     text-align: left;
                                 }
                             }
-                            &:nth-child(odd){
-                                border-right:1px solid $color14;
+                            &:nth-child(even){
+                                border-left:1px solid $color14;
                             }
                         }
                     }

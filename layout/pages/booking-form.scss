@@ -251,7 +251,7 @@
   .booking-container {
     max-width: $container-m;
     width:100%;
-    margin: 0 auto;
+    margin: 20px auto 100px auto;
     display: flex;
     flex-direction: column;
      > section{
@@ -276,6 +276,25 @@
             text-decoration: underline;
           }
         }
+     }
+     .kpr-booking-warnings{
+       margin-top:20px;
+       li{
+         list-style: circle;
+         font-size:12px;
+         position: relative;
+         margin-bottom:20px;
+         &:before{
+           content:'';
+           width:7px;
+           height:7px;
+           background: $color11;
+           position: absolute;
+           left:-16px;
+           border-radius: 100%;
+           top:4px;
+          }
+       }
      }
   }
   
@@ -680,10 +699,9 @@
   /* BOOKING INFO ORDER CARD */
   
   .booking-info-order-container {
-    margin: 0px auto;
+    margin: 20px auto 80px;
     max-width: $container-m;
     width:100%;
-    margin-top: 20px;
     border: solid 1px $input-border;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -719,8 +737,8 @@
       .bi-order-payment{
         display: flex;
         flex-direction: column;
-        border-top:1px solid gray;
-        border-bottom:1px solid gray;
+        border-top:1px solid $input-border;
+        border-bottom:1px solid $input-border;
         padding: 20px 0px;
         .bi-order-payment-title{
           font: 14px;
@@ -855,6 +873,9 @@
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    svg{
+      --color3:#465dc8;
+    }
     .warning-title{
       display: flex;
       flex-direction: row;
@@ -939,16 +960,26 @@
     padding-bottom: 100px;
     border-top: 1px solid $input-border;
     border-bottom: 1px solid $input-border;
-  }
-  
-  .pd-policies > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 20px 0;
-    height: 30px;
-    align-items: center;
-    border-bottom: 1px solid $input-border;
+    margin-top:40px;
+    svg{
+      --color3:#465dc8;
+    }
+    a {
+      padding:20px 0px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid $input-border;
+       > div{
+         &:nth-child(2){
+           width:100%;
+           font-weight: bold;
+           padding-left:10px;
+           color:$color0;
+         }
+       }
+    }
   }
   
   .cvc-info {
@@ -967,12 +998,18 @@
   }
   
   .pd-accept {
+    display: flex;
+    margin-top:20px;
     align-items: flex-start !important;
     border-bottom: none !important;
   }
   .pd-accept p {
     margin: 0;
     padding: 0;
+    a{
+      display: inline;
+      padding:0px;
+    }
   }
   /* CREDIT CARD */
   
@@ -988,7 +1025,7 @@
     text-align: center;
   }
   .comfirmation-message p {
-    font-size: 18px;
+    font-size: 16px;
   }
   .comfirmation-message h4 {
     font-size: 24px;
@@ -1002,6 +1039,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin:0px -30px;
   }
   
   .comfirmation-id p {
@@ -1010,11 +1048,11 @@
   }
   .comfirmation-id h4 {
     font-size: 18px;
-    color: #50cae0;
+    color: $input-success;
     margin:0;
   }
   .comfirmation-summary{
-  
+    margin-top:50px;
     display:flex;
     flex-direction: column;
   
@@ -1023,6 +1061,8 @@
     font-size: 16px;
     font-weight: 600;
     margin:0;
+    border-bottom: 1px solid $input-border;
+    padding-bottom: 10px;
   }
   
   .summary-location > h4 {
@@ -1037,11 +1077,13 @@
   .summary-location  > a {
     font-size: 14px;
     font-weight: 600;
-    color: #50cae0;
+    color: $color0;
+    margin-top:30px;
+    text-decoration: underline;
   }
   
   .comfirmation-info-container > div{
-    border-bottom:1px solid gray;
+    border-bottom:1px solid $input-border;
     padding:30px 0px;
   }
   .comfirmation-info-container > div:last-child{
@@ -1068,5 +1110,113 @@
     font-weight: normal;
   }
   
-    
+   
+  
 }  
+
+.booking-form-animate{
+  .ui-datepicker-buttonpane{
+    position: absolute;
+    padding:0px 30px;
+    margin:0px;
+    height:52px;
+    top:-1px;
+    left:0px;
+    width:100%;
+    background: $color0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .ui-datepicker-current{
+      display: none;
+    }
+    .ui-datepicker-close{
+      font-size:0px;
+      background: none;
+      border:none;
+      width:40px;
+      height:40px;
+      padding:0px;
+      margin: 0px;
+    }
+  }
+  #ui-datepicker-div{
+    border:none;
+    font-family: $font1 !important;
+    width: 100%;
+    transform: translate(0) !important;
+    height:100%;
+    left:0px !important;
+    top:inherit !important;
+    bottom:0px;
+    padding:30px;
+    padding-top:80px;
+    .ui-widget-header{
+      border:1px solid $color11;
+      background: $white;
+      border-radius: 40px;
+      padding:0px;
+      max-width: 325px;
+      margin: 0px auto 20px auto;
+      .ui-datepicker-prev , .ui-datepicker-next{
+        top:50% !important;
+        width:32px;
+        height:32px;
+        background-repeat: no-repeat;
+        transform: translateY(-50%);
+        margin:0px 10px;
+        border-radius: 100%;
+        background-image: url("data:image/svg+xml;base64,PCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiB2aWV3Qm94PSIwIDAgMzIgMzIiPgo8dGl0bGU+c2xpZGVyLWxlZnQtc2VsZWN0PC90aXRsZT4KPHBhdGggZmlsbD0iI2ZlODM4ZCIgZD0iTTE2IDEuMjVjOC4xNDYgMCAxNC43NSA2LjYwNCAxNC43NSAxNC43NXMtNi42MDQgMTQuNzUtMTQuNzUgMTQuNzVjLTguMTQ2IDAtMTQuNzUtNi42MDQtMTQuNzUtMTQuNzVzNi42MDQtMTQuNzUgMTQuNzUtMTQuNzV6TTE2IDIuNzVjLTcuMzE4IDAtMTMuMjUgNS45MzItMTMuMjUgMTMuMjVzNS45MzIgMTMuMjUgMTMuMjUgMTMuMjVjNy4zMTggMCAxMy4yNS01LjkzMiAxMy4yNS0xMy4yNXMtNS45MzItMTMuMjUtMTMuMjUtMTMuMjV6TTE3LjQyOCAxMC40N2MwLjI5My0wLjI5MyAwLjc2OC0wLjI5MyAxLjA2MSAwczAuMjkzIDAuNzY4IDAgMS4wNjF2MGwtNC40NyA0LjQ3IDQuNDcgNC40N2MwLjI5MyAwLjI5MyAwLjI5MyAwLjc2OCAwIDEuMDYxcy0wLjc2OCAwLjI5My0xLjA2MSAwdjBsLTQuOTI5LTQuOTI5Yy0wLjMzMi0wLjMzMi0wLjMzMi0wLjg3IDAtMS4yMDJ2MHoiPjwvcGF0aD4KPC9zdmc+Cg==");
+        background-size:contain;  
+        &:hover{
+          background-color: transparent;
+          border:1px solid transparent;
+        }    
+      }
+      .ui-datepicker-next{
+        transform: translateY(-50%) rotate(-180deg);
+      }
+      .ui-datepicker-title{
+        color:$color0;
+        padding:15px 0px;
+        display: flex;
+        justify-content: center;
+        .ui-datepicker-month , .ui-datepicker-year{
+          border-radius: 0px;
+          margin:5px;
+          border:none;
+          border-bottom:2px solid $color0;
+          color:$color0;
+          font-weight: bold;
+          height:min-content;
+          width:25%;
+        }
+      }
+    }
+    .ui-datepicker-calendar{
+      max-width: 325px;
+      margin: 0px auto 20px auto;
+      thead{
+        color:$color0;
+        text-transform: uppercase;
+        th{
+          font-weight: 300 !important;
+        }
+      }
+      tbody{
+        .ui-state-default{
+          border:2px solid transparent;
+          border-radius: 20px;
+          background: $white;
+          text-align: center;
+          padding:7px 2px;
+          &.ui-state-active,
+          &.ui-state-hover{
+            border:2px solid $color3;
+            color:$font-color;
+          }
+        }
+      }
+    }
+  }
+}

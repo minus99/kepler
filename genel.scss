@@ -36,7 +36,7 @@
 @import 'layout/pages/gallery';
 
 //DESKTOP
-@supports (display: grid) {
+
     @include setMediaScreen(min-width, $breakpoint-medium) {
 
         //BASE
@@ -71,7 +71,7 @@
             //@import 'layout/header/header-desktop-mini';
         }
     }
-}
+
 
 //go go go
 @import 'base/css-loaded';

@@ -69,19 +69,15 @@
       }
 
       .detail-info {
-        min-height: 500px;
-        display: flex;
-        align-items: center;
-
+        padding:100px 0px;
         >.row-container {
           .info-text {
             max-width: 760px;
             margin: 0 auto;
             text-align: center;
             height: 150px;
-
             &.expand {
-              height: 250px;
+              height: min-content;
             }
           }
 
@@ -219,10 +215,12 @@
           .concept-unit-html{
             .subtitle{
               font-size:32px;
+              width:100%
             }
             .concept-unit-props{
+              width:100%;
               li{
-                font-size:20px;
+                font-size:16px;
               }
             }
           }
@@ -247,14 +245,8 @@
             text-align: center;
           }          
           .body-p{
-            height:160px;
-            &::-webkit-scrollbar {
-              width: 4px;
-            }
-            &::-webkit-scrollbar-thumb {
-              border-radius: 4px;
-              background: $color3;
-            }
+            height:auto;
+            overflow: inherit;
           }
         }
         &-footer{
