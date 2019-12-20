@@ -11,7 +11,8 @@
       left:0px;
       top:0px;
       z-index: 99999;
-      background-image: url('https://flevix.com/wp-content/uploads/2019/07/Ring-Loading.gif');
+      //Gif Bekleniyor.
+      background-image: url('/UPLOAD/frontend/loading.png');
       background-repeat: no-repeat;
       background-position:center;
     }
@@ -20,6 +21,15 @@
 .step3{
   .booking-menu-overlay{
     pointer-events: none;
+  }
+}
+
+.step4{
+  .bi-order-total{
+    padding:30px 0px;
+  }
+  .continue-button{
+    margin-bottom:30px;
   }
 }
 /* GENEL */
@@ -754,6 +764,19 @@
         align-items: center;
         font-size: 14px;
         font-weight: 600;
+        flex-wrap: wrap;
+
+        > div{
+          margin-top:5px;
+          width:100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          &:nth-child(3){
+            margin-top:20px;
+            font-weight: bold;
+          }
+        }
       }
       .bi-order-total-description {
         font-size: 12px;
@@ -765,14 +788,17 @@
         border-bottom:1px solid $input-border;
         padding: 20px 0px;
         .bi-order-payment-title{
-          font: 14px;
-          color: $color0;
+          font-size: 14px;
+          color: $font-color;
+          font-weight: bold;
+          margin-bottom: 10px;
         }
         .bi-order-payment-info{
           display: flex;
           flex-direction: row;
           justify-content: space-between;
           font-size:12px;
+          line-height: 1.60;
         }
         .bi-order-payment-info div:last-child{
           text-align: right;
@@ -1137,15 +1163,21 @@
     padding-left:40px;
   }
   
-  .comfirmation-cancel h4{
-    font-size: 12px;
-    font-weight: 500;
+  .comfirmation-cancel{
+    h4{
+      font-size: 12px;
+      font-weight: bold;
+    }
+    p{
+      font-size: 12px;
+      font-weight: normal;
+      line-height: 1.33;
+    }
+    a{
+      color:$color15;
+      text-decoration: underline;
+    }
   }
-  .comfirmation-cancel p{
-    font-size: 12px;
-    font-weight: normal;
-  }
-  
    
   
 }  

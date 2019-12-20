@@ -9,6 +9,7 @@
             > .homepage-slider-wrapper{
                 flex-wrap: wrap;
                 position: relative;
+                overflow-x: hidden;
                 overflow-y: scroll;
                 scroll-snap-type: mandatory;
                 scroll-snap-points-y: repeat(100vh);

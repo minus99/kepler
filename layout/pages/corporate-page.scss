@@ -12,7 +12,7 @@
                 top:52px;
                 background: $white;
                 z-index: 10;
-                min-height:76px;
+                min-height:68px;
             }
             .ems-page-hierarchy-cover{
                 order:2;
@@ -218,7 +218,7 @@
                     margin:15px 0px;
                     font-family: $font2;
                     color:$font-color;
-                    font-size:18px;
+                    font-size:14px;
                 }
                 &.selected{
                     .ems-tab-inner-header{
