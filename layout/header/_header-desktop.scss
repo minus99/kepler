@@ -14,6 +14,15 @@
     }
 }
 
+.lp-pages{
+    .logo{
+        display: block;
+    }
+    .page-title{
+        display: none;
+    }
+}
+
 .site-header{
     height:84px;
     background: $color0;

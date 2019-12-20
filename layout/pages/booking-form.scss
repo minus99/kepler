@@ -1,3 +1,27 @@
+.isLoading{
+  .booking-form{
+    overflow: inherit;
+    &:before{
+      content:'test';
+      background: rgba(0, 0, 0, 0.5);
+      width:100%;
+      height: 100vh;
+      display: block;
+      position: fixed;
+      left:0px;
+      top:0px;
+      z-index: 99999;
+      background-image: url('https://flevix.com/wp-content/uploads/2019/07/Ring-Loading.gif');
+      background-repeat: no-repeat;
+      background-position:center;
+    }
+  }
+}
+.step3{
+  .booking-menu-overlay{
+    pointer-events: none;
+  }
+}
 /* GENEL */
 .booking-form{
   
@@ -1095,10 +1119,22 @@
     font-size: 16px;
     font-weight: 500;
     color: $color0;
+    display: flex;
+    align-items: center;
+    i{
+      margin-right:10px;
+      svg{
+        --color3:#465dc8;
+      }
+    }
+    span{
+      font-weight: bold;
+    }
   }
   .c-info-details{
     font-size: 14px;
     font-weight: normal;
+    padding-left:40px;
   }
   
   .comfirmation-cancel h4{
@@ -1185,7 +1221,6 @@
           border-radius: 0px;
           margin:5px;
           border:none;
-          border-bottom:2px solid $color0;
           color:$color0;
           font-weight: bold;
           height:min-content;

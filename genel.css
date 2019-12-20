@@ -3775,6 +3775,31 @@ body .ui-tooltip {
   position: fixed;
   background: none; }
 
+.lp-pages.booking-form-ready .logo, .lp-pages.mobile-menu-ready .logo {
+  display: block !important; }
+
+.lp-pages.booking-form-ready .page-title, .lp-pages.mobile-menu-ready .page-title {
+  display: none !important; }
+
+.lp-pages .logo {
+  display: none; }
+
+.lp-pages .page-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100vw - 90px); }
+  .lp-pages .page-title .back-btn {
+    width: 32px;
+    height: 32px;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICAgIDxwYXRoIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTE5LjQ4OSAxMC41M2EuNzUuNzUgMCAwIDAtMS4wNi0xLjA2bC01LjkzIDUuOTI5YS44NS44NSAwIDAgMCAwIDEuMjAybDUuOTMgNS45M2EuNzUuNzUgMCAwIDAgMS4wNi0xLjA2MUwxNC4wMTkgMTZsNS40Ny01LjQ3eiIvPgo8L3N2Zz4K"); }
+  .lp-pages .page-title .page-name {
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    width: 100%; }
+
 .mobile-menu-ready .site-header:after {
   height: 100%; }
 
@@ -4792,7 +4817,6 @@ body .ui-tooltip {
     border-bottom: 1px solid #dcdcdc;
     position: relative; }
     .room-detail-container .concept-pricing-body:after {
-      content: '';
       position: absolute;
       height: 53px;
       background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) -18%, #ffffff 81%);
@@ -4995,6 +5019,25 @@ body .ui-tooltip {
       border-bottom: 1px solid #dcdcdc;
       font-size: 16px;
       font-weight: bold; }
+
+.isLoading .booking-form {
+  overflow: inherit; }
+  .isLoading .booking-form:before {
+    content: 'test';
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    display: block;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 99999;
+    background-image: url("https://flevix.com/wp-content/uploads/2019/07/Ring-Loading.gif");
+    background-repeat: no-repeat;
+    background-position: center; }
+
+.step3 .booking-menu-overlay {
+  pointer-events: none; }
 
 /* GENEL */
 .booking-form {
@@ -5812,10 +5855,19 @@ body .ui-tooltip {
   .booking-form .c-info-title {
     font-size: 16px;
     font-weight: 500;
-    color: #465dc8; }
+    color: #465dc8;
+    display: flex;
+    align-items: center; }
+    .booking-form .c-info-title i {
+      margin-right: 10px; }
+      .booking-form .c-info-title i svg {
+        --color3:#465dc8; }
+    .booking-form .c-info-title span {
+      font-weight: bold; }
   .booking-form .c-info-details {
     font-size: 14px;
-    font-weight: normal; }
+    font-weight: normal;
+    padding-left: 40px; }
   .booking-form .comfirmation-cancel h4 {
     font-size: 12px;
     font-weight: 500; }
@@ -5891,7 +5943,6 @@ body .ui-tooltip {
         border-radius: 0px;
         margin: 5px;
         border: none;
-        border-bottom: 2px solid #465dc8;
         color: #465dc8;
         font-weight: bold;
         height: -webkit-min-content;
@@ -6248,6 +6299,10 @@ body .ui-tooltip {
     pointer-events: none; }
     .custom-home-page .site-header a {
       pointer-events: auto; }
+  .lp-pages .logo {
+    display: block; }
+  .lp-pages .page-title {
+    display: none; }
   .site-header {
     height: 84px;
     background: #465dc8; }

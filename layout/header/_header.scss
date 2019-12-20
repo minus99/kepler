@@ -10,6 +10,39 @@
     }
 }
 
+    .lp-pages{
+        &.booking-form-ready , &.mobile-menu-ready{
+            .logo{
+                display: block !important;
+            }
+            .page-title{
+                display: none !important;
+            }
+        }
+        .logo{
+            display: none;
+        }
+        .page-title{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width:calc(100vw - 90px);
+            .back-btn{
+                width:32px;
+                height: 32px;
+                background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICAgIDxwYXRoIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTE5LjQ4OSAxMC41M2EuNzUuNzUgMCAwIDAtMS4wNi0xLjA2bC01LjkzIDUuOTI5YS44NS44NSAwIDAgMCAwIDEuMjAybDUuOTMgNS45M2EuNzUuNzUgMCAwIDAgMS4wNi0xLjA2MUwxNC4wMTkgMTZsNS40Ny01LjQ3eiIvPgo8L3N2Zz4K");
+            }
+            .page-name{
+                color:$white;
+                text-transform: uppercase;
+                text-align: center;
+                display: block;
+                width:100%;
+            }
+        }
+    }
+
+
 .mobile-menu-ready{
     .site-header{
         &:after{

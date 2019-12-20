@@ -520,7 +520,7 @@
       border-bottom:1px solid $color11;
       position: relative;
       &:after{
-        content:'';
+        //content:'';
         position: absolute;
         height: 53px;
         background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) -18%, #ffffff 81%);
