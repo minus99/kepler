@@ -386,14 +386,19 @@
   /* -GUEST- */
   
   .guest-container .input-info span {
-    padding: 0px 5px;
+    padding-right:5px;
   }
+  .guest-container .input-info span:last-child {
+    padding:0px 5px;
+
+  }
+
   .guest-container ul{
     padding-bottom:30px;
   }
   .guest-container ul li {
     font-size:12px;
-    padding-top: 10px;
+    margin-top: 10px;
     position:relative;
     padding-left:20px;
     &:after{
@@ -1256,7 +1261,7 @@
           color:$color0;
           font-weight: bold;
           height:min-content;
-          width:25%;
+          // width:25%;
         }
       }
     }
