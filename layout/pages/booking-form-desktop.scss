@@ -64,7 +64,7 @@
   }
 
   .form-warnings{
-    max-width: 450px;
+    max-width: 650px !important;
     width:100% !important;
     overflow: inherit !important;
   }
@@ -93,4 +93,8 @@ body{
   .bi-order-payment-info{
     font-size:14px !important;
   }
+}
+
+.cvc-info-tooltip{
+  width: 440px !important;
 }

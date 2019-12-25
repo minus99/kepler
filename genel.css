@@ -4772,15 +4772,17 @@ body .ui-tooltip {
               .homepage-slider.swiper-container .swiper-slide.screen-5 .slide-map-footer .slide-map-mark-item a {
                 display: none;
                 text-decoration: underline; }
-              .homepage-slider.swiper-container .swiper-slide.screen-5 .slide-map-footer .slide-map-mark-item[rel="ist"] {
-                left: 50%;
-                top: 19%; }
               .homepage-slider.swiper-container .swiper-slide.screen-5 .slide-map-footer .slide-map-mark-item[rel="rix"] {
-                left: 45%;
-                top: 13%; }
-              .homepage-slider.swiper-container .swiper-slide.screen-5 .slide-map-footer .slide-map-mark-item[rel="rix"]:hover:after {
-                left: 45%;
-                top: 13%; }
+                left: 46%;
+                top: 9%;
+                width: 80px;
+                letter-spacing: 1.2px;
+                -webkit-filter: brightness(1.8) saturate(0.7);
+                filter: brightness(1.8) saturate(0.7); }
+                .homepage-slider.swiper-container .swiper-slide.screen-5 .slide-map-footer .slide-map-mark-item[rel="rix"] div {
+                  letter-spacing: 1.6px;
+                  font-size: 10px;
+                  padding: 0px 2px; }
               .homepage-slider.swiper-container .swiper-slide.screen-5 .slide-map-footer .slide-map-mark-item[rel="saw"] {
                 left: 50%;
                 top: 43%; }
@@ -4918,8 +4920,9 @@ body .ui-tooltip {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    -ms-flex-line-pack: justify;
-    align-content: space-between;
+    min-height: unset;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
     .room-detail-container .detail-feature .feature-wrapper .feature > div {
@@ -5274,10 +5277,11 @@ body .ui-tooltip {
     .room-detail-container .concept-pricing-body .body-p {
       height: 255px;
       padding-bottom: 20px;
-      overflow: scroll; }
+      overflow: scroll;
+      text-align: center; }
       .room-detail-container .concept-pricing-body .body-p p {
         font-size: 16px;
-        line-height: 1.22; }
+        line-height: 1.4; }
   .room-detail-container .concept-pricing-footer {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -5499,16 +5503,15 @@ body .ui-tooltip {
 .isLoading .booking-form {
   overflow: inherit; }
   .isLoading .booking-form:before {
-    content: 'test';
+    content: '';
     background: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100vh;
-    display: block;
     position: fixed;
     left: 0px;
     top: 0px;
     z-index: 99999;
-    background-image: url("/UPLOAD/frontend/loading.png");
+    background-image: url("/UPLOAD/frontend/loading.gif");
     background-repeat: no-repeat;
     background-position: center; }
 
@@ -5866,6 +5869,7 @@ body .ui-tooltip {
       background: #e5e5e5;
       width: 7px;
       height: 7px;
+      border-radius: 8px;
       position: absolute;
       left: 5px;
       top: 50%;
@@ -6298,6 +6302,26 @@ body .ui-tooltip {
           line-height: 1.60; }
         .booking-form .booking-info-order-container .bi-order-total-container .bi-order-payment .bi-order-payment-info div:last-child {
           text-align: right; }
+    .booking-form .booking-info-order-container .previous-step-button {
+      position: relative;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      height: 0px;
+      bottom: -36px; }
+      .booking-form .booking-info-order-container .previous-step-button div {
+        margin-left: 4px;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 600;
+        color: #304293; }
   .booking-form .continue-button {
     height: 42px;
     border-radius: 6px;
@@ -6434,6 +6458,13 @@ body .ui-tooltip {
       justify-content: space-between; }
       .booking-form .form-warnings .warning-title > div {
         cursor: pointer; }
+    .booking-form .form-warnings .form-close-button {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      overflow: hidden; }
+  .booking-form .pp-warning > div, .booking-form .tou-warning > div {
+    overflow-y: scroll; }
   .booking-form .warning-background {
     position: fixed;
     top: 0;
@@ -6515,13 +6546,12 @@ body .ui-tooltip {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    padding-bottom: 100px;
     border-top: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
     margin-top: 40px; }
     .booking-form .pd-policies svg {
       --color3:#465dc8; }
-    .booking-form .pd-policies a {
+    .booking-form .pd-policies > div {
       padding: 20px 0px;
       display: -webkit-box;
       display: -ms-flexbox;
@@ -6536,13 +6566,14 @@ body .ui-tooltip {
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
-      border-bottom: 1px solid #e0e0e0; }
-      .booking-form .pd-policies a > div:nth-child(2) {
+      border-bottom: 1px solid #e0e0e0;
+      cursor: pointer; }
+      .booking-form .pd-policies > div > div:nth-child(2) {
         width: 100%;
         font-weight: bold;
         padding-left: 10px;
         color: #465dc8; }
-  .booking-form .cvc-info {
+  .booking-form .cvc-mark {
     position: absolute;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -6556,6 +6587,31 @@ body .ui-tooltip {
     height: 46px;
     line-height: 46px;
     text-align: center; }
+  .booking-form .cvc-info-tooltip {
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 314px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.12);
+    background-color: #ffffff;
+    padding: 30px;
+    color: black;
+    right: -10px;
+    top: -110px; }
+    .booking-form .cvc-info-tooltip p {
+      margin: 0;
+      text-align: left;
+      font-size: 13px;
+      line-height: 1.22 !important;
+      margin-right: 16px; }
+    .booking-form .cvc-info-tooltip > div {
+      cursor: pointer; }
   .booking-form .pd-accept {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -6571,6 +6627,10 @@ body .ui-tooltip {
     .booking-form .pd-accept p a {
       display: inline;
       padding: 0px; }
+  .booking-form .bank-cancel-info {
+    padding: 20px 0px 20px 24px !important; }
+    .booking-form .bank-cancel-info p {
+      margin: 0; }
   .booking-form .booking-comfirmation-container {
     max-width: 320px;
     width: 100%;
@@ -6754,7 +6814,10 @@ body .ui-tooltip {
         font-weight: bold;
         height: -webkit-min-content;
         height: -moz-min-content;
-        height: min-content; }
+        height: min-content;
+        width: 20%; }
+      .booking-form-animate #ui-datepicker-div .ui-widget-header .ui-datepicker-title span {
+        width: 15% !important; }
   .booking-form-animate #ui-datepicker-div .ui-datepicker-calendar {
     max-width: 325px;
     margin: 0px auto 20px auto; }
@@ -7242,7 +7305,8 @@ body .ui-tooltip {
               margin-bottom: 0px; }
               .site-header-grid .site-menu-wrapper .site-menu-inner li a {
                 color: #fff;
-                font-size: 16px; }
+                font-size: 16px;
+                letter-spacing: 0.93px; }
               .site-header-grid .site-menu-wrapper .site-menu-inner li.menu-active a {
                 color: #fff;
                 font-size: 16px;
@@ -7438,7 +7502,8 @@ body .ui-tooltip {
       .site-footer-inner .footer-wrapper .footer-area-4 .icon {
         --color1: #fff !important; }
       .site-footer-inner .footer-wrapper .footer-area-4 > div {
-        width: 100%; }
+        width: 100%;
+        height: 100%; }
   .homepage-slider > .swiper-inner > .swiper-wrapper > .swiper-slide {
     padding: unset !important; }
   .homepage-slider .swiper-wrapper .swiper-slide.screen-1 .starter-content {
@@ -7712,6 +7777,7 @@ body .ui-tooltip {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
     .room-detail-container .detail-feature .subtitle {
+      font-size: 32px;
       width: 100%; }
     .room-detail-container .detail-feature .feature-wrapper {
       width: 100%;
@@ -7719,7 +7785,8 @@ body .ui-tooltip {
       -ms-flex-pack: center;
       justify-content: center; }
       .room-detail-container .detail-feature .feature-wrapper .feature {
-        width: 20%; }
+        width: 20%;
+        min-height: 400px; }
     .room-detail-container .detail-feature .feature-wrapper.two .feature {
       width: 50%; }
       .room-detail-container .detail-feature .feature-wrapper.two .feature-icon {
@@ -7759,6 +7826,9 @@ body .ui-tooltip {
     .room-detail-container .detail-description .unit-container-items {
       width: calc(100% - 600px);
       padding-left: 50px; }
+      .room-detail-container .detail-description .unit-container-items .subtitle {
+        font-size: 32px;
+        margin-bottom: 24px; }
   .room-detail-container .concept-unit-description .concept-unit-container {
     margin-bottom: 90px; }
     .room-detail-container .concept-unit-description .concept-unit-container:last-child {
@@ -7995,7 +8065,7 @@ body .ui-tooltip {
     .booking-container .kpr-booking-warnings {
       margin-top: 40px !important; }
   .form-warnings {
-    max-width: 450px;
+    max-width: 650px !important;
     width: 100% !important;
     overflow: inherit !important; }
   body.booking-form-animate #ui-datepicker-div {
@@ -8010,6 +8080,8 @@ body .ui-tooltip {
     font-size: 16px !important; }
   .bi-order-payment .bi-order-payment-info {
     font-size: 14px !important; }
+  .cvc-info-tooltip {
+    width: 440px !important; }
   .ems-page-gallery .ems-gallery-slider-hide {
     max-width: 1160px; }
     .ems-page-gallery .ems-gallery-slider-hide .swiper-container {

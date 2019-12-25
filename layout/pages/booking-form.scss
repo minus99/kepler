@@ -2,22 +2,42 @@
   .booking-form{
     overflow: inherit;
     &:before{
-      content:'test';
+      content:'';
       background: rgba(0, 0, 0, 0.5);
       width:100%;
       height: 100vh;
-      display: block;
+      // display: block;
       position: fixed;
       left:0px;
       top:0px;
       z-index: 99999;
       //Gif Bekleniyor.
-      background-image: url('/UPLOAD/frontend/loading.png');
+     
+      background-image: url('/UPLOAD/frontend/loading.gif');
       background-repeat: no-repeat;
       background-position:center;
     }
   }
 }
+// .booking-form{
+//   overflow: inherit;
+//   &:before{
+//     content:'';
+//     background: rgba(0, 0, 0, 0.5);
+//     width:100%;
+//     height: 100vh;
+//     // display: block;
+//     position: fixed;
+//     left:0px;
+//     top:0px;
+//     z-index: 99999;
+//     //Gif Bekleniyor.
+   
+//     background-image: url('/UPLOAD/frontend/loading.gif');
+//     background-repeat: no-repeat;
+//     background-position:center;
+//   }
+// }
 .step3{
   .booking-menu-overlay{
     pointer-events: none;
@@ -406,6 +426,7 @@
       background: $color16;
       width:7px;
       height:7px;
+      border-radius: 8px;
       position:absolute;
       left:5px;
       top:50%;
@@ -420,6 +441,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
   }
   
   .counter-wrapper {
@@ -810,6 +832,21 @@
         }
       }
     }
+    .previous-step-button{
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 0px;
+      bottom: -36px;
+      div{
+        margin-left: 4px;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 600;
+        color:#304293;
+      }
+    }
   }
 
   .continue-button {
@@ -928,6 +965,7 @@
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+
     svg{
       --color3:#465dc8;
     }
@@ -939,6 +977,17 @@
       > div{
         cursor: pointer;
       }
+    }
+    .form-close-button{
+      position: absolute;
+      top:20px;
+      right:40px;
+      overflow: hidden;
+    }
+  }
+  .pp-warning, .tou-warning{
+    > div{
+      overflow-y: scroll;
     }
   }
   
@@ -1012,20 +1061,20 @@
   .pd-policies {
     display: flex;
     flex-direction: column;
-    padding-bottom: 100px;
     border-top: 1px solid $input-border;
     border-bottom: 1px solid $input-border;
     margin-top:40px;
     svg{
       --color3:#465dc8;
     }
-    a {
+    > div {
       padding:20px 0px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid $input-border;
+      cursor: pointer;
        > div{
          &:nth-child(2){
            width:100%;
@@ -1037,7 +1086,7 @@
     }
   }
   
-  .cvc-info {
+  .cvc-mark {
     position: absolute;
     transform: translate(-50%, -50%);
     right: 0px;
@@ -1050,6 +1099,30 @@
     height: 46px;
     line-height: 46px;
     text-align: center;
+  }
+  .cvc-info-tooltip{
+    position: absolute;
+    display:  flex;
+    justify-content: space-between;
+    width: 314px;
+    border-radius: 8px;
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.12);
+    background-color: #ffffff;
+    padding:30px;
+    color:black;
+    right: -10px;
+    top: -110px;
+    p{
+      margin:0;
+      text-align: left;
+      font-size:13px;
+      line-height: 1.22 !important;
+      margin-right: 16px;
+    }
+    &>div{
+     cursor: pointer;
+    }
+  
   }
   
   .pd-accept {
@@ -1064,6 +1137,13 @@
     a{
       display: inline;
       padding:0px;
+    }
+  }
+  .bank-cancel-info{
+    padding: 20px 0px 20px 24px !important;
+
+    p{
+      margin:0;
     }
   }
   /* CREDIT CARD */
@@ -1261,7 +1341,11 @@
           color:$color0;
           font-weight: bold;
           height:min-content;
-          // width:25%;
+          width:20%;
+        
+        }
+        span{
+          width: 15% !important;
         }
       }
     }
