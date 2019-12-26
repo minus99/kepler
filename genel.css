@@ -4655,20 +4655,24 @@ body .ui-tooltip {
       display: flex;
       -webkit-box-pack: center;
       -ms-flex-pack: center;
-      justify-content: center; }
+      justify-content: center;
+      font-size: 16px;
+      text-align: center;
+      line-height: 29px; }
       .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .swiper-pagination .swiper-pagination-bullet {
         position: relative;
-        width: 16px;
-        height: 16px;
+        width: 40px;
+        height: 40px;
         background: unset;
         -webkit-transition: all .5s;
         -o-transition: all .5s;
         transition: all .5s;
-        padding: 4px; }
-        .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .swiper-pagination .swiper-pagination-bullet:before {
+        padding: 4px;
+        color: white; }
+        .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .swiper-pagination .swiper-pagination-bullet:after {
           content: '';
-          width: 8px;
-          height: 8px;
+          width: 28px;
+          height: 28px;
           background: #bbc7ff;
           position: absolute;
           left: 50%;
@@ -4679,10 +4683,11 @@ body .ui-tooltip {
           border-radius: 100%;
           -webkit-transition: all .5s;
           -o-transition: all .5s;
-          transition: all .5s; }
+          transition: all .5s;
+          z-index: -1; }
         .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .swiper-pagination .swiper-pagination-bullet-active {
           border: 1px solid #465dc8; }
-          .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .swiper-pagination .swiper-pagination-bullet-active::before {
+          .homepage-slider.swiper-container .swiper-slide.screen-4 .how-it-works .swiper-pagination .swiper-pagination-bullet-active::after {
             background: #465dc8; }
     .homepage-slider.swiper-container .swiper-slide.screen-5 {
       -ms-flex-wrap: wrap;
@@ -4778,7 +4783,8 @@ body .ui-tooltip {
                 width: 80px;
                 letter-spacing: 1.2px;
                 -webkit-filter: brightness(1.8) saturate(0.7);
-                filter: brightness(1.8) saturate(0.7); }
+                filter: brightness(1.8) saturate(0.7);
+                cursor: default; }
                 .homepage-slider.swiper-container .swiper-slide.screen-5 .slide-map-footer .slide-map-mark-item[rel="rix"] div {
                   letter-spacing: 1.6px;
                   font-size: 10px;
@@ -5512,6 +5518,7 @@ body .ui-tooltip {
     top: 0px;
     z-index: 99999;
     background-image: url("/UPLOAD/frontend/loading.gif");
+    background-size: 200px;
     background-repeat: no-repeat;
     background-position: center; }
 

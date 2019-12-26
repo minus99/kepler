@@ -14,30 +14,13 @@
       //Gif Bekleniyor.
      
       background-image: url('/UPLOAD/frontend/loading.gif');
+      background-size: 200px;
       background-repeat: no-repeat;
       background-position:center;
     }
   }
 }
-// .booking-form{
-//   overflow: inherit;
-//   &:before{
-//     content:'';
-//     background: rgba(0, 0, 0, 0.5);
-//     width:100%;
-//     height: 100vh;
-//     // display: block;
-//     position: fixed;
-//     left:0px;
-//     top:0px;
-//     z-index: 99999;
-//     //Gif Bekleniyor.
-   
-//     background-image: url('/UPLOAD/frontend/loading.gif');
-//     background-repeat: no-repeat;
-//     background-position:center;
-//   }
-// }
+
 .step3{
   .booking-menu-overlay{
     pointer-events: none;
